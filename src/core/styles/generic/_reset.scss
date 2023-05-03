@@ -82,6 +82,14 @@ select {
     text-transform: none;
 }
 
+a {
+    color: inherit;
+
+    &:not([class]):visited {
+        color: inherit;
+    }
+}
+
 button,
 [type='button'],
 [type='reset'],

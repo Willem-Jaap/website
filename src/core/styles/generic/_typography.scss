@@ -1,35 +1,43 @@
+body {
+    font-size: clamp(0.8rem, 0.55rem + 0.8vw, 1rem);
+}
+
 h1 {
-    font-weight: 600;
-    font-size: 2.4rem;
+    font-weight: 500;
+    font-size: clamp(2.8rem, 1.8rem + 3.2vw, 3.6rem);
 }
 
 h2 {
-    font-weight: 600;
-    font-size: 2rem;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 1.5rem + 2.88vw, 3.12rem);
 }
 
 h3 {
-    font-weight: 600;
-    font-size: 1.8rem;
+    font-weight: 500;
+    font-size: clamp(2rem, 1.2rem + 2.56vw, 2.64rem);
 }
 
 h4 {
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: clamp(1.6rem, 0.9rem + 2.24vw, 2.16rem);
 }
 
 h5 {
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 0.6rem + 1.92vw, 1.68rem);
 }
 
 h6 {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: clamp(0.8rem, 0.3rem + 1.6vw, 1.2rem);
 }
 
 p {
     font-weight: 400;
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 0.425rem + 1.2vw, 1.1rem);
     line-height: 1.5rem;
+
+    & + p {
+        margin-top: 1rem;
+    }
 }
