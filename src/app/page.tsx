@@ -9,7 +9,7 @@ const Page = () => {
                 <h1 className="m-y-1">Hey, I&apos;m Willem-Jaap</h1>
                 <p className="t--gray">A Software Developer based in The Netherlands.</p>
                 <p className="t--gray">
-                    I&apos;m strive to create software that is fast, easy to use, maintainable and
+                    I strive to create software that is fast, easy to use, maintainable and
                     scalable.
                     <br />
                     I&apos;m a big fan of Next.js, Typescript, SCSS & Laravel.
