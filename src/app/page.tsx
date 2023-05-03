@@ -16,10 +16,17 @@ const Page = () => {
                 </p>
                 <p className="t--gray">
                     I&apos;m currently working at{' '}
-                    <Link href="https://pixelperfect.agency">Pixel Perfect Agency</Link>.
+                    <Link href="https://pixelperfect.agency" target="_blank" rel="noreferrer">
+                        Pixel Perfect Agency
+                    </Link>
+                    .
                 </p>
                 <p className="t--gray">
-                    You can find me on <Link href="https://github.com/willem-jaap">Github</Link>.
+                    You can find me on{' '}
+                    <Link href="https://github.com/willem-jaap" target="_blank" rel="noreferrer">
+                        Github
+                    </Link>
+                    .
                 </p>
             </div>
         </div>
