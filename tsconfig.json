@@ -24,14 +24,13 @@
             "~modules/*": ["src/modules/*"],
             "~tests/*": ["src/tests/*"],
             "~types/*": ["src/types/*"],
-            "~components/*": ["src/core/components/*"],
-            "~functions/*": ["src/core/functions/*"],
-            "~hooks/*": ["src/core/hooks/*"],
-            "~styles/*": ["src/core/styles/*"],
-            "~core*": ["src/core/*"],
+            "~components/*": ["src/components/*"],
+            "~functions/*": ["src/functions/*"],
+            "~hooks/*": ["src/hooks/*"],
+            "~styles/*": ["src/styles/*"],
             "~/*": ["src/*"]
         }
     },
-    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
     "exclude": ["node_modules"]
 }
