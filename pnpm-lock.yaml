@@ -16,8 +16,8 @@ dependencies:
 
 devDependencies:
   '@next/eslint-plugin-next':
-    specifier: ^13.4.4
-    version: 13.4.4
+    specifier: ^13.4.5
+    version: 13.4.5
   '@playwright/test':
     specifier: ^1.35.0
     version: 1.35.0
@@ -302,8 +302,8 @@ packages:
     resolution: {integrity: sha512-SG/gKH6eij4vwQy87b/3mbpQ1X3x2vUdnpwq6/qL2IQWjtq58EY/UuNAp9CoEZoC9sI4L9AD1r+73Z9r4d3uug==}
     dev: false
 
-  /@next/eslint-plugin-next@13.4.4:
-    resolution: {integrity: sha512-5jnh7q6I15efnjR/rR+/TGTc9hn53g3JTbEjAMjmeQiExKqEUgIXqrHI5zlTNlNyzCPkBB860/ctxXheZaF2Vw==}
+  /@next/eslint-plugin-next@13.4.5:
+    resolution: {integrity: sha512-/xD/kyJhXmBZq+0xGKOdjL22c9/4i3mBAXaU9aOGEHTXqqFeOz8scJbScWF13aMqigeoFCsDqngIB2MIatcn4g==}
     dependencies:
       glob: 7.1.7
     dev: true
