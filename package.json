@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "^13.4.13",
-        "@playwright/test": "^1.36.2",
+        "@playwright/test": "^1.37.0",
         "@types/node": "20.4.5",
         "@types/react": "18.2.20",
         "autoprefixer": "^10.4.14",
