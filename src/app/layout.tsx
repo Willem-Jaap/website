@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Albert_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
 import '~styles/global.css';
 
@@ -8,13 +8,13 @@ interface Props {
     children: React.ReactNode;
 }
 
-const AlbertSansFont = Albert_Sans({
+const InterFont = Inter({
     subsets: ['latin'],
 });
 
 const RootLayout = ({ children }: Props) => {
     return (
-        <html className={AlbertSansFont.className}>
+        <html className={InterFont.className}>
             <body>{children}</body>
         </html>
     );
