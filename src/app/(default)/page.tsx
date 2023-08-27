@@ -21,6 +21,11 @@ const Page = () => {
                     alt="Portfolio hero image of Willem-Jaap"
                     className="object-contain object-center w-full h-full mt-12"
                 />
+                <p className="relative z-10 mt-24 text-right leading-tight text-charade-400">
+                    Proficient in Next.js, Typescript, Tailwind, Laravel and more. <br /> I like to
+                    work in small, efficient teams where I contribute <br /> to techinical
+                    innovation and creative solutions.
+                </p>
                 <div className="absolute bottom-0 left-0 w-full h-52 z-0 bg-gradient-to-b from-transparent to-[#0D0D0F]" />
                 <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80">
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />

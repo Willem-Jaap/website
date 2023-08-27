@@ -31,7 +31,7 @@ module.exports = {
                 '6xl': '3.813rem',
             },
             padding: {
-                'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 13rem);',
+                'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
             },
             keyframes: {
                 noise: {
