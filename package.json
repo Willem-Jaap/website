@@ -9,11 +9,13 @@
         "stylelint": "stylelint \"**/*.css\"",
         "test": "playwright test",
         "test:debug": "playwright test --headed",
-        "test:report": "playwright show-report"
+        "test:report": "playwright show-report",
+        "contentlayer": "contentlayer"
     },
     "dependencies": {
         "contentlayer": "^0.3.4",
         "date-fns": "^2.30.0",
+        "fuse.js": "^6.6.2",
         "next": "^13.4.19",
         "next-contentlayer": "^0.3.4",
         "react": "^18.2.0",
