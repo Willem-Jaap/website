@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import Spotlight from '~app/(default)/components/spotlight';
+import BlogList from '~components/misc/BlogList';
 
 const Page = () => {
     return (
@@ -31,6 +32,20 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
                 </div>
             </div>
+            <section className="mx-8 pt-6">
+                <h2 className="text-2xl leading-tight my-8 pb-6 border-b border-b-charade-800">
+                    Blog
+                </h2>
+                <div className="flex justify-between gap-32 py-12">
+                    <p className="text-charade-400 leading-tight">
+                        Read more about my insights as <br /> a webdeveloper, latest trends <br />{' '}
+                        and general development
+                    </p>
+                    <div className="flex-1">
+                        <BlogList />
+                    </div>
+                </div>
+            </section>
         </>
     );
 };
