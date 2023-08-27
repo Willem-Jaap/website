@@ -1,8 +1,8 @@
-import React from 'react';
-
-import { type Blog } from 'contentlayer/generated';
+import { type Blog, allBlogs } from 'contentlayer/generated';
 import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
+
+import search from '~app/(default)/search/utils/search';
 
 const BlogRow = (blog: Blog) => {
     return (
@@ -20,10 +20,15 @@ const BlogRow = (blog: Blog) => {
 };
 
 interface BlogListProps {
-    blogs: Blog[];
+    query?: string;
 }
 
-const BlogList = ({ blogs }: BlogListProps) => {
+const BlogList = ({ query }: BlogListProps) => {
+    let blogs = allBlogs;
+
+    if (query) {
+        blogs = search(query, allBlogs);
+    }
     return (
         <div className="-mt-4">
             {blogs.map((blog, idx) => (

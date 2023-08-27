@@ -1,15 +1,10 @@
-import { allBlogs } from 'contentlayer/generated';
-import { compareDesc } from 'date-fns';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
 import BlogList from '~components/misc/BlogList';
 
 const Page = () => {
-    const blogs = allBlogs.sort((a, b) =>
-        compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
-    );
-
     return (
         <>
             <div className="relative px-column-1 pt-32 min-h-screen bg-charade-700 overflow-hidden">
@@ -42,13 +37,30 @@ const Page = () => {
                 <h2 className="text-2xl leading-tight my-8 pb-6 border-b border-b-charade-800">
                     Blog
                 </h2>
-                <div className="flex justify-between gap-32 py-12">
+                <div className="flex flex-col justify-between gap-32 py-4">
                     <p className="text-charade-400 leading-tight">
                         Read more about my insights as <br /> a webdeveloper, latest trends <br />{' '}
                         and general development
                     </p>
                     <div className="flex-1">
-                        <BlogList blogs={blogs} />
+                        <BlogList />
+                        <Link
+                            className="inline-block mt-4 mb-20 text-sm border border-charade-700 bg-charade-800 px-4 py-2 rounded-lg"
+                            href="/search">
+                            Or search in blogs
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="inline-block w-4 h-4 ml-2"
+                                viewBox="0 0 24 24"
+                                strokeWidth="2"
+                                stroke="currentColor"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                        </Link>
                     </div>
                 </div>
             </section>

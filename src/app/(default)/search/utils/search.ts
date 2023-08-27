@@ -1,17 +1,9 @@
-import { allBlogs } from 'contentlayer/generated';
+import { type Blog } from 'contentlayer/generated';
 import Fuse from 'fuse.js';
-import { NextResponse } from 'next/server';
 
-interface Props {
-    params: {
-        query: string;
-    };
-}
-
-// eslint-disable-next-line @typescript-eslint/require-await
-const GET = async (request: Request, { params }: Props) => {
+const search = (query: string, blogs: Blog[]): Blog[] | [] => {
     // Create a more searchable version of the blogs.
-    const searchableBlogs = allBlogs.map(({ _raw, title, body, publishedAt, updatedAt }) => ({
+    const searchableBlogs = blogs.map(({ _raw, title, body, publishedAt, updatedAt }) => ({
         title,
         publishedAt,
         updatedAt,
@@ -52,9 +44,11 @@ const GET = async (request: Request, { params }: Props) => {
 
     const fuse = new Fuse(searchableBlogs, options);
 
-    const result = fuse.search(params.query);
+    const results = fuse.search(query);
 
-    return NextResponse.json(result);
+    return results.map(result => {
+        return blogs.find(blog => blog.title === result.item.title);
+    }) as Blog[];
 };
 
-export { GET };
+export default search;
