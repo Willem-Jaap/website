@@ -1,9 +1,15 @@
+import { allBlogs } from 'contentlayer/generated';
+import { compareDesc } from 'date-fns';
 import Image from 'next/image';
 
 import Spotlight from '~app/(default)/components/spotlight';
 import BlogList from '~components/misc/BlogList';
 
 const Page = () => {
+    const blogs = allBlogs.sort((a, b) =>
+        compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
+    );
+
     return (
         <>
             <div className="relative px-column-1 pt-32 min-h-screen bg-charade-700 overflow-hidden">
@@ -42,7 +48,7 @@ const Page = () => {
                         and general development
                     </p>
                     <div className="flex-1">
-                        <BlogList />
+                        <BlogList blogs={blogs} />
                     </div>
                 </div>
             </section>
