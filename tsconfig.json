@@ -29,9 +29,17 @@
             "~hooks/*": ["src/hooks/*"],
             "~styles/*": ["src/styles/*"],
             "~app/*": ["src/app/*"],
-            "~/*": ["src/*"]
+            "~/*": ["src/*"],
+            "contentlayer/generated": ["./.contentlayer/generated"]
         }
     },
-    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
+    "include": [
+        "next-env.d.ts",
+        ".next/types/**/*.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.js",
+        ".contentlayer/generated"
+    ],
     "exclude": ["node_modules"]
 }
