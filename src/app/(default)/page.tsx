@@ -16,7 +16,7 @@ const Page = () => {
                 </h1>
                 <Spotlight />
                 <Image
-                    layout="fill"
+                    fill
                     src="/assets/images/portfolio-hero.png"
                     alt="Portfolio hero image of Willem-Jaap"
                     className="object-contain object-center w-full h-full mt-12"
