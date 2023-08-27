@@ -16,6 +16,6 @@ jobs:
                   node-version: 18
                   cache: 'pnpm'
             - run: pnpm install --frozen-lockfile
-            - run: contentlayer build
+            - run: pnpm contentlayer build
             - run: pnpm run lint
             - run: pnpm run stylelint
