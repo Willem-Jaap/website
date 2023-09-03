@@ -15,6 +15,10 @@ const Blog = defineDocumentType(() => ({
             required: true,
         },
         summary: { type: 'string', required: true },
+        tags: {
+            type: 'list',
+            of: { type: 'string' },
+        },
     },
     computedFields: {
         url: { type: 'string', resolve: blog => `/blog/${blog._raw.flattenedPath}` },

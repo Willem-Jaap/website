@@ -13,15 +13,15 @@ const search = (query: string, blogs: Blog[]): Blog[] | [] => {
 
     const options = {
         includeScore: true,
+        includeMatches: true,
         keys: [
             {
                 name: 'title',
                 weight: 2,
             },
             {
-                // Not implemented yet.
                 name: 'tags',
-                weight: 1,
+                weight: 1.5,
             },
             {
                 name: 'body',
@@ -29,15 +29,15 @@ const search = (query: string, blogs: Blog[]): Blog[] | [] => {
             },
             {
                 name: 'slug',
-                weight: 1.5,
+                weight: 1.2,
             },
             {
                 name: 'publishedAt',
-                weight: 0.5,
+                weight: 0.3,
             },
             {
                 name: 'updatedAt',
-                weight: 0.5,
+                weight: 0.3,
             },
         ],
     };
@@ -45,6 +45,8 @@ const search = (query: string, blogs: Blog[]): Blog[] | [] => {
     const fuse = new Fuse(searchableBlogs, options);
 
     const results = fuse.search(query);
+
+    console.log(results);
 
     return results.map(result => {
         return blogs.find(blog => blog.title === result.item.title);
