@@ -37,7 +37,7 @@ const Page = () => {
                 <h2 className="text-2xl leading-tight my-8 pb-6 border-b border-b-charade-800">
                     Blog
                 </h2>
-                <div className="flex flex-col justify-between gap-32 py-4">
+                <div className="flex flex-col md:flex-row justify-between gap-32 py-4">
                     <p className="text-charade-400 leading-tight">
                         Read more about my insights as <br /> a webdeveloper, latest trends <br />{' '}
                         and general development
