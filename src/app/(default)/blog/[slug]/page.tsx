@@ -12,7 +12,7 @@ interface MetaDataParams {
 }
 
 const generateMetadata = ({ params }: MetaDataParams) => {
-    const blog = allBlogs.find(blog => blog._raw.flattenedPath === params.slug);
+    const blog = allBlogs.find(blog => blog._raw.flattenedPath.includes(params.slug));
     if (!blog) throw new Error(`Blog not found for slug: ${params.slug}`);
     return { title: blog.title };
 };
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const Page = ({ params }: Props) => {
-    const blog = allBlogs.find(blog => blog._raw.flattenedPath === params.slug);
+    const blog = allBlogs.find(blog => blog._raw.flattenedPath.includes(params.slug));
     if (!blog) throw new Error(`Blog not found for slug: ${params.slug}`);
 
     const MDXContent = useMDXComponent(blog.body.code);
