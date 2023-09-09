@@ -2,7 +2,7 @@ import { type Blog, allBlogs } from 'contentlayer/generated';
 import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 
-import search from '~app/(default)/search/utils/search';
+import search from '~app/(default)/blog/utils/search';
 
 const BlogRow = (blog: Blog) => {
     return (
@@ -21,9 +21,10 @@ const BlogRow = (blog: Blog) => {
 
 interface BlogListProps {
     query?: string;
+    showResultAmount?: boolean;
 }
 
-const BlogList = ({ query }: BlogListProps) => {
+const BlogList = ({ query, showResultAmount = false }: BlogListProps) => {
     let blogs = allBlogs;
 
     if (query) {
@@ -31,6 +32,11 @@ const BlogList = ({ query }: BlogListProps) => {
     }
     return (
         <div className="-mt-4">
+            {showResultAmount && query && (
+                <p className="text-sm pb-4 text-charade-400 border-b border-b-charade-800">
+                    {blogs.length} result{blogs.length > 1 ? 's' : ''} for &quot;{query}&quot;:
+                </p>
+            )}
             {blogs.map((blog, idx) => (
                 <BlogRow key={idx} {...blog} />
             ))}

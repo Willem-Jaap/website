@@ -33,7 +33,7 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
                 </div>
             </div>
-            <section className="mx-8 pt-6">
+            <section className="px-8 pt-6 bg-charade-900">
                 <h2 className="text-2xl leading-tight my-8 pb-6 border-b border-b-charade-800">
                     Blog
                 </h2>
@@ -42,12 +42,12 @@ const Page = () => {
                         Read more about my insights as <br /> a webdeveloper, latest trends <br />{' '}
                         and general development
                     </p>
-                    <div className="flex-1">
+                    <div className="max-w-7xl flex-1">
                         <BlogList />
                         <Link
-                            className="inline-block mt-4 mb-20 text-sm border border-charade-700 bg-charade-800 px-4 py-2 rounded-lg"
+                            className="inline-block mt-4 mb-20 text-sm border border-charade-700 px-4 py-2 rounded-lg"
                             href="/search">
-                            Or search in blogs
+                            View all blogs
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="inline-block w-4 h-4 ml-2"
