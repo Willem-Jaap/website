@@ -14,7 +14,7 @@ const InterFont = Inter({
 const RootLayout = ({ children }: Props) => {
     return (
         <html className={cn(InterFont.className, 'scroll-smooth')}>
-            <body>{children}</body>
+            <body className="min-h-screen bg-charade-900 text-charade-50">{children}</body>
         </html>
     );
 };
