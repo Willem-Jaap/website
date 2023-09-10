@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { Inter } from 'next/font/google';
 
 import '~styles/global.scss';
@@ -17,6 +19,13 @@ const RootLayout = ({ children }: Props) => {
             <body className="min-h-screen bg-charade-900 text-charade-50">{children}</body>
         </html>
     );
+};
+
+export const metadata: Metadata = {
+    title: {
+        default: 'Willem-Jaap - Portfolio, blog and more',
+        template: '%s | Willem-Jaap',
+    },
 };
 
 export default RootLayout;
