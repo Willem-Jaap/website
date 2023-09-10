@@ -1,6 +1,7 @@
 import { allBlogs } from 'contentlayer/generated';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import Link from 'next/link';
 
 const generateStaticParams = () => {
     return allBlogs.map(blog => ({ slug: blog._raw.sourceFileName.replace('.mdx', '') }));
@@ -48,7 +49,7 @@ const Page = ({ params }: Props) => {
                     strokeLinejoin="round">
                     <path d="M15 18l-6-6 6-6" />
                 </svg>
-                <a href="/blog">Back to blogs</a>
+                <Link href="/blog">Back to blogs</Link>
             </div>
 
             <h1 className="mb-4 text-3xl">{blog.title}</h1>
