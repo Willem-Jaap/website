@@ -33,8 +33,8 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
                 </div>
             </div>
-            <section className="px-8 pt-6 bg-charade-900">
-                <h2 className="text-2xl leading-tight my-8 pb-6 border-b border-b-charade-800">
+            <section className="px-8 pt-6">
+                <h2 className="leading-tight mt-8 mb-16 pb-6 border-b border-b-charade-800">
                     Blog
                 </h2>
                 <div className="flex flex-col md:flex-row justify-between gap-32 py-4">
@@ -45,7 +45,7 @@ const Page = () => {
                     <div className="max-w-7xl flex-1">
                         <BlogList />
                         <Link
-                            className="inline-block mt-4 mb-20 text-sm border border-charade-700 px-4 py-2 rounded-lg"
+                            className="inline-block mt-12 mb-20 text-sm border border-charade-700 px-4 py-2 rounded-lg"
                             href="/search">
                             View all blogs
                             <svg
