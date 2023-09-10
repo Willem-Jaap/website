@@ -20,15 +20,13 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "~locales/*": ["src/locales/*"],
-            "~modules/*": ["src/modules/*"],
-            "~tests/*": ["src/tests/*"],
-            "~types/*": ["src/types/*"],
+            "~app/*": ["src/app/*"],
             "~components/*": ["src/components/*"],
-            "~functions/*": ["src/functions/*"],
             "~hooks/*": ["src/hooks/*"],
             "~styles/*": ["src/styles/*"],
-            "~app/*": ["src/app/*"],
+            "~utils/*": ["src/utils/*"],
+            "~tests/*": ["src/tests/*"],
+            "~types/*": ["src/types/*"],
             "~/*": ["src/*"],
             "contentlayer/generated": ["./.contentlayer/generated"]
         }

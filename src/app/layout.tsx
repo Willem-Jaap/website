@@ -2,7 +2,8 @@ import React from 'react';
 
 import { Inter } from 'next/font/google';
 
-import '~styles/global.css';
+import '~styles/global.scss';
+import cn from '~utils/cn';
 
 interface Props {
     children: React.ReactNode;
@@ -14,7 +15,7 @@ const InterFont = Inter({
 
 const RootLayout = ({ children }: Props) => {
     return (
-        <html className={InterFont.className}>
+        <html className={cn(InterFont.className, 'scroll-smooth')}>
             <body>{children}</body>
         </html>
     );

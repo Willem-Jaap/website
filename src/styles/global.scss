@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        .header-anchor {
+            @apply absolute invisible no-underline;
+
+            position: absolute;
+            margin-left: -1em;
+            padding-right: 0.5em;
+            text-decoration: none;
+            cursor: pointer;
+            width: 80%;
+
+            &:after {
+                @apply text-charade-600;
+                text-decoration: none;
+                content: '#';
+            }
+        }
+
+        &:hover > .header-anchor {
+            @apply visible;
+        }
+    }
+}

@@ -1,4 +1,6 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 
 const Blog = defineDocumentType(() => ({
     name: 'Blog',
@@ -43,4 +45,18 @@ export default makeSource({
     contentDirPath: 'src/content',
     contentDirInclude: ['blog', 'thoughts'],
     documentTypes: [Blog, Thought],
+    mdx: {
+        remarkPlugins: [],
+        rehypePlugins: [
+            rehypeSlug,
+            [
+                rehypeAutolinkHeadings,
+                {
+                    properties: {
+                        className: ['header-anchor not-prose'],
+                    },
+                },
+            ],
+        ],
+    },
 });

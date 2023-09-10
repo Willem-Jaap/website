@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -33,6 +36,14 @@ module.exports = {
             padding: {
                 'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
             },
+            typography: theme => ({
+                charade: {
+                    css: {
+                        '--tw-prose-headings': theme('colors.charade[50]'),
+                        '--tw-prose-body': theme('colors.charade.400'),
+                    },
+                },
+            }),
             keyframes: {
                 noise: {
                     '0%': {
@@ -88,5 +99,5 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/typography')],
 };

@@ -35,7 +35,7 @@ const Page = ({ params }: Props) => {
     const MDXContent = useMDXComponent(blog.body.code);
 
     return (
-        <article className="max-w-6xl mx-auto px-4 py-32">
+        <div className="max-w-6xl mx-auto px-4 py-32">
             <div className="mb-8 text-charade-400">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +60,10 @@ const Page = ({ params }: Props) => {
                 )
             </time>
             <hr className="border-charade-800 my-8" />
-            <MDXContent />
-        </article>
+            <article className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-none">
+                <MDXContent />
+            </article>
+        </div>
     );
 };
 
