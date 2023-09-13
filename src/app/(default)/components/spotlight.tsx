@@ -11,8 +11,8 @@ const Spotlight = () => {
         const animateTo = (x: number, y: number) => {
             gsap.to(gradientRef.current, {
                 duration: 0.5,
-                x: x - window.innerWidth / 2 - (gradientRef.current?.clientWidth ?? 0) / 4 / 10,
-                y: y - window.innerHeight / 2 - (gradientRef.current?.clientHeight ?? 0) / 4 / 10,
+                x: (x - window.innerWidth / 2) / 6,
+                y: (y - window.innerHeight / 2) / 6,
                 ease: 'power3.out',
             });
         };
