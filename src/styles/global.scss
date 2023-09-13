@@ -31,3 +31,15 @@
         }
     }
 }
+
+::-webkit-scrollbar-track {
+    @apply bg-charade-900;
+}
+
+::-webkit-scrollbar {
+    @apply bg-charade-800 w-4;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-charade-700 border-4 border-solid border-charade-900 rounded-2xl;
+}
