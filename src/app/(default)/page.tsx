@@ -1,27 +1,95 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
+import { gsap } from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
 import BlogList from '~components/misc/BlogList';
+import StaggeredText from '~components/misc/animation/StaggeredText';
 
 const Page = () => {
+    const characteristicsRef = useRef<HTMLParagraphElement>(null);
+    const imageRef = useRef<HTMLImageElement>(null);
+    const backgroundTextRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!characteristicsRef.current || !imageRef.current) return;
+
+        characteristicsRef.current.classList.remove('invisible');
+        imageRef.current.classList.remove('invisible');
+
+        gsap.from(characteristicsRef.current.children, {
+            duration: 1,
+            y: 40,
+            opacity: 0,
+            stagger: 0.3,
+            ease: 'power4.inOut',
+        });
+
+        gsap.from(imageRef.current, {
+            duration: 2,
+            x: 50,
+            y: 50,
+            scale: 1.1,
+            ease: 'power3.out',
+        });
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const handleScroll = () => {
+        if (!backgroundTextRef.current) return;
+
+        const scroll = window.scrollY;
+
+        gsap.to(backgroundTextRef.current, {
+            duration: 0.5,
+            y: scroll / 3,
+            ease: 'power3.out',
+        });
+
+        gsap.to(characteristicsRef.current, {
+            duration: 0.5,
+            y: scroll / 10,
+            ease: 'power3.out',
+        });
+
+        gsap.to(imageRef.current, {
+            duration: 0.5,
+            y: scroll / 6,
+            ease: 'power3.out',
+        });
+    };
+
     return (
         <>
             <div className="relative px-column-1 pt-32 min-h-screen bg-charade-700 overflow-hidden">
-                <p className="relative flex flex-col text-4xl uppercase leading-tight z-10">
+                <p
+                    className="relative invisible flex flex-col text-4xl uppercase leading-tight z-10"
+                    ref={characteristicsRef}>
                     <span>User first</span>
                     <span className="text-charade-400">Frontend Engineer</span>
                     <span className="text-charade-400">Innovative & creative</span>
                 </p>
-                <h1 className="uppercase text-[14rem] text-charade-600 whitespace-nowrap select-none">
-                    Willem-Jaap
+                <h1
+                    className="uppercase text-[14rem] text-charade-600 whitespace-nowrap select-none"
+                    ref={backgroundTextRef}>
+                    <StaggeredText text="Willem-Jaap" />
                 </h1>
                 <Spotlight />
                 <Image
                     fill
+                    ref={imageRef}
                     src="/assets/images/portfolio-hero.png"
                     alt="Portfolio hero image of Willem-Jaap"
-                    className="object-contain object-center w-full h-full mt-12"
+                    className="invisible object-contain object-center w-full h-full mt-12"
                 />
                 <p className="relative z-10 mt-24 text-right leading-tight text-charade-400">
                     Proficient in Next.js, Typescript, Tailwind, Laravel and more. <br /> I like to
@@ -29,7 +97,7 @@ const Page = () => {
                     innovation and creative solutions.
                 </p>
                 <div className="absolute bottom-0 left-0 w-full h-52 z-0 bg-gradient-to-b from-transparent to-[#0D0D0F]" />
-                <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80">
+                <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80 blur-[2px]">
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
                 </div>
             </div>
@@ -64,6 +132,7 @@ const Page = () => {
                     </div>
                 </div>
             </section>
+            <div className="p-96" />
         </>
     );
 };

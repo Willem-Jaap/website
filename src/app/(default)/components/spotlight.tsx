@@ -1,28 +1,41 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+
+import { gsap } from 'gsap';
 
 const Spotlight = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const gradientRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            setMousePosition({
-                x: event.clientX,
-                y: event.clientY,
+        const animateTo = (x: number, y: number) => {
+            gsap.to(gradientRef.current, {
+                duration: 0.5,
+                x: (x - window.innerWidth / 2) / 6,
+                y: (y - window.innerHeight / 2) / 6,
+                ease: 'power3.out',
             });
         };
 
+        const handleMouseMove = (event: MouseEvent) => {
+            animateTo(event.clientX, event.clientY);
+        };
+
         const handleTouchMove = (event: TouchEvent) => {
-            setMousePosition({
-                x: event.touches[0].clientX,
-                y: event.touches[0].clientY,
-            });
+            animateTo(event.touches[0].clientX, event.touches[0].clientY);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('touchmove', handleTouchMove);
+
+        gradientRef.current?.classList.remove('invisible');
+
+        gsap.from(gradientRef.current, {
+            duration: 2,
+            opacity: 0,
+            scale: 0.4,
+            ease: 'power3.out',
+        });
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
@@ -34,20 +47,12 @@ const Spotlight = () => {
         <>
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                 <div
-                    className="absolute top-[-50vh] left-[-50vw] w-[200vw] h-[200vh]"
+                    className="absolute top-[-50vh] left-[-50vw] w-[200vw] h-[200vh] invisible"
                     ref={gradientRef}
                     style={{
                         background: `radial-gradient(circle, transparent 0%, transparent 5%, rgba(2, 2, 3, 50%) 20%, rgba(2, 2, 3, 50%) 100%)`,
-                        transform: `translate(${
-                            // By default the gradient is in the center, because the gradient is 200vw and 200vh, we need to divide by 4 to get the center
-                            // Then we divide by 6 to get a slower movement the greater the number
-                            (mousePosition.x - (gradientRef.current?.clientWidth ?? 0) / 4) / 6
-                        }px, ${
-                            (mousePosition.y - (gradientRef.current?.clientHeight ?? 0) / 4) / 6
-                        }px)`,
                     }}
                 />
-                {/* Linear gradient */}
             </div>
         </>
     );
