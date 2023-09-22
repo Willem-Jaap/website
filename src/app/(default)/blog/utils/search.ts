@@ -46,8 +46,6 @@ const search = (query: string, blogs: Blog[]): Blog[] | [] => {
 
     const results = fuse.search(query);
 
-    console.log(results);
-
     return results.map(result => {
         return blogs.find(blog => blog.title === result.item.title);
     }) as Blog[];

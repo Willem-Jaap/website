@@ -34,7 +34,7 @@ const BlogList = ({ query, showResultAmount = false }: BlogListProps) => {
         <div className="-mt-4">
             {showResultAmount && query && (
                 <p className="text-sm pb-4 text-charade-400 border-b border-b-charade-800">
-                    {blogs.length} result{blogs.length > 1 ? 's' : ''} for &quot;{query}&quot;:
+                    {blogs.length} result{blogs.length === 1 ? '' : 's'} for &quot;{query}&quot;:
                 </p>
             )}
             {blogs.map((blog, idx) => (

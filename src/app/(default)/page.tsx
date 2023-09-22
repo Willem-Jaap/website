@@ -97,7 +97,7 @@ const Page = () => {
                     innovation and creative solutions.
                 </p>
                 <div className="absolute bottom-0 left-0 w-full h-52 z-0 bg-gradient-to-b from-transparent to-[#0D0D0F]" />
-                <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80 blur-[2px]">
+                <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80">
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
                 </div>
             </div>
