@@ -70,7 +70,7 @@ const Page = () => {
 
     return (
         <>
-            <div className="relative px-column-1 pt-32 min-h-screen bg-charade-700 overflow-hidden">
+            <div className="relative px-column-1 pt-48 min-h-screen bg-charade-700 overflow-hidden">
                 <p
                     className="relative invisible flex flex-col text-4xl uppercase leading-tight z-10"
                     ref={characteristicsRef}>
@@ -114,7 +114,7 @@ const Page = () => {
                         <BlogList />
                         <Link
                             className="inline-block mt-12 mb-20 text-sm border border-charade-700 px-4 py-2 rounded-lg"
-                            href="/search">
+                            href="/blog">
                             View all blogs
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
