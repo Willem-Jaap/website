@@ -39,7 +39,7 @@ module.exports = {
             typography: theme => ({
                 charade: {
                     css: {
-                        '--tw-prose-headings': theme('colors.charade[50]'),
+                        '--tw-prose-headings': theme('colors.charade.50'),
                         '--tw-prose-body': theme('colors.charade.400'),
                     },
                 },
