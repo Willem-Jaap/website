@@ -77,6 +77,11 @@ const Menu = () => {
     }, [menuActive]);
 
     useEffect(() => {
+        // If pathname changes and menu is active, close it
+        if (menuActive) setMenuActive(false);
+    }, [pathname]);
+
+    useEffect(() => {
         // Close menu when escape is pressed
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape') setMenuActive(false);
