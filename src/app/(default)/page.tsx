@@ -75,7 +75,7 @@ const Page = () => {
 
     return (
         <>
-            <div className="relative px-column-1 pt-48 min-h-screen bg-charade-700 overflow-hidden">
+            <div className="relative px-column-1 pt-48 min-h-screen bg-charade-700 max-w-[100vw] overflow-hidden">
                 <p
                     className="relative invisible flex flex-col text-4xl uppercase leading-tight z-10"
                     ref={characteristicsRef}>
