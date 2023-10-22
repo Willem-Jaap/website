@@ -76,6 +76,16 @@ const Menu = () => {
         });
     }, [menuActive]);
 
+    useEffect(() => {
+        // Close menu when escape is pressed
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setMenuActive(false);
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    });
+
     const handleButtonMouseDown = () => {
         gsap.to(menuRef.current, {
             duration: 0.1,
