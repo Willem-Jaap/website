@@ -55,19 +55,16 @@ const Page = () => {
         const scroll = window.scrollY;
 
         gsap.to(backgroundTextRef.current, {
-            duration: 0.5,
             y: scroll / 3,
             ease: 'power3.out',
         });
 
         gsap.to(characteristicsRef.current, {
-            duration: 0.5,
             y: scroll / 10,
             ease: 'power3.out',
         });
 
         gsap.to(imageRef.current, {
-            duration: 0.5,
             y: scroll / 6,
             ease: 'power3.out',
         });
@@ -138,7 +135,6 @@ const Page = () => {
                     </div>
                 </div>
             </section>
-            <div className="p-96" />
         </>
     );
 };
