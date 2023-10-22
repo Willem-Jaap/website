@@ -111,6 +111,10 @@ const Menu = () => {
             text: 'Home',
         },
         {
+            href: '/about',
+            text: 'About',
+        },
+        {
             href: '/blog',
             text: 'Blog',
         },
