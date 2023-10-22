@@ -36,6 +36,30 @@ export const metadata: Metadata = {
         default: 'Willem-Jaap - Portfolio, blog and more',
         template: '%s | Willem-Jaap',
     },
+    description:
+        'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
+    colorScheme: 'dark',
+    themeColor: 'black',
+    keywords: [
+        'willem-jaap',
+        'developer',
+        'software',
+        'portfolio',
+        'blog',
+        'projects',
+        'next',
+        'next.js',
+        'typescript',
+        'tailwind',
+        'laravel',
+        'react',
+    ],
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: 'https://willemjaap.nl',
+        siteName: 'Willem-Jaap Portfolio',
+    },
 };
 
 export default RootLayout;
