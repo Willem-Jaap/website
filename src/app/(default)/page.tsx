@@ -21,26 +21,31 @@ const Page = () => {
         characteristicsRef.current.classList.remove('invisible');
         imageRef.current.classList.remove('invisible');
 
-        gsap.from(characteristicsRef.current.children, {
-            duration: 1,
-            y: 40,
-            opacity: 0,
-            stagger: 0.3,
-            ease: 'power4.inOut',
-        });
+        const context = gsap.context(() => {
+            if (!characteristicsRef.current || !imageRef.current) return;
 
-        gsap.from(imageRef.current, {
-            duration: 2,
-            x: 50,
-            y: 50,
-            scale: 1.1,
-            ease: 'power3.out',
+            gsap.from(characteristicsRef.current.children, {
+                duration: 0.5,
+                y: 40,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'power4.inOut',
+            });
+
+            gsap.from(imageRef.current, {
+                duration: 2,
+                x: 50,
+                y: 50,
+                scale: 1.1,
+                ease: 'power3.out',
+            });
         });
 
         window.addEventListener('scroll', handleScroll);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            context.revert();
         };
     }, []);
 
@@ -86,6 +91,7 @@ const Page = () => {
                 <Spotlight />
                 <Image
                     fill
+                    priority
                     ref={imageRef}
                     src="/assets/images/portfolio-hero.png"
                     alt="Portfolio hero image of Willem-Jaap"
@@ -98,7 +104,7 @@ const Page = () => {
                 </p>
                 <div className="absolute bottom-0 left-0 w-full h-52 z-0 bg-gradient-to-b from-transparent to-[#0D0D0F]" />
                 <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80">
-                    <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
+                    <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise opacity-80" />
                 </div>
             </div>
             <section className="px-8 pt-6">

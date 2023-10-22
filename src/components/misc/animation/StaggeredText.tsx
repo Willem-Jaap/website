@@ -22,20 +22,28 @@ const StaggeredText = ({ text }: Props) => {
 
         staggeredTextRef.current.classList.remove('invisible');
 
-        // Animate staggered text in from right
-        gsap.from(staggeredTextRef.current, {
-            duration: 1.5,
-            x: '80%',
-            ease: 'power3.out',
+        const context = gsap.context(() => {
+            if (!staggeredTextRef.current) return;
+
+            // Animate staggered text in from right
+            gsap.from(staggeredTextRef.current, {
+                duration: 1.5,
+                x: '80%',
+                ease: 'power3.out',
+            });
+
+            gsap.from(staggeredTextRef.current.children, {
+                duration: 0.8,
+                y: 100,
+                opacity: 0,
+                stagger: 0.1,
+                ease: 'power3.inOut',
+            });
         });
 
-        gsap.from(staggeredTextRef.current.children, {
-            duration: 0.8,
-            y: 100,
-            opacity: 0,
-            stagger: 0.1,
-            ease: 'power3.inOut',
-        });
+        return () => {
+            context.revert();
+        };
     }, []);
 
     return (

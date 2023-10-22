@@ -30,16 +30,19 @@ const Spotlight = () => {
 
         gradientRef.current?.classList.remove('invisible');
 
-        gsap.from(gradientRef.current, {
-            duration: 2,
-            opacity: 0,
-            scale: 0.4,
-            ease: 'power3.out',
+        const context = gsap.context(() => {
+            gsap.from(gradientRef.current, {
+                duration: 2,
+                opacity: 0,
+                scale: 0.4,
+                ease: 'power3.out',
+            });
         });
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('touchmove', handleTouchMove);
+            context.revert();
         };
     }, []);
 
