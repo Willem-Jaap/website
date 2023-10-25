@@ -36,6 +36,9 @@ module.exports = {
             padding: {
                 'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
             },
+            margin: {
+                'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
+            },
             typography: theme => ({
                 charade: {
                     css: {
