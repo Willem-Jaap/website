@@ -57,16 +57,19 @@ const Page = () => {
         gsap.to(backgroundTextRef.current, {
             y: scroll / 3,
             ease: 'power3.out',
+            duration: 0,
         });
 
         gsap.to(characteristicsRef.current, {
             y: scroll / 10,
             ease: 'power3.out',
+            duration: 0,
         });
 
         gsap.to(imageRef.current, {
             y: scroll / 6,
             ease: 'power3.out',
+            duration: 0,
         });
     };
 
