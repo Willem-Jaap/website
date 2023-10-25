@@ -3,12 +3,15 @@
 import { useEffect, useRef } from 'react';
 
 import { gsap } from 'gsap';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
-import BlogList from '~components/misc/BlogList';
 import StaggeredText from '~components/misc/animation/StaggeredText';
+
+const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
+    ssr: false,
+});
 
 const Page = () => {
     const characteristicsRef = useRef<HTMLParagraphElement>(null);
@@ -107,37 +110,10 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise opacity-80" />
                 </div>
             </div>
-            <section className="px-8 pt-6">
-                <h2 className="leading-tight mt-8 mb-16 pb-6 border-b border-b-charade-800">
-                    Blog
-                </h2>
-                <div className="flex flex-col md:flex-row justify-between gap-32 py-4">
-                    <p className="text-charade-400 leading-tight">
-                        Read more about my insights as <br /> a webdeveloper, latest trends <br />{' '}
-                        and general development
-                    </p>
-                    <div className="max-w-7xl flex-1">
-                        <BlogList />
-                        <Link
-                            className="inline-block mt-12 mb-20 text-sm border border-charade-700 px-4 py-2 rounded-lg"
-                            href="/blog">
-                            View all blogs
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="inline-block w-4 h-4 ml-2"
-                                viewBox="0 0 24 24"
-                                strokeWidth="2"
-                                stroke="currentColor"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round">
-                                <circle cx="11" cy="11" r="8" />
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                            </svg>
-                        </Link>
-                    </div>
-                </div>
+            <section className="mx-column-1 pt-24 pb-16 border-b border-b-charade-700">
+                <PaddedWithRandomized text="About me" />
             </section>
+            <div className="py-24" />
         </>
     );
 };
