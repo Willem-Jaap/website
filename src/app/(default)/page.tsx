@@ -8,6 +8,7 @@ import Image from 'next/image';
 
 import Spotlight from '~app/(default)/components/spotlight';
 import StaggeredText from '~components/misc/animation/StaggeredText';
+import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
     ssr: false,
@@ -113,6 +114,31 @@ const Page = () => {
             <section className="px-column-1 bg-charade-900 border-t border-t-charade-800">
                 <div className="pt-24 pb-16 border-b border-b-charade-800">
                     <PaddedWithRandomized text="About me" />
+                </div>
+                <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
+                    <span className="uppercase text-charade-500 font-semibold">Introduction</span>
+                    <p className="text-charade-100 text-lg">
+                        I&apos;m Willem-Jaap, a 20-year-old software developer with a deep passion
+                        for technology and a constant drive for self-improvement. I&apos;ve spent
+                        several years in the software development field and recently founded Pixel
+                        Perfect Agency. Our focus is creating fast, beautiful, and efficient
+                        software solutions to streamline processes and boost efficiency. In my free
+                        time, when I&apos;m not coding, you can often find me in the kitchen or
+                        hitting weights in the gym.
+                    </p>
+                    <ImageWithContentOverlay
+                        src="/assets/images/portrait-willem-jaap.png"
+                        alt="Portrait of Willem-Jaap"
+                        className="mt-20">
+                        <div className="flex flex-col gap-4 text-center max-w-xl">
+                            <h3 className="text-3xl uppercase">Founder & CEO</h3>
+                            <p className="leading-tight text-charade-400 text-lg">
+                                I&apos;m the founder of Pixel Perfect Agency where we create
+                                beautiful and efficient software solutions using the latest
+                                technologies.
+                            </p>
+                        </div>
+                    </ImageWithContentOverlay>
                 </div>
             </section>
             <div className="py-24" />
