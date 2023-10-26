@@ -11,6 +11,7 @@ import cn from '~utils/cn';
 const Menu = () => {
     const [menuActive, setMenuActive] = useState<boolean | null>(null);
     const menuRef = useRef<HTMLElement>(null);
+    const menuControlsRef = useRef<HTMLDivElement>(null);
     const menuCloseTextRef = useRef<HTMLSpanElement>(null);
     const menuOpenTextRef = useRef<HTMLSpanElement>(null);
     const pathname = usePathname();
@@ -88,25 +89,24 @@ const Menu = () => {
         };
 
         window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    });
+        window.addEventListener('click', handlePageClick);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('click', handlePageClick);
+        };
+    }, []);
+
+    const handlePageClick = (e: MouseEvent) => {
+        if (menuControlsRef.current?.contains(e.target as Node)) return;
+        setMenuActive(false);
+    };
 
     const handleButtonMouseDown = () => {
         gsap.to(menuRef.current, {
             duration: 0.1,
             scale: 0.95,
             ease: 'power3.out',
-        });
-    };
-
-    const handleButtonClick = () => {
-        gsap.to(menuRef.current, {
-            duration: 0.1,
-            scale: 1,
-            ease: 'power3.out',
-            onComplete: () => {
-                setMenuActive(false);
-            },
         });
     };
 
@@ -126,7 +126,7 @@ const Menu = () => {
     ];
 
     return (
-        <div className="relative">
+        <div className="relative" ref={menuControlsRef}>
             <button
                 className="relative w-20 h-10 bg-charade-800 text-charade-50 border border-charade-700 rounded-full z-10 overflow-hidden"
                 onClick={() => setMenuActive(!menuActive)}>
@@ -151,8 +151,7 @@ const Menu = () => {
                                 className={cn('block text-lg py-1 relative text-charade-400', {
                                     'text-charade-50': pathname === href,
                                 })}
-                                onMouseDown={handleButtonMouseDown}
-                                onClick={handleButtonClick}>
+                                onMouseDown={handleButtonMouseDown}>
                                 {text}
                             </Link>
                         </li>
