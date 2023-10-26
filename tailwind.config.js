@@ -98,7 +98,8 @@ module.exports = {
                 noise: 'noise 3s steps(2) infinite',
             },
             backgroundImage: {
-                noise: 'url("/assets/images/noise.png")',
+                'noise': 'url("/assets/images/noise.png")',
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             },
         },
     },
