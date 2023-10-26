@@ -110,8 +110,10 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise opacity-80" />
                 </div>
             </div>
-            <section className="mx-column-1 pt-24 pb-16 border-b border-b-charade-700">
-                <PaddedWithRandomized text="About me" />
+            <section className="px-column-1 bg-charade-900 border-t border-t-charade-800">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="About me" />
+                </div>
             </section>
             <div className="py-24" />
         </>
