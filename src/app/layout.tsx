@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 
 import { Inter } from 'next/font/google';
 
+import { env } from '~/env';
 import Header from '~components/layout/header';
 import '~styles/global.scss';
 import cn from '~utils/cn';
@@ -24,6 +25,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 };
 
 export const metadata: Metadata = {
+    metadataBase: new URL(env.NEXT_PUBLIC_URL!),
     title: {
         default: 'Willem-Jaap - Portfolio, blog and more',
         template: '%s | Willem-Jaap',
@@ -47,9 +49,12 @@ export const metadata: Metadata = {
         'react',
     ],
     openGraph: {
+        title: 'Willem-Jaap - Portfolio, blog and more',
+        description:
+            'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
         type: 'website',
         locale: 'en_US',
-        url: 'https://willemjaap.nl',
+        url: new URL(env.NEXT_PUBLIC_URL!),
         siteName: 'Willem-Jaap Portfolio',
     },
 };
