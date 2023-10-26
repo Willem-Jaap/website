@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
+import PaddedWithRandomized from '~components/misc/padded-with-randomized';
+
 const Page = () => {
     const birthday = new Date(2003, 6, 16);
     const age =
@@ -34,56 +37,84 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
                 </div>
             </div>
-            <section className="px-column-1 py-6 bg-charade-900 text-charade-300 max-w-4xl">
-                <h2 className="leading-tight mt-8 mb-16 pb-6 border-b text-charade-50 border-b-charade-800">
-                    About me
-                </h2>
-                <p className="mb-4">
-                    Hi, I&apos;m Willem-Jaap, a frontend engineer from the Netherlands. I&apos;m a
-                    creative and critical thinker, always looking for the most efficient and
-                    beautiful solutions.
-                </p>
-                <p className="mb-4">
-                    I was born in 2003 (which makes me {age} years old) in the Netherlands.
-                    I&apos;ve always been interested in technology and the way anything works. I
-                    started programming at the age of 15 using self-taught HTML and CSS and
-                    Javascript. It was a logical step for me to study Application- and Media
-                    Development at Hoornbeeck College in Rotterdam. During my study I&apos;ve
-                    learned a lot about programming and also did a lot of self study. I
-                    overengineered a lot of projects and learned a lot from that.
-                </p>
-                <p>During my years of programming I&apos;ve have mostly with the following tech:</p>
-                <ul className="list-disc list-inside">
-                    <li>Next.js</li>
-                    <li>Typescript</li>
-                    <li>Tailwind</li>
-                    <li>Laravel</li>
-                    <li>React</li>
-                </ul>
-                <p className="mt-4">
-                    I am the founder and CEO of{' '}
-                    <Link
-                        href="https://pixelperfect.agency"
-                        className="underline hover:text-charade-200"
-                        target="_blank"
-                        rel="noreferrer">
-                        Pixel Perfect Agency
-                    </Link>
-                    , a softwaredevelopment agency based in the Netherlands that focuses on creating
-                    beautiful and efficient websites for small businesses.
-                </p>
-                <p className="mt-4">
-                    I also like to work on side projects and am becoming more active in the open
-                    source community. You can check me out on{' '}
-                    <Link
-                        href="https://github.com/Willem-Jaap"
-                        className="underline hover:text-charade-200"
-                        target="_blank"
-                        rel="noreferrer">
-                        Github
-                    </Link>
-                    .
-                </p>
+            <section className="flex flex-col gap-4 px-column-1 py-6 text-lg bg-charade-900 text-charade-100 border-t border-t-charade-800">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="About me" />
+                </div>
+                <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
+                    <p>
+                        Hi, I&apos;m Willem-Jaap, a frontend engineer from the Netherlands. I&apos;m
+                        a creative and critical thinker, always looking for the most efficient and
+                        beautiful solutions.
+                    </p>
+                    <p>
+                        I was born in 2003 (which makes me {age} years old). I&apos;ve always been
+                        interested in technology and the way anything works. I started programming
+                        at the age of 15 using self-taught HTML and CSS and Javascript. It was a
+                        logical step for me to study Application- and Media Development at
+                        Hoornbeeck College in Rotterdam. During my study I&apos;ve learned a lot
+                        about programming and also did a lot of self study. I overengineered a lot
+                        of projects and learned a lot from that.
+                    </p>
+                    <p>
+                        During my years of programming I&apos;ve have mostly worked with the
+                        following tech:
+                    </p>
+                    <ul className="flex gap-4">
+                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                            Next.js
+                        </li>
+                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                            Typescript
+                        </li>
+                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                            Tailwind
+                        </li>
+                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                            Laravel
+                        </li>
+                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                            React
+                        </li>
+                    </ul>
+                    <hr className="my-8 border-t border-t-charade-800" />
+                    <ImageWithContentOverlay
+                        src="/assets/images/laptop-design-system-hero.png"
+                        alt="Design system Pixel Perfect Agency"
+                        className="mb-8">
+                        <div className="flex flex-col gap-4 text-center max-w-xl">
+                            <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
+                            <p className="leading-tight text-charade-200 text-lg">
+                                Pixel Perfect is a digital agency based in the Netherlands. We
+                                strive to create beautiful, fast, safe & efficient user experiences.
+                            </p>
+                        </div>
+                    </ImageWithContentOverlay>
+                    <p>
+                        I am the founder and CEO of{' '}
+                        <Link
+                            href="https://pixelperfect.agency"
+                            className="underline hover:text-charade-200"
+                            target="_blank"
+                            rel="noreferrer">
+                            Pixel Perfect Agency
+                        </Link>
+                        , a softwaredevelopment agency based in the Netherlands that focuses on
+                        creating beautiful and software solutions using the latest technologies.
+                    </p>
+                    <p>
+                        I also like to work on side projects and am becoming more active in the open
+                        source community. You can check me out on{' '}
+                        <Link
+                            href="https://github.com/Willem-Jaap"
+                            className="underline hover:text-charade-200"
+                            target="_blank"
+                            rel="noreferrer">
+                            Github
+                        </Link>
+                        .
+                    </p>
+                </div>
             </section>
         </>
     );
