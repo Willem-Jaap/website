@@ -3,12 +3,21 @@
 import { useEffect, useRef } from 'react';
 
 import { gsap } from 'gsap';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
-import BlogList from '~components/misc/BlogList';
 import StaggeredText from '~components/misc/animation/StaggeredText';
+import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
+
+const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
+    ssr: false,
+});
+
+const RandomizedTextGradient = dynamic(() => import('~components/misc/randomized-text-gradient'), {
+    ssr: false,
+});
 
 const Page = () => {
     const characteristicsRef = useRef<HTMLParagraphElement>(null);
@@ -57,16 +66,19 @@ const Page = () => {
         gsap.to(backgroundTextRef.current, {
             y: scroll / 3,
             ease: 'power3.out',
+            duration: 0,
         });
 
         gsap.to(characteristicsRef.current, {
             y: scroll / 10,
             ease: 'power3.out',
+            duration: 0,
         });
 
         gsap.to(imageRef.current, {
             y: scroll / 6,
             ease: 'power3.out',
+            duration: 0,
         });
     };
 
@@ -104,37 +116,42 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise opacity-80" />
                 </div>
             </div>
-            <section className="px-8 pt-6">
-                <h2 className="leading-tight mt-8 mb-16 pb-6 border-b border-b-charade-800">
-                    Blog
-                </h2>
-                <div className="flex flex-col md:flex-row justify-between gap-32 py-4">
-                    <p className="text-charade-400 leading-tight">
-                        Read more about my insights as <br /> a webdeveloper, latest trends <br />{' '}
-                        and general development
+            <section className="px-column-1 border-t border-t-charade-800">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="About me" />
+                </div>
+                <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
+                    <span className="uppercase text-charade-500 font-semibold">Introduction</span>
+                    <p className="text-charade-100 text-lg mb-8">
+                        I&apos;m Willem-Jaap, a 20-year-old software developer with a deep passion
+                        for technology and a constant drive for self-improvement. I&apos;ve spent
+                        several years in the software development field and recently founded Pixel
+                        Perfect Agency. Our focus is creating fast, beautiful, and efficient
+                        software solutions to streamline processes and boost efficiency. In my free
+                        time, when I&apos;m not coding, you can often find me in the kitchen or
+                        hitting weights in the gym.
                     </p>
-                    <div className="max-w-7xl flex-1">
-                        <BlogList />
-                        <Link
-                            className="inline-block mt-12 mb-20 text-sm border border-charade-700 px-4 py-2 rounded-lg"
-                            href="/blog">
-                            View all blogs
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="inline-block w-4 h-4 ml-2"
-                                viewBox="0 0 24 24"
-                                strokeWidth="2"
-                                stroke="currentColor"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round">
-                                <circle cx="11" cy="11" r="8" />
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                            </svg>
-                        </Link>
-                    </div>
+                    <Link
+                        className="w-fit py-2 px-5 mb-20 rounded-full border border-charade-700"
+                        href="/about">
+                        Read more
+                    </Link>
+                    <RandomizedTextGradient />
+                    <ImageWithContentOverlay
+                        src="/assets/images/portrait-willem-jaap.png"
+                        alt="Portrait of Willem-Jaap">
+                        <div className="flex flex-col gap-4 text-center max-w-xl">
+                            <h3 className="text-3xl uppercase">Founder & CEO</h3>
+                            <p className="leading-tight text-charade-400 text-lg">
+                                I&apos;m the founder of Pixel Perfect Agency where we create
+                                beautiful and efficient software solutions using the latest
+                                technologies.
+                            </p>
+                        </div>
+                    </ImageWithContentOverlay>
                 </div>
             </section>
+            <div className="py-24" />
         </>
     );
 };

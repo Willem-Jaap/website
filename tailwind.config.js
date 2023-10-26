@@ -15,11 +15,11 @@ module.exports = {
                     300: '#7A768F',
                     400: '#545062',
                     500: '#2D2C35',
-                    600: '#24222A',
-                    700: '#1A191F',
-                    800: '#111014',
-                    900: '#070708',
-                    950: '#020203',
+                    600: '#26252D',
+                    700: '#1F1E24',
+                    800: '#18171C',
+                    900: '#111014',
+                    950: '#0D0D0F',
                 },
             },
             fontSize: {
@@ -34,6 +34,9 @@ module.exports = {
                 '6xl': '3.813rem',
             },
             padding: {
+                'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
+            },
+            margin: {
                 'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
             },
             typography: theme => ({
@@ -95,7 +98,8 @@ module.exports = {
                 noise: 'noise 3s steps(2) infinite',
             },
             backgroundImage: {
-                noise: 'url("/assets/images/noise.png")',
+                'noise': 'url("/assets/images/noise.png")',
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             },
         },
     },

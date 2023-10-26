@@ -13,15 +13,7 @@ const Header = () => {
     const borderLeftHalfRef = useRef<HTMLDivElement>(null);
 
     const handleScroll = () => {
-        // Decrease header padding top when scrolling down
         const scrollTop = window.scrollY;
-
-        gsap.to(headerRef.current, {
-            paddingTop: 40 - (scrollTop / 20 > 16 ? 16 : scrollTop / 20),
-            paddingBottom: 40 - (scrollTop / 20 > 16 ? 16 : scrollTop / 20),
-            duration: 0.5,
-            ease: 'power2.out',
-        });
 
         // Animate border to width 0 when scrolling down
         const borderRightHalfWidth = 50 - (scrollTop / 1.1 > 50 ? 50 : scrollTop / 1.1);
@@ -48,7 +40,7 @@ const Header = () => {
 
     return (
         <div className="fixed top-0 left-0 w-full z-20">
-            <div className="flex gap-4 justify-between mx-8 py-10" ref={headerRef}>
+            <div className="flex gap-4 justify-between mx-8 pt-10 pb-7" ref={headerRef}>
                 <div className="flex items-center gap-6">
                     <Logo />
                 </div>
