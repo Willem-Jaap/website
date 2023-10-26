@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
+import BlogList from '~components/misc/BlogList';
 import StaggeredText from '~components/misc/animation/StaggeredText';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 
@@ -116,6 +117,27 @@ const Page = () => {
                     <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise opacity-80" />
                 </div>
             </div>
+            <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="Blog" />
+                </div>
+                <div className="flex flex-col gap-4 mt-32">
+                    <div className="flex flex-col md:flex-row justify-between gap-32 py-4">
+                        <p className="text-charade-400 leading-tight text-lg">
+                            Read more about my insights as <br /> a webdeveloper, latest trends{' '}
+                            <br /> and general development
+                        </p>
+                        <div className="max-w-7xl flex-1">
+                            <BlogList />
+                            <Link
+                                className="inline-block py-2 px-5 mt-10 mb-20 rounded-full border border-charade-700"
+                                href="/blog">
+                                View all blogs
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section className="px-column-1 border-t border-t-charade-800">
                 <div className="pt-24 pb-16 border-b border-b-charade-800">
                     <PaddedWithRandomized text="About me" />
@@ -132,7 +154,7 @@ const Page = () => {
                         hitting weights in the gym.
                     </p>
                     <Link
-                        className="w-fit py-2 px-5 mb-20 rounded-full border border-charade-700"
+                        className="inline-block w-fit py-2 px-5 mb-20 rounded-full border border-charade-700"
                         href="/about">
                         Read more
                     </Link>
