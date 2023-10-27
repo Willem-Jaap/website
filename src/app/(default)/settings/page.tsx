@@ -20,11 +20,13 @@ const Page = () => {
                     <div className="grid gap-4">
                         <div className="flex items-center space-x-2">
                             <Switch id="disable-noise" />
-                            <Label htmlFor="disable-noise">Disable Noise</Label>
+                            <Label htmlFor="disable-noise" className="text-base">
+                                Disable Noise
+                            </Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Switch id="disable-text-randomization" />
-                            <Label htmlFor="disable-text-randomization">
+                            <Label htmlFor="disable-text-randomization" className="text-base">
                                 Disable text randomization on scroll
                             </Label>
                         </div>
