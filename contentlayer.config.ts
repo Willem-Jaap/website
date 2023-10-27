@@ -8,6 +8,7 @@ const Blog = defineDocumentType(() => ({
     contentType: 'mdx',
     fields: {
         title: { type: 'string', required: true },
+        thumbnail: { type: 'string', required: true },
         publishedAt: {
             type: 'date',
             required: true,
