@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import { Inter } from 'next/font/google';
 
@@ -32,8 +32,6 @@ export const metadata: Metadata = {
     },
     description:
         'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
-    colorScheme: 'dark',
-    themeColor: 'black',
     keywords: [
         'willem-jaap',
         'developer',
@@ -57,6 +55,11 @@ export const metadata: Metadata = {
         url: new URL(env.NEXT_PUBLIC_URL!),
         siteName: 'Willem-Jaap Portfolio',
     },
+};
+
+export const viewport: Viewport = {
+    colorScheme: 'dark',
+    themeColor: 'black',
 };
 
 export default RootLayout;
