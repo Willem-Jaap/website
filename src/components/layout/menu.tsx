@@ -123,6 +123,10 @@ const Menu = () => {
             href: '/blog',
             text: 'Blog',
         },
+        {
+            href: '/settings',
+            text: 'Settings',
+        },
     ];
 
     return (
