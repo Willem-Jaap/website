@@ -5,7 +5,7 @@ import Switch from '~components/ui/switch';
 const Page = () => {
     return (
         <>
-            <section className="flex flex-col gap-4 mt-16 px-column-1 py-6 min-h-screen text-lg  text-charade-100">
+            <section className="flex flex-col gap-4 mt-16 px-column-1 py-6 min-h-screen text-lg text-charade-100">
                 <div className="pt-20 pb-16 border-b border-b-charade-800">
                     <PaddedWithRandomized text="Settings" />
                 </div>
