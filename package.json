@@ -13,12 +13,17 @@
         "contentlayer": "contentlayer"
     },
     "dependencies": {
+        "@radix-ui/react-label": "^2.0.2",
+        "@radix-ui/react-slot": "^1.0.2",
+        "@radix-ui/react-switch": "^1.0.3",
         "@t3-oss/env-nextjs": "^0.7.1",
+        "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "contentlayer": "^0.3.4",
         "date-fns": "^2.30.0",
         "fuse.js": "^7.0.0",
         "gsap": "^3.12.2",
+        "lucide-react": "^0.290.0",
         "next": "^14.0.0",
         "next-contentlayer": "^0.3.4",
         "react": "^18.2.0",
@@ -28,6 +33,7 @@
         "sass": "^1.69.5",
         "scss-partials": "^1.4.0",
         "tailwind-merge": "^1.14.0",
+        "tailwindcss-animate": "^1.0.7",
         "zod": "^3.22.4"
     },
     "devDependencies": {
