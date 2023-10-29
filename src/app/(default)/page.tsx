@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
+import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
 import BlogList from '~components/misc/BlogList';
 import StaggeredText from '~components/misc/animation/StaggeredText';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
@@ -171,6 +172,21 @@ const Page = () => {
                             </p>
                         </div>
                     </ImageWithContentOverlay>
+                </div>
+            </section>
+            <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="Projects" />
+                </div>
+                <div className="flex flex-col gap-4 mt-32">
+                    <div className="max-w-7xl flex-1">
+                        <ProjectsGrid />
+                        <Link
+                            className="inline-block py-2 px-5 mt-10 mb-20 rounded-full border border-charade-700"
+                            href="/projects">
+                            View all projects
+                        </Link>
+                    </div>
                 </div>
             </section>
             <div className="py-24" />

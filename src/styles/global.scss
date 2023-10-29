@@ -44,3 +44,7 @@
 ::-webkit-scrollbar-thumb {
     @apply bg-charade-700 border-4 border-solid border-charade-900 rounded-2xl;
 }
+
+::selection {
+    @apply bg-charade-700 text-charade-100;
+}

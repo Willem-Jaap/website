@@ -27,6 +27,8 @@
             "~utils/*": ["src/utils/*"],
             "~tests/*": ["src/tests/*"],
             "~types/*": ["src/types/*"],
+            "~blog/*": ["src/app/(default)/blog/*"],
+            "~projects/*": ["src/app/(default)/projects/*"],
             "~/*": ["src/*"],
             "contentlayer/generated": ["./.contentlayer/generated"]
         }

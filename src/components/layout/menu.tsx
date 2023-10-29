@@ -122,6 +122,12 @@ const Menu = () => {
         {
             href: '/blog',
             text: 'Blog',
+            matchActive: /^\/blog/,
+        },
+        {
+            href: '/projects',
+            text: 'Projects',
+            matchActive: /^\/projects/,
         },
     ];
 
@@ -144,12 +150,13 @@ const Menu = () => {
                 ref={menuRef}>
                 <span className="block pb-4 text-sm text-charade-400">Menu</span>
                 <ul className="list-none">
-                    {links.map(({ href, text }) => (
+                    {links.map(({ href, text, matchActive }) => (
                         <li key={href}>
                             <Link
                                 href={href}
                                 className={cn('block text-lg py-1 relative text-charade-400', {
-                                    'text-charade-50': pathname === href,
+                                    'text-charade-50':
+                                        pathname === href || matchActive?.test(pathname || ''),
                                 })}
                                 onMouseDown={handleButtonMouseDown}>
                                 {text}
