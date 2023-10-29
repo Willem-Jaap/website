@@ -3,7 +3,7 @@ import ProjectsGrid from '~projects/components/projects-grid';
 const Page = () => {
     return (
         <>
-            <div className="max-w-6xl mx-auto px-8 py-56">
+            <div className="max-w-5xl mx-auto px-8 py-56">
                 <div className="border-b border-b-charade-800 mb-12">
                     <div className="flex justify-between items-center gap-4 mb-4">
                         <h2 className="text-2xl leading-tight">Projects</h2>
