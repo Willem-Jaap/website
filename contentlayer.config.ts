@@ -28,6 +28,24 @@ const Blog = defineDocumentType(() => ({
     },
 }));
 
+const Project = defineDocumentType(() => ({
+    name: 'Project',
+    filePathPattern: `projects/**/*.mdx`,
+    contentType: 'mdx',
+    fields: {
+        name: { type: 'string', required: true },
+        description: { type: 'string', required: true },
+        thumbnail: { type: 'string' },
+        tags: {
+            type: 'list',
+            of: { type: 'string' },
+        },
+    },
+    computedFields: {
+        url: { type: 'string', resolve: blog => blog._raw.flattenedPath },
+    },
+}));
+
 const Thought = defineDocumentType(() => ({
     name: 'Thought',
     filePathPattern: `thoughts/**/*.mdx`,
@@ -44,8 +62,8 @@ const Thought = defineDocumentType(() => ({
 export { Blog, Thought };
 export default makeSource({
     contentDirPath: 'src/content',
-    contentDirInclude: ['blog', 'thoughts'],
-    documentTypes: [Blog, Thought],
+    contentDirInclude: ['blog', 'projects', 'thoughts'],
+    documentTypes: [Blog, Project, Thought],
     mdx: {
         remarkPlugins: [],
         rehypePlugins: [
