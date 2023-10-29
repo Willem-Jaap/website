@@ -1,6 +1,7 @@
 import { allBlogs } from 'contentlayer/generated';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const generateStaticParams = () => {
@@ -36,8 +37,17 @@ const Page = ({ params }: Props) => {
     const MDXContent = useMDXComponent(blog.body.code);
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-32">
-            <div className="mb-8 text-charade-400">
+        <div className="max-w-5xl mx-auto mt-28 px-8 pt-16">
+            <div className="relative h-96 rounded-2xl overflow-hidden">
+                <Image
+                    src={'/assets/images/blog/' + blog.thumbnail}
+                    fill
+                    alt={blog.title}
+                    className="mb-8 object-cover rounded-2xl"
+                />
+                <div className="absolute inset-0 bg-charade-900/60 border border-charade-800 rounded-2xl" />
+            </div>
+            <div className="mt-8 mb-4 text-charade-400">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="inline-block w-4 h-4 mr-2"
@@ -51,10 +61,9 @@ const Page = ({ params }: Props) => {
                 </svg>
                 <Link href="/blog">Back to blogs</Link>
             </div>
-
             <h1 className="mb-4 text-3xl">{blog.title}</h1>
-            <time dateTime={blog.publishedAt} className="mb-2 block text-sm text-gray-600">
-                Published: {format(parseISO(blog.publishedAt), 'LLLL d, yyyy')} (last updated:{' '}
+            <time dateTime={blog.publishedAt} className="mb-2 block text-sm text-charade-400">
+                Published on {format(parseISO(blog.publishedAt), 'LLLL d, yyyy')} (last updated:{' '}
                 {formatDistance(parseISO(blog.updatedAt), new Date(), {
                     addSuffix: true,
                 })}
