@@ -44,6 +44,7 @@ module.exports = {
                     css: {
                         '--tw-prose-headings': theme('colors.charade.50'),
                         '--tw-prose-body': theme('colors.charade.400'),
+                        '--tw-prose-bold': theme('colors.charade.300'),
                     },
                 },
             }),
