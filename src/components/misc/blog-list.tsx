@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 
 import search from '~app/(default)/blog/utils/search';
-import BlogHover from '~components/misc/BlogHover';
+import BlogHover from '~components/misc/blog-hover';
 
 const BlogRow = (blog: Blog) => {
     return (

@@ -2,7 +2,7 @@
 
 import { type ChangeEvent, useState } from 'react';
 
-import BlogList from '~components/misc/BlogList';
+import BlogList from '~components/misc/blog-list';
 
 interface Props {
     searchParams: Record<string, string | string[] | undefined>;

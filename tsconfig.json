@@ -29,6 +29,7 @@
             "~types/*": ["src/types/*"],
             "~blog/*": ["src/app/(default)/blog/*"],
             "~projects/*": ["src/app/(default)/projects/*"],
+            "~thoughts/*": ["src/app/(default)/thoughts/*"],
             "~/*": ["src/*"],
             "contentlayer/generated": ["./.contentlayer/generated"]
         }

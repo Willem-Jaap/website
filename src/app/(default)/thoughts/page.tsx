@@ -1,6 +1,6 @@
 import { allThoughts } from 'contentlayer/generated';
 
-import ThoughtsSelector from './components/ThoughtsSelector';
+import ThoughtsSelector from '~thoughts/components/thoughts-selector';
 
 const Page = () => {
     const toughts = allThoughts.sort((a, b) => {

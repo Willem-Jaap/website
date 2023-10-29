@@ -9,8 +9,8 @@ import Link from 'next/link';
 
 import Spotlight from '~app/(default)/components/spotlight';
 import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
-import BlogList from '~components/misc/BlogList';
-import StaggeredText from '~components/misc/animation/StaggeredText';
+import StaggeredText from '~components/misc/animation/staggered-text';
+import BlogList from '~components/misc/blog-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
