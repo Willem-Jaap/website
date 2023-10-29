@@ -2,7 +2,7 @@ import { allProjects } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Link from 'next/link';
 
-import GithubProject from '../components/github-project';
+import GithubProject from '~projects/components/github-project';
 
 const components = {
     GithubProject: ({ url }: { url: string }) => <GithubProject url={url} />,
