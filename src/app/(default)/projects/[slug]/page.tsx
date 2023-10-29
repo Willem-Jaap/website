@@ -57,6 +57,16 @@ const Page = ({ params }: Props) => {
                 <Link href="/projects">Back to projects</Link>
             </div>
             <h1 className="mb-4 text-3xl">{project.name}</h1>
+            <p className="mb-8 text-charade-400">{project.description}</p>
+            <div className="flex flex-wrap gap-2">
+                {project.tags?.map(tag => (
+                    <span
+                        key={tag}
+                        className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                        {tag}
+                    </span>
+                ))}
+            </div>
             <hr className="border-charade-800 my-8" />
             <article className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-none">
                 <MDXContent components={components} />
