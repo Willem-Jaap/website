@@ -26,7 +26,7 @@ const GithubProject = async ({ url }: Props) => {
     }
 
     return (
-        <div className="flex flex-col gap-2 border border-charade-800 rounded-2xl p-8 not-prose">
+        <div className="flex flex-col gap-2 bg-charade-900 border border-charade-800 rounded-2xl p-8 not-prose">
             <div className="flex justify-between items-center gap-4">
                 <h3 className="text-lg">
                     <Link
