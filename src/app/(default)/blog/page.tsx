@@ -28,12 +28,11 @@ const Page = ({ searchParams }: Props) => {
                         development experiences and thoughts. Let&apos;s learn together!
                     </p>
                 </div>
-                <div className="flex justify-between items-center gap-4 py-12 mb-4">
+                <div className="flex justify-end items-center gap-4 py-12 mb-4">
                     <div className="relative w-64 h-fit">
                         <input
-                            type="search"
                             onChange={onChange}
-                            className="border border-charade-800 placeholder-charade-400 px-4 py-2 rounded-lg bg-charade-900 outline-none w-full max-w-sm"
+                            className="border border-charade-800 placeholder-charade-400 px-4 py-2 rounded-full bg-charade-900 outline-none w-full max-w-md"
                             placeholder="Search"
                             value={query}
                         />
