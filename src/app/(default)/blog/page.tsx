@@ -3,6 +3,7 @@
 import { type ChangeEvent, useState } from 'react';
 
 import BlogList from '~components/misc/blog-list';
+import PaddedWithRandomized from '~components/misc/padded-with-randomized';
 
 interface Props {
     searchParams: Record<string, string | string[] | undefined>;
@@ -17,22 +18,15 @@ const Page = ({ searchParams }: Props) => {
 
     return (
         <>
-            <div className="max-w-5xl mx-auto px-8 py-56">
-                <div className="border-b border-b-charade-800">
-                    <div className="flex justify-between items-center gap-4 mb-4">
-                        <h2 className="text-2xl leading-tight">Blog</h2>
-                    </div>
-                    <p className="text-charade-400 pb-6">
-                        Read more about my mostly technical insights as a webdeveloper where I
-                        discuss the latest trends, explore new technologies and share my general
-                        development experiences and thoughts. Let&apos;s learn together!
-                    </p>
+            <div className="px-column-1 py-56">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="Blog" />
                 </div>
-                <div className="flex justify-end items-center gap-4 py-12 mb-4">
-                    <div className="relative w-64 h-fit">
+                <div className="flex justify-end items-center gap-4 mt-24 mb-20">
+                    <div className="relative h-fit">
                         <input
                             onChange={onChange}
-                            className="border border-charade-800 placeholder-charade-400 px-4 py-2 rounded-full bg-charade-900 outline-none w-full max-w-md"
+                            className="border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-none w-full min-w-[24rem] focus:border-charade-500"
                             placeholder="Search"
                             value={query}
                         />
