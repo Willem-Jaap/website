@@ -7,8 +7,8 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Spotlight from '~app/(default)/components/spotlight';
 import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
+import Spotlight from '~components/misc/animation/spotlight';
 import StaggeredText from '~components/misc/animation/staggered-text';
 import BlogList from '~components/misc/blog-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
