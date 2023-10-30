@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import { env } from '~/env';
+import Footer from '~components/layout/footer';
 import Header from '~components/layout/header';
 import '~styles/global.scss';
 import cn from '~utils/cn';
@@ -19,6 +20,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             <body className="relative max-w-[100vw] min-h-screen bg-charade-950 text-charade-50 overflow-x-hidden">
                 <Header />
                 {children}
+                <Footer />
             </body>
         </html>
     );

@@ -189,7 +189,6 @@ const Page = () => {
                     </div>
                 </div>
             </section>
-            <div className="py-24" />
         </>
     );
 };
