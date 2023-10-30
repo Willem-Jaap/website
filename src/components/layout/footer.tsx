@@ -122,7 +122,7 @@ const Footer = () => {
 
                 <div className="col-span-2 flex justify-end gap-12 text-charade-400 text-right">
                     <Link href="/privacy">Privacy Policy</Link>
-                    &copy; {new Date().getFullYear()} Willem-Jaap. All rights reserved.
+                    &copy; {new Date().getFullYear()} Willem-Jaap
                 </div>
             </div>
         </footer>
