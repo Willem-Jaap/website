@@ -24,7 +24,7 @@ const Button = ({ children, className, href, onClick, ...props }: Props) => {
     const buttonContentRef = useRef<HTMLSpanElement>(null);
 
     const buttonClassName = cn(
-        'relative inline-block w-fit rounded-full border-2 border-charade-700 hover:border-charade-600 transition-colors duration-200 ease-in-out overflow-hidden',
+        'relative inline-block w-fit rounded-full border-2 border-charade-700 whitespace-nowrap hover:border-charade-600 transition-colors duration-200 ease-in-out overflow-hidden',
         className,
     );
 
