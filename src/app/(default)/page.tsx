@@ -5,13 +5,13 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
 import Spotlight from '~components/misc/animation/spotlight';
 import StaggeredText from '~components/misc/animation/staggered-text';
 import BlogList from '~components/misc/blog-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
+import Button from '~components/utils/button';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
     ssr: false,
@@ -130,11 +130,9 @@ const Page = () => {
                         </p>
                         <div className="max-w-7xl flex-1">
                             <BlogList />
-                            <Link
-                                className="inline-block py-2 px-5 mt-10 mb-20 rounded-full border border-charade-700"
-                                href="/blog">
+                            <Button href="/blog" className="mt-10 mb-20">
                                 View all blogs
-                            </Link>
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -154,11 +152,9 @@ const Page = () => {
                         time, when I&apos;m not coding, you can often find me in the kitchen or
                         hitting weights in the gym.
                     </p>
-                    <Link
-                        className="inline-block w-fit py-2 px-5 mb-20 rounded-full border border-charade-700"
-                        href="/about">
+                    <Button href="/about" className="mb-20">
                         Read more
-                    </Link>
+                    </Button>
                     <RandomizedTextGradient />
                     <ImageWithContentOverlay
                         src="/assets/images/portrait-willem-jaap.png"
@@ -181,11 +177,9 @@ const Page = () => {
                 <div className="flex flex-col gap-4 mt-32">
                     <div className="max-w-7xl flex-1">
                         <ProjectsGrid />
-                        <Link
-                            className="inline-block py-2 px-5 mt-10 mb-20 rounded-full border border-charade-700"
-                            href="/projects">
+                        <Button href="/projects" className="mt-10 mb-20">
                             View all projects
-                        </Link>
+                        </Button>
                     </div>
                 </div>
             </section>
