@@ -146,7 +146,7 @@ const Menu = () => {
                 </span>
             </button>
             <nav
-                className="absolute top-12 right-0 p-6 rounded-md w-32 min-h-[10rem] bg-charade-700 hidden"
+                className="absolute top-12 right-0 p-6 rounded-md w-48 min-h-[10rem] bg-charade-700 hidden"
                 ref={menuRef}>
                 <span className="block pb-4 text-sm text-charade-400">Menu</span>
                 <ul className="list-none">
