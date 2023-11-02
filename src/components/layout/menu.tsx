@@ -134,7 +134,7 @@ const Menu = () => {
     return (
         <div className="relative" ref={menuControlsRef}>
             <button
-                className="relative w-20 h-10 bg-charade-800 text-charade-50 border border-charade-700 rounded-full z-10 overflow-hidden"
+                className="relative w-20 h-10 bg-charade-900 text-charade-50 border border-charade-700 rounded-full z-10 overflow-hidden"
                 onClick={() => setMenuActive(!menuActive)}>
                 <span ref={menuOpenTextRef} className="absolute inset-0 grid place-items-center">
                     Menu
