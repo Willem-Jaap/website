@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
+import { ChevronRight } from '@mui/icons-material';
 import { gsap } from 'gsap';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -130,8 +131,9 @@ const Page = () => {
                         </p>
                         <div className="max-w-7xl flex-1">
                             <BlogList />
-                            <Button href="/blog" className="mt-10 mb-20">
+                            <Button href="/blog" className="mt-10 mb-20 group">
                                 View all blogs
+                                <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                             </Button>
                         </div>
                     </div>
@@ -152,8 +154,9 @@ const Page = () => {
                         time, when I&apos;m not coding, you can often find me in the kitchen or
                         hitting weights in the gym.
                     </p>
-                    <Button href="/about" className="mb-20">
+                    <Button href="/about" className="mb-20 group">
                         Read more
+                        <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                     </Button>
                     <RandomizedTextGradient />
                     <ImageWithContentOverlay
@@ -177,8 +180,9 @@ const Page = () => {
                 <div className="flex flex-col gap-4 mt-32">
                     <div className="max-w-7xl flex-1">
                         <ProjectsGrid />
-                        <Button href="/projects" className="mt-10 mb-20">
+                        <Button href="/projects" className="mt-10 mb-20 groep">
                             View all projects
+                            <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                         </Button>
                     </div>
                 </div>

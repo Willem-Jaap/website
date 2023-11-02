@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
+import { ArrowOutward, ChevronRight } from '@mui/icons-material';
 import gsap from 'gsap';
 import Link from 'next/link';
 
@@ -44,7 +45,7 @@ const Footer = () => {
                     Willem-Jaap
                 </div>
                 <button
-                    className="inline-block py-2 px-5 rounded-full border border-charade-700"
+                    className="inline-block py-2 px-5 rounded-full border border-charade-700 group"
                     onClick={() => {
                         window.scrollTo({
                             top: 0,
@@ -52,12 +53,13 @@ const Footer = () => {
                         });
                     }}>
                     Back to top
+                    <ChevronRight className="text-neutral-200 ml-2 -rotate-90" />
                 </button>
             </div>
             <div className="flex gap-4 justify-between mx-8 py-8  border-y border-y-charade-700">
                 <div className="flex-1 flex gap-12 my-24 items-center justify-center">
-                    <div className="h-32 w-32 rounded-full border border-charade-700">
-                        {/* Arrow pointing left down */}
+                    <div className="grid place-items-center h-32 w-32 rounded-full border border-charade-700">
+                        <ArrowOutward className="rotate-90 text-5xl" />
                     </div>
                     <div className="text-6xl uppercase">Visit pixelperfect.agency</div>
                 </div>
