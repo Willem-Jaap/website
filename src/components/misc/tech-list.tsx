@@ -14,7 +14,13 @@ const TechList = () => {
     const tech = allTeches.sort((a, b) => Number(a.position) - Number(b.position));
 
     useEffect(() => {
-        if (activeTechIndex === null || !techCardRef.current || !techContentRef.current) return;
+        if (
+            activeTechIndex === null ||
+            !techCardRef.current ||
+            !techContentRef.current ||
+            !(techContentRef.current.children[activeTechIndex] as HTMLElement | undefined)
+        )
+            return;
 
         // Height of the tech item in the card
         const height = techContentRef.current.children[activeTechIndex].clientHeight;
@@ -98,7 +104,7 @@ const TechList = () => {
                 );
             })}
             <div
-                className="absolute right-16 top-0 w-[32rem] h-52 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0"
+                className="absolute right-16 top-0 w-[32rem] h-52 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0 pointer-events-none"
                 ref={techCardRef}>
                 <div className="flex flex-col gap-4" ref={techContentRef}>
                     {tech.map(item => {
