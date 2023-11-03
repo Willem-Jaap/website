@@ -7,11 +7,12 @@ const Page = () => {
     const birthDate = new Date(2003, 6, 16);
     const age = new Date().getUTCFullYear() - birthDate.getUTCFullYear();
 
-    const experience = [
+    const experiences = [
         {
             company: 'WebNL creative studios',
             title: 'Intern, Developer',
             period: '2020 - 2021',
+            url: 'https://webnl.nl',
         },
         {
             company: 'Emerit',
@@ -22,17 +23,18 @@ const Page = () => {
             company: 'Pixel Perfect Agency',
             title: 'CEO, Software Developer',
             period: '2023 - Present',
+            url: 'https://pixelperfect.agency',
         },
     ];
 
     return (
         <>
             <AboutImage />
-            <section className="px-column-1 py-6 text-lg text-charade-100 border-t border-t-charade-800">
+            <section className="px-column-1 pt-32 text-charade-100 border-t border-t-charade-800">
                 <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
                     <h2 className="text-2xl font-medium">
-                        Hi, I&apos;m Willem-Jaap, a frontend engineer from the Netherlands. I&apos;m
-                        a creative and critical thinker, always looking for the most efficient and
+                        I&apos;m Willem-Jaap, a software developer from the Netherlands. I&apos;m a
+                        creative and critical thinker, always looking for the most efficient and
                         beautiful solutions.
                     </h2>
                     <p className="text-charade-200">
@@ -78,28 +80,55 @@ const Page = () => {
                             target="_blank"
                             rel="noreferrer">
                             Github
+                        </Link>{' '}
+                        or view my{' '}
+                        <Link href="/projects" className="underline hover:text-charade-200">
+                            projects
                         </Link>
                         .
                     </p>
                 </div>
             </section>
             <section className="px-column-1 py-24 border-t border-t-charade-800 bg-charade-900">
-                <p className="mb-24">
-                    Before founding Pixel Perfect Agency, I developed my skills and gained valuable
-                    experience through various roles in other companies.
-                </p>
-                <ul>
-                    {experience.map((item, index) => (
-                        <li key={index} className="mb-8">
-                            <div className="flex justify-between gap-4 border-b border-b-charade-700 pb-4">
-                                <span className="text-lg text-charade-200">{item.company}</span>
-                                <span className="text-charade-400">
-                                    {item.title}, {item.period}
-                                </span>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <div className="max-w-5xl mx-auto">
+                    <p className="mb-24">
+                        Before founding Pixel Perfect Agency, I developed my skills and gained
+                        valuable experience through various roles with diverse technologies in other
+                        companies.
+                    </p>
+                    <ul>
+                        {experiences.map((item, index) => {
+                            const Content = () => (
+                                <>
+                                    <span className="text-lg text-charade-200">{item.company}</span>
+                                    <span className="text-charade-400 font-medium">
+                                        {item.title}, {item.period}
+                                    </span>
+                                </>
+                            );
+
+                            return (
+                                <li key={index} className="mb-8">
+                                    <div className="">
+                                        {item.url ? (
+                                            <Link
+                                                href={item.url}
+                                                className="flex justify-between gap-4 border-b border-b-charade-700 pb-4 hover:opacity-80"
+                                                target="_blank"
+                                                rel="noreferrer">
+                                                <Content />
+                                            </Link>
+                                        ) : (
+                                            <div className="flex justify-between gap-4 border-b border-b-charade-700 pb-4">
+                                                <Content />
+                                            </div>
+                                        )}
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             </section>
         </>
     );
