@@ -52,6 +52,7 @@ const Tech = defineDocumentType(() => ({
     contentType: 'mdx',
     fields: {
         name: { type: 'string', required: true },
+        experience: { type: 'string', required: true },
         position: { type: 'string', required: true },
     },
     computedFields: {

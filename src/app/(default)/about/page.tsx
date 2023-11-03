@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import AboutImage from '~about/components/about-image';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
+import TechList from '~components/misc/tech-list';
 
 const Page = () => {
     const birthDate = new Date(2003, 6, 16);
@@ -89,7 +90,7 @@ const Page = () => {
                     </p>
                 </div>
             </section>
-            <section className="px-column-1 py-24 border-t border-t-charade-800 bg-charade-900">
+            <section className="px-column-1 py-24 border-y border-y-charade-800 bg-charade-900">
                 <div className="max-w-5xl mx-auto">
                     <p className="mb-24">
                         Before founding Pixel Perfect Agency, I developed my skills and gained
@@ -129,6 +130,15 @@ const Page = () => {
                         })}
                     </ul>
                 </div>
+            </section>
+            <section className="max-w-4xl mx-auto pb-24">
+                <p className="my-24">
+                    While working with these companies, I&apos;ve delved into diverse tech stacks
+                    and programming languages. Today, I&apos;m well-versed in Next, React, Laravel,
+                    Tailwind, and (S)CSS. However, my experience extends to a wide range of other
+                    tech stacks that I have used previously as well.
+                </p>
+                <TechList />
             </section>
         </>
     );
