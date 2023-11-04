@@ -25,6 +25,17 @@ const Blog = defineDocumentType(() => ({
     },
     computedFields: {
         url: { type: 'string', resolve: blog => blog._raw.flattenedPath },
+        estimatedReadingTime: {
+            type: 'string',
+            resolve: blog => {
+                const wordCount = blog.body.raw.split(' ').length;
+                const wordsPerMinute = 200;
+                const estimatedReadingTime = Math.ceil(wordCount / wordsPerMinute);
+
+                if (estimatedReadingTime === 1) return `${estimatedReadingTime} minute`;
+                return `${estimatedReadingTime} minutes`;
+            },
+        },
     },
 }));
 
