@@ -61,6 +61,7 @@ const Header = () => {
 
     return (
         <header id="header" className="fixed top-0 left-0 w-full z-20">
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-charade-950 to-transparent" />
             <div className="flex gap-4 justify-between mx-8 pt-10 pb-7" ref={headerRef}>
                 <div className="flex items-center gap-6">
                     <Logo />
