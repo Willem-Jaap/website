@@ -31,27 +31,51 @@ const AboutImage = () => {
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        if (!backLayerRef.current || !frontLayerRef.current) return;
 
-        gsap.to(bannerRef.current, {
-            x: '-50%',
-            duration: 4,
-            ease: 'power4.out',
-            onComplete: () => {
-                gsap.set(bannerRef.current, {
-                    x: '0%',
-                });
-                gsap.to(bannerRef.current, {
-                    x: '-50%',
-                    duration: 120,
-                    ease: 'none',
-                    repeat: -1,
-                });
-            },
+        backLayerRef.current.classList.remove('invisible');
+        frontLayerRef.current.classList.remove('invisible');
+
+        const context = gsap.context(() => {
+            gsap.from(frontLayerRef.current, {
+                duration: 2,
+                x: 50,
+                y: 50,
+                scale: 1.1,
+                ease: 'power3.out',
+            });
+
+            gsap.from(backLayerRef.current, {
+                duration: 2.4,
+                x: 64,
+                y: 64,
+                scale: 1.3,
+                ease: 'power3.out',
+            });
+
+            gsap.to(bannerRef.current, {
+                x: '-50%',
+                duration: 4,
+                ease: 'power4.out',
+                onComplete: () => {
+                    gsap.set(bannerRef.current, {
+                        x: '0%',
+                    });
+                    gsap.to(bannerRef.current, {
+                        x: '-50%',
+                        duration: 120,
+                        ease: 'none',
+                        repeat: -1,
+                    });
+                },
+            });
         });
+
+        window.addEventListener('scroll', handleScroll);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            context.revert();
         };
     }, []);
 
@@ -64,7 +88,7 @@ const AboutImage = () => {
             className="relative h-[60vh] sm:h-[80vh] md:h-screen overflow-hidden"
             onTouchStart={onTouchStart}>
             <div
-                className="relative h-[60vh] sm:h-[80vh] md:h-screen"
+                className="relative h-[60vh] sm:h-[80vh] md:h-screen invisible"
                 ref={backLayerRef}
                 onTouchStart={onTouchStart}>
                 <Image
@@ -96,7 +120,7 @@ const AboutImage = () => {
                 fill
                 src="/assets/images/layer-front-about-composition.png"
                 alt="About me"
-                className="object-cover object-center select-none w-full h-full"
+                className="object-cover object-center select-none w-full h-full invisible"
                 ref={frontLayerRef}
             />
         </div>
