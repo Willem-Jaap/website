@@ -24,7 +24,7 @@ const Blog = defineDocumentType(() => ({
         },
     },
     computedFields: {
-        url: { type: 'string', resolve: blog => blog._raw.flattenedPath },
+        url: { type: 'string', resolve: blog => '/' + blog._raw.flattenedPath },
         estimatedReadingTime: {
             type: 'string',
             resolve: blog => {
@@ -53,7 +53,7 @@ const Project = defineDocumentType(() => ({
         },
     },
     computedFields: {
-        url: { type: 'string', resolve: blog => blog._raw.flattenedPath },
+        url: { type: 'string', resolve: blog => '/' + blog._raw.flattenedPath },
     },
 }));
 
