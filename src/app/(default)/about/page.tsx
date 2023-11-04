@@ -31,9 +31,9 @@ const Page = () => {
     return (
         <>
             <AboutImage />
-            <section className="px-column-1 pt-32 text-charade-100 border-t border-t-charade-800">
-                <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
-                    <h2 className="text-2xl font-medium">
+            <section className="px-column-1 py-32 text-charade-100 border-t border-t-charade-800">
+                <div className="flex flex-col gap-4 my-24 max-w-5xl mx-auto">
+                    <h2 className="text-2xl font-medium mb-2">
                         I&apos;m Willem-Jaap, a software developer from the Netherlands. I&apos;m a
                         creative and critical thinker, always looking for the most efficient and
                         beautiful solutions.
@@ -47,11 +47,10 @@ const Page = () => {
                         about programming and also did a lot of self study. I overengineered a lot
                         of projects and learned a lot from that.
                     </p>
-
                     <ImageWithContentOverlay
                         src="/assets/images/laptop-design-system-hero.png"
                         alt="Design system Pixel Perfect Agency"
-                        className="my-8">
+                        className="mt-24 mb-8">
                         <div className="flex flex-col gap-4 text-center max-w-xl">
                             <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
                             <p className="leading-tight text-charade-200 text-lg">
@@ -92,7 +91,7 @@ const Page = () => {
             </section>
             <section className="px-column-1 py-24 border-y border-y-charade-800 bg-charade-900">
                 <div className="max-w-5xl mx-auto">
-                    <p className="mb-24">
+                    <p className="text-lg mb-24">
                         Before founding Pixel Perfect Agency, I developed my skills and gained
                         valuable experience through various roles with diverse technologies in other
                         companies.
