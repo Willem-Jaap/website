@@ -19,7 +19,7 @@ const Page = ({ searchParams }: Props) => {
     return (
         <>
             <div className="px-column-1 py-56">
-                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                <div className="pb-16 border-b border-b-charade-800">
                     <PaddedWithRandomized text="Blog" />
                 </div>
                 <div className="flex justify-end items-center gap-4 mt-24 mb-20">

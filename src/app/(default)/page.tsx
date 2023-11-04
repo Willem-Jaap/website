@@ -37,11 +37,11 @@ const Page = () => {
             if (!characteristicsRef.current || !imageRef.current) return;
 
             gsap.from(characteristicsRef.current.children, {
-                duration: 0.5,
-                y: 40,
+                duration: 0.3,
+                y: 20,
                 opacity: 0,
-                stagger: 0.2,
-                ease: 'power4.inOut',
+                stagger: 0.1,
+                ease: 'power4.out',
             });
 
             gsap.from(imageRef.current, {

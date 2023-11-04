@@ -5,6 +5,17 @@
 module.exports = {
     content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
     theme: {
+        fontSize: {
+            'sm': 'clamp(0.8rem, 0.7667rem + 0.1111vw, 0.9rem)',
+            'base': 'clamp(0.9rem, 0.8667rem + 0.1111vw, 1rem)',
+            'lg': 'clamp(1rem, 0.9667rem + 0.1111vw, 1.1rem)',
+            'xl': 'clamp(1.1rem, 1.0333rem + 0.2222vw, 1.3rem)',
+            '2xl': 'clamp(1.3rem, 1.2rem + 0.3333vw, 1.6rem)',
+            '3xl': 'clamp(1.5rem, 1.3667rem + 0.4444vw, 1.9rem)',
+            '4xl': 'clamp(1.8rem, 1.6rem + 0.6667vw, 2.4rem)',
+            '5xl': 'clamp(2rem, 1.6667rem + 1.1111vw, 3rem)',
+            '6xl': 'clamp(2.3rem, 1.8rem + 1.6667vw, 3.8rem)',
+        },
         extend: {
             colors: {
                 charade: {
@@ -21,17 +32,6 @@ module.exports = {
                     900: '#111014',
                     950: '#0D0D0F',
                 },
-            },
-            fontSize: {
-                'sm': '0.875rem',
-                'base': '1rem',
-                'lg': '1.125rem',
-                'xl': '1.25rem',
-                '2xl': '1.563rem',
-                '3xl': '1.938rem',
-                '4xl': '2.438rem',
-                '5xl': '3rem',
-                '6xl': '3.813rem',
             },
             padding: {
                 'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
