@@ -25,6 +25,21 @@ const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
                 opacity: 1,
                 ease: 'power3.out',
             });
+
+            // Animate the children of the overlay staggered
+            if (!overlayRef.current?.children) return;
+            const children =
+                overlayRef.current.children.length > 1
+                    ? overlayRef.current.children
+                    : overlayRef.current.children[0].children;
+
+            gsap.from(children, {
+                duration: 0.3,
+                y: 20,
+                opacity: 0,
+                stagger: 0.1,
+                ease: 'power4.out',
+            });
             return;
         }
         gsap.to(overlayRef.current, {
