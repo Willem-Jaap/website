@@ -22,15 +22,21 @@ const BlogRow = (blog: Blog) => {
 
 interface BlogListProps {
     query?: string;
+    exclude?: string; // slug of the blog to exclude
     showResultAmount?: boolean;
 }
 
-const BlogList = ({ query, showResultAmount = false }: BlogListProps) => {
+const BlogList = ({ query, exclude, showResultAmount = false }: BlogListProps) => {
     let blogs = allBlogs;
 
     if (query) {
         blogs = search(query, allBlogs);
     }
+
+    if (exclude) {
+        blogs = blogs.filter(blog => blog._raw.sourceFileName.replace('.mdx', '') !== exclude);
+    }
+
     return (
         <div className="-mt-4">
             {showResultAmount && query && (
