@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 const TechList = () => {
-    const [activeTechIndex, setActiveTechIndex] = useState<number | null>(null);
+    const [hoveredTechIndex, setHoveredTechIndex] = useState<number | null>(null);
     const techCardRef = useRef<HTMLDivElement>(null);
     const techContentRef = useRef<HTMLDivElement>(null);
 
@@ -15,15 +15,15 @@ const TechList = () => {
 
     useEffect(() => {
         if (
-            activeTechIndex === null ||
+            hoveredTechIndex === null ||
             !techCardRef.current ||
             !techContentRef.current ||
-            !(techContentRef.current.children[activeTechIndex] as HTMLElement | undefined)
+            !(techContentRef.current.children[hoveredTechIndex] as HTMLElement | undefined)
         )
             return;
 
         // Height of the tech item in the card
-        const height = techContentRef.current.children[activeTechIndex].clientHeight;
+        const height = techContentRef.current.children[hoveredTechIndex].clientHeight;
 
         gsap.to(techCardRef.current, {
             duration: 0.4,
@@ -31,15 +31,16 @@ const TechList = () => {
             ease: 'power4.out',
         });
 
-        const activeTechItemTop = (techContentRef.current.children[activeTechIndex] as HTMLElement)
-            .offsetTop;
+        const hoveredTechItemTop = (
+            techContentRef.current.children[hoveredTechIndex] as HTMLElement
+        ).offsetTop;
 
         gsap.to(techContentRef.current, {
             duration: 0.4,
-            y: -activeTechItemTop,
+            y: -hoveredTechItemTop,
             ease: 'power4.out',
         });
-    }, [activeTechIndex]);
+    }, [hoveredTechIndex]);
 
     const onMouseEnter = () => {
         gsap.to(techCardRef.current, {
@@ -84,7 +85,7 @@ const TechList = () => {
     };
 
     const onCardMouseEnter = (index: number) => {
-        setActiveTechIndex(index);
+        setHoveredTechIndex(index);
     };
 
     return (
