@@ -2,6 +2,7 @@ import { allBlogs } from 'contentlayer/generated';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 import BlogList from '~components/misc/blog-list';
 import PaddedWithRandomized from '~components/misc/padded-with-randomized';
@@ -34,7 +35,7 @@ const Page = ({ params }: Props) => {
     const blog = allBlogs.find(
         blog => blog._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
-    if (!blog) throw new Error(`Blog not found for slug: ${params.slug}`);
+    if (!blog) return notFound();
 
     const MDXContent = useMDXComponent(blog.body.code);
 

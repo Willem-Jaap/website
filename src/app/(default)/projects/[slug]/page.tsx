@@ -1,6 +1,7 @@
 import { allProjects } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 import GithubProject from '~projects/components/github-project';
 
@@ -36,7 +37,7 @@ const Page = ({ params }: Props) => {
     const project = allProjects.find(
         project => project._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
-    if (!project) throw new Error(`Project not found for slug: ${params.slug}`);
+    if (!project) return notFound();
 
     const MDXContent = useMDXComponent(project.body.code);
 
