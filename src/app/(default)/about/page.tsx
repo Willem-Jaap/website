@@ -1,53 +1,44 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
+import AboutImage from '~about/components/about-image';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
-import PaddedWithRandomized from '~components/misc/padded-with-randomized';
+import TechList from '~components/misc/tech-list';
 
 const Page = () => {
-    const birthday = new Date(2003, 6, 16);
-    const age =
-        new Date().getMonth() >= birthday.getMonth() && new Date().getDate() >= birthday.getDate()
-            ? new Date().getFullYear() - birthday.getFullYear()
-            : new Date().getFullYear() - birthday.getFullYear() - 1;
+    const birthDate = new Date(2003, 6, 16);
+    const age = new Date().getUTCFullYear() - birthDate.getUTCFullYear();
+
+    const experiences = [
+        {
+            company: 'WebNL creative studios',
+            title: 'Intern, Developer',
+            period: '2020 - 2021',
+            url: 'https://webnl.nl',
+        },
+        {
+            company: 'Emerit',
+            title: 'Developer (fullstack)',
+            period: '2021 - 2023',
+        },
+        {
+            company: 'Pixel Perfect Agency',
+            title: 'CEO, Software Developer',
+            period: '2023 - Present',
+            url: 'https://pixelperfect.agency',
+        },
+    ];
 
     return (
         <>
-            <div className="relative flex flex-col justify-center px-column-1 min-h-screen bg-charade-700 overflow-hidden">
-                <p className="relative flex flex-col text-4xl uppercase leading-tight z-10">
-                    <span className="text-charade-400">
-                        Crafting the most <span className="text-charade-50">efficient</span>
-                    </span>
-
-                    <span className="text-charade-400">
-                        and <span className="text-charade-50">beautiful </span> user
-                    </span>
-
-                    <span className="text-charade-400"> experiences</span>
-                </p>
-                <Image
-                    fill
-                    src="/assets/images/about-work.png"
-                    alt="About me"
-                    className="object-contain object-bottom select-none w-full h-full max-h-[80vh] mt-auto"
-                />
-                <div className="absolute inset-0 bg-charade-950/70" />
-                <div className="absolute bottom-0 left-0 w-full h-52 z-0 bg-gradient-to-b from-transparent to-[#0D0D0F]" />
-                <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80">
-                    <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise" />
-                </div>
-            </div>
-            <section className="flex flex-col gap-4 px-column-1 py-6 text-lg bg-charade-900 text-charade-100 border-t border-t-charade-800">
-                <div className="pt-24 pb-16 border-b border-b-charade-800">
-                    <PaddedWithRandomized text="About me" />
-                </div>
-                <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
-                    <p>
-                        Hi, I&apos;m Willem-Jaap, a frontend engineer from the Netherlands. I&apos;m
-                        a creative and critical thinker, always looking for the most efficient and
+            <AboutImage />
+            <section className="px-column-1 py-32 text-charade-100 border-t border-t-charade-800">
+                <div className="flex flex-col gap-4 my-24 max-w-5xl mx-auto">
+                    <h2 className="text-2xl font-medium mb-2">
+                        I&apos;m Willem-Jaap, a software developer from the Netherlands. I&apos;m a
+                        creative and critical thinker, always looking for the most efficient and
                         beautiful solutions.
-                    </p>
-                    <p>
+                    </h2>
+                    <p className="text-charade-200">
                         I was born in 2003 (which makes me {age} years old). I&apos;ve always been
                         interested in technology and the way anything works. I started programming
                         at the age of 15 using self-taught HTML and CSS and Javascript. It was a
@@ -56,32 +47,10 @@ const Page = () => {
                         about programming and also did a lot of self study. I overengineered a lot
                         of projects and learned a lot from that.
                     </p>
-                    <p>
-                        During my years of programming I&apos;ve have mostly worked with the
-                        following tech:
-                    </p>
-                    <ul className="flex gap-4">
-                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
-                            Next.js
-                        </li>
-                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
-                            Typescript
-                        </li>
-                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
-                            Tailwind
-                        </li>
-                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
-                            Laravel
-                        </li>
-                        <li className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
-                            React
-                        </li>
-                    </ul>
-                    <hr className="my-8 border-t border-t-charade-800" />
                     <ImageWithContentOverlay
                         src="/assets/images/laptop-design-system-hero.png"
                         alt="Design system Pixel Perfect Agency"
-                        className="mb-8">
+                        className="mt-24 mb-8">
                         <div className="flex flex-col gap-4 text-center max-w-xl">
                             <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
                             <p className="leading-tight text-charade-200 text-lg">
@@ -90,7 +59,7 @@ const Page = () => {
                             </p>
                         </div>
                     </ImageWithContentOverlay>
-                    <p>
+                    <p className="text-charade-200">
                         I am the founder and CEO of{' '}
                         <Link
                             href="https://pixelperfect.agency"
@@ -102,7 +71,7 @@ const Page = () => {
                         , a softwaredevelopment agency based in the Netherlands that focuses on
                         creating beautiful and software solutions using the latest technologies.
                     </p>
-                    <p>
+                    <p className="text-charade-200">
                         I also like to work on side projects and am becoming more active in the open
                         source community. You can check me out on{' '}
                         <Link
@@ -111,10 +80,64 @@ const Page = () => {
                             target="_blank"
                             rel="noreferrer">
                             Github
+                        </Link>{' '}
+                        or view my{' '}
+                        <Link href="/projects" className="underline hover:text-charade-200">
+                            projects
                         </Link>
                         .
                     </p>
                 </div>
+            </section>
+            <section className="px-column-1 py-24 border-y border-y-charade-800 bg-charade-900">
+                <div className="max-w-5xl mx-auto">
+                    <p className="text-lg mb-24">
+                        Before founding Pixel Perfect Agency, I developed my skills and gained
+                        valuable experience through various roles with diverse technologies in other
+                        companies.
+                    </p>
+                    <ul>
+                        {experiences.map((item, index) => {
+                            const Content = () => (
+                                <>
+                                    <span className="text-lg text-charade-200">{item.company}</span>
+                                    <span className="text-charade-400 font-medium">
+                                        {item.title}, {item.period}
+                                    </span>
+                                </>
+                            );
+
+                            return (
+                                <li key={index} className="mb-8">
+                                    <div className="">
+                                        {item.url ? (
+                                            <Link
+                                                href={item.url}
+                                                className="flex justify-between gap-4 border-b border-b-charade-700 pb-4 hover:opacity-80"
+                                                target="_blank"
+                                                rel="noreferrer">
+                                                <Content />
+                                            </Link>
+                                        ) : (
+                                            <div className="flex justify-between gap-4 border-b border-b-charade-700 pb-4">
+                                                <Content />
+                                            </div>
+                                        )}
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            </section>
+            <section className="max-w-4xl mx-auto pb-24">
+                <p className="my-24">
+                    While working with these companies, I&apos;ve delved into diverse tech stacks
+                    and programming languages. Today, I&apos;m well-versed in Next, React, Laravel,
+                    Tailwind, and (S)CSS. However, my experience extends to a wide range of other
+                    tech stacks that I have used previously as well.
+                </p>
+                <TechList />
             </section>
         </>
     );

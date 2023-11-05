@@ -2,15 +2,17 @@
 
 import { useEffect, useRef } from 'react';
 
+import { ChevronRight } from '@mui/icons-material';
 import { gsap } from 'gsap';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Link from 'next/link';
 
-import Spotlight from '~app/(default)/components/spotlight';
-import BlogList from '~components/misc/BlogList';
-import StaggeredText from '~components/misc/animation/StaggeredText';
+import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
+import Spotlight from '~components/misc/animation/spotlight';
+import StaggeredText from '~components/misc/animation/staggered-text';
+import BlogList from '~components/misc/blog-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
+import Button from '~components/utils/button';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
     ssr: false,
@@ -35,11 +37,11 @@ const Page = () => {
             if (!characteristicsRef.current || !imageRef.current) return;
 
             gsap.from(characteristicsRef.current.children, {
-                duration: 0.5,
-                y: 40,
+                duration: 0.3,
+                y: 20,
                 opacity: 0,
-                stagger: 0.2,
-                ease: 'power4.inOut',
+                stagger: 0.1,
+                ease: 'power4.out',
             });
 
             gsap.from(imageRef.current, {
@@ -129,11 +131,10 @@ const Page = () => {
                         </p>
                         <div className="max-w-7xl flex-1">
                             <BlogList />
-                            <Link
-                                className="inline-block py-2 px-5 mt-10 mb-20 rounded-full border border-charade-700"
-                                href="/blog">
+                            <Button href="/blog" className="mt-10 mb-20 group">
                                 View all blogs
-                            </Link>
+                                <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -153,11 +154,10 @@ const Page = () => {
                         time, when I&apos;m not coding, you can often find me in the kitchen or
                         hitting weights in the gym.
                     </p>
-                    <Link
-                        className="inline-block w-fit py-2 px-5 mb-20 rounded-full border border-charade-700"
-                        href="/about">
+                    <Button href="/about" className="mb-20 group">
                         Read more
-                    </Link>
+                        <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
+                    </Button>
                     <RandomizedTextGradient />
                     <ImageWithContentOverlay
                         src="/assets/images/portrait-willem-jaap.png"
@@ -173,7 +173,20 @@ const Page = () => {
                     </ImageWithContentOverlay>
                 </div>
             </section>
-            <div className="py-24" />
+            <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">
+                <div className="pt-24 pb-16 border-b border-b-charade-800">
+                    <PaddedWithRandomized text="Projects" />
+                </div>
+                <div className="flex flex-col gap-4 mt-32">
+                    <div className="max-w-7xl flex-1">
+                        <ProjectsGrid />
+                        <Button href="/projects" className="mt-10 mb-20 groep">
+                            View all projects
+                            <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
+                        </Button>
+                    </div>
+                </div>
+            </section>
         </>
     );
 };

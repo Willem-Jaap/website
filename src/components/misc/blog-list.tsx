@@ -3,14 +3,14 @@ import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 
 import search from '~app/(default)/blog/utils/search';
-import BlogHover from '~components/misc/BlogHover';
+import BlogHover from '~components/misc/blog-hover';
 
 const BlogRow = (blog: Blog) => {
     return (
         <Link
             href={blog.url}
             className="flex gap-4 justify-between items-center border-b py-4 border-b-charade-800">
-            <h2 className="mb-1 text-lg"> {blog.title}</h2>
+            <h2 className="mb-1 text-lg text-charade-100">{blog.title}</h2>
             <div className="flex">
                 <time dateTime={blog.publishedAt} className="mb-2 block text-xs text-charade-400">
                     {format(parseISO(blog.publishedAt), 'LLLL d, yyyy')}
@@ -22,15 +22,21 @@ const BlogRow = (blog: Blog) => {
 
 interface BlogListProps {
     query?: string;
+    exclude?: string; // slug of the blog to exclude
     showResultAmount?: boolean;
 }
 
-const BlogList = ({ query, showResultAmount = false }: BlogListProps) => {
+const BlogList = ({ query, exclude, showResultAmount = false }: BlogListProps) => {
     let blogs = allBlogs;
 
     if (query) {
         blogs = search(query, allBlogs);
     }
+
+    if (exclude) {
+        blogs = blogs.filter(blog => blog._raw.sourceFileName.replace('.mdx', '') !== exclude);
+    }
+
     return (
         <div className="-mt-4">
             {showResultAmount && query && (

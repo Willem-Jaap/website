@@ -24,28 +24,58 @@ const Blog = defineDocumentType(() => ({
         },
     },
     computedFields: {
-        url: { type: 'string', resolve: blog => blog._raw.flattenedPath },
+        url: { type: 'string', resolve: blog => '/' + blog._raw.flattenedPath },
+        estimatedReadingTime: {
+            type: 'string',
+            resolve: blog => {
+                const wordCount = blog.body.raw.split(' ').length;
+                const wordsPerMinute = 200;
+                const estimatedReadingTime = Math.ceil(wordCount / wordsPerMinute);
+
+                if (estimatedReadingTime === 1) return `${estimatedReadingTime} minute`;
+                return `${estimatedReadingTime} minutes`;
+            },
+        },
     },
 }));
 
-const Thought = defineDocumentType(() => ({
-    name: 'Thought',
-    filePathPattern: `thoughts/**/*.mdx`,
+const Project = defineDocumentType(() => ({
+    name: 'Project',
+    filePathPattern: `projects/**/*.mdx`,
     contentType: 'mdx',
     fields: {
         name: { type: 'string', required: true },
-        position: { type: 'string', required: true },
+        description: { type: 'string', required: true },
+        thumbnail: { type: 'string' },
+        tags: {
+            type: 'list',
+            of: { type: 'string' },
+        },
     },
     computedFields: {
-        slug: { type: 'string', resolve: thought => thought._raw.flattenedPath },
+        url: { type: 'string', resolve: blog => '/' + blog._raw.flattenedPath },
     },
 }));
 
-export { Blog, Thought };
+const Tech = defineDocumentType(() => ({
+    name: 'Tech',
+    filePathPattern: `tech/**/*.mdx`,
+    contentType: 'mdx',
+    fields: {
+        name: { type: 'string', required: true },
+        experience: { type: 'string', required: true },
+        position: { type: 'string', required: true },
+    },
+    computedFields: {
+        slug: { type: 'string', resolve: tech => tech._raw.flattenedPath },
+    },
+}));
+
+export { Blog, Project, Tech };
 export default makeSource({
     contentDirPath: 'src/content',
-    contentDirInclude: ['blog', 'thoughts'],
-    documentTypes: [Blog, Thought],
+    contentDirInclude: ['blog', 'projects', 'tech'],
+    documentTypes: [Blog, Project, Tech],
     mdx: {
         remarkPlugins: [],
         rehypePlugins: [

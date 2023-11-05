@@ -122,6 +122,12 @@ const Menu = () => {
         {
             href: '/blog',
             text: 'Blog',
+            matchActive: /^\/blog/,
+        },
+        {
+            href: '/projects',
+            text: 'Projects',
+            matchActive: /^\/projects/,
         },
         {
             href: '/settings',
@@ -132,7 +138,7 @@ const Menu = () => {
     return (
         <div className="relative" ref={menuControlsRef}>
             <button
-                className="relative w-20 h-10 bg-charade-800 text-charade-50 border border-charade-700 rounded-full z-10 overflow-hidden"
+                className="relative w-20 h-10 bg-charade-900 text-charade-50 border border-charade-700 rounded-full z-10 overflow-hidden"
                 onClick={() => setMenuActive(!menuActive)}>
                 <span ref={menuOpenTextRef} className="absolute inset-0 grid place-items-center">
                     Menu
@@ -144,16 +150,17 @@ const Menu = () => {
                 </span>
             </button>
             <nav
-                className="absolute top-12 right-0 p-6 rounded-md w-32 min-h-[10rem] bg-charade-700 hidden"
+                className="absolute top-12 right-0 p-6 rounded-md w-48 min-h-[10rem] bg-charade-700 hidden"
                 ref={menuRef}>
                 <span className="block pb-4 text-sm text-charade-400">Menu</span>
                 <ul className="list-none">
-                    {links.map(({ href, text }) => (
+                    {links.map(({ href, text, matchActive }) => (
                         <li key={href}>
                             <Link
                                 href={href}
                                 className={cn('block text-lg py-1 relative text-charade-400', {
-                                    'text-charade-50': pathname === href,
+                                    'text-charade-50':
+                                        pathname === href || matchActive?.test(pathname || ''),
                                 })}
                                 onMouseDown={handleButtonMouseDown}>
                                 {text}

@@ -56,10 +56,20 @@ const BlogHover = ({ blogs }: Props) => {
         const x = e.clientX - left - width / 2;
         const y = e.clientY - top - height / 2;
 
+        let rotation = y / 20 + (x / width) * 5;
+        if (rotation > 5) {
+            rotation += (5 - rotation) * 2;
+        }
+
+        if (rotation < -5) {
+            rotation += (-5 - rotation) * 2;
+        }
+
         gsap.to(blogsHoverCardRef.current, {
             duration: 0.4,
             x: x / 5,
             y: y / 5,
+            rotation,
             ease: 'power2.out',
         });
 
@@ -129,11 +139,14 @@ const BlogHover = ({ blogs }: Props) => {
             onClick={onClick}
             ref={blogsContainerRef}>
             <div
-                className="absolute left-1/2 -top-1/4 w-72 h-52 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0"
+                className="absolute left-1/2 -top-1/4 w-[32rem] h-72 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0"
                 ref={blogsHoverCardRef}>
                 <div ref={blogItemsRef}>
                     {blogs.map(blog => (
-                        <Link href={blog.url} key={blog.title} className="relative block w-72 h-52">
+                        <Link
+                            href={blog.url}
+                            key={blog.title}
+                            className="relative block w-[32rem] h-72">
                             <Image
                                 src={'/assets/images/blog/' + blog.thumbnail}
                                 alt={blog.title}

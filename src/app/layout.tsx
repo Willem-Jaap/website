@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import { env } from '~/env';
+import Footer from '~components/layout/footer';
 import Header from '~components/layout/header';
 import '~styles/global.scss';
 import cn from '~utils/cn';
@@ -15,10 +16,11 @@ const InterFont = Inter({
 
 const RootLayout = ({ children }: PropsWithChildren) => {
     return (
-        <html className={cn(InterFont.className, 'scroll-smooth')}>
-            <body className="relative max-w-[100vw] min-h-screen bg-charade-950 text-charade-50 overflow-x-hidden">
+        <html className={cn(InterFont.className, 'scroll-smooth antialiased')}>
+            <body className="relative max-w-[100vw] min-h-screen bg-charade-950 text-base text-charade-50 overflow-x-hidden">
                 <Header />
                 {children}
+                <Footer />
             </body>
         </html>
     );
