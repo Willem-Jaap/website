@@ -162,7 +162,7 @@ const Page = () => {
                         hitting weights in the gym.
                     </p>
                     <Button href="/about" className="mb-20 group">
-                        Read more
+                        More about me
                         <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                     </Button>
                     <RandomizedTextGradient />
