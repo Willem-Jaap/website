@@ -56,6 +56,10 @@
     }
 }
 
+[data-debug] * {
+    @apply outline-dashed outline-1 outline-charade-600;
+}
+
 ::-webkit-scrollbar-track {
     @apply bg-charade-900;
 }
