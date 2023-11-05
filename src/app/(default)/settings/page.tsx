@@ -27,7 +27,11 @@ const Page = () => {
                         <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-8">
                             <Switch
                                 id="disable-noise"
-                                checked={!settings.get('noise')}
+                                checked={
+                                    settings.get('noise') !== undefined
+                                        ? !settings.get('noise')
+                                        : false
+                                }
                                 onCheckedChange={checked => settings.set('noise', !checked)}
                             />
                             <Label htmlFor="disable-noise" className="text-sm text-charade-100">
@@ -37,7 +41,11 @@ const Page = () => {
                         <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-8">
                             <Switch
                                 id="disable-text-randomization"
-                                checked={!settings.get('textRandomization')}
+                                checked={
+                                    settings.get('textRandomization') !== undefined
+                                        ? !settings.get('textRandomization')
+                                        : false
+                                }
                                 onCheckedChange={checked =>
                                     settings.set('textRandomization', !checked)
                                 }
@@ -54,7 +62,11 @@ const Page = () => {
                         <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-8">
                             <Switch
                                 id="enable-debug"
-                                checked={!!settings.get('debug')}
+                                checked={
+                                    settings.get('debug') !== undefined
+                                        ? !!settings.get('debug')
+                                        : false
+                                }
                                 onCheckedChange={checked => settings.set('debug', checked)}
                             />
                             <Label htmlFor="enable-debug" className="text-sm text-charade-100">
