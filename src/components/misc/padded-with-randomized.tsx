@@ -73,7 +73,7 @@ const PaddedWithRandomized = ({ text }: Props) => {
     }, [settings.get('textRandomization')]);
 
     return (
-        <div className="text-charade-700 text-3xl">
+        <div className="text-charade-700 text-4xl">
             <div className="break-all overflow-hidden h-[1.5em]" ref={firstLineRef} />
             <div className="break-all overflow-hidden h-[1.5em]">
                 <span className="text-charade-100 break-all h-[1.5em]" ref={textRef} />

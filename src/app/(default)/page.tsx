@@ -15,6 +15,7 @@ import ImageWithContentOverlay from '~components/misc/image-with-content-overlay
 import Button from '~components/utils/button';
 import SettingsContext from '~contexts/settings-context';
 import cn from '~utils/cn';
+import isMobile from '~utils/is-mobile';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
     ssr: false,
@@ -69,12 +70,6 @@ const Page = () => {
 
         const scroll = window.scrollY;
 
-        gsap.to(backgroundTextRef.current, {
-            y: scroll / 3,
-            ease: 'power3.out',
-            duration: 0,
-        });
-
         gsap.to(characteristicsRef.current, {
             y: scroll / 10,
             ease: 'power3.out',
@@ -83,6 +78,22 @@ const Page = () => {
 
         gsap.to(imageRef.current, {
             y: scroll / 6,
+            ease: 'power3.out',
+            duration: 0,
+        });
+
+        if (isMobile()) {
+            // Scroll the text horizontally on mobile
+            gsap.to(backgroundTextRef.current, {
+                x: -scroll,
+                y: scroll / 3,
+                ease: 'power3.out',
+                duration: 0,
+            });
+            return;
+        }
+        gsap.to(backgroundTextRef.current, {
+            y: scroll / 3,
             ease: 'power3.out',
             duration: 0,
         });
@@ -99,20 +110,22 @@ const Page = () => {
                     <span className="text-charade-400">Innovative & creative</span>
                 </p>
                 <h1
-                    className="uppercase text-[14rem] text-charade-600 whitespace-nowrap select-none"
+                    className="uppercase text-[14rem] max-sm:text-[10rem] text-charade-600 whitespace-nowrap select-none"
                     ref={backgroundTextRef}>
                     <StaggeredText text="Willem-Jaap" />
                 </h1>
                 <Spotlight />
-                <Image
-                    fill
-                    priority
-                    ref={imageRef}
-                    src="/assets/images/portfolio-hero.png"
-                    alt="Portfolio hero image of Willem-Jaap"
-                    className="invisible object-contain object-center w-full h-full mt-12"
-                />
-                <p className="relative z-10 mt-24 text-right leading-tight text-charade-400">
+                <div className="absolute top-0 left-0 max-sm:top-40 max-sm:w-[200%] max-sm:-left-1/2 w-full min-h-screen">
+                    <Image
+                        fill
+                        priority
+                        ref={imageRef}
+                        src="/assets/images/portfolio-hero.png"
+                        alt="Portfolio hero image of Willem-Jaap"
+                        className="invisible object-contain object-center mt-12"
+                    />
+                </div>
+                <p className="relative max-sm:invisible z-10 mt-24 text-right leading-tight text-charade-400">
                     Proficient in Next.js, Typescript, Tailwind, Laravel and more. <br /> I like to
                     work in small, efficient teams where I contribute <br /> to technical innovation
                     and creative solutions.
@@ -130,15 +143,15 @@ const Page = () => {
                 <div className="pt-24 pb-16 border-b border-b-charade-800">
                     <PaddedWithRandomized text="Blog" />
                 </div>
-                <div className="flex flex-col gap-4 mt-32">
-                    <div className="flex flex-col md:flex-row justify-between gap-32 py-4">
+                <div className="flex flex-col gap-4 mt-16 md:mt-32">
+                    <div className="flex flex-col md:flex-row justify-between gap-24 md:gap-32 py-4">
                         <p className="text-charade-400 leading-tight text-lg">
                             Read more about my insights as <br /> a webdeveloper, latest trends{' '}
                             <br /> and general development
                         </p>
                         <div className="max-w-7xl flex-1">
                             <BlogList />
-                            <Button href="/blog" className="mt-10 mb-20 group">
+                            <Button href="/blog" className="my-10 md:mb-20 group">
                                 View all blogs
                                 <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                             </Button>
@@ -184,7 +197,7 @@ const Page = () => {
                 <div className="pt-24 pb-16 border-b border-b-charade-800">
                     <PaddedWithRandomized text="Projects" />
                 </div>
-                <div className="flex flex-col gap-4 mt-32">
+                <div className="flex flex-col gap-4 mt-16 md:mt-32">
                     <div className="max-w-7xl flex-1">
                         <ProjectsGrid />
                         <Button href="/projects" className="mt-10 mb-20 groep">

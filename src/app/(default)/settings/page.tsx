@@ -24,7 +24,7 @@ const Page = () => {
                 <div>
                     <h2 className="text-charade-400 mb-4">User Settings</h2>
                     <div className="flex flex-col gap-4 max-w-2xl">
-                        <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-8">
+                        <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-4 md:p-8">
                             <Switch
                                 id="disable-noise"
                                 checked={
@@ -38,7 +38,7 @@ const Page = () => {
                                 Disable Noise
                             </Label>
                         </div>
-                        <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-8">
+                        <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-4 md:p-8">
                             <Switch
                                 id="disable-text-randomization"
                                 checked={
@@ -59,7 +59,7 @@ const Page = () => {
                     </div>
                     <h2 className="text-charade-400 mt-8 mb-4">Developer Settings</h2>
                     <div className="flex flex-col gap-4 max-w-2xl">
-                        <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-8">
+                        <div className="flex items-center gap-4 border border-charade-700 bg-charade-900 rounded-2xl p-4 md:p-8">
                             <Switch
                                 id="enable-debug"
                                 checked={

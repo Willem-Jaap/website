@@ -38,10 +38,10 @@ const Footer = () => {
 
     return (
         <footer id="footer" className="border-t border-t-charade-700" ref={footerRef}>
-            <div className="flex flex-col sm:flex-row gap-8 justify-between mx-8 mt-24 sm:mt-36 mb-12">
+            <div className="flex gap-8 justify-between mx-8 mt-24 sm:mt-36 mb-12">
                 <div className="flex items-center gap-6">
                     <Logo />
-                    Willem-Jaap
+                    <div className="max-sm:hidden">Willem-Jaap</div>
                 </div>
                 <div className="flex gap-4">
                     <Link
