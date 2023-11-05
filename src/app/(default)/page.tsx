@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import { ChevronRight } from '@mui/icons-material';
 import { gsap } from 'gsap';
@@ -13,6 +13,8 @@ import StaggeredText from '~components/misc/animation/staggered-text';
 import BlogList from '~components/misc/blog-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 import Button from '~components/utils/button';
+import SettingsContext from '~contexts/settings-context';
+import cn from '~utils/cn';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
     ssr: false,
@@ -26,6 +28,7 @@ const Page = () => {
     const characteristicsRef = useRef<HTMLParagraphElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
     const backgroundTextRef = useRef<HTMLDivElement>(null);
+    const settings = useContext(SettingsContext);
 
     useEffect(() => {
         if (!characteristicsRef.current || !imageRef.current) return;
@@ -116,7 +119,11 @@ const Page = () => {
                 </p>
                 <div className="absolute bottom-0 left-0 w-full h-52 z-0 bg-gradient-to-b from-transparent to-[#0D0D0F]" />
                 <div className="absolute -top-40 -left-40 w-[calc(100%+20rem)] h-[calc(100%+20rem)] z-0 opacity-80">
-                    <div className="absolute top-0 left-0 w-full h-full bg-noise bg-center animate-noise opacity-80" />
+                    <div
+                        className={cn('absolute top-0 left-0 w-full h-full  bg-center opacity-80', {
+                            'bg-noise animate-noise': settings.get('noise'),
+                        })}
+                    />
                 </div>
             </div>
             <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">

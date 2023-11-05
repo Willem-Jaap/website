@@ -129,6 +129,10 @@ const Menu = () => {
             text: 'Projects',
             matchActive: /^\/projects/,
         },
+        {
+            href: '/settings',
+            text: 'Settings',
+        },
     ];
 
     return (

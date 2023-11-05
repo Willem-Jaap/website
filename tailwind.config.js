@@ -49,7 +49,15 @@ module.exports = {
                 },
             }),
             keyframes: {
-                noise: {
+                'accordion-down': {
+                    from: { height: 0 },
+                    to: { height: 'var(--radix-accordion-content-height)' },
+                },
+                'accordion-up': {
+                    from: { height: 'var(--radix-accordion-content-height)' },
+                    to: { height: 0 },
+                },
+                'noise': {
                     '0%': {
                         transform: 'translate3d(0, 9rem, 0)',
                     },
@@ -96,7 +104,9 @@ module.exports = {
                 },
             },
             animation: {
-                noise: 'noise 3s steps(2) infinite',
+                'accordion-down': 'accordion-down 0.2s ease-out',
+                'accordion-up': 'accordion-up 0.2s ease-out',
+                'noise': 'noise 3s steps(2) infinite',
             },
             backgroundImage: {
                 'noise': 'url("/assets/images/noise.png")',
@@ -104,5 +114,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require('@tailwindcss/typography')],
+    plugins: [require('@tailwindcss/typography'), require('tailwindcss-animate')],
 };

@@ -4,7 +4,7 @@ import ProjectsGrid from '~projects/components/projects-grid';
 const Page = () => {
     return (
         <>
-            <div className="mx-column-1  py-56">
+            <div className="mx-column-1 py-56">
                 <div className="border-b border-b-charade-800 mb-24">
                     <PaddedWithRandomized text="Projects" />
                     <p className="text-charade-400 my-8 max-w-5xl">

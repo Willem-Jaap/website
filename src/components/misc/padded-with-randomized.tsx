@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
+import SettingsContext from '~contexts/settings-context';
 import getRandomCharacters from '~utils/get-random-characters';
 
 interface Props {
@@ -14,6 +15,8 @@ const PaddedWithRandomized = ({ text }: Props) => {
     const secondLineRef = useRef<HTMLDivElement>(null);
     const thirdLineRef = useRef<HTMLDivElement>(null);
     const hasAnimated = useRef(false);
+
+    const settings = useContext(SettingsContext);
 
     const randomizeLines = () => {
         if (firstLineRef.current && secondLineRef.current && thirdLineRef.current) {
@@ -57,9 +60,17 @@ const PaddedWithRandomized = ({ text }: Props) => {
             // Stop the interval when all letters have been added
             if (index >= characters.length) clearInterval(interval);
         }, 75);
-
-        window.addEventListener('scroll', onScroll);
     }, []);
+
+    useEffect(() => {
+        settings.get('textRandomization')
+            ? window.addEventListener('scroll', onScroll)
+            : window.removeEventListener('scroll', onScroll);
+
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+        };
+    }, [settings.get('textRandomization')]);
 
     return (
         <div className="text-charade-700 text-3xl">
