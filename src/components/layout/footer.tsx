@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
                 <div className="flex gap-4">
                     <Link
-                        className="p-2 border border-charade-700 text-charade-400 rounded-full"
+                        className="grid place-items-center p-2 border border-charade-700 text-charade-400 rounded-full"
                         href="/settings">
                         <Settings />
                     </Link>
