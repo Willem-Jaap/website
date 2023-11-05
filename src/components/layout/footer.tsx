@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-import { ArrowOutward, ChevronRight } from '@mui/icons-material';
+import { ArrowOutward, ChevronRight, Settings } from '@mui/icons-material';
 import gsap from 'gsap';
 import Link from 'next/link';
 
@@ -43,17 +43,24 @@ const Footer = () => {
                     <Logo />
                     Willem-Jaap
                 </div>
-                <button
-                    className="inline-block w-fit py-2 px-5 rounded-full border border-charade-700 group whitespace-nowrap"
-                    onClick={() => {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth',
-                        });
-                    }}>
-                    Back to top
-                    <ChevronRight className="text-neutral-200 ml-2 -rotate-90" />
-                </button>
+                <div className="flex gap-4">
+                    <Link
+                        className="p-2 border border-charade-700 text-charade-400 rounded-full"
+                        href="/settings">
+                        <Settings />
+                    </Link>
+                    <button
+                        className="inline-block w-fit py-2 px-5 rounded-full border border-charade-700 group whitespace-nowrap"
+                        onClick={() => {
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth',
+                            });
+                        }}>
+                        Back to top
+                        <ChevronRight className="text-neutral-200 ml-2 -rotate-90" />
+                    </button>
+                </div>
             </div>
             <div className="flex flex-col md:flex-row gap-x-8 justify-between mx-8 py-8  border-y border-y-charade-700">
                 <Link
