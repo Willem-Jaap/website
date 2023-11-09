@@ -11,7 +11,7 @@ const TechList = () => {
     const techCardRef = useRef<HTMLDivElement>(null);
     const techContentRef = useRef<HTMLDivElement>(null);
 
-    const tech = allTeches.sort((a, b) => Number(a.position) - Number(b.position));
+    const tech = allTeches.sort((a, b) => a.position - b.position);
 
     useEffect(() => {
         if (

@@ -64,7 +64,7 @@ const Tech = defineDocumentType(() => ({
     fields: {
         name: { type: 'string', required: true },
         experience: { type: 'string', required: true },
-        position: { type: 'string', required: true },
+        position: { type: 'number', required: true },
     },
     computedFields: {
         slug: { type: 'string', resolve: tech => tech._raw.flattenedPath },
