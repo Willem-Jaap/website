@@ -37,7 +37,9 @@ const GithubProject = async ({ url }: Props) => {
                         {repository.full_name}
                     </Link>
                 </h3>
-                <p>{repository.stargazers_count} stars</p>
+                <p>
+                    {repository.stargazers_count} star{repository.stargazers_count === 1 ? '' : 's'}
+                </p>
             </div>
             <p className="text-charade-400">{repository.description}</p>
             <div className="flex flex-wrap justify-between">
@@ -45,7 +47,7 @@ const GithubProject = async ({ url }: Props) => {
                     {repository.topics?.map(tag => (
                         <span
                             key={tag}
-                            className="px-3 py-1 text-xs rounded-full text-charade-300 bg-charade-800 border border-charade-600">
+                            className="px-3 py-1 text-sm rounded-full text-charade-300 bg-charade-800 border border-charade-600">
                             {tag}
                         </span>
                     ))}
