@@ -15,6 +15,15 @@ const ProjectCard = ({ project }: Props) => {
     const cardGradientRef = useRef<HTMLSpanElement>(null);
 
     const onMouseEnter = () => {
+        gsap.set(cardAccentRef.current, {
+            opacity: 0,
+        });
+
+        gsap.set(cardGradientRef.current, {
+            opacity: 0,
+            y: 0,
+        });
+
         gsap.to(cardAccentRef.current, {
             duration: 0.4,
             opacity: 1,
@@ -44,6 +53,15 @@ const ProjectCard = ({ project }: Props) => {
     };
 
     const onMouseLeave = () => {
+        gsap.set(cardAccentRef.current, {
+            opacity: 1,
+        });
+
+        gsap.set(cardGradientRef.current, {
+            opacity: 0.2,
+            y: -8,
+        });
+
         gsap.to(cardAccentRef.current, {
             duration: 0.2,
             opacity: 0,
