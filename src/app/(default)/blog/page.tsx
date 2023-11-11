@@ -23,10 +23,10 @@ const Page = ({ searchParams }: Props) => {
                     <PaddedWithRandomized text="Blog" />
                 </div>
                 <div className="flex justify-end items-center gap-4 mt-24 mb-20">
-                    <div className="relative h-fit">
+                    <div className="relative h-fit w-full max-w-[24rem]">
                         <input
                             onChange={onChange}
-                            className="border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-none w-full min-w-[24rem] focus:border-charade-500"
+                            className="block border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-none w-full focus:border-charade-500"
                             placeholder="Search"
                             value={query}
                         />
