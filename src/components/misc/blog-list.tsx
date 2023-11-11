@@ -127,7 +127,7 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
                         <div className="flex">
                             <time
                                 dateTime={blog.publishedAt}
-                                className="mb-2 block text-xs text-charade-400">
+                                className="mb-2 block text-charade-400">
                                 {format(parseISO(blog.publishedAt), 'LLLL d, yyyy')}
                             </time>
                         </div>
