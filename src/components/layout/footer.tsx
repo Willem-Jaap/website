@@ -45,12 +45,12 @@ const Footer = () => {
                 </div>
                 <div className="flex gap-4">
                     <Link
-                        className="grid place-items-center p-2 border border-charade-700 text-charade-400 rounded-full"
+                        className="grid place-items-center p-2 border border-charade-700 hover:border-charade-600 focus:border-charade-500 text-charade-400 hover:text-charade-300 rounded-full group"
                         href="/settings">
-                        <Settings />
+                        <Settings className="group-hover:animate-[spin_800ms_ease-in-out]" />
                     </Link>
                     <button
-                        className="inline-block w-fit py-2 px-5 rounded-full border border-charade-700 group whitespace-nowrap"
+                        className="inline-block w-fit py-2 px-5 rounded-full border border-charade-700 hover:border-charade-600 focus:border-charade-500 group whitespace-nowrap"
                         onClick={() => {
                             window.scrollTo({
                                 top: 0,
@@ -68,7 +68,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     className="flex-1 flex flex-col md:flex-row gap-6 md:gap-12 mb-12 md:my-24 items-start md:items-center justify-center">
-                    <div className="grid place-items-center aspect-square h-24 w-24 lg:h-32 lg:w-32 rounded-full border border-charade-700">
+                    <div className="grid place-items-center aspect-square h-16 w-16 md:h-16 md:w-16 lg:h-32 lg:w-32 rounded-full border border-charade-700">
                         <ArrowOutward className="rotate-90 text-5xl" />
                     </div>
                     <div className="text-2xl lg:text-6xl uppercase">Visit pixelperfect.agency</div>
@@ -123,18 +123,18 @@ const Footer = () => {
                 </div>
             </div>
             <div className="block sm:grid sm:grid-cols-2 md:grid-cols-4 gap-4 mx-8 mt-8 mb-12 text-sm">
-                <div className="flex gap-8 lg:gap-16 whitespace-nowrap">
+                <div className="flex gap-8 max-sm:grid max-sm:grid-cols-4 lg:gap-16 whitespace-nowrap">
                     <span className="text-charade-500">Built by </span>
                     <span className="text-charade-400">Me</span>
                 </div>
-                <div className="flex gap-8 lg:gap-16 whitespace-nowrap">
+                <div className="flex gap-8 max-sm:grid max-sm:grid-cols-4 lg:gap-16 whitespace-nowrap">
                     <span className="text-charade-500">Design by </span>
                     <span className="text-charade-400">Joan Verhulst</span>
                 </div>
 
-                <div className="col-span-2 flex justify-between md:justify-end gap-12 mt-4 sm:mt-0 text-charade-400 text-right">
+                <div className="col-span-2 flex justify-between flex-wrap md:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-400 text-right">
                     <Link href="/privacy">Privacy Policy</Link>
-                    &copy; {new Date().getFullYear()} Willem-Jaap
+                    <span>&copy; {new Date().getFullYear()} Willem-Jaap</span>
                 </div>
             </div>
         </footer>
