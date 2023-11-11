@@ -22,12 +22,11 @@ const Menu = () => {
 
         if (menuActive) {
             menuRef.current.classList.remove('hidden');
-            gsap.from(menuRef.current, {
+            gsap.set(menuRef.current, {
                 x: 10,
                 y: -50,
                 opacity: 0,
                 scale: 0.8,
-                ease: 'power3.out',
             });
             gsap.to(menuRef.current, {
                 duration: 0.5,
@@ -38,6 +37,10 @@ const Menu = () => {
                 ease: 'power3.out',
             });
 
+            gsap.set(menuOpenTextRef.current, {
+                transform: 'translateY(2rem)',
+                scale: 1,
+            });
             gsap.to(menuOpenTextRef.current, {
                 duration: 0.3,
                 transform: 'translateY(-2rem)',
@@ -45,6 +48,10 @@ const Menu = () => {
                 scale: 0.8,
             });
 
+            gsap.set(menuCloseTextRef.current, {
+                transform: 'translateY(2rem)',
+                scale: 0.8,
+            });
             gsap.to(menuCloseTextRef.current, {
                 duration: 0.3,
                 transform: 'translateY(0)',
@@ -53,6 +60,12 @@ const Menu = () => {
             return;
         }
 
+        gsap.set(menuRef.current, {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+        });
         gsap.to(menuRef.current, {
             duration: 0.5,
             x: 10,
@@ -63,12 +76,20 @@ const Menu = () => {
             onComplete: () => menuRef.current?.classList.add('hidden'),
         });
 
+        gsap.set(menuOpenTextRef.current, {
+            transform: 'translateY(-2rem)',
+            scale: 0.8,
+        });
         gsap.to(menuOpenTextRef.current, {
             duration: 0.5,
             transform: 'translateY(0)',
             ease: 'power3.out',
         });
 
+        gsap.set(menuCloseTextRef.current, {
+            transform: 'translateY(0)',
+            scale: 1,
+        });
         gsap.to(menuCloseTextRef.current, {
             duration: 0.5,
             transform: 'translateY(2rem)',
