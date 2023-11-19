@@ -29,23 +29,20 @@ const AboutImage = () => {
     useEffect(() => {
         if (!backLayerRef.current || !frontLayerRef.current) return;
 
-        backLayerRef.current.classList.remove('invisible');
-        frontLayerRef.current.classList.remove('invisible');
-
         const context = gsap.context(() => {
-            gsap.from(frontLayerRef.current, {
+            gsap.to(frontLayerRef.current, {
                 duration: 2,
-                x: 50,
-                y: 50,
-                scale: 1.1,
+                x: 0,
+                y: 0,
+                scale: 1,
                 ease: 'power3.out',
             });
 
-            gsap.from(backLayerRef.current, {
+            gsap.to(backLayerRef.current, {
                 duration: 2.4,
-                x: 64,
-                y: 64,
-                scale: 1.3,
+                x: 0,
+                y: 0,
+                scale: 1,
                 ease: 'power3.out',
             });
 
@@ -77,7 +74,11 @@ const AboutImage = () => {
 
     return (
         <div className="relative h-[60vh] sm:h-[80vh] md:h-screen overflow-hidden">
-            <div className="relative h-[60vh] sm:h-[80vh] md:h-screen invisible" ref={backLayerRef}>
+            <div
+                className="relative h-[60vh] sm:h-[80vh] md:h-screen"
+                ref={backLayerRef}
+                // Initial animation position.
+                style={{ transform: 'translateY(50px) translateX(50px) scale(1.1)' }}>
                 <Image
                     fill
                     src="/assets/images/layer-back-about-composition.png"
@@ -101,9 +102,11 @@ const AboutImage = () => {
             </div>
             <Image
                 fill
-                src="/assets/images/layer-front-about-composition.png"
                 alt="About me"
-                className="object-cover object-center select-none w-full h-full invisible"
+                src="/assets/images/layer-front-about-composition.png"
+                className="object-cover object-center select-none w-full h-full"
+                // Initial animation position.
+                style={{ transform: 'translateY(50px) translateX(50px) scale(1.1)' }}
                 ref={frontLayerRef}
             />
         </div>
