@@ -36,9 +36,9 @@ const Page = () => {
             if (!characteristicsRef.current || !imageRef.current) return;
             [...characteristicsRef.current.children].forEach((child, index) => {
                 gsap.to(child.children[0]!, {
-                    duration: 0.5,
+                    duration: 0.3,
                     y: 0,
-                    delay: index * 0.2,
+                    delay: index * 0.1,
                 });
             });
 
