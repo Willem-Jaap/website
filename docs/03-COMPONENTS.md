@@ -30,7 +30,7 @@ Props should be named in camelCase.
 You should declare props in an interface called `Props`. `children` should have the type `ReactNode`.
 
 ```tsx
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface Props {
     children: ReactNode;
