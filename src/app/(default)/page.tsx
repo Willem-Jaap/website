@@ -32,27 +32,21 @@ const Page = () => {
     const settings = useContext(SettingsContext);
 
     useEffect(() => {
-        if (!characteristicsRef.current || !imageRef.current) return;
-
-        characteristicsRef.current.classList.remove('invisible');
-        imageRef.current.classList.remove('invisible');
-
         const context = gsap.context(() => {
             if (!characteristicsRef.current || !imageRef.current) return;
-
-            gsap.from(characteristicsRef.current.children, {
-                duration: 0.3,
-                y: 20,
-                opacity: 0,
-                stagger: 0.1,
-                ease: 'power4.out',
+            [...characteristicsRef.current.children].forEach((child, index) => {
+                gsap.to(child.children[0]!, {
+                    duration: 0.5,
+                    y: 0,
+                    delay: index * 0.2,
+                });
             });
 
-            gsap.from(imageRef.current, {
+            gsap.to(imageRef.current, {
                 duration: 2,
-                x: 50,
-                y: 50,
-                scale: 1.1,
+                x: 0,
+                y: 0,
+                scale: 1,
                 ease: 'power3.out',
             });
         });
@@ -102,12 +96,20 @@ const Page = () => {
     return (
         <>
             <div className="relative px-column-1 pt-48 min-h-screen bg-charade-700 max-w-[100vw] overflow-hidden">
-                <p
-                    className="relative invisible flex flex-col text-4xl uppercase leading-tight z-10"
-                    ref={characteristicsRef}>
-                    <span>User first</span>
-                    <span className="text-charade-400">Frontend Engineer</span>
-                    <span className="text-charade-400">Innovative & creative</span>
+                <p className="relative flex flex-col leading-tight z-10" ref={characteristicsRef}>
+                    <span className="overflow-hidden">
+                        <span className="block uppercase text-4xl translate-y-20">User first</span>
+                    </span>
+                    <span className="overflow-hidden">
+                        <span className="block uppercase text-4xl text-charade-400 translate-y-20">
+                            Frontend Engineer
+                        </span>
+                    </span>
+                    <span className="overflow-hidden">
+                        <span className="block uppercase text-4xl text-charade-400 translate-y-20">
+                            Innovative & creative
+                        </span>
+                    </span>
                 </p>
                 <h1
                     className="uppercase text-[14rem] max-sm:text-[10rem] text-charade-600 whitespace-nowrap select-none"
@@ -115,16 +117,18 @@ const Page = () => {
                     <StaggeredText text="Willem-Jaap" />
                 </h1>
                 <Spotlight />
-                <div className="absolute top-0 left-0 max-sm:top-40 max-sm:w-[200%] max-sm:-left-1/2 w-full min-h-screen">
+                <span className="absolute top-0 left-0 max-sm:top-40 max-sm:w-[200%] max-sm:-left-1/2 w-full min-h-screen">
                     <Image
                         fill
                         priority
                         ref={imageRef}
                         src="/assets/images/portfolio-hero.png"
                         alt="Portfolio hero image of Willem-Jaap"
-                        className="invisible object-contain object-center mt-12"
+                        className="object-contain object-center mt-12"
+                        // Initial animation position.
+                        style={{ transform: 'translate(50px, 50px) scale(1.1)' }}
                     />
-                </div>
+                </span>
                 <p className="relative max-sm:invisible z-10 mt-24 text-right leading-tight text-charade-400">
                     Proficient in Next.js, Typescript, Tailwind, Laravel and more. <br /> I like to
                     work in small, efficient teams where I contribute <br /> to technical innovation
