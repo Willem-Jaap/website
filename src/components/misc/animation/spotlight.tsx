@@ -22,6 +22,7 @@ const Spotlight = () => {
         };
 
         const handleTouchMove = (event: TouchEvent) => {
+            if (!event.touches[0]) return;
             animateTo(event.touches[0].clientX, event.touches[0].clientY);
         };
 
