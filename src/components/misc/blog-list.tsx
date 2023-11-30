@@ -36,12 +36,12 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
             hoveredBlogIndex === null ||
             !blogsHoverCardRef.current ||
             !blogItemsRef.current ||
-            !(blogItemsRef.current.children[hoveredBlogIndex] as HTMLElement | undefined)
-        )
+            !blogItemsRef.current.children[hoveredBlogIndex]
+        ) {
             return;
-
+        }
         // Height of the tech item in the card
-        const height = blogItemsRef.current.children[hoveredBlogIndex].clientHeight;
+        const height = blogItemsRef.current.children[hoveredBlogIndex]?.clientHeight;
 
         gsap.to(blogsHoverCardRef.current, {
             duration: 0.4,

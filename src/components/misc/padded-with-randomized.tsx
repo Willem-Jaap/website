@@ -52,7 +52,7 @@ const PaddedWithRandomized = ({ text }: Props) => {
 
             randomizeLines();
             const content = textRef.current.innerText.split('');
-            content[index] = characters[index].toUpperCase();
+            content[index] = characters[index]!.toUpperCase();
             textRef.current.innerText = content.join('');
 
             index++;

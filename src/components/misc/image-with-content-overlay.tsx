@@ -27,7 +27,7 @@ const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
             });
 
             // Animate the children of the overlay staggered
-            if (!overlayRef.current?.children) return;
+            if (!overlayRef.current?.children || !overlayRef.current.children[0]) return;
             const children =
                 overlayRef.current.children.length > 1
                     ? overlayRef.current.children

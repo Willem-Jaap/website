@@ -18,12 +18,12 @@ const TechList = () => {
             hoveredTechIndex === null ||
             !techCardRef.current ||
             !techContentRef.current ||
-            !(techContentRef.current.children[hoveredTechIndex] as HTMLElement | undefined)
+            !techContentRef.current.children[hoveredTechIndex]
         )
             return;
 
         // Height of the tech item in the card
-        const height = techContentRef.current.children[hoveredTechIndex].clientHeight;
+        const height = techContentRef.current.children[hoveredTechIndex]?.clientHeight;
 
         gsap.to(techCardRef.current, {
             duration: 0.4,
