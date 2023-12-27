@@ -27,7 +27,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 };
 
 export const metadata: Metadata = {
-    metadataBase: new URL(env.NEXT_PUBLIC_URL!),
+    metadataBase: new URL(env.NEXT_PUBLIC_URL as string),
     title: {
         default: 'Willem-Jaap - Portfolio, blog and more',
         template: '%s | Willem-Jaap',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
             'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
         type: 'website',
         locale: 'en_US',
-        url: new URL(env.NEXT_PUBLIC_URL!),
+        url: new URL(env.NEXT_PUBLIC_URL as string),
         siteName: 'Willem-Jaap Portfolio',
     },
 };
