@@ -35,7 +35,8 @@ const Page = () => {
         const context = gsap.context(() => {
             if (!characteristicsRef.current || !imageRef.current) return;
             [...characteristicsRef.current.children].forEach((child, index) => {
-                gsap.to(child.children[0]!, {
+                if (!child.children[0]) return;
+                gsap.to(child.children[0], {
                     duration: 0.3,
                     y: 0,
                     delay: index * 0.1,

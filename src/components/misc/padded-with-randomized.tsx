@@ -40,19 +40,26 @@ const PaddedWithRandomized = ({ text }: Props) => {
         const characters = text.split('');
         let index = 0;
 
-        if (hasAnimated.current) return;
+        if (
+            hasAnimated.current ||
+            !textRef.current ||
+            !firstLineRef.current ||
+            !secondLineRef.current ||
+            !thirdLineRef.current
+        )
+            return;
 
         hasAnimated.current = true;
-        firstLineRef.current!.innerText = getRandomCharacters();
-        secondLineRef.current!.innerText = getRandomCharacters(100 - text.length);
-        thirdLineRef.current!.innerText = getRandomCharacters();
+        firstLineRef.current.innerText = getRandomCharacters();
+        secondLineRef.current.innerText = getRandomCharacters(100 - text.length);
+        thirdLineRef.current.innerText = getRandomCharacters();
 
         const interval = setInterval(() => {
-            if (!textRef.current) return;
+            if (!textRef.current || !characters[index]) return;
 
             randomizeLines();
             const content = textRef.current.innerText.split('');
-            content[index] = characters[index]!.toUpperCase();
+            content[index] = (characters[index] as string).toUpperCase();
             textRef.current.innerText = content.join('');
 
             index++;

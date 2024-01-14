@@ -11,7 +11,7 @@ const getSitemapItem = (
     lastModified = new Date().toISOString(),
 ) => {
     return {
-        url: env.NEXT_PUBLIC_URL! + path,
+        url: (env.NEXT_PUBLIC_URL as string) + path,
         changefreq,
         priority,
         lastModified,

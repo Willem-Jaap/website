@@ -9,7 +9,7 @@ const robots = (): MetadataRoute.Robots => {
             allow: '/',
             disallow: ['/settings', '/privacy-policy', '/api', '/api/*', '/_next/*', '/_error'],
         },
-        sitemap: `${env.NEXT_PUBLIC_URL!}/sitemap.xml`,
+        sitemap: `${env.NEXT_PUBLIC_URL as string}/sitemap.xml`,
         host: env.NEXT_PUBLIC_URL,
     };
 };
