@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { type MouseEvent, useEffect, useRef } from 'react';
 
 import { ArrowOutward, ChevronRight, Settings } from '@mui/icons-material';
 import gsap from 'gsap';
@@ -10,6 +10,8 @@ import Logo from '~components/misc/logo';
 
 const Footer = () => {
     const footerRef = useRef<HTMLElement>(null);
+    const arrowRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLDivElement>(null);
     const handleScroll = () => {
         if (!footerRef.current) return;
 
@@ -35,6 +37,48 @@ const Footer = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const onMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
+        if (!arrowRef.current || !textRef.current) return;
+
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+
+        const x = e.clientX - left - width / 2;
+        const y = e.clientY - top - height / 2;
+
+        gsap.to(arrowRef.current, {
+            duration: 1,
+            x: x / 10,
+            y: y / 10,
+            ease: 'elastic.out(1, 0.3)',
+        });
+
+        gsap.to(textRef.current, {
+            duration: 1,
+            x: x / 20,
+            y: y / 20,
+            ease: 'elastic.out(1, 0.3)',
+        });
+    };
+
+    const onMouseLeave = () => {
+        if (!arrowRef.current || !textRef.current) return;
+
+        gsap.to(arrowRef.current, {
+            duration: 1,
+            rotate: 0,
+            x: 0,
+            y: 0,
+            ease: 'elastic.out(1, 0.3)',
+        });
+
+        gsap.to(textRef.current, {
+            duration: 1,
+            x: 0,
+            y: 0,
+            ease: 'elastic.out(1, 0.3)',
+        });
+    };
 
     return (
         <footer id="footer" className="border-t border-t-charade-700" ref={footerRef}>
@@ -64,14 +108,20 @@ const Footer = () => {
             </div>
             <div className="flex flex-col md:flex-row gap-x-8 justify-between mx-8 py-8  border-y border-y-charade-700">
                 <Link
+                    onMouseMove={onMouseMove}
+                    onMouseLeave={onMouseLeave}
                     href="https://pixelperfect.agency"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex flex-col md:flex-row gap-6 md:gap-12 mb-12 md:my-24 items-start md:items-center justify-center">
-                    <div className="grid place-items-center aspect-square h-16 w-16 md:h-16 md:w-16 lg:h-32 lg:w-32 rounded-full border border-charade-700">
+                    className="flex-1 flex flex-col md:flex-row gap-6 md:gap-12 pb-12 md:py-24 items-start md:items-center justify-center">
+                    <div
+                        className="grid place-items-center aspect-square h-16 w-16 md:h-16 md:w-16 lg:h-32 lg:w-32 rounded-full border border-charade-700"
+                        ref={arrowRef}>
                         <ArrowOutward className="rotate-90 text-5xl" />
                     </div>
-                    <div className="text-2xl lg:text-6xl uppercase">Visit pixelperfect.agency</div>
+                    <div className="text-2xl lg:text-6xl uppercase" ref={textRef}>
+                        Visit pixelperfect.agency
+                    </div>
                 </Link>
                 <div className="min-w-[16rem] grid grid-cols-2 gap-x-6">
                     <div>
