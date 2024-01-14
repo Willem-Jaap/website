@@ -7,7 +7,7 @@ import { Inter } from 'next/font/google';
 import { env } from '~/env';
 import Footer from '~components/layout/footer';
 import Header from '~components/layout/header';
-import '~styles/global.scss';
+import '~styles/global.css';
 import cn from '~utils/cn';
 
 const InterFont = Inter({
