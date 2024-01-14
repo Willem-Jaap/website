@@ -22,7 +22,7 @@ const Page = () => {
         },
         {
             company: 'Pixel Perfect Agency',
-            title: 'CEO, Software Developer',
+            title: 'Founder, Software Developer',
             period: '2023 - Present',
             url: 'https://pixelperfect.agency',
         },
@@ -60,7 +60,7 @@ const Page = () => {
                         </div>
                     </ImageWithContentOverlay>
                     <p className="text-charade-200">
-                        I am the founder and CEO of{' '}
+                        I am the founder of{' '}
                         <Link
                             href="https://pixelperfect.agency"
                             className="underline hover:text-charade-200"

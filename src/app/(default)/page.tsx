@@ -188,7 +188,7 @@ const Page = () => {
                         src="/assets/images/portrait-willem-jaap.png"
                         alt="Portrait of Willem-Jaap">
                         <div className="flex flex-col gap-4 text-center max-w-xl">
-                            <h3 className="text-3xl uppercase">Founder & CEO</h3>
+                            <h3 className="text-3xl uppercase">Founder & Software Developer</h3>
                             <p className="leading-tight text-charade-400 text-lg">
                                 I&apos;m the founder of Pixel Perfect Agency where we create
                                 beautiful and efficient software solutions using the latest
