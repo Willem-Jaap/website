@@ -150,7 +150,7 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
                                 />
                                 <div className="absolute inset-0 flex flex-col gap-2 p-4 items-center justify-center text-center bg-charade-900/90">
                                     <h2 className="text-white">{blog.title}</h2>
-                                    <p className="text-sm text-charade-400">{blog.summary}</p>
+                                    <p className="text-sm text-charade-300">{blog.summary}</p>
                                 </div>
                             </Link>
                         ))}
