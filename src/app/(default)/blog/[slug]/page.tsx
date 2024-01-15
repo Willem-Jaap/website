@@ -22,7 +22,7 @@ const generateMetadata = ({ params }: MetaDataParams) => {
         blog => blog._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
     if (!blog) throw new Error(`Blog not found for slug: ${params.slug}`);
-    return { title: blog.title };
+    return { title: blog.title, description: blog.summary };
 };
 
 interface Props {
