@@ -40,6 +40,40 @@ module.exports = {
                 'column-1': 'clamp(2rem, -5.3333rem + 24.4444vw, 10rem);',
             },
             typography: theme => ({
+                DEFAULT: {
+                    css: {
+                        h1: {
+                            fontSize: theme('fontSize.4xl'),
+                        },
+                        h2: {
+                            fontSize: theme('fontSize.3xl'),
+                        },
+                        h3: {
+                            fontSize: theme('fontSize.2xl'),
+                        },
+                        h4: {
+                            fontSize: theme('fontSize.xl'),
+                        },
+                        h5: {
+                            fontSize: theme('fontSize.lg'),
+                        },
+                        h6: {
+                            fontSize: theme('fontSize.base'),
+                        },
+                        a: {
+                            'color': theme('colors.charade.400'),
+                            '&:hover': {
+                                color: theme('colors.charade.300'),
+                            },
+                        },
+                        strong: {
+                            color: theme('colors.charade.300'),
+                        },
+                        code: {
+                            color: theme('colors.charade.300'),
+                        },
+                    },
+                },
                 charade: {
                     css: {
                         '--tw-prose-headings': theme('colors.charade.50'),
