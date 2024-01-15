@@ -12,6 +12,52 @@ tags:
     - Design
 ---
 
-# Test blog
+> Note: This is my first article, if you have any feedback, please let me know on [Twitter/X](https://twitter.com/WillemJaap_).
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## What is a design system?
+
+A design system is a collection of reusable components, guided by clear standards, that can be assembled together like building blocks to build apps and websites in a consistent and efficient way.
+
+Lets take a look at a simple example. A very common element is the **button**. A button can have different states, like `primary`, `secondary`, `disabled`, `loading`, etc. It can also have different sizes, like `small`, `medium`, `large`, etc.
+
+<div className="not-prose flex flex-wrap items-center gap-4 my-8">
+    <button className="px-5 py-2 bg-violet-600 text-white rounded-md shadow-md">Primary</button>
+    <button className="px-5 py-2 bg-gray-200 text-gray-600 rounded-md shadow-md">Secondary</button>
+    <button
+        className="px-5 py-2 bg-gray-500 text-white rounded-md shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled>
+        Disabled
+    </button>
+    <button className="flex items-center px-5 py-2 bg-violet-600 text-white rounded-md shadow-md">
+        <svg className="animate-spin h-5 w-5 -ml-1 mr-3" viewBox="0 0 24 24">
+            <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"></circle>
+            <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Loading...
+    </button>
+    <span className="block w-[1px] h-8 bg-charade-500 mx-2" />
+    <button className="px-4 py-1 bg-violet-600 text-white rounded-md shadow-md text-sm">
+        Small
+    </button>
+    <button className="px-4 py-1 bg-gray-200 text-gray-600 rounded-md shadow-md text-sm">
+        Small
+    </button>
+</div>
+
+As you can see, a button can have a lot of different states. If you don't extract this into a reusable component, you'll end up with a lot of duplicate code with the potential of inconsistencies. Especially when you're working with a team.
+
+```tsx
+<Button variant="primary" href="/blog" className="my-10 md:mb-20">
+    Primary
+    <ChevronRight />
+</Button>
+```

@@ -66,19 +66,39 @@ module.exports = {
                                 color: theme('colors.charade.300'),
                             },
                         },
+                        blockquote: {
+                            'fontStyle': 'normal',
+                            'borderLeftColor': theme('colors.charade.700'),
+                            'color': theme('colors.charade.400'),
+                            '& a': {
+                                color: theme('colors.charade.200'),
+                            },
+                            '&::before': {
+                                color: theme('colors.charade.700'),
+                            },
+                            '&::after': {
+                                color: theme('colors.charade.700'),
+                            },
+                        },
+                        pre: {
+                            color: theme('colors.charade.100'),
+                            border: '1px solid',
+                            borderColor: theme('colors.charade.700'),
+                            backgroundColor: theme('colors.charade.800'),
+                        },
                         strong: {
                             color: theme('colors.charade.300'),
                         },
                         code: {
-                            color: theme('colors.charade.300'),
+                            color: theme('colors.charade.200'),
                         },
                     },
                 },
                 charade: {
                     css: {
                         '--tw-prose-headings': theme('colors.charade.50'),
-                        '--tw-prose-body': theme('colors.charade.400'),
-                        '--tw-prose-bold': theme('colors.charade.300'),
+                        '--tw-prose-body': theme('colors.charade.300'),
+                        '--tw-prose-bold': theme('colors.charade.200'),
                     },
                 },
             }),
