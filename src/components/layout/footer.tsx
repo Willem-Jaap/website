@@ -17,7 +17,7 @@ const Footer = () => {
 
         const { height, top } = footerRef.current.getBoundingClientRect();
 
-        if (top < window.innerHeight && top + height > 0) {
+        if (top < window.innerHeight && top + height > 0 && !(window.scrollY < height)) {
             const pixelsInView = window.innerHeight - top;
 
             gsap.to('#header', {
