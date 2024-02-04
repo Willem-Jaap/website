@@ -61,7 +61,7 @@ module.exports = {
                             fontSize: theme('fontSize.base'),
                         },
                         a: {
-                            'color': theme('colors.charade.400'),
+                            'color': theme('colors.charade.200'),
                             '&:hover': {
                                 color: theme('colors.charade.300'),
                             },
@@ -71,13 +71,22 @@ module.exports = {
                             'borderLeftColor': theme('colors.charade.700'),
                             'color': theme('colors.charade.400'),
                             '& a': {
-                                color: theme('colors.charade.200'),
+                                color: theme('colors.charade.400'),
                             },
                             '&::before': {
                                 color: theme('colors.charade.700'),
                             },
                             '&::after': {
                                 color: theme('colors.charade.700'),
+                                content: 'none',
+                            },
+                            '& p': {
+                                '&::before': {
+                                    content: 'none',
+                                },
+                                '&::after': {
+                                    content: 'none',
+                                },
                             },
                         },
                         pre: {
