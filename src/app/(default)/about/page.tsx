@@ -42,11 +42,62 @@ const Page = () => {
                         I was born in 2003 (which makes me {age} years old). I&apos;ve always been
                         interested in technology and the way anything works. I started programming
                         at the age of 15 using self-taught HTML and CSS and Javascript. It was a
-                        logical step for me to study Application- and Media Development at
+                        logical step for me to pursue a study Application- and Media Development at
                         Hoornbeeck College in Rotterdam. During my study I&apos;ve learned a lot
                         about programming and also did a lot of self study. I overengineered a lot
                         of projects and learned a lot from that.
                     </p>
+                    <p className="text-charade-200">
+                        After the first year I started working at WebNL creative studios as an
+                        intern. It was quite overwelming at first as I wasn&apos;t very familiar
+                        with the technologies they used. I worked on various projects, learned using
+                        Laravel and Vue.js and worked with a custom Wordpress framework.{' '}
+                        <Link
+                            href="https://joeriabbo.nl/"
+                            target="_blank"
+                            className="underline underline-offset-2 hover:text-charade-200">
+                            Joeri Abbo
+                        </Link>{' '}
+                        was my mentor and taught me a lot about programming and handling complex
+                        issues.
+                    </p>
+                    <p className="text-charade-200">
+                        In the second half of the year I built a PHP framework for REST API&apos;s
+                        from scratch, with automatic route discovery and a custom SQL query builder.
+                        In this time I also started using React and Webpack for the first time. With
+                        this knowledge I created a healthcare application for a school project. This
+                        project consisted of a PHP REST API, a React frontend, a Python chatservice
+                        and a React Native client facing app.
+                    </p>
+                    <p className="text-charade-200">
+                        I started working at Emerit as a parttime developer. I worked on creating a
+                        landingpages application using Next.js and CakePHP. During my final
+                        internship which I did at Emerit, I worked on a cash register application
+                        using Laravel and Electron together with{' '}
+                        <Link
+                            href="https://fransslabbekoorn.com"
+                            target="_blank"
+                            className="underline hover:text-charade-200 text-nowrap">
+                            Frans Slabbekoorn
+                        </Link>{' '}
+                        and{' '}
+                        <Link
+                            href="https://www.linkedin.com/in/diederick-verschuure-093bba194"
+                            target="_blank"
+                            className="underline hover:text-charade-200 text-nowrap">
+                            Diederick Verschuure
+                        </Link>
+                        . This cash register had support for offline mode with a local database and
+                        a delta sync system. A special shoutout to{' '}
+                        <Link
+                            href="https://www.linkedin.com/in/joan-verhulst-0204091bb"
+                            target="_blank"
+                            className="underline hover:text-charade-200 text-nowrap">
+                            Joan Verhulst
+                        </Link>{' '}
+                        for always helping out with designs for all the projects I worked on.
+                    </p>
+
                     <ImageWithContentOverlay
                         src="/assets/images/laptop-design-system-hero.png"
                         alt="Design system Pixel Perfect Agency"
