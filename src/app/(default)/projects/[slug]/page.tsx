@@ -1,12 +1,13 @@
 import { allProjects } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import Link from 'next/link';
+import Image, { type ImageProps } from 'next/image';
 import { notFound } from 'next/navigation';
 
 import GithubProject from '~projects/components/github-project';
 
 const components = {
     GithubProject: ({ url }: { url: string }) => <GithubProject url={url} />,
+    Image: (props: ImageProps) => <Image {...props} />,
 };
 
 const generateStaticParams = () => {
@@ -42,37 +43,23 @@ const Page = ({ params }: Props) => {
     const MDXContent = useMDXComponent(project.body.code);
 
     return (
-        <div className="max-w-5xl mx-auto mt-28 px-8 pt-16">
-            <div className="mt-8 mb-4 text-charade-400">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="inline-block w-4 h-4 mr-2"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round">
-                    <path d="M15 18l-6-6 6-6" />
-                </svg>
-                <Link href="/projects">Back to projects</Link>
-            </div>
-            <h1 className="mb-4 text-3xl">{project.name}</h1>
-            <p className="mb-8 text-charade-400">{project.description}</p>
-            <div className="flex flex-wrap gap-2">
+        <article className="max-w-7xl mx-auto mt-48 pt-12 px-8">
+            <h1 className="mb-8 text-6xl">{project.name}</h1>
+            <p className="text-charade-200">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mt-8 mb-12">
                 {project.tags?.map(tag => (
                     <span
                         key={tag}
-                        className="bg-charade-800 text-charade-50 border border-charade-700 rounded-full px-4 py-2 text-sm">
+                        className="px-3 py-1 text-sm rounded-full text-charade-300 bg-charade-800 border border-charade-600">
                         {tag}
                     </span>
                 ))}
             </div>
             <hr className="border-charade-800 my-8" />
-            <article className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-none">
+            <main className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-5xl mx-auto my-24">
                 <MDXContent components={components} />
-            </article>
-        </div>
+            </main>
+        </article>
     );
 };
 
