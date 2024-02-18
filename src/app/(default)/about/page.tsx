@@ -1,3 +1,4 @@
+import { type Metadata } from 'next';
 import Link from 'next/link';
 
 import AboutImage from '~about/components/about-image';
@@ -196,6 +197,17 @@ const Page = () => {
             </section>
         </>
     );
+};
+
+export const metadata: Metadata = {
+    title: 'About me',
+    description:
+        'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
+    openGraph: {
+        title: 'About me',
+        description:
+            'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
+    },
 };
 
 export default Page;

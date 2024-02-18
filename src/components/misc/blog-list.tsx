@@ -117,6 +117,11 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
                 onMouseEnter={onMouseEnter}
                 onMouseMove={onMouseMove}
                 onMouseLeave={onMouseLeave}>
+                {!blogs.length && (
+                    <div className="flex items-center h-full text-charade-400 my-8">
+                        I haven&apos;t written more blogs yet.
+                    </div>
+                )}
                 {blogs.map((blog, index) => (
                     <Link
                         key={blog.title}

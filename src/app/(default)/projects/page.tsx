@@ -1,5 +1,6 @@
 import PaddedWithRandomized from '~components/misc/padded-with-randomized';
 import ProjectsGrid from '~projects/components/projects-grid';
+import { type Metadata } from 'next';
 
 const Page = () => {
     return (
@@ -17,6 +18,16 @@ const Page = () => {
             </div>
         </>
     );
+};
+
+export const metadata: Metadata = {
+    title: 'Projects',
+    description:
+        'I love building things. Here are some of my projects. Some are open source, you can find the code on GitHub. I clarify some of my design decisions in the the post for each project which might be interesting to read.',
+    openGraph: {
+        title: 'Projects',
+        description: 'I love building things. Here are some of my projects.',
+    },
 };
 
 export default Page;
