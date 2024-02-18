@@ -8,6 +8,8 @@ const Blog = defineDocumentType(() => ({
     contentType: 'mdx',
     fields: {
         title: { type: 'string', required: true },
+        description: { type: 'string', required: true }, // In cards and SEO
+        summary: { type: 'string', required: true }, // On post detail page
         thumbnail: { type: 'string', required: true },
         publishedAt: {
             type: 'date',
@@ -17,7 +19,6 @@ const Blog = defineDocumentType(() => ({
             type: 'date',
             required: true,
         },
-        summary: { type: 'string', required: true },
         tags: {
             type: 'list',
             of: { type: 'string' },

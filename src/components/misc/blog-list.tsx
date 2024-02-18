@@ -117,6 +117,11 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
                 onMouseEnter={onMouseEnter}
                 onMouseMove={onMouseMove}
                 onMouseLeave={onMouseLeave}>
+                {!blogs.length && (
+                    <div className="flex items-center h-full text-charade-400 my-8">
+                        I haven&apos;t written more blogs yet.
+                    </div>
+                )}
                 {blogs.map((blog, index) => (
                     <Link
                         key={blog.title}
@@ -150,7 +155,7 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
                                 />
                                 <div className="absolute inset-0 flex flex-col gap-2 p-4 items-center justify-center text-center bg-charade-900/90">
                                     <h2 className="text-white">{blog.title}</h2>
-                                    <p className="text-sm text-charade-300">{blog.summary}</p>
+                                    <p className="text-sm text-charade-300">{blog.description}</p>
                                 </div>
                             </Link>
                         ))}

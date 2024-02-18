@@ -115,7 +115,7 @@ const Button = ({ children, className, href, onClick, ...props }: Props) => {
                     className="absolute block inset-0 h-[200%] -translate-y-1/2 bg-[radial-gradient(circle_at_center_top,#2d2c35_20%,#111014_80%)] opacity-90"
                     ref={buttonGradientRef}
                 />
-                <span className="relative block z-10" ref={buttonContentRef}>
+                <span className="relative block z-10 pointer-events-none" ref={buttonContentRef}>
                     {children}
                 </span>
             </span>

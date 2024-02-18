@@ -1,0 +1,161 @@
+---
+title: Building a robust design-system with TailwindCSS
+description: Tailwind has become increasingly popular in the last few years. It's a utility-first CSS framework that gives you incredible flexibility. How can you use it to build a robust design-system?
+summary:
+    Tailwind has become increasingly popular in the last few years. The utility first nature of the framework gives you an incredible amount of flexibility. However, the “copy-paste” culture that comes with it can be a double-edged sword. In this article, I'll walk you through the concepts of “composability” and “abstraction” and how you can use them
+    to build a robust design-system with TailwindCSS.
+thumbnail: design.jpg
+publishedAt: 2024-01-15
+updatedAt: 2024-01-15
+tags:
+    - Tailwind
+    - CSS
+    - Styling
+    - Design
+---
+
+> 💡 This is my first article, if you have any feedback, please let me know on [Twitter/X](https://twitter.com/WillemJaap_).
+
+> 🧠 For this article, I assume you have experience with React and TailwindCSS. If you're a total beginner, adding the possible overhead of a design system might be a bit overwhelming. I recommend you to first get familiar with React and TailwindCSS.
+
+## What is a design system?
+
+A design system is a collection of reusable components, fonts and colors guided by clear standards, that can be assembled together like building blocks to build apps and websites in a consistent and efficient way.
+
+In short, a design system consists of:
+
+-   **Components**: Reusable components that can be used to build apps and websites.
+-   **Fonts**: A set of consistent, predefined fonts.
+-   **Colors**: A set of consistent, predefined colors. (and other styles like shadows, borders, etc.)
+
+We will dive deeper into the decisionmaking and implementation of these components, fonts and colors in this article.
+
+## Abstraction
+
+Lets take a look at a simple example. A very common element is the **button**. A button can have different states, like `primary`, `secondary`, `disabled`, `loading` and sizes like `small`, `medium` and `large`.
+
+<div className="border border-neutral-800 rounded-xl p-6 not-prose flex flex-wrap items-center gap-4 my-8">
+    <button className="px-5 py-2 bg-violet-600 text-white rounded-md shadow-md">Primary</button>
+    <button className="px-5 py-2 bg-gray-200 text-gray-600 rounded-md shadow-md">Secondary</button>
+    <button
+        className="px-5 py-2 bg-gray-500 text-white rounded-md shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled>
+        Disabled
+    </button>
+    <button className="flex items-center px-5 py-2 bg-violet-600 text-white rounded-md shadow-md">
+        <svg className="animate-spin h-5 w-5 -ml-1 mr-3" viewBox="0 0 24 24">
+            <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"></circle>
+            <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Loading...
+    </button>
+    <span className="block w-[1px] h-8 bg-charade-500 mx-2" />
+    <button className="px-4 py-1 bg-violet-600 text-white rounded-md shadow-md text-sm">
+        Small
+    </button>
+    <button className="px-4 py-1 bg-gray-200 text-gray-600 rounded-md shadow-md text-sm">
+        Small
+    </button>
+</div>
+
+If you don't extract this into a reusable component, you'll end up with a lot of duplicate code with the potential of inconsistencies. Especially when you're working with a team.
+
+```tsx
+<Button variant="primary" href="/blog" className="mt-8">
+    Primary
+    <ChevronRight />
+</Button>
+```
+
+This is an example of a generic button component. It has a `variant` prop that can be used to change the style of the button. The component also accepts `size`, `href`, `onClick` and all other props that a native button would accept. As you can see, some additional classNames are passed, which are merged with the classNames of the button.
+
+> 💡 Be careful with allowing classNames to be passed to your components. It can lead to unpredictable behaviour. You maybe want to use something like [tw-merge](https://github.com/dcastil/tailwind-merge).
+
+This is a simple example of abstraction. We've abstracted the button into a reusable component. This is a very basic example, but you can imagine that you can abstract more complex components like a `Modal`, `Dropdown`, `Tabs`, etc.
+
+## Composability
+
+One of the most common composition patterns in React is the use of **children**. This allows you to compose components together in a very flexible way.
+
+```tsx
+<Modal>
+    <h2 className="text-2xl font-bold">Modal title</h2>
+    <p className="text-gray-600">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </p>
+</Modal>
+```
+
+In this example, the `Modal` component accepts children. This allows you to compose the modal with any content you want. This is a very powerful pattern and can be used to create very flexible and reusable components.
+
+However, in this example the title is passed as a child. In most cases a modal has a title. It would be better to have a `title` prop, so you can pass the title and other details as props instead of children. This is a trade-off between composability and abstraction. You can make the component more flexible by using children, but you can also make the component more predictable by using props.
+
+In the case of the `Modal` component, you can use both. You can pass a `title` prop, but also use children to pass the content of the modal.
+
+```tsx
+<Modal title="Modal title" hasCloseButton onClose={() => handleModalCloseSideEffect()}>
+    <p className="text-gray-600">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </p>
+</Modal>
+```
+
+This is a good example of composability. You can compose the modal with any content you want, but you can also pass props for a title, close button and other details.
+
+Another example: a `Card` component.
+
+```tsx
+<Card image="/path/to/image.jpg" onClick={() => console.log('Click!')}>
+    <h2 className="text-2xl font-bold">Card title</h2>
+    <p className="text-gray-600">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </p>
+</Card>
+```
+
+Some details like `image` and `onClick` are passed as props, but the content is passed as children.
+
+### Some more tips
+
+Tailwind uses literal color names (like red, green, etc.) and a numeric scale (where 50 is light and 900 is dark) by default. Read more about it [here](https://tailwindcss.com/docs/customizing-colors#naming-your-colors).
+
+From Tailwinds creators point of view these literal color names make sense. However in my opinion when working with designers and multiple developers, it's better to use more abstract names. For example, instead of using `bg-red-500` you could use `bg-danger-500`. This makes it easier to understand the context of the color.
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    theme: {
+        colors: {
+            primary: {
+                50: '#f0f5ff',
+                100: '#c8dbf4',
+                200: '#a1c1ec',
+                // ... more colors
+            },
+            neutral: {
+                50: '#fcfdff',
+                100: '#f9fafc',
+                200: '#dfe0e2',
+                // ... more colors
+            },
+            danger: {
+                50: '#fff5f5',
+                100: '#f8d7d7',
+                // ... more colors
+            },
+        },
+    },
+};
+```

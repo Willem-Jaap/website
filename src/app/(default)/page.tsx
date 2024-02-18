@@ -172,7 +172,7 @@ const Page = () => {
                     <span className="uppercase text-charade-500 font-semibold">Introduction</span>
                     <p className="text-charade-100 text-lg mb-8">
                         I&apos;m Willem-Jaap, a 20-year-old software developer with a deep passion
-                        for technology and a constant drive for self-improvement. I&apos;ve spent
+                        for technology and a constant drive for improving my skills. I&apos;ve spent
                         several years in the software development field and recently founded Pixel
                         Perfect Agency. Our focus is creating fast, beautiful, and efficient
                         software solutions to streamline processes and boost efficiency. In my free

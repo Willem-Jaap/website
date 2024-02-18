@@ -52,7 +52,7 @@ const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
     return (
         <div
             className={cn(
-                'relative overflow-hidden rounded-2xl h-[40vh] md:h-[60vh] min-h-[20rem] border border-charade-800',
+                'relative overflow-hidden rounded-2xl h-[40vh] md:h-[50vh] min-h-[20rem] border border-charade-800',
                 className,
             )}
             onMouseEnter={() => setActive(true)}
