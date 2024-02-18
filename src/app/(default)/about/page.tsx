@@ -69,6 +69,19 @@ const Page = () => {
                         project consisted of a PHP REST API, a React frontend, a Python chatservice
                         and a React Native client facing app.
                     </p>
+
+                    <ImageWithContentOverlay
+                        src="/assets/images/laptop-design-system-hero.png"
+                        alt="Design system Pixel Perfect Agency"
+                        className="mt-24 mb-8">
+                        <div className="flex flex-col gap-4 text-center max-w-xl">
+                            <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
+                            <p className="leading-tight text-charade-200 text-lg">
+                                Pixel Perfect is a digital agency based in the Netherlands. We
+                                strive to create beautiful, fast, safe & efficient user experiences.
+                            </p>
+                        </div>
+                    </ImageWithContentOverlay>
                     <p className="text-charade-200">
                         I started working at Emerit as a parttime developer. I worked on creating a
                         landingpages application using Next.js and CakePHP. During my final
@@ -97,21 +110,9 @@ const Page = () => {
                         </Link>{' '}
                         for always helping out with designs for all the projects I worked on.
                     </p>
-
-                    <ImageWithContentOverlay
-                        src="/assets/images/laptop-design-system-hero.png"
-                        alt="Design system Pixel Perfect Agency"
-                        className="mt-24 mb-8">
-                        <div className="flex flex-col gap-4 text-center max-w-xl">
-                            <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
-                            <p className="leading-tight text-charade-200 text-lg">
-                                Pixel Perfect is a digital agency based in the Netherlands. We
-                                strive to create beautiful, fast, safe & efficient user experiences.
-                            </p>
-                        </div>
-                    </ImageWithContentOverlay>
+                    <h2 className="text-2xl font-medium mt-12">Founding Pixel Perfect Agency</h2>
                     <p className="text-charade-200">
-                        I am the founder of{' '}
+                        In 2023 I started{' '}
                         <Link
                             href="https://pixelperfect.agency"
                             className="underline hover:text-charade-200"
@@ -120,8 +121,11 @@ const Page = () => {
                             Pixel Perfect Agency
                         </Link>
                         , a softwaredevelopment agency based in the Netherlands that focuses on
-                        creating beautiful and software solutions using the latest technologies.
+                        creating beautiful and software solutions to help businesses grow and
+                        thrive. In the company I am responsible for all business operations and
+                        Frontend / UX development for the projects we work on.
                     </p>
+                    {/* Github profile card */}
                     <p className="text-charade-200">
                         I also like to work on side projects and am becoming more active in the open
                         source community. You can check me out on{' '}
