@@ -126,3 +126,36 @@ Another example: a `Card` component.
 ```
 
 Some details like `image` and `onClick` are passed as props, but the content is passed as children.
+
+### Some more tips
+
+Tailwind uses literal color names (like red, green, etc.) and a numeric scale (where 50 is light and 900 is dark) by default. Read more about it [here](https://tailwindcss.com/docs/customizing-colors#naming-your-colors).
+
+From Tailwinds creators point of view these literal color names make sense. However in my opinion when working with designers and multiple developers, it's better to use more abstract names. For example, instead of using `bg-red-500` you could use `bg-danger-500`. This makes it easier to understand the context of the color.
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    theme: {
+        colors: {
+            primary: {
+                50: '#f0f5ff',
+                100: '#c8dbf4',
+                200: '#a1c1ec',
+                // ... more colors
+            },
+            neutral: {
+                50: '#fcfdff',
+                100: '#f9fafc',
+                200: '#dfe0e2',
+                // ... more colors
+            },
+            danger: {
+                50: '#fff5f5',
+                100: '#f8d7d7',
+                // ... more colors
+            },
+        },
+    },
+};
+```
