@@ -165,17 +165,17 @@ const Page = () => {
 
                             return (
                                 <li key={index} className="mb-8">
-                                    <div className="">
+                                    <div>
                                         {item.url ? (
                                             <Link
                                                 href={item.url}
-                                                className="flex justify-between gap-4 border-b border-b-charade-700 pb-4 hover:opacity-80"
+                                                className="flex flex-col md:flex-row justify-between gap-4 border-b border-b-charade-700 pb-4 hover:opacity-80"
                                                 target="_blank"
                                                 rel="noreferrer">
                                                 <Content />
                                             </Link>
                                         ) : (
-                                            <div className="flex justify-between gap-4 border-b border-b-charade-700 pb-4">
+                                            <div className="flex flex-col md:flex-row justify-between gap-4 border-b border-b-charade-700 pb-4">
                                                 <Content />
                                             </div>
                                         )}
@@ -186,7 +186,7 @@ const Page = () => {
                     </ul>
                 </div>
             </section>
-            <section className="max-w-4xl mx-auto pb-24">
+            <section className="max-w-4xl mx-auto px-8 pb-24">
                 <p className="my-24">
                     While working with these companies, I&apos;ve delved into diverse tech stacks
                     and programming languages. Today, I&apos;m well-versed in Next, React, Laravel,
