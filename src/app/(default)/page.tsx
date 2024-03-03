@@ -156,9 +156,8 @@ const Page = () => {
                         </p>
                         <div className="max-w-7xl flex-1">
                             <BlogList />
-                            <Button href="/blog" className="my-10 md:mb-20 group">
+                            <Button href="/blog" className="my-10 md:mb-20" icon={<ChevronRight />}>
                                 View all blogs
-                                <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                             </Button>
                         </div>
                     </div>
@@ -179,9 +178,8 @@ const Page = () => {
                         time, when I&apos;m not coding, you can often find me in the kitchen or
                         hitting weights in the gym.
                     </p>
-                    <Button href="/about" className="mb-20 group">
+                    <Button href="/about" className="mb-20 group" icon={<ChevronRight />}>
                         More about me
-                        <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                     </Button>
                     <RandomizedTextGradient />
                     <ImageWithContentOverlay
@@ -205,9 +203,8 @@ const Page = () => {
                 <div className="flex flex-col gap-4 mt-16 md:mt-32">
                     <div className="max-w-7xl flex-1">
                         <ProjectsGrid />
-                        <Button href="/projects" className="mt-10 mb-20 groep">
+                        <Button href="/projects" className="mt-10 mb-20" icon={<ChevronRight />}>
                             View all projects
-                            <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-200" />
                         </Button>
                     </div>
                 </div>

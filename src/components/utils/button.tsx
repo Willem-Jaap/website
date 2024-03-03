@@ -10,15 +10,17 @@ import cn from '~utils/cn';
 type Props =
     | (LinkProps & {
           children: ReactNode;
+          icon?: ReactNode;
           className?: string;
       })
     | (React.ButtonHTMLAttributes<HTMLButtonElement> & {
           children: ReactNode;
+          icon?: ReactNode;
           className?: string;
           href?: never;
       });
 
-const Button = ({ children, className, href, onClick, ...props }: Props) => {
+const Button = ({ children, icon, className, href, onClick, ...props }: Props) => {
     const buttonAccentRef = useRef<HTMLSpanElement>(null);
     const buttonGradientRef = useRef<HTMLSpanElement>(null);
     const buttonContentRef = useRef<HTMLSpanElement>(null);
@@ -110,13 +112,18 @@ const Button = ({ children, className, href, onClick, ...props }: Props) => {
 
     const ButtonContent = () => (
         <>
-            <span className="relative block py-2 px-5 rounded-full border border-charade-500 hover:border-charade-500 transition-colors duration-200 ease-in-out overflow-hidden">
+            <span className="relative block py-2 px-5 rounded-full border border-charade-500 hover:border-charade-500 transition-colors duration-200 ease-in-out overflow-hidden group">
                 <span
                     className="absolute block inset-0 h-[200%] -translate-y-1/2 bg-[radial-gradient(circle_at_center_top,#2d2c35_20%,#111014_80%)] opacity-90"
                     ref={buttonGradientRef}
                 />
-                <span className="relative block z-10 pointer-events-none" ref={buttonContentRef}>
+                <span className="relative flex items-center gap-2 z-10" ref={buttonContentRef}>
                     {children}
+                    {icon && (
+                        <span className="block transform group-hover:translate-x-1 transition-transform duration-200 pointer-events-none">
+                            {icon}
+                        </span>
+                    )}
                 </span>
             </span>
             <span
