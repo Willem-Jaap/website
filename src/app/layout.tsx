@@ -29,7 +29,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 export const metadata: Metadata = {
     metadataBase: new URL(env.NEXT_PUBLIC_URL as string),
     title: {
-        default: 'Willem-Jaap - Portfolio, blog and more',
+        default: 'Willem-Jaap - Portfolio, insights and more',
         template: '%s | Willem-Jaap',
     },
     description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         'developer',
         'software',
         'portfolio',
-        'blog',
+        'insights',
         'projects',
         'next',
         'next.js',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         'react',
     ],
     openGraph: {
-        title: 'Willem-Jaap - Portfolio, blog and more',
+        title: 'Willem-Jaap - Portfolio, insight and more',
         description:
             'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
         type: 'website',

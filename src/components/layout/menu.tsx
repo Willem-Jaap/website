@@ -141,9 +141,9 @@ const Menu = () => {
             text: 'About',
         },
         {
-            href: '/blog',
-            text: 'Blog',
-            matchActive: /^\/blog/,
+            href: '/insights',
+            text: 'Insights',
+            matchActive: /^\/insights/,
         },
         {
             href: '/projects',

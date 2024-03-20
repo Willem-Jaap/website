@@ -10,7 +10,7 @@ import Image from 'next/image';
 import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
 import Spotlight from '~components/misc/animation/spotlight';
 import StaggeredText from '~components/misc/animation/staggered-text';
-import BlogList from '~components/misc/blog-list';
+import InsightsList from '~components/misc/insights-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 import Button from '~components/utils/button';
 import SettingsContext from '~contexts/settings-context';
@@ -146,7 +146,7 @@ const Page = () => {
             </div>
             <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">
                 <div className="pt-24 pb-16 border-b border-b-charade-800">
-                    <PaddedWithRandomized text="Blog" />
+                    <PaddedWithRandomized text="Insight" />
                 </div>
                 <div className="flex flex-col gap-4 mt-16 md:mt-32">
                     <div className="flex flex-col md:flex-row justify-between gap-24 md:gap-32 py-4">
@@ -155,9 +155,12 @@ const Page = () => {
                             <br /> and general development
                         </p>
                         <div className="max-w-7xl flex-1">
-                            <BlogList />
-                            <Button href="/blog" className="my-10 md:mb-20" icon={<ChevronRight />}>
-                                View all blogs
+                            <InsightsList />
+                            <Button
+                                href="/insights"
+                                className="my-10 md:mb-20"
+                                icon={<ChevronRight />}>
+                                View all insights
                             </Button>
                         </div>
                     </div>

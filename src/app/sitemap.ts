@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { allBlogs, allProjects } from 'contentlayer/generated';
+import { allInsights, allProjects } from 'contentlayer/generated';
 
 import { env } from '~/env';
 
@@ -22,8 +22,8 @@ const sitemap = (): MetadataRoute.Sitemap => {
     return [
         getSitemapItem('/', 1),
         getSitemapItem('/about', 0.8),
-        getSitemapItem('/blog', 0.6, 'daily'),
-        ...allBlogs.map(blog => getSitemapItem(blog.url, 0.5, 'daily', blog.updatedAt)),
+        getSitemapItem('/insights', 0.6, 'daily'),
+        ...allInsights.map(insight => getSitemapItem(insight.url, 0.5, 'daily', insight.updatedAt)),
         getSitemapItem('/projects', 0.6),
         ...allProjects.map(project => getSitemapItem(project.url, 0.5, 'daily')),
         getSitemapItem('/settings', 0.2),

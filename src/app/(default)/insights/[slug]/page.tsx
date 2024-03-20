@@ -1,14 +1,14 @@
-import { allBlogs } from 'contentlayer/generated';
+import { allInsights } from 'contentlayer/generated';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import BlogList from '~components/misc/blog-list';
+import InsightsList from '~components/misc/insights-list';
 import PaddedWithRandomized from '~components/misc/padded-with-randomized';
 
 const generateStaticParams = () => {
-    return allBlogs.map(blog => ({ slug: blog._raw.sourceFileName.replace('.mdx', '') }));
+    return allInsights.map(insight => ({ slug: insight._raw.sourceFileName.replace('.mdx', '') }));
 };
 
 interface MetaDataParams {
@@ -18,11 +18,11 @@ interface MetaDataParams {
 }
 
 const generateMetadata = ({ params }: MetaDataParams) => {
-    const blog = allBlogs.find(
-        blog => blog._raw.sourceFileName.replace('.mdx', '') === params.slug,
+    const insight = allInsights.find(
+        insight => insight._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
-    if (!blog) throw new Error(`Blog not found for slug: ${params.slug}`);
-    return { title: blog.title, description: blog.summary };
+    if (!insight) throw new Error(`Insight not found for slug: ${params.slug}`);
+    return { title: insight.title, description: insight.summary };
 };
 
 interface Props {
@@ -32,20 +32,20 @@ interface Props {
 }
 
 const Page = ({ params }: Props) => {
-    const blog = allBlogs.find(
-        blog => blog._raw.sourceFileName.replace('.mdx', '') === params.slug,
+    const insight = allInsights.find(
+        insight => insight._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
-    if (!blog) return notFound();
+    if (!insight) return notFound();
 
-    const MDXContent = useMDXComponent(blog.body.code);
+    const MDXContent = useMDXComponent(insight.body.code);
 
     return (
         <>
             <article className="max-w-7xl mx-auto mt-48 pt-12 px-8">
-                <h1 className="mb-8 text-6xl">{blog.title}</h1>
-                <p className="text-charade-200">{blog.summary}</p>
+                <h1 className="mb-8 text-6xl">{insight.title}</h1>
+                <p className="text-charade-200">{insight.summary}</p>
                 <div className="flex flex-wrap gap-2 my-8">
-                    {blog.tags?.map(tag => (
+                    {insight.tags?.map(tag => (
                         <span
                             key={tag}
                             className="px-3 py-1 text-sm rounded-full text-charade-300 bg-charade-800 border border-charade-600">
@@ -57,8 +57,8 @@ const Page = ({ params }: Props) => {
                     <div className="flex flex-col gap-4">
                         <div className="text-charade-400">Date</div>
                         <div className="text-charade">
-                            {format(parseISO(blog.publishedAt), 'LLLL d, yyyy')} (
-                            {formatDistance(parseISO(blog.publishedAt), new Date(), {
+                            {format(parseISO(insight.publishedAt), 'LLLL d, yyyy')} (
+                            {formatDistance(parseISO(insight.publishedAt), new Date(), {
                                 addSuffix: true,
                             })}
                             )
@@ -66,15 +66,15 @@ const Page = ({ params }: Props) => {
                     </div>
                     <div className="flex flex-col gap-4">
                         <div className="text-charade-400">Reading time</div>
-                        <div>{blog.estimatedReadingTime}</div>
+                        <div>{insight.estimatedReadingTime}</div>
                     </div>
                 </div>
 
                 <div className="relative h-96 overflow-hidden">
                     <Image
-                        src={'/assets/images/blog/' + blog.thumbnail}
+                        src={'/assets/images/insights/' + insight.thumbnail}
                         fill
-                        alt={blog.title}
+                        alt={insight.title}
                         className="mb-8 object-cover"
                     />
                 </div>
@@ -85,9 +85,9 @@ const Page = ({ params }: Props) => {
             </article>
             <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">
                 <div className="pt-24 pb-16">
-                    <PaddedWithRandomized text="More blogs" />
+                    <PaddedWithRandomized text="More insights" />
                 </div>
-                <BlogList exclude={blog._raw.sourceFileName.replace('.mdx', '')} />
+                <InsightsList exclude={insight._raw.sourceFileName.replace('.mdx', '')} />
             </section>
         </>
     );

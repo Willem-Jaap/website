@@ -1,9 +1,9 @@
-import { type Blog } from 'contentlayer/generated';
+import { type Insight } from 'contentlayer/generated';
 import Fuse from 'fuse.js';
 
-const search = (query: string, blogs: Blog[]): Blog[] | [] => {
-    // Create a more searchable version of the blogs.
-    const searchableBlogs = blogs.map(({ _raw, title, body, publishedAt, updatedAt }) => ({
+const search = (query: string, insights: Insight[]): Insight[] | [] => {
+    // Create a more searchable version of the insights.
+    const searchableInsights = insights.map(({ _raw, title, body, publishedAt, updatedAt }) => ({
         title,
         publishedAt,
         updatedAt,
@@ -42,13 +42,13 @@ const search = (query: string, blogs: Blog[]): Blog[] | [] => {
         ],
     };
 
-    const fuse = new Fuse(searchableBlogs, options);
+    const fuse = new Fuse(searchableInsights, options);
 
     const results = fuse.search(query);
 
     return results.map(result => {
-        return blogs.find(blog => blog.title === result.item.title);
-    }) as Blog[];
+        return insights.find(insight => insight.title === result.item.title);
+    }) as Insight[];
 };
 
 export default search;
