@@ -33,7 +33,7 @@ const Page = () => {
         <>
             <AboutImage />
             <section className="px-column-1 py-32 text-charade-100 border-t border-t-charade-800">
-                <div className="flex flex-col gap-4 my-24 max-w-5xl mx-auto">
+                <div className="flex flex-col gap-5 my-24 max-w-5xl mx-auto">
                     <h2 className="text-2xl font-medium mb-2">
                         I&apos;m Willem-Jaap, a software developer from the Netherlands. I&apos;m a
                         creative and critical thinker, always looking for the most efficient and
