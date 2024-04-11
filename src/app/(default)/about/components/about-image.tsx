@@ -81,6 +81,7 @@ const AboutImage = () => {
                 style={{ transform: 'translateY(50px) translateX(50px) scale(1.1)' }}>
                 <Image
                     fill
+                    quality={100}
                     src="/assets/images/layer-back-about-composition.png"
                     alt="About me"
                     className="object-cover object-center select-none w-full h-full"

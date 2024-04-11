@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import gsap from 'gsap';
 import Image from 'next/image';
@@ -8,17 +8,25 @@ import Image from 'next/image';
 import cn from '~utils/cn';
 
 interface Props {
-    children: ReactNode;
+    title: string;
+    description: string;
     src: string;
     alt: string;
     className?: string;
 }
 
-const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
+const ImageWithContentOverlay = ({ title, description, src, alt, className }: Props) => {
     const overlayRef = useRef<HTMLDivElement>(null);
-    const [active, setActive] = useState(false);
+    const titleRef = useRef<HTMLDivElement>(null);
+    const descriptionRef = useRef<HTMLDivElement>(null);
+    const [active, setActive] = useState<boolean | null>(null);
 
     useEffect(() => {
+        console.log('active', active);
+        if (active === null) {
+            return;
+        }
+
         if (active) {
             gsap.to(overlayRef.current, {
                 duration: 0.5,
@@ -26,19 +34,16 @@ const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
                 ease: 'power3.out',
             });
 
-            // Animate the children of the overlay staggered
-            if (!overlayRef.current?.children || !overlayRef.current.children[0]) return;
-            const children =
-                overlayRef.current.children.length > 1
-                    ? overlayRef.current.children
-                    : overlayRef.current.children[0].children;
-
-            gsap.from(children, {
+            gsap.to(titleRef.current, {
                 duration: 0.3,
-                y: 20,
-                opacity: 0,
-                stagger: 0.1,
+                yPercent: -100,
                 ease: 'power4.out',
+            });
+            gsap.to(descriptionRef.current, {
+                duration: 0.3,
+                yPercent: -100,
+                ease: 'power4.out',
+                delay: 0.1,
             });
             return;
         }
@@ -46,6 +51,18 @@ const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
             duration: 0.5,
             opacity: 0,
             ease: 'power3.out',
+        });
+
+        gsap.to(titleRef.current, {
+            duration: 0.3,
+            yPercent: 0,
+            ease: 'power4.out',
+            delay: 0.1,
+        });
+        gsap.to(descriptionRef.current, {
+            duration: 0.3,
+            yPercent: 0,
+            ease: 'power4.out',
         });
     }, [active]);
 
@@ -58,11 +75,23 @@ const ImageWithContentOverlay = ({ children, src, alt, className }: Props) => {
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
             onTouchStart={() => setActive(!active)}>
-            <Image src={src} alt={alt} fill className="object-cover" />
-            <div
-                className="absolute inset-0 p-4 grid place-items-center items-center bg-charade-900/75 opacity-0"
-                ref={overlayRef}>
-                {children}
+            <Image src={src} alt={alt} quality={100} fill className="object-cover" />
+            <div className="absolute inset-0  bg-charade-900/75 opacity-0" ref={overlayRef} />
+            <div className="absolute inset-0 p-4 grid place-items-center items-center">
+                <div className="flex flex-col gap-4 text-center max-w-xl">
+                    <div className="overflow-hidden">
+                        <h3 className="text-3xl uppercase translate-y-full" ref={titleRef}>
+                            {title}
+                        </h3>
+                    </div>
+                    <div className="overflow-hidden">
+                        <p
+                            className="leading-tight text-charade-200 text-lg translate-y-full"
+                            ref={descriptionRef}>
+                            {description}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

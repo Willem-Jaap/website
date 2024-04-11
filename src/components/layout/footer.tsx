@@ -183,7 +183,6 @@ const Footer = () => {
                 </div>
 
                 <div className="col-span-2 flex justify-between flex-wrap md:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-400 text-right">
-                    <Link href="/privacy">Privacy Policy</Link>
                     <span>&copy; {new Date().getFullYear()} Willem-Jaap</span>
                 </div>
             </div>

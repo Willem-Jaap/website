@@ -123,7 +123,7 @@ const InsightsList = ({ query, exclude, showResultAmount = false }: Props) => {
                 onMouseLeave={onMouseLeave}>
                 {!insights.length && (
                     <div className="flex items-center h-full text-charade-400 my-8">
-                        I haven&apos;t had more insights yet.
+                        I haven&apos;t written any insights yet.
                     </div>
                 )}
                 {insights.map((insight, index) => (

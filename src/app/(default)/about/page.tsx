@@ -74,15 +74,18 @@ const Page = () => {
                     <ImageWithContentOverlay
                         src="/assets/images/laptop-design-system-hero.png"
                         alt="Design system Pixel Perfect Agency"
-                        className="mt-24 mb-8">
-                        <div className="flex flex-col gap-4 text-center max-w-xl">
+                        className="mt-24 mb-8"
+                        title="Pixel Perfect Agency"
+                        description="Pixel Perfect is a digital agency based in the Netherlands. We strive to create beautiful, fast, safe & efficient user experiences."
+                    />
+                    {/* <div className="flex flex-col gap-4 text-center max-w-xl">
                             <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
                             <p className="leading-tight text-charade-200 text-lg">
                                 Pixel Perfect is a digital agency based in the Netherlands. We
                                 strive to create beautiful, fast, safe & efficient user experiences.
                             </p>
-                        </div>
-                    </ImageWithContentOverlay>
+                        </div> */}
+                    {/* </ImageWithContentOverlay> */}
                     <p className="text-charade-200">
                         I started working at Emerit as a parttime developer. I worked on creating a
                         landingpages application using Next.js and CakePHP. During my final
