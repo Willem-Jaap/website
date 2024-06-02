@@ -1,6 +1,6 @@
 import { allInsights } from 'contentlayer/generated';
 import { format, formatDistance, parseISO } from 'date-fns';
-import { useMDXComponent } from 'next-contentlayer/hooks';
+import { useMDXComponent } from 'next-contentlayer2/hooks';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
