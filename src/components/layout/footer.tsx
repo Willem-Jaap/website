@@ -2,7 +2,7 @@
 
 import { type MouseEvent, useEffect, useRef } from 'react';
 
-import { ArrowOutward, ChevronRight, Settings } from '@mui/icons-material';
+import { ArrowOutwardOutlined, ChevronRightOutlined, SettingsOutlined } from '@mui/icons-material';
 import gsap from 'gsap';
 import Link from 'next/link';
 
@@ -91,7 +91,7 @@ const Footer = () => {
                     <Link
                         className="grid place-items-center p-2 border border-charade-700 hover:border-charade-600 focus:border-charade-500 text-charade-400 hover:text-charade-300 rounded-full group"
                         href="/settings">
-                        <Settings className="group-hover:animate-[spin_800ms_ease-in-out]" />
+                        <SettingsOutlined className="group-hover:animate-[spin_800ms_ease-in-out]" />
                     </Link>
                     <button
                         className="inline-block w-fit py-2 px-5 rounded-full border border-charade-700 hover:border-charade-600 focus:border-charade-500 group whitespace-nowrap"
@@ -102,7 +102,7 @@ const Footer = () => {
                             });
                         }}>
                         Back to top
-                        <ChevronRight className="text-neutral-200 ml-2 -rotate-90" />
+                        <ChevronRightOutlined className="text-neutral-200 ml-2 -rotate-90" />
                     </button>
                 </div>
             </div>
@@ -117,7 +117,7 @@ const Footer = () => {
                     <div
                         className="grid place-items-center aspect-square h-16 w-16 md:h-16 md:w-16 lg:h-32 lg:w-32 rounded-full border border-charade-700"
                         ref={arrowRef}>
-                        <ArrowOutward className="rotate-90 text-5xl" />
+                        <ArrowOutwardOutlined className="rotate-90 text-5xl" />
                     </div>
                     <div className="text-2xl lg:text-6xl uppercase" ref={textRef}>
                         Visit pixelperfect.agency
@@ -163,7 +163,7 @@ const Footer = () => {
                                 <Link href="/about">About</Link>
                             </li>
                             <li>
-                                <Link href="/blog">Blog</Link>
+                                <Link href="/insights">Insight</Link>
                             </li>
                             <li>
                                 <Link href="/projects">Projects</Link>
@@ -183,7 +183,6 @@ const Footer = () => {
                 </div>
 
                 <div className="col-span-2 flex justify-between flex-wrap md:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-400 text-right">
-                    <Link href="/privacy">Privacy Policy</Link>
                     <span>&copy; {new Date().getFullYear()} Willem-Jaap</span>
                 </div>
             </div>

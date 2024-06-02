@@ -2,65 +2,68 @@
 
 import { type MouseEvent, useEffect, useRef, useState } from 'react';
 
-import { allBlogs } from 'contentlayer/generated';
+import { allInsights } from 'contentlayer/generated';
 import { format, parseISO } from 'date-fns';
 import gsap from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import search from '~app/(default)/blog/utils/search';
+import search from '~app/(default)/insights/utils/search';
 
 interface Props {
     query?: string;
-    exclude?: string; // slug of the blog to exclude
+    exclude?: string; // slug of the insight to exclude
     showResultAmount?: boolean;
 }
 
-const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
-    const [hoveredBlogIndex, setHoveredBlogIndex] = useState<number | null>(null);
-    const blogsHoverCardRef = useRef<HTMLDivElement>(null);
-    const blogItemsRef = useRef<HTMLDivElement>(null);
+const InsightsList = ({ query, exclude, showResultAmount = false }: Props) => {
+    const [hoveredInsightIndex, setHoveredInsightIndex] = useState<number | null>(null);
+    const insightsHoverCardRef = useRef<HTMLDivElement>(null);
+    const insightItemsRef = useRef<HTMLDivElement>(null);
 
-    let blogs = allBlogs;
+    let insights = allInsights;
 
     if (query) {
-        blogs = search(query, allBlogs);
+        insights = search(query, allInsights);
     }
 
     if (exclude) {
-        blogs = blogs.filter(blog => blog._raw.sourceFileName.replace('.mdx', '') !== exclude);
+        insights = insights.filter(
+            insight => insight._raw.sourceFileName.replace('.mdx', '') !== exclude,
+        );
     }
 
     useEffect(() => {
         if (
-            hoveredBlogIndex === null ||
-            !blogsHoverCardRef.current ||
-            !blogItemsRef.current ||
-            !blogItemsRef.current.children[hoveredBlogIndex]
+            hoveredInsightIndex === null ||
+            !insightsHoverCardRef.current ||
+            !insightItemsRef.current ||
+            !insightItemsRef.current.children[hoveredInsightIndex]
         ) {
             return;
         }
         // Height of the tech item in the card
-        const height = blogItemsRef.current.children[hoveredBlogIndex]?.clientHeight;
+        const height = insightItemsRef.current.children[hoveredInsightIndex]?.clientHeight;
 
-        gsap.to(blogsHoverCardRef.current, {
+        gsap.to(insightsHoverCardRef.current, {
             duration: 0.4,
             height: height,
             ease: 'power4.out',
         });
 
-        const hoveredBlogItemTop = (blogItemsRef.current.children[hoveredBlogIndex] as HTMLElement)
-            .offsetTop;
+        const hoveredInsightItemTop = (
+            insightItemsRef.current.children[hoveredInsightIndex] as HTMLElement
+        ).offsetTop;
 
-        gsap.to(blogItemsRef.current, {
+        gsap.to(insightItemsRef.current, {
             duration: 0.4,
-            y: -hoveredBlogItemTop,
+            y: -hoveredInsightItemTop,
             ease: 'power4.out',
         });
-    }, [hoveredBlogIndex]);
+    }, [hoveredInsightIndex]);
 
     const onMouseEnter = () => {
-        gsap.to(blogsHoverCardRef.current, {
+        gsap.to(insightsHoverCardRef.current, {
             duration: 0.4,
             scale: 1,
             ease: 'power4.out',
@@ -83,18 +86,18 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
             rotation += (-5 - rotation) * 2;
         }
 
-        if (!blogsHoverCardRef.current) return;
-        gsap.to(blogsHoverCardRef.current, {
+        if (!insightsHoverCardRef.current) return;
+        gsap.to(insightsHoverCardRef.current, {
             duration: 0.4,
             x: x / 5,
-            y: e.clientY - top - blogsHoverCardRef.current.clientHeight / 2,
+            y: e.clientY - top - insightsHoverCardRef.current.clientHeight / 2,
             rotation,
             ease: 'power4.out',
         });
     };
 
     const onMouseLeave = () => {
-        gsap.to(blogsHoverCardRef.current, {
+        gsap.to(insightsHoverCardRef.current, {
             duration: 0.4,
             scale: 0,
             ease: 'power4.out',
@@ -102,14 +105,15 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
     };
 
     const onCardMouseEnter = (index: number) => {
-        setHoveredBlogIndex(index);
+        setHoveredInsightIndex(index);
     };
 
     return (
         <div className="-mt-4">
             {showResultAmount && query && (
                 <p className="text-sm pb-4 text-charade-400">
-                    {blogs.length} result{blogs.length === 1 ? '' : 's'} for &quot;{query}&quot;:
+                    {insights.length} result{insights.length === 1 ? '' : 's'} for &quot;{query}
+                    &quot;:
                 </p>
             )}
             <div
@@ -117,45 +121,47 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
                 onMouseEnter={onMouseEnter}
                 onMouseMove={onMouseMove}
                 onMouseLeave={onMouseLeave}>
-                {!blogs.length && (
+                {!insights.length && (
                     <div className="flex items-center h-full text-charade-400 my-8">
-                        I haven&apos;t written more blogs yet.
+                        I haven&apos;t written any insights yet.
                     </div>
                 )}
-                {blogs.map((blog, index) => (
+                {insights.map((insight, index) => (
                     <Link
-                        key={blog.title}
-                        href={blog.url}
+                        key={insight.title}
+                        href={insight.url}
                         onMouseEnter={() => onCardMouseEnter(index)}
                         className="flex gap-4 justify-between items-center border-b py-4 border-b-charade-800">
-                        <h2 className="mb-1 text-lg text-charade-100">{blog.title}</h2>
+                        <h2 className="mb-1 text-lg text-charade-100">{insight.title}</h2>
                         <div className="flex">
                             <time
-                                dateTime={blog.publishedAt}
+                                dateTime={insight.publishedAt}
                                 className="mb-2 block text-charade-400">
-                                {format(parseISO(blog.publishedAt), 'LLLL d, yyyy')}
+                                {format(parseISO(insight.publishedAt), 'LLLL d, yyyy')}
                             </time>
                         </div>
                     </Link>
                 ))}
                 <div
                     className="absolute left-1/2 -top-1/4 w-[32rem] h-72 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0 pointer-events-none"
-                    ref={blogsHoverCardRef}>
-                    <div ref={blogItemsRef}>
-                        {blogs.map(blog => (
+                    ref={insightsHoverCardRef}>
+                    <div ref={insightItemsRef}>
+                        {insights.map(insight => (
                             <Link
-                                href={blog.url}
-                                key={blog.title}
+                                href={insight.url}
+                                key={insight.title}
                                 className="relative block w-[32rem] h-72">
                                 <Image
-                                    src={'/assets/images/blog/' + blog.thumbnail}
-                                    alt={blog.title}
+                                    src={'/assets/images/insights/' + insight.thumbnail}
+                                    alt={insight.title}
                                     fill
                                     className="object-cover"
                                 />
                                 <div className="absolute inset-0 flex flex-col gap-2 p-4 items-center justify-center text-center bg-charade-900/90">
-                                    <h2 className="text-white">{blog.title}</h2>
-                                    <p className="text-sm text-charade-300">{blog.description}</p>
+                                    <h2 className="text-white">{insight.title}</h2>
+                                    <p className="text-sm text-charade-300">
+                                        {insight.description}
+                                    </p>
                                 </div>
                             </Link>
                         ))}
@@ -166,4 +172,4 @@ const BlogList = ({ query, exclude, showResultAmount = false }: Props) => {
     );
 };
 
-export default BlogList;
+export default InsightsList;

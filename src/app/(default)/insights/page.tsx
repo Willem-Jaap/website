@@ -2,7 +2,7 @@
 
 import { type ChangeEvent, useState } from 'react';
 
-import BlogList from '~components/misc/blog-list';
+import InsightsList from '~components/misc/insights-list';
 import PaddedWithRandomized from '~components/misc/padded-with-randomized';
 
 interface Props {
@@ -20,7 +20,7 @@ const Page = ({ searchParams }: Props) => {
         <>
             <div className="px-column-1 py-56">
                 <div className="pb-16 border-b border-b-charade-800">
-                    <PaddedWithRandomized text="Blog" />
+                    <PaddedWithRandomized text="Insights" />
                 </div>
                 <div className="flex justify-end items-center gap-4 mt-24 mb-20">
                     <div className="relative h-fit w-full max-w-[24rem]">
@@ -44,7 +44,7 @@ const Page = ({ searchParams }: Props) => {
                         </svg>
                     </div>
                 </div>
-                <BlogList showResultAmount query={query} />
+                <InsightsList showResultAmount query={query} />
             </div>
         </>
     );

@@ -6,8 +6,10 @@ import ImageWithContentOverlay from '~components/misc/image-with-content-overlay
 import TechList from '~components/misc/tech-list';
 
 const Page = () => {
-    const birthDate = new Date(2003, 6, 16);
-    const age = new Date().getUTCFullYear() - birthDate.getUTCFullYear();
+    const getAge = (birthDate: string) =>
+        Math.floor((Date.now() - new Date(birthDate).getTime()) / 3.15576e10);
+
+    const age = getAge('2003-06-16');
 
     const experiences = [
         {
@@ -33,7 +35,7 @@ const Page = () => {
         <>
             <AboutImage />
             <section className="px-column-1 py-32 text-charade-100 border-t border-t-charade-800">
-                <div className="flex flex-col gap-4 my-24 max-w-5xl mx-auto">
+                <div className="flex flex-col gap-5 my-24 max-w-5xl mx-auto">
                     <h2 className="text-2xl font-medium mb-2">
                         I&apos;m Willem-Jaap, a software developer from the Netherlands. I&apos;m a
                         creative and critical thinker, always looking for the most efficient and
@@ -52,15 +54,8 @@ const Page = () => {
                         After the first year I started working at WebNL creative studios as an
                         intern. It was quite overwelming at first as I wasn&apos;t very familiar
                         with the technologies they used. I worked on various projects, learned using
-                        Laravel and Vue.js and worked with a custom Wordpress framework.{' '}
-                        <Link
-                            href="https://joeriabbo.nl/"
-                            target="_blank"
-                            className="underline underline-offset-2 hover:text-charade-200">
-                            Joeri Abbo
-                        </Link>{' '}
-                        was my mentor and taught me a lot about programming and handling complex
-                        issues.
+                        Laravel and Vue.js and worked with a custom Wordpress framework. I learned a
+                        lot about programming and handling complex issues.
                     </p>
                     <p className="text-charade-200">
                         In the second half of the year I built a PHP framework for REST API&apos;s
@@ -70,19 +65,6 @@ const Page = () => {
                         project consisted of a PHP REST API, a React frontend, a Python chatservice
                         and a React Native client facing app.
                     </p>
-
-                    <ImageWithContentOverlay
-                        src="/assets/images/laptop-design-system-hero.png"
-                        alt="Design system Pixel Perfect Agency"
-                        className="mt-24 mb-8">
-                        <div className="flex flex-col gap-4 text-center max-w-xl">
-                            <h3 className="text-3xl uppercase">Pixel Perfect Agency</h3>
-                            <p className="leading-tight text-charade-200 text-lg">
-                                Pixel Perfect is a digital agency based in the Netherlands. We
-                                strive to create beautiful, fast, safe & efficient user experiences.
-                            </p>
-                        </div>
-                    </ImageWithContentOverlay>
                     <p className="text-charade-200">
                         I started working at Emerit as a parttime developer. I worked on creating a
                         landingpages application using Next.js and CakePHP. During my final
@@ -102,7 +84,10 @@ const Page = () => {
                             Diederick Verschuure
                         </Link>
                         . This cash register had support for offline mode with a local database and
-                        a delta sync system. A special shoutout to{' '}
+                        a delta sync system.
+                    </p>
+                    <p className="text-charade-200">
+                        A special shoutout to{' '}
                         <Link
                             href="https://www.linkedin.com/in/joan-verhulst-0204091bb"
                             target="_blank"
@@ -111,6 +96,13 @@ const Page = () => {
                         </Link>{' '}
                         for always helping out with designs for all the projects I worked on.
                     </p>
+                    <ImageWithContentOverlay
+                        src="/assets/images/laptop-design-system-hero.png"
+                        alt="Design system Pixel Perfect Agency"
+                        className="mt-24 mb-8"
+                        title="Pixel Perfect Agency"
+                        description="Pixel Perfect is a digital agency based in the Netherlands. We strive to create beautiful, fast, safe & efficient user experiences."
+                    />
                     <h2 className="text-2xl font-medium mt-12">Founding Pixel Perfect Agency</h2>
                     <p className="text-charade-200">
                         In 2023 I started{' '}

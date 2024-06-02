@@ -10,7 +10,7 @@ import Image from 'next/image';
 import ProjectsGrid from '~app/(default)/projects/components/projects-grid';
 import Spotlight from '~components/misc/animation/spotlight';
 import StaggeredText from '~components/misc/animation/staggered-text';
-import BlogList from '~components/misc/blog-list';
+import InsightsList from '~components/misc/insights-list';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 import Button from '~components/utils/button';
 import SettingsContext from '~contexts/settings-context';
@@ -122,6 +122,7 @@ const Page = () => {
                     <Image
                         fill
                         priority
+                        quality={100}
                         ref={imageRef}
                         src="/assets/images/portfolio-hero.png"
                         alt="Portfolio hero image of Willem-Jaap"
@@ -146,7 +147,7 @@ const Page = () => {
             </div>
             <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">
                 <div className="pt-24 pb-16 border-b border-b-charade-800">
-                    <PaddedWithRandomized text="Blog" />
+                    <PaddedWithRandomized text="Insight" />
                 </div>
                 <div className="flex flex-col gap-4 mt-16 md:mt-32">
                     <div className="flex flex-col md:flex-row justify-between gap-24 md:gap-32 py-4">
@@ -155,9 +156,12 @@ const Page = () => {
                             <br /> and general development
                         </p>
                         <div className="max-w-7xl flex-1">
-                            <BlogList />
-                            <Button href="/blog" className="my-10 md:mb-20" icon={<ChevronRight />}>
-                                View all blogs
+                            <InsightsList />
+                            <Button
+                                href="/insights"
+                                className="my-10 md:mb-20"
+                                icon={<ChevronRight />}>
+                                View all insights
                             </Button>
                         </div>
                     </div>
@@ -184,16 +188,10 @@ const Page = () => {
                     <RandomizedTextGradient />
                     <ImageWithContentOverlay
                         src="/assets/images/portrait-willem-jaap.png"
-                        alt="Portrait of Willem-Jaap">
-                        <div className="flex flex-col gap-4 text-center max-w-xl">
-                            <h3 className="text-3xl uppercase">Founder & Software Developer</h3>
-                            <p className="leading-tight text-charade-400 text-lg">
-                                I&apos;m the founder of Pixel Perfect Agency where we create
-                                beautiful and efficient software solutions using the latest
-                                technologies.
-                            </p>
-                        </div>
-                    </ImageWithContentOverlay>
+                        alt="Portrait of Willem-Jaap"
+                        title="Founder & Software Developer"
+                        description="I'm the founder of Pixel Perfect Agency where we create beautiful and efficient software solutions using the latest technologies."
+                    />
                 </div>
             </section>
             <section className="px-column-1 pb-24 border-t border-t-charade-800 bg-charade-900">

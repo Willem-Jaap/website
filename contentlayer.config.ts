@@ -2,9 +2,9 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 
-const Blog = defineDocumentType(() => ({
-    name: 'Blog',
-    filePathPattern: `blog/**/*.mdx`,
+const Insight = defineDocumentType(() => ({
+    name: 'Insight',
+    filePathPattern: `insights/**/*.mdx`,
     contentType: 'mdx',
     fields: {
         title: { type: 'string', required: true },
@@ -25,11 +25,11 @@ const Blog = defineDocumentType(() => ({
         },
     },
     computedFields: {
-        url: { type: 'string', resolve: blog => '/' + blog._raw.flattenedPath },
+        url: { type: 'string', resolve: insight => '/' + insight._raw.flattenedPath },
         estimatedReadingTime: {
             type: 'string',
-            resolve: blog => {
-                const wordCount = blog.body.raw.split(' ').length;
+            resolve: insight => {
+                const wordCount = insight.body.raw.split(' ').length;
                 const wordsPerMinute = 200;
                 const estimatedReadingTime = Math.ceil(wordCount / wordsPerMinute);
 
@@ -54,7 +54,7 @@ const Project = defineDocumentType(() => ({
         },
     },
     computedFields: {
-        url: { type: 'string', resolve: blog => '/' + blog._raw.flattenedPath },
+        url: { type: 'string', resolve: insight => '/' + insight._raw.flattenedPath },
     },
 }));
 
@@ -72,11 +72,11 @@ const Tech = defineDocumentType(() => ({
     },
 }));
 
-export { Blog, Project, Tech };
+export { Insight, Project, Tech };
 export default makeSource({
     contentDirPath: 'src/content',
-    contentDirInclude: ['blog', 'projects', 'tech'],
-    documentTypes: [Blog, Project, Tech],
+    contentDirInclude: ['insights', 'projects', 'tech'],
+    documentTypes: [Insight, Project, Tech],
     mdx: {
         remarkPlugins: [],
         rehypePlugins: [
