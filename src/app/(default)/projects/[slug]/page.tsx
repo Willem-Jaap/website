@@ -1,5 +1,5 @@
 import { allProjects } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer/hooks';
+import { useMDXComponent } from 'next-contentlayer2/hooks';
 import Image, { type ImageProps } from 'next/image';
 import { notFound } from 'next/navigation';
 

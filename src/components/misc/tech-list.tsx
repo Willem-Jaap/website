@@ -4,7 +4,7 @@ import { type MouseEvent, useEffect, useRef, useState } from 'react';
 
 import { allTeches } from 'contentlayer/generated';
 import gsap from 'gsap';
-import { useMDXComponent } from 'next-contentlayer/hooks';
+import { useMDXComponent } from 'next-contentlayer2/hooks';
 
 const TechList = () => {
     const [hoveredTechIndex, setHoveredTechIndex] = useState<number | null>(null);
