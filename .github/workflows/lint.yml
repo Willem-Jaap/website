@@ -1,4 +1,4 @@
-name: Lint using Next.js with ESLint and Stylelint
+name: Lint using Next.js with ESLint
 
 on: push
 
@@ -13,8 +13,8 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
+      - run: pnpm contentlayer build
       - run: pnpm run lint
-      - run: pnpm run stylelint

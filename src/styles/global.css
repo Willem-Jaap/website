@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        & .header-anchor {
+            @apply absolute invisible no-underline;
+
+            position: absolute;
+            width: 80%;
+            margin-left: -1em;
+            padding-right: 0.5em;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        & .header-anchor::after {
+            @apply text-charade-600;
+
+            content: '#';
+            text-decoration: none;
+        }
+
+        & :hover .header-anchor {
+            @apply visible;
+        }
+    }
+}
+
+[data-debug] * {
+    @apply outline-dashed outline-1 outline-charade-600;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-charade-900;
+}
+
+::-webkit-scrollbar {
+    @apply bg-charade-800 w-4;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-charade-700 border-4 border-solid border-charade-900 rounded-2xl;
+}
+
+::selection {
+    @apply bg-charade-700 text-charade-100;
+}

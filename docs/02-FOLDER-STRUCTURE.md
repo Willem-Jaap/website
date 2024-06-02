@@ -47,16 +47,6 @@ If a design system is used only in this project, it should be placed in the **`/
 The optional **locales** folder contains all the translations for the application. _This is not implemented yet!_
 <br>
 
-### **/modules**
-
-The **modules** folder contains folders for every **module** in the application. A **module** is a **self-contained** part of the application. It contains all the **markup**, **logic** and **styling** that is specific to a module. This includes:
-
--   Components which are only used in this module
--   Module specific styles
--   Module specific functions and hooks
-
-The folder should be named after the scope of the module. For example, if the module is a **blog**, the folder should be named **`/blog`**. If the module is a **user profile**, the folder should be named **`/profile`**.
-
 <br>
 
 ### **/tests**
