@@ -24,6 +24,7 @@ const Button = ({ children, icon, className, href, onClick, ...props }: Props) =
     const buttonAccentRef = useRef<HTMLSpanElement>(null);
     const buttonGradientRef = useRef<HTMLSpanElement>(null);
     const buttonContentRef = useRef<HTMLSpanElement>(null);
+    const buttonIconRef = useRef<HTMLDivElement>(null);
 
     const buttonClassName = cn(
         'relative inline-block w-fit rounded-full border-2 border-charade-700 whitespace-nowrap hover:border-charade-600 transition-colors duration-200 ease-in-out overflow-hidden',
@@ -42,6 +43,14 @@ const Button = ({ children, icon, className, href, onClick, ...props }: Props) =
             y: -8,
             ease: 'power4.inOut',
         });
+
+        if (buttonIconRef.current) {
+            gsap.to(buttonIconRef.current, {
+                duration: 0.2,
+                x: 4,
+                ease: 'power4.inOut',
+            });
+        }
     };
 
     const onMouseMove = (event: MouseEvent) => {
@@ -70,6 +79,14 @@ const Button = ({ children, icon, className, href, onClick, ...props }: Props) =
             y: 0,
             ease: 'power4.inOut',
         });
+
+        if (buttonIconRef.current) {
+            gsap.to(buttonIconRef.current, {
+                duration: 0.2,
+                x: 0,
+                ease: 'power4.inOut',
+            });
+        }
     };
 
     const onMouseDown = () => {
@@ -120,9 +137,9 @@ const Button = ({ children, icon, className, href, onClick, ...props }: Props) =
                 <span className="relative flex items-center gap-2 z-10" ref={buttonContentRef}>
                     {children}
                     {icon && (
-                        <span className="block transform group-hover:translate-x-1 transition-transform duration-200 pointer-events-none">
+                        <div className="block pointer-events-none" ref={buttonIconRef}>
                             {icon}
-                        </span>
+                        </div>
                     )}
                 </span>
             </span>
