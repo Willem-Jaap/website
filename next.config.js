@@ -4,6 +4,14 @@ const { withContentlayer } = require('next-contentlayer2');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     experimental: {},
+    rewrites() {
+        return [
+            {
+                source: '/sitemap.xml',
+                destination: '/sitemap',
+            },
+        ];
+    },
 };
 
 module.exports = withContentlayer(nextConfig);
