@@ -22,7 +22,6 @@ const ImageWithContentOverlay = ({ title, description, src, alt, className }: Pr
     const [active, setActive] = useState<boolean | null>(null);
 
     useEffect(() => {
-        console.log('active', active);
         if (active === null) {
             return;
         }
