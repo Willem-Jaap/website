@@ -27,8 +27,8 @@ dependencies:
     specifier: ^1.0.3
     version: 1.0.3(@types/react@18.3.3)(react-dom@19.0.0-rc-6d3110b4d9-20240531)(react@19.0.0-rc-6d3110b4d9-20240531)
   '@t3-oss/env-nextjs':
-    specifier: ^0.9.2
-    version: 0.9.2(typescript@5.4.5)(zod@3.22.4)
+    specifier: ^0.10.1
+    version: 0.10.1(typescript@5.4.5)(zod@3.22.4)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -264,10 +264,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
     dependencies:
@@ -1817,8 +1813,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@t3-oss/env-core@0.9.2(typescript@5.4.5)(zod@3.22.4):
-    resolution: {integrity: sha512-KgWXljUTHgO3o7GMZQPAD5+P+HqpauMNNHowlm7V2b9IeMitSUpNKwG6xQrup/xARWHTdxRVIl0mSI4wCevQhQ==}
+  /@t3-oss/env-core@0.10.1(typescript@5.4.5)(zod@3.22.4):
+    resolution: {integrity: sha512-GcKZiCfWks5CTxhezn9k5zWX3sMDIYf6Kaxy2Gx9YEQftFcz8hDRN56hcbylyAO3t4jQnQ5ifLawINsNgCDpOg==}
     peerDependencies:
       typescript: '>=5.0.0'
       zod: ^3.0.0
@@ -1830,8 +1826,8 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@t3-oss/env-nextjs@0.9.2(typescript@5.4.5)(zod@3.22.4):
-    resolution: {integrity: sha512-dklHrgKLESStNVB67Jdbu6osxDYA+xNKaPBRerlnkEvzbCccSKMvZENx6EZebJuR4snqB3/yRykNMn/bdIAyiQ==}
+  /@t3-oss/env-nextjs@0.10.1(typescript@5.4.5)(zod@3.22.4):
+    resolution: {integrity: sha512-iy2qqJLnFh1RjEWno2ZeyTu0ufomkXruUsOZludzDIroUabVvHsrSjtkHqwHp1/pgPUzN3yBRHMILW162X7x2Q==}
     peerDependencies:
       typescript: '>=5.0.0'
       zod: ^3.0.0
@@ -1839,7 +1835,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@t3-oss/env-core': 0.9.2(typescript@5.4.5)(zod@3.22.4)
+      '@t3-oss/env-core': 0.10.1(typescript@5.4.5)(zod@3.22.4)
       typescript: 5.4.5
       zod: 3.22.4
     dev: false
