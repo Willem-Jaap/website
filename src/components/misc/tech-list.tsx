@@ -114,11 +114,11 @@ const TechList = () => {
                         return (
                             <div className="flex flex-col gap-4 p-8" key={item.name}>
                                 <span className="text-xl">{item.name}</span>
-                                <div className="text-charade-400">
+                                <div className="text-charade-300">
                                     <MDXContent />
                                 </div>
                                 <div className="flex justify-between gap-4 mt-4">
-                                    <span className="text-charade-400">Experience</span>
+                                    <span className="text-charade-300">Experience</span>
                                     {item.experience}
                                 </div>
                             </div>

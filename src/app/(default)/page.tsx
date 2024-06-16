@@ -131,7 +131,7 @@ const Page = () => {
                         style={{ transform: 'translate(50px, 50px) scale(1.1)' }}
                     />
                 </span>
-                <p className="relative max-sm:invisible z-10 mt-24 text-right leading-tight text-charade-400">
+                <p className="relative max-sm:invisible z-10 mt-24 text-right leading-tight text-charade-300">
                     Proficient in Next.js, Typescript, Tailwind, Laravel and more. <br /> I like to
                     work in small, efficient teams where I contribute <br /> to technical innovation
                     and creative solutions.
@@ -151,7 +151,7 @@ const Page = () => {
                 </div>
                 <div className="flex flex-col gap-4 mt-16 md:mt-32">
                     <div className="flex flex-col md:flex-row justify-between gap-24 md:gap-32 py-4">
-                        <p className="text-charade-400 leading-tight text-lg">
+                        <p className="text-charade-300 leading-tight text-lg">
                             Read more about my insights as <br /> a webdeveloper, latest trends{' '}
                             <br /> and general development
                         </p>

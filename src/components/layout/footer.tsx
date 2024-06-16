@@ -175,14 +175,14 @@ const Footer = () => {
             <div className="block sm:grid sm:grid-cols-2 md:grid-cols-4 gap-4 mx-8 mt-8 mb-12 text-sm">
                 <div className="flex gap-8 max-sm:grid max-sm:grid-cols-4 lg:gap-16 whitespace-nowrap">
                     <span className="text-charade-500">Built by </span>
-                    <span className="text-charade-400">Me</span>
+                    <span className="text-charade-300">Me</span>
                 </div>
                 <div className="flex gap-8 max-sm:grid max-sm:grid-cols-4 lg:gap-16 whitespace-nowrap">
                     <span className="text-charade-500">Design by </span>
-                    <span className="text-charade-400">Joan Verhulst</span>
+                    <span className="text-charade-300">Joan Verhulst</span>
                 </div>
 
-                <div className="col-span-2 flex justify-between flex-wrap md:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-400 text-right">
+                <div className="col-span-2 flex justify-between flex-wrap md:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-300 text-right">
                     <span>&copy; {new Date().getFullYear()} Willem-Jaap</span>
                 </div>
             </div>

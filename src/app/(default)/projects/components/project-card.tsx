@@ -59,7 +59,7 @@ const ProjectCard = ({ project }: Props) => {
             className="relative w-full min-h-[15rem] p-8 rounded-2xl border border-charade-700 flex flex-col justify-between gap-4 overflow-hidden group">
             <div className="flex flex-col justify-between gap-4 z-10">
                 <h3 className="text-lg">{project.name}</h3>
-                <p className="text-charade-400">{project.description}</p>
+                <p className="text-charade-300">{project.description}</p>
             </div>
             <div className="flex flex-wrap gap-2 z-10">
                 {project.tags?.map(tag => (

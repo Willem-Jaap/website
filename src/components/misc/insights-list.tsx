@@ -122,7 +122,7 @@ const InsightsList = ({ query, exclude, showResultAmount = false }: Props) => {
                 onMouseMove={onMouseMove}
                 onMouseLeave={onMouseLeave}>
                 {!insights.length && (
-                    <div className="flex items-center h-full text-charade-400 my-8">
+                    <div className="flex items-center h-full text-charade-300 my-8">
                         I haven&apos;t written any insights yet.
                     </div>
                 )}

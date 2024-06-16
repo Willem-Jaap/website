@@ -149,7 +149,7 @@ const Page = () => {
                             const Content = () => (
                                 <>
                                     <span className="text-lg text-charade-200">{item.company}</span>
-                                    <span className="text-charade-400 font-medium">
+                                    <span className="text-charade-300 font-medium">
                                         {item.title}, {item.period}
                                     </span>
                                 </>
