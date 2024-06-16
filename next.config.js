@@ -4,6 +4,11 @@ const { withContentlayer } = require('next-contentlayer2');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     experimental: {},
+    logging: {
+        fetches: {
+            fullUrl: true,
+        },
+    },
     rewrites() {
         return [
             {
