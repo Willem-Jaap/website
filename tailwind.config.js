@@ -96,7 +96,7 @@ module.exports = {
                             backgroundColor: theme('colors.charade.800'),
                         },
                         strong: {
-                            color: theme('colors.charade.300'),
+                            color: theme('colors.charade.50'),
                         },
                         code: {
                             color: theme('colors.charade.200'),
@@ -106,8 +106,8 @@ module.exports = {
                 charade: {
                     css: {
                         '--tw-prose-headings': theme('colors.charade.50'),
-                        '--tw-prose-body': theme('colors.charade.300'),
-                        '--tw-prose-bold': theme('colors.charade.200'),
+                        '--tw-prose-body': theme('colors.charade.200'),
+                        '--tw-prose-bold': theme('colors.charade.100'),
                     },
                 },
             }),

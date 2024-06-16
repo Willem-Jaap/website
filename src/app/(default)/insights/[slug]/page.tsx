@@ -70,7 +70,7 @@ const Page = ({ params }: Props) => {
                     </div>
                 </div>
 
-                <div className="relative h-96 overflow-hidden">
+                <div className="relative h-96 overflow-hidden rounded-lg border border-neutral-800 ">
                     <Image
                         src={'/assets/images/insights/' + insight.thumbnail}
                         fill
