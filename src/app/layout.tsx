@@ -8,6 +8,7 @@ import { env } from '~/env';
 import Footer from '~components/layout/footer';
 import Header from '~components/layout/header';
 import '~styles/global.css';
+import '~styles/typography/prose.css';
 import cn from '~utils/cn';
 
 const InterFont = Inter({

@@ -79,7 +79,7 @@ const Page = ({ params }: Props) => {
                     />
                 </div>
 
-                <main className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-5xl mx-auto my-24">
+                <main className="prose max-w-5xl mx-auto my-24">
                     <MDXContent />
                 </main>
             </article>
