@@ -39,7 +39,6 @@
     "devDependencies": {
         "@next/eslint-plugin-next": "15.0.0-rc.0",
         "@playwright/test": "^1.41.2",
-        "@tailwindcss/typography": "^0.5.13",
         "@types/node": "20.14.6",
         "@types/react": "18.3.3",
         "autoprefixer": "^10.4.17",

@@ -53,7 +53,7 @@ const Page = ({ params }: Props) => {
                         </span>
                     ))}
                 </div>
-                <div className="flex justify-end gap-8 pb-8 mb-24 border-b border-b-charade-800">
+                <div className="flex justify-end gap-8 pb-8 mb-12 md:mb-24 border-b border-b-charade-800">
                     <div className="flex flex-col gap-4">
                         <div className="text-charade-400">Date</div>
                         <div className="text-charade">
@@ -70,16 +70,16 @@ const Page = ({ params }: Props) => {
                     </div>
                 </div>
 
-                <div className="relative h-96 overflow-hidden">
+                <div className="relative rounded-lg border border-neutral-800 md:aspect-[3/1] aspect-[2/1] h-auto w-full">
                     <Image
                         src={'/assets/images/insights/' + insight.thumbnail}
                         fill
                         alt={insight.title}
-                        className="mb-8 object-cover"
+                        className="mb-8 object-cover object-left"
                     />
                 </div>
 
-                <main className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-5xl mx-auto my-24">
+                <main className="prose max-w-5xl mx-auto my-12 md:my-24">
                     <MDXContent />
                 </main>
             </article>

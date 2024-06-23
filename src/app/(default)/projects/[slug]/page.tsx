@@ -56,7 +56,7 @@ const Page = ({ params }: Props) => {
                 ))}
             </div>
             <hr className="border-charade-800 my-8" />
-            <main className="prose prose-charade prose-headings:text-charade-50 prose-headings:font-normal max-w-5xl mx-auto my-24">
+            <main className="prose max-w-5xl mx-auto my-24">
                 <MDXContent components={components} />
             </main>
         </article>
