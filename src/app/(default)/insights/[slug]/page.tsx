@@ -70,7 +70,7 @@ const Page = ({ params }: Props) => {
                     </div>
                 </div>
 
-                <div className="relative rounded-lg border border-neutral-800 md:aspect-[3/1] aspect-[2/1] h-auto w-full">
+                <div className="relative rounded-lg border border-neutral-800 md:aspect-[5/2] aspect-[2/1] h-auto w-full">
                     <Image
                         src={'/assets/images/insights/' + insight.thumbnail}
                         fill
