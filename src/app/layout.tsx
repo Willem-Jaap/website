@@ -10,6 +10,7 @@ import Header from '~components/layout/header';
 import '~styles/global.css';
 import '~styles/typography/prose.css';
 import cn from '~utils/cn';
+import { Analytics } from '@vercel/analytics/react';
 
 const InterFont = Inter({
     subsets: ['latin'],
@@ -22,6 +23,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
                 <Header />
                 {children}
                 <Footer />
+                <Analytics />
             </body>
         </html>
     );
