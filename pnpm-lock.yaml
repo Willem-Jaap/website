@@ -52,7 +52,7 @@ dependencies:
     version: 3.12.5
   next:
     specifier: 15.0.0-rc.0
-    version: 15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.41.2)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
+    version: 15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.45.0)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
   next-contentlayer2:
     specifier: ^0.4.6
     version: 0.4.6(contentlayer2@0.4.6)(esbuild@0.21.4)(next@15.0.0-rc.0)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
@@ -83,8 +83,8 @@ devDependencies:
     specifier: 15.0.0-rc.0
     version: 15.0.0-rc.0
   '@playwright/test':
-    specifier: ^1.41.2
-    version: 1.41.2
+    specifier: ^1.45.0
+    version: 1.45.0
   '@types/node':
     specifier: 20.14.8
     version: 20.14.8
@@ -264,10 +264,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
     dependencies:
@@ -1566,12 +1562,12 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: true
 
-  /@playwright/test@1.41.2:
-    resolution: {integrity: sha512-qQB9h7KbibJzrDpkXkYvsmiDJK14FULCCZgEcoe2AvFAS64oCirWTwzTlAYEbKaRxWs5TFesE1Na6izMv3HfGg==}
-    engines: {node: '>=16'}
+  /@playwright/test@1.45.0:
+    resolution: {integrity: sha512-TVYsfMlGAaxeUllNkywbwek67Ncf8FRGn8ZlRdO291OL3NjG9oMbfVhyP82HQF0CZLMrYsvesqoUekxdWuF9Qw==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright: 1.41.2
+      playwright: 1.45.0
 
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
@@ -2063,7 +2059,7 @@ packages:
       react:
         optional: true
     dependencies:
-      next: 15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.41.2)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
+      next: 15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.45.0)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
       react: 19.0.0-rc.0
       server-only: 0.0.1
     dev: false
@@ -4446,7 +4442,7 @@ packages:
       '@contentlayer2/core': 0.4.3(esbuild@0.21.4)
       '@contentlayer2/utils': 0.4.3
       contentlayer2: 0.4.6(esbuild@0.21.4)
-      next: 15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.41.2)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
+      next: 15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.45.0)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
       react: 19.0.0-rc.0
       react-dom: 19.0.0-rc.0(react@19.0.0-rc.0)
     transitivePeerDependencies:
@@ -4456,7 +4452,7 @@ packages:
       - supports-color
     dev: false
 
-  /next@15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.41.2)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0):
+  /next@15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.45.0)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0):
     resolution: {integrity: sha512-IWcCvxUSCAuOK5gig4+9yiyt/dLKpIa+WT01Qcx4CBE4TtwJljyTDnCVVn64jDZ4qmSzsaEYXpb4DTI8qbk03A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -4479,7 +4475,7 @@ packages:
     dependencies:
       '@next/env': 15.0.0-rc.0
       '@opentelemetry/api': 1.8.0
-      '@playwright/test': 1.41.2
+      '@playwright/test': 1.45.0
       '@swc/helpers': 0.5.11
       busboy: 1.6.0
       caniuse-lite: 1.0.30001626
@@ -4719,17 +4715,17 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  /playwright-core@1.41.2:
-    resolution: {integrity: sha512-VaTvwCA4Y8kxEe+kfm2+uUUw5Lubf38RxF7FpBxLPmGe5sdNkSg5e3ChEigaGrX7qdqT3pt2m/98LiyvU2x6CA==}
-    engines: {node: '>=16'}
+  /playwright-core@1.45.0:
+    resolution: {integrity: sha512-lZmHlFQ0VYSpAs43dRq1/nJ9G/6SiTI7VPqidld9TDefL9tX87bTKExWZZUF5PeRyqtXqd8fQi2qmfIedkwsNQ==}
+    engines: {node: '>=18'}
     hasBin: true
 
-  /playwright@1.41.2:
-    resolution: {integrity: sha512-v0bOa6H2GJChDL8pAeLa/LZC4feoAMbSQm1/jF/ySsWWoaNItvrMP7GEkvEEFyCTUYKMxjQKaTSg5up7nR6/8A==}
-    engines: {node: '>=16'}
+  /playwright@1.45.0:
+    resolution: {integrity: sha512-4z3ac3plDfYzGB6r0Q3LF8POPR20Z8D0aXcxbJvmfMgSSq1hkcgvFRXJk9rUq5H/MJ0Ktal869hhOdI/zUTeLA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright-core: 1.41.2
+      playwright-core: 1.45.0
     optionalDependencies:
       fsevents: 2.3.2
 
