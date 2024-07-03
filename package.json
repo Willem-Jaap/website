@@ -60,5 +60,6 @@
         "next-contentlayer": {
             "next": "$next"
         }
-    }
+    },
+    "packageManager": "pnpm@9.1.0"
 }
