@@ -61,5 +61,5 @@
             "next": "$next"
         }
     },
-    "packageManager": "pnpm@9.1.0"
+    "packageManager": "pnpm@9.9.0"
 }

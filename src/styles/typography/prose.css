@@ -83,6 +83,16 @@
     }
 
     code {
+        padding: 0.3em 0.5em;
+        margin: 0;
+        font-size: 0.85em;
+        background-color: theme('colors.charade.800');
+        color: theme('colors.charade.50');
+        border: 1px solid theme('colors.charade.700');
+        border-radius: 0.25rem;
+    }
+
+    pre code {
         display: inline-block;
         width: 100%;
         overflow-x: auto;
