@@ -129,6 +129,7 @@ const Footer = () => {
                         <ul className="flex flex-col gap-4">
                             <li>
                                 <a
+                                    className="hover:underline underline-offset-2"
                                     href="https://github.com/willem-jaap/"
                                     target="_blank"
                                     rel="noreferrer">
@@ -137,6 +138,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a
+                                    className="hover:underline underline-offset-2"
                                     href="https://linkedin.com/in/willem-jaap/"
                                     target="_blank"
                                     rel="noreferrer">
@@ -145,10 +147,11 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a
+                                    className="hover:underline underline-offset-2"
                                     href="https://twitter.com/willemjaap_"
                                     target="_blank"
                                     rel="noreferrer">
-                                    Twitter
+                                    X (Twitter)
                                 </a>
                             </li>
                         </ul>
@@ -157,16 +160,28 @@ const Footer = () => {
                         <div className="text-charade-300 mb-8">Sitemap</div>
                         <ul className="flex flex-col gap-4">
                             <li>
-                                <Link href="/">Home</Link>
+                                <Link className="hover:underline underline-offset-2" href="/">
+                                    Home
+                                </Link>
                             </li>
                             <li>
-                                <Link href="/about">About</Link>
+                                <Link className="hover:underline underline-offset-2" href="/about">
+                                    About
+                                </Link>
                             </li>
                             <li>
-                                <Link href="/insights">Insight</Link>
+                                <Link
+                                    className="hover:underline underline-offset-2"
+                                    href="/insights">
+                                    Insight
+                                </Link>
                             </li>
                             <li>
-                                <Link href="/projects">Projects</Link>
+                                <Link
+                                    className="hover:underline underline-offset-2"
+                                    href="/projects">
+                                    Projects
+                                </Link>
                             </li>
                         </ul>
                     </div>
