@@ -75,7 +75,7 @@ const Page = ({ params }: Props) => {
                         src={'/assets/images/insights/' + insight.thumbnail}
                         fill
                         alt={insight.title}
-                        className="mb-8 object-cover object-left"
+                        className="mb-8 object-cover object-left-top"
                     />
                 </div>
 

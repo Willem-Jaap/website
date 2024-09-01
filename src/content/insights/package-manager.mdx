@@ -1,0 +1,50 @@
+---
+title: Add the packageManager field to your package.json
+description: If you are using a package manager like npm, yarn or pnpm you can specify the package manager you are using in your package.json file. This is useful for tools like Github Actions and for your team to know which package manager to use.
+summary: If you are using a package manager like npm, yarn or pnpm you can specify the package manager you are using in your package.json file. This is useful for tools like Github Actions and for your team to know which package manager to use.
+tags:
+    - NPM
+    - Package manager
+thumbnail: package-manager-pnpm-diff.png
+publishedAt: 2024-07-07
+updatedAt: 2024-07-07
+---
+
+Maybe you have encountered the following problem: You clone a project and run `pnpm install`. Suddenly `pnpm-lock.yaml` appears in your Git tab with changes to the entire file. Most likely the lock file version has changed.
+
+This lockfile was generated with a different package manager than the one you are using. This is a common problem when working in a team with different package managers. To avoid this, you can specify the package manager you are using in your `package.json` file.
+
+```json
+{
+    "name": "@willem-jaap/my-project",
+    "version": "1.0.0",
+    "dependencies": {
+        "react": "^18.3.1"
+    },
+    "packageManager": "pnpm@9.4.0"
+}
+```
+
+In this example, we specify that we are using pnpm version 9.4.0.
+
+## Corepack
+
+Corepack is an experimental tool included in Node.js to help with managing versions of your package managers.
+
+To enable Corepack, run the following command:
+
+```bash
+corepack enable
+```
+
+This will download the specified package manager version.
+
+If you do not have a package manager specified in your `package.json` file, you can use Corepack add this information to your `package.json` file. This wil add the latest version of pnpm to your `package.json` file.
+
+```bash
+corepack use pnpm@latest
+```
+
+## Conclusion
+
+By specifying the package manager you are using in your `package.json` file, you can avoid conflicts with lock files and make it easier for your team to know which package manager to use.
