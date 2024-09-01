@@ -16,6 +16,7 @@ import Button from '~components/utils/button';
 import SettingsContext from '~contexts/settings-context';
 import cn from '~utils/cn';
 import isMobile from '~utils/is-mobile';
+import age from '~utils/age';
 
 const PaddedWithRandomized = dynamic(() => import('~components/misc/padded-with-randomized'), {
     ssr: false,
@@ -115,6 +116,7 @@ const Page = () => {
                 <h1
                     className="uppercase text-[14rem] max-sm:text-[10rem] text-charade-600 whitespace-nowrap select-none"
                     ref={backgroundTextRef}>
+                    <span className="sr-only">Willem-Jaap</span>
                     <StaggeredText text="Willem-Jaap" />
                 </h1>
                 <Spotlight />
@@ -173,14 +175,19 @@ const Page = () => {
                 </div>
                 <div className="flex flex-col gap-4 py-24 max-w-5xl mx-auto">
                     <span className="uppercase text-charade-500 font-semibold">Introduction</span>
-                    <p className="text-charade-100 text-lg mb-8">
-                        I&apos;m Willem-Jaap, a 20-year-old software developer with a deep passion
-                        for technology and a constant drive for improving my skills. I&apos;ve spent
-                        several years in the software development field and recently founded Pixel
-                        Perfect Agency. Our focus is creating fast, beautiful, and efficient
+                    <p className="text-charade-100 text-lg mb-4">
+                        I&apos;m Willem-Jaap Klepper, a {age}-year-old software developer with a
+                        deep passion for technology and a constant drive for improving my skills.
+                        I&apos;ve spent several years in the software development field and founded
+                        Pixel Perfect Agency. Our focus is creating fast, beautiful, and efficient
                         software solutions to streamline processes and boost efficiency. In my free
                         time, when I&apos;m not coding, you can often find me in the kitchen or
                         hitting weights in the gym.
+                    </p>
+                    <p className="text-charade-100 text-lg mb-8">
+                        I mostly use Next.js, Typescript, Tailwind, Laravel to create webbased
+                        software solutions. I have experience in creating ecommerce, internal
+                        dashboards, custom content management solutions and more.
                     </p>
                     <Button href="/about" className="mb-20 group" icon={<ChevronRight />}>
                         More about me

@@ -4,13 +4,9 @@ import Link from 'next/link';
 import AboutImage from '~about/components/about-image';
 import ImageWithContentOverlay from '~components/misc/image-with-content-overlay';
 import TechList from '~components/misc/tech-list';
+import age from '~utils/age';
 
 const Page = () => {
-    const getAge = (birthDate: string) =>
-        Math.floor((Date.now() - new Date(birthDate).getTime()) / 3.15576e10);
-
-    const age = getAge('2003-06-16');
-
     const experiences = [
         {
             company: 'WebNL creative studios',
@@ -37,9 +33,9 @@ const Page = () => {
             <section className="px-column-1 py-32 text-charade-100 border-t border-t-charade-800">
                 <div className="flex flex-col gap-5 my-24 max-w-5xl mx-auto">
                     <h2 className="text-2xl font-medium mb-2">
-                        I&apos;m Willem-Jaap, a software developer from the Netherlands. I&apos;m a
-                        creative and critical thinker, always looking for the most efficient and
-                        beautiful solutions.
+                        I&apos;m Willem-Jaap Klepper, a software developer from the Netherlands.
+                        I&apos;m a creative and critical thinker, always looking for the most
+                        efficient and beautiful solutions.
                     </h2>
                     <p className="text-charade-200">
                         I was born in 2003 (which makes me {age} years old). I&apos;ve always been
@@ -68,8 +64,8 @@ const Page = () => {
                     <p className="text-charade-200">
                         I started working at Emerit as a parttime developer. I worked on creating a
                         landingpages application using Next.js and CakePHP. During my final
-                        internship which I did at Emerit, I worked on a cash register application
-                        using Laravel and Electron together with{' '}
+                        internship which I did at Emerit, I worked on a native cash register
+                        application using Laravel and Electron together with{' '}
                         <Link
                             href="https://fransslabbekoorn.com"
                             target="_blank"
@@ -83,8 +79,9 @@ const Page = () => {
                             className="underline hover:text-charade-200 text-nowrap">
                             Diederick Verschuure
                         </Link>
-                        . This cash register had support for offline mode with a local database and
-                        a delta sync system.
+                        . This cash register was local-first and used a custom API to sync data
+                        between devices. This cash register has integration with a payment provider
+                        and various hardware like a receipt printer and a barcode scanner.
                     </p>
                     <p className="text-charade-200">
                         A special shoutout to{' '}
@@ -113,7 +110,7 @@ const Page = () => {
                             rel="noreferrer">
                             Pixel Perfect Agency
                         </Link>
-                        , a softwaredevelopment agency based in the Netherlands that focuses on
+                        , a software development agency based in the Netherlands that focuses on
                         creating beautiful and software solutions to help businesses grow and
                         thrive. In the company I am responsible for all business operations and
                         Frontend / UX development for the projects we work on.
