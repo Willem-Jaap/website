@@ -39,7 +39,7 @@
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "15.0.0-rc.1",
-        "@playwright/test": "^1.48.0",
+        "@playwright/test": "^1.48.1",
         "@types/node": "22.7.6",
         "@types/react": "18.3.11",
         "autoprefixer": "^10.4.20",
