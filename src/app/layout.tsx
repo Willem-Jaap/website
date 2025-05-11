@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
+import { Analytics } from '@vercel/analytics/next';
 
 import { Header } from '~components/header';
 import cn from '~utils/cn';
@@ -18,7 +19,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             <body className="relative min-h-screen max-w-screen overflow-x-hidden bg-neutral-50 text-base text-neutral-950">
                 <Header />
                 {children}
-                {/* <Analytics /> */}
+                <Analytics />
             </body>
         </html>
     );
