@@ -1,4 +1,4 @@
-name: Lint using Next.js with ESLint
+name: Lint using Next.js with Biome
 
 on: push
 
@@ -10,9 +10,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
       - run: pnpm install --frozen-lockfile
-      - run: pnpm contentlayer build
       - run: pnpm run lint

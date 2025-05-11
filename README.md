@@ -10,7 +10,3 @@ You can find the live version of this website at [willemjaap.com](https://willem
 pnpm i
 pnpm run dev
 ```
-
-### **Documentation:**
-
-More documentation about this project is in the [docs](./docs/01-INTRO.md) folder

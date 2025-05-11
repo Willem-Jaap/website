@@ -1,54 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        & .header-anchor {
-            @apply absolute invisible no-underline;
-
-            position: absolute;
-            width: 80%;
-            margin-left: -1em;
-            padding-right: 0.5em;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        & .header-anchor::after {
-            @apply text-charade-600;
-
-            content: '#';
-            text-decoration: none;
-        }
-
-        & :hover .header-anchor {
-            @apply visible;
-        }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-neutral-200, currentcolor);
     }
-}
 
-[data-debug] * {
-    @apply outline-dashed outline-1 outline-charade-600;
-}
-
-::-webkit-scrollbar-track {
-    @apply bg-charade-900;
-}
-
-::-webkit-scrollbar {
-    @apply bg-charade-800 w-4;
-}
-
-::-webkit-scrollbar-thumb {
-    @apply bg-charade-700 border-4 border-solid border-charade-900 rounded-2xl;
-}
-
-::selection {
-    @apply bg-charade-700 text-charade-100;
+    ::selection {
+        @apply bg-blue-500/10 text-blue-500;
+    }
 }

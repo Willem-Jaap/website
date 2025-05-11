@@ -1,25 +1,42 @@
+import { Analytics } from '@vercel/analytics/next';
+import type { Metadata } from 'next';
+import { Fraunces, Geist, JetBrains_Mono } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 
-import type { Metadata, Viewport } from 'next';
-
-import { Inter } from 'next/font/google';
+import { Header } from '~modules/blocks/header/header';
+import cn from '~utils/cn';
+import '~styles/global.css';
 
 import { env } from '~/env';
-import Footer from '~components/layout/footer';
-import Header from '~components/layout/header';
-import '~styles/global.css';
-import '~styles/typography/prose.css';
-import cn from '~utils/cn';
-import { Analytics } from '@vercel/analytics/react';
+import Footer from '~modules/blocks/footer/footer';
 
-const InterFont = Inter({
+const GeistFont = Geist({
     subsets: ['latin'],
+    variable: '--font-sans',
+});
+
+const FrauncesFont = Fraunces({
+    subsets: ['latin'],
+    variable: '--font-serif',
+});
+
+const JetBrainsMonoFont = JetBrains_Mono({
+    subsets: ['latin'],
+    variable: '--font-mono',
 });
 
 const RootLayout = ({ children }: PropsWithChildren) => {
     return (
-        <html className={cn(InterFont.className, 'scroll-smooth antialiased')} lang="en">
-            <body className="relative max-w-[100vw] min-h-screen bg-charade-950 text-base text-charade-50 overflow-x-hidden">
+        <html
+            className={cn(
+                GeistFont.variable,
+                FrauncesFont.variable,
+                JetBrainsMonoFont.variable,
+                'scroll-smooth antialiased',
+            )}
+            lang="en"
+        >
+            <body className="relative min-h-screen max-w-screen overflow-x-hidden bg-neutral-50 text-base text-neutral-950">
                 <Header />
                 {children}
                 <Footer />
@@ -60,11 +77,6 @@ export const metadata: Metadata = {
         url: new URL(env.NEXT_PUBLIC_URL as string),
         siteName: 'Willem-Jaap Portfolio',
     },
-};
-
-export const viewport: Viewport = {
-    colorScheme: 'dark',
-    themeColor: 'black',
 };
 
 export default RootLayout;
