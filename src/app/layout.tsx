@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Geist, Fraunces, JetBrains_Mono } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 
@@ -9,13 +9,32 @@ import '~styles/global.css';
 
 import { env } from '~/env';
 
-const InterFont = Inter({
+const GeistFont = Geist({
     subsets: ['latin'],
+    variable: '--font-sans',
+});
+
+const FrauncesFont = Fraunces({
+    subsets: ['latin'],
+    variable: '--font-serif',
+});
+
+const JetBrainsMonoFont = JetBrains_Mono({
+    subsets: ['latin'],
+    variable: '--font-mono',
 });
 
 const RootLayout = ({ children }: PropsWithChildren) => {
     return (
-        <html className={cn(InterFont.className, 'scroll-smooth antialiased')} lang="en">
+        <html
+            className={cn(
+                GeistFont.variable,
+                FrauncesFont.variable,
+                JetBrainsMonoFont.variable,
+                'scroll-smooth antialiased',
+            )}
+            lang="en"
+        >
             <body className="relative min-h-screen max-w-screen overflow-x-hidden bg-neutral-50 text-base text-neutral-950">
                 <Header />
                 {children}
