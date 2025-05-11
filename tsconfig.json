@@ -23,7 +23,8 @@
         "paths": {
             "~app/*": ["src/app/*"],
             "~components/*": ["src/modules/core/components/*"],
-            "~hooks/*": ["src/hooks/*"],
+            "~hooks/*": ["src/modules/core/hooks/*"],
+            "~modules/*": ["src/modules/*"],
             "~locales/*": ["src/locales/*"],
             "~styles/*": ["src/styles/*"],
             "~tests/*": ["src/tests/*"],

@@ -3,7 +3,7 @@ import { Geist, Fraunces, JetBrains_Mono } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 
-import { Header } from '~components/header';
+import { Header } from '~modules/blocks/header/header';
 import cn from '~utils/cn';
 import '~styles/global.css';
 

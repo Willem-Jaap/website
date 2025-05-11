@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Logo } from '~components/logo';
 import cn from '~utils/cn';
 
 const items = [
@@ -15,9 +16,7 @@ const Header = () => {
     const pathname = usePathname();
     return (
         <header className="sticky top-0 z-50 flex justify-between border-neutral-200 border-b bg-neutral-50/80 px-4 py-6 backdrop-blur-md md:px-6">
-            <Link href="/" className="font-medium font-serif text-2xl">
-                WJ<span className="text-blue-500">.</span>
-            </Link>
+            <Logo href="/" />
             <nav className="hidden items-center gap-6 md:flex">
                 {items.map(item => (
                     <Link
