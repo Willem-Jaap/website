@@ -16,4 +16,9 @@
   ::file-selector-button {
     border-color: var(--color-neutral-200, currentcolor);
   }
+
+    
+  ::selection {
+    @apply bg-blue-500/10 text-blue-500;
+  }
 }
