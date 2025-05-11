@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 const Hero = () => {
     return (
-        <>
+        <div className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden bg-neutral-50">
             <div className="-inset-1/4 -skew-x-7 absolute h-[200%] w-[200%] rotate-4 skew-y-2 bg-[radial-gradient(#e5e7eb_1px,transparent_2px)] [background-size:16px_16px]" />
-            <div className="relative mx-auto mt-32 flex max-w-7xl items-center gap-12">
+            <div className="relative mx-auto flex max-w-7xl items-center gap-12">
                 <div className="flex flex-[1.3] flex-col gap-6">
                     <h1 className="font-medium font-serif text-4xl leading-tight md:text-5xl lg:text-6xl">
                         Hi, I'm{' '}
@@ -15,9 +15,9 @@ const Hero = () => {
                         <br />
                         building great products
                     </h1>
-                    <p className="max-w-md text-lg text-neutral-500">
-                        I build elegant, user-centric platforms with a focus on turning ideas into
-                        profitable products.
+                    <p className="max-w-lg text-lg text-neutral-500">
+                        I build elegant, user-centric platforms. I work at Pixel Perfect where I
+                        create valueable products with our partners.
                     </p>
                 </div>
                 <div className="-skew-x-7 relative flex-1 rotate-4 skew-y-2 scale-75 lg:scale-100">
@@ -42,7 +42,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
