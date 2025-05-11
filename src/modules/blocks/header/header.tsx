@@ -23,7 +23,7 @@ const Header = () => {
                         key={item.href}
                         href={item.href}
                         className={cn(
-                            'relative text-base tracking-tight transition-colors hover:text-dutch-blue',
+                            'relative text-base tracking-tight transition-colors hover:text-blue-500',
                             pathname === item.href
                                 ? 'font-medium text-blue-500'
                                 : 'text-neutral-800/80',
