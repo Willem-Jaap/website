@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
@@ -9,16 +9,15 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-neutral-200, currentcolor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-neutral-200, currentcolor);
+    }
 
-    
-  ::selection {
-    @apply bg-blue-500/10 text-blue-500;
-  }
+    ::selection {
+        @apply bg-blue-500/10 text-blue-500;
+    }
 }

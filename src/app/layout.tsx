@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
-import { Geist, Fraunces, JetBrains_Mono } from 'next/font/google';
-import type { PropsWithChildren } from 'react';
 import { Analytics } from '@vercel/analytics/next';
+import type { Metadata } from 'next';
+import { Fraunces, Geist, JetBrains_Mono } from 'next/font/google';
+import type { PropsWithChildren } from 'react';
 
 import { Header } from '~modules/blocks/header/header';
 import cn from '~utils/cn';
