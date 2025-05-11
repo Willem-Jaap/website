@@ -8,6 +8,7 @@ import cn from '~utils/cn';
 import '~styles/global.css';
 
 import { env } from '~/env';
+import Footer from '~modules/blocks/footer/footer';
 
 const GeistFont = Geist({
     subsets: ['latin'],
@@ -38,6 +39,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             <body className="relative min-h-screen max-w-screen overflow-x-hidden bg-neutral-50 text-base text-neutral-950">
                 <Header />
                 {children}
+                <Footer />
                 <Analytics />
             </body>
         </html>
