@@ -31,7 +31,7 @@ importers:
         version: 1.2.5(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@t3-oss/env-nextjs':
         specifier: ^0.11.1
-        version: 0.11.1(typescript@5.8.3)(zod@3.23.8)
+        version: 0.11.1(typescript@5.8.3)(zod@3.25.76)
       '@vercel/analytics':
         specifier: ^1.4.1
         version: 1.4.1(next@15.0.0-rc.0(@opentelemetry/api@1.8.0)(@playwright/test@1.49.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
@@ -78,8 +78,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.14)
       zod:
-        specifier: ^3.23.8
-        version: 3.23.8
+        specifier: ^3.25.76
+        version: 3.25.76
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: 15.3.1
@@ -3159,8 +3159,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@3.23.8:
-    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -3288,7 +3288,7 @@ snapshots:
       ts-pattern: 5.1.2
       unified: 11.0.4
       yaml: 2.4.3
-      zod: 3.23.8
+      zod: 3.25.76
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
       - esbuild
@@ -4108,16 +4108,16 @@ snapshots:
     dependencies:
       tslib: 2.6.2
 
-  '@t3-oss/env-core@0.11.1(typescript@5.8.3)(zod@3.23.8)':
+  '@t3-oss/env-core@0.11.1(typescript@5.8.3)(zod@3.25.76)':
     dependencies:
-      zod: 3.23.8
+      zod: 3.25.76
     optionalDependencies:
       typescript: 5.8.3
 
-  '@t3-oss/env-nextjs@0.11.1(typescript@5.8.3)(zod@3.23.8)':
+  '@t3-oss/env-nextjs@0.11.1(typescript@5.8.3)(zod@3.25.76)':
     dependencies:
-      '@t3-oss/env-core': 0.11.1(typescript@5.8.3)(zod@3.23.8)
-      zod: 3.23.8
+      '@t3-oss/env-core': 0.11.1(typescript@5.8.3)(zod@3.25.76)
+      zod: 3.25.76
     optionalDependencies:
       typescript: 5.8.3
 
@@ -6749,6 +6749,6 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@3.23.8: {}
+  zod@3.25.76: {}
 
   zwitch@2.0.4: {}
