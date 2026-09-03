@@ -11,13 +11,14 @@ const generateStaticParams = () => {
     return allInsights.map(insight => ({ slug: insight._raw.sourceFileName.replace('.mdx', '') }));
 };
 
-interface MetaDataParams {
-    params: {
+interface PageParams {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
-const generateMetadata = ({ params }: MetaDataParams) => {
+const generateMetadata = async (props: PageParams) => {
+    const params = await props.params;
     const insight = allInsights.find(
         insight => insight._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
@@ -25,13 +26,8 @@ const generateMetadata = ({ params }: MetaDataParams) => {
     return { title: insight.title, description: insight.summary };
 };
 
-interface Props {
-    params: {
-        slug: string;
-    };
-}
-
-const Page = ({ params }: Props) => {
+const Page = async (props: PageParams) => {
+    const params = await props.params;
     const insight = allInsights.find(
         insight => insight._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );

@@ -6,9 +6,15 @@ import PaddedWithRandomized from '~components/misc/padded-with-randomized';
 import Label from '~components/ui/label';
 import Switch from '~components/ui/switch';
 import SettingsContext from '~contexts/settings-context';
+import { track } from '~utils/eyes';
 
 const Page = () => {
     const settings = useContext(SettingsContext);
+
+    const onSettingChange = (setting: Parameters<typeof settings.set>[0], value: boolean) => {
+        track('Setting Changed', { setting, value });
+        settings.set(setting, value);
+    };
 
     return (
         <>
@@ -32,7 +38,7 @@ const Page = () => {
                                         ? !settings.get('noise')
                                         : false
                                 }
-                                onCheckedChange={checked => settings.set('noise', !checked)}
+                                onCheckedChange={checked => onSettingChange('noise', !checked)}
                             />
                             <Label htmlFor="disable-noise" className="text-sm text-charade-100">
                                 Disable Noise
@@ -47,7 +53,7 @@ const Page = () => {
                                         : false
                                 }
                                 onCheckedChange={checked =>
-                                    settings.set('textRandomization', !checked)
+                                    onSettingChange('textRandomization', !checked)
                                 }
                             />
                             <Label
@@ -67,7 +73,7 @@ const Page = () => {
                                         ? !!settings.get('debug')
                                         : false
                                 }
-                                onCheckedChange={checked => settings.set('debug', checked)}
+                                onCheckedChange={checked => onSettingChange('debug', checked)}
                             />
                             <Label htmlFor="enable-debug" className="text-sm text-charade-100">
                                 Enable debug mode

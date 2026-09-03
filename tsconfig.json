@@ -1,49 +1,82 @@
 {
-    "compilerOptions": {
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "noUncheckedIndexedAccess": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "incremental": true,
-        "esModuleInterop": true,
-        "module": "esnext",
-        "target": "es2022",
-        "moduleResolution": "Bundler",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        "baseUrl": ".",
-        "paths": {
-            "~app/*": ["src/app/*"],
-            "~components/*": ["src/components/*"],
-            "~contexts/*": ["src/contexts/*"],
-            "~hooks/*": ["src/hooks/*"],
-            "~styles/*": ["src/styles/*"],
-            "~utils/*": ["src/utils/*"],
-            "~tests/*": ["src/tests/*"],
-            "~types/*": ["src/types/*"],
-            "~about/*": ["src/app/(default)/about/*"],
-            "~insights/*": ["src/app/(default)/insights/*"],
-            "~projects/*": ["src/app/(default)/projects/*"],
-            "~/*": ["src/*"],
-            "contentlayer/generated": ["./.contentlayer/generated"]
-        }
-    },
-    "include": [
-        "next-env.d.ts",
-        ".next/types/**/*.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.js",
-        ".contentlayer/generated"
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": ["node_modules"]
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "target": "es2022",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~app/*": [
+        "src/app/*"
+      ],
+      "~components/*": [
+        "src/components/*"
+      ],
+      "~contexts/*": [
+        "src/contexts/*"
+      ],
+      "~hooks/*": [
+        "src/hooks/*"
+      ],
+      "~styles/*": [
+        "src/styles/*"
+      ],
+      "~utils/*": [
+        "src/utils/*"
+      ],
+      "~tests/*": [
+        "src/tests/*"
+      ],
+      "~types/*": [
+        "src/types/*"
+      ],
+      "~about/*": [
+        "src/app/(default)/about/*"
+      ],
+      "~insights/*": [
+        "src/app/(default)/insights/*"
+      ],
+      "~projects/*": [
+        "src/app/(default)/projects/*"
+      ],
+      "~/*": [
+        "src/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    ".contentlayer/generated",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

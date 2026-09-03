@@ -2,10 +2,10 @@
     "name": "website",
     "version": "2.0.0",
     "scripts": {
-        "dev": "next dev --turbo",
-        "build": "next build",
+        "dev": "next dev --turbopack",
+        "build": "next build --webpack",
         "start": "next start",
-        "lint": "next lint",
+        "lint": "eslint .",
         "test": "playwright test",
         "test:debug": "playwright test --headed",
         "test:report": "playwright show-report",
@@ -25,12 +25,13 @@
         "clsx": "^2.1.1",
         "contentlayer2": "^0.4.6",
         "date-fns": "^4.1.0",
+        "eyes-next": "^0.2.0",
         "fuse.js": "^7.1.0",
         "gsap": "^3.13.0",
-        "next": "15.0.0-rc.0",
+        "next": "16.1.0",
         "next-contentlayer2": "^0.4.6",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
         "rehype-autolink-headings": "^7.1.0",
         "rehype-slug": "^6.0.0",
         "tailwind-merge": "^3.3.1",
@@ -41,7 +42,7 @@
         "@next/eslint-plugin-next": "15.3.1",
         "@playwright/test": "^1.55.1",
         "@types/node": "24.0.13",
-        "@types/react": "19.1.6",
+        "@types/react": "19.2.7",
         "autoprefixer": "^10.4.21",
         "eslint": "^8.57.1",
         "eslint-config-pixel": "^1.5.0",
@@ -61,5 +62,10 @@
             "next": "$next"
         }
     },
-    "packageManager": "pnpm@9.9.0"
+    "packageManager": "pnpm@9.9.0",
+    "pnpm": {
+        "overrides": {
+            "@types/react": "19.2.7"
+        }
+    }
 }

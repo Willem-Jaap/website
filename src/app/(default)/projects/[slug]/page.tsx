@@ -14,13 +14,14 @@ const generateStaticParams = () => {
     return allProjects.map(project => ({ slug: project._raw.sourceFileName.replace('.mdx', '') }));
 };
 
-interface MetaDataParams {
-    params: {
+interface PageParams {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
-const generateMetadata = ({ params }: MetaDataParams) => {
+const generateMetadata = async (props: PageParams) => {
+    const params = await props.params;
     const project = allProjects.find(
         project => project._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
@@ -28,13 +29,8 @@ const generateMetadata = ({ params }: MetaDataParams) => {
     return { name: project.name };
 };
 
-interface Props {
-    params: {
-        slug: string;
-    };
-}
-
-const Page = ({ params }: Props) => {
+const Page = async (props: PageParams) => {
+    const params = await props.params;
     const project = allProjects.find(
         project => project._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
