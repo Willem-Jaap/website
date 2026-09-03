@@ -12,12 +12,13 @@ const generateStaticParams = () => {
 };
 
 interface MetaDataParams {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
-const generateMetadata = ({ params }: MetaDataParams) => {
+const generateMetadata = async (props: MetaDataParams) => {
+    const params = await props.params;
     const insight = allInsights.find(
         insight => insight._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
@@ -25,13 +26,9 @@ const generateMetadata = ({ params }: MetaDataParams) => {
     return { title: insight.title, description: insight.summary };
 };
 
-interface Props {
-    params: {
-        slug: string;
-    };
-}
 
-const Page = ({ params }: Props) => {
+const Page = async (props: PageProps<"/insights/[slug]">) => {
+    const params = await props.params;
     const insight = allInsights.find(
         insight => insight._raw.sourceFileName.replace('.mdx', '') === params.slug,
     );
