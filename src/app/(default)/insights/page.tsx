@@ -1,20 +1,32 @@
 'use client';
 
-import { type ChangeEvent, useState } from 'react';
+import { allInsights } from 'contentlayer/generated';
+import { useSearchParams } from 'next/navigation';
+import { type ChangeEvent, useEffect, useState } from 'react';
 
+import search from '~app/(default)/insights/utils/search';
 import InsightsList from '~components/misc/insights-list';
 import PaddedWithRandomized from '~components/misc/padded-with-randomized';
+import { track } from '~utils/eyes';
 
-interface Props {
-    searchParams: Record<string, string | string[] | undefined>;
-}
-
-const Page = ({ searchParams }: Props) => {
-    const [query, setQuery] = useState((searchParams.q as string | undefined) ?? '');
+const Page = () => {
+    const searchParams = useSearchParams();
+    const [query, setQuery] = useState((searchParams.get('q') as string | undefined) ?? '');
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
     };
+
+    useEffect(() => {
+        if (!query) return;
+
+        // Debounce so we only track once the visitor stops typing.
+        const timeout = setTimeout(() => {
+            track('Insight Search', { query, results: search(query, allInsights).length });
+        }, 600);
+
+        return () => clearTimeout(timeout);
+    }, [query]);
 
     return (
         <>

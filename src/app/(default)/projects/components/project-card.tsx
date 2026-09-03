@@ -6,6 +6,8 @@ import { type Project } from 'contentlayer/generated';
 import gsap from 'gsap';
 import Link from 'next/link';
 
+import { track } from '~utils/eyes';
+
 interface Props {
     project: Project;
 }
@@ -13,6 +15,10 @@ interface Props {
 const ProjectCard = ({ project }: Props) => {
     const cardAccentRef = useRef<HTMLSpanElement>(null);
     const cardGradientRef = useRef<HTMLSpanElement>(null);
+
+    const onClick = () => {
+        track('Project Card Click', { name: project.name });
+    };
 
     const onMouseMove = (event: MouseEvent) => {
         if (!cardAccentRef.current) return;
@@ -50,6 +56,7 @@ const ProjectCard = ({ project }: Props) => {
         onMouseMove,
         onMouseDown,
         onMouseUp,
+        onClick,
     };
 
     return (

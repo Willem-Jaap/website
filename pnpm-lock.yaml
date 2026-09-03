@@ -50,6 +50,9 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      eyes-next:
+        specifier: ^0.2.0
+        version: 0.2.0(next@16.1.0(@opentelemetry/api@1.8.0)(@playwright/test@1.55.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       fuse.js:
         specifier: ^7.1.0
         version: 7.1.0
@@ -1747,6 +1750,20 @@ packages:
 
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
+
+  eyes-next@0.2.0:
+    resolution: {integrity: sha512-+/lveKT8l/R/5iAMSCQJ1JI/YQjfyVFGpCuo7HmM04sEdNIzO9M0B0MI0VfQ5twt0AtZs7GiDEuf+yglCsxktQ==}
+    peerDependencies:
+      next: '>=14'
+      react: '>=18'
+
+  eyes-react@0.2.0:
+    resolution: {integrity: sha512-Sb5RyRhEdfeIkXN90Oab2HSWX4hJSPErKT4BKaxD/h6wFnK+M8CoS8lFdCU3E0LRirzsiY0zxmfiEq6Ygq132w==}
+    peerDependencies:
+      react: '>=18'
+
+  eyes-types@0.2.0:
+    resolution: {integrity: sha512-N4Bjda+0CKWegduUFzuKRGW3+SGDjLzJZ9Vs5xuHWLvRpzfDxUxg2WcQHHVgaDFD74OgKc4mlencBBvNkBG8fQ==}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -4906,6 +4923,19 @@ snapshots:
       is-extendable: 0.1.1
 
   extend@3.0.2: {}
+
+  eyes-next@0.2.0(next@16.1.0(@opentelemetry/api@1.8.0)(@playwright/test@1.55.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3):
+    dependencies:
+      eyes-react: 0.2.0(react@19.2.3)
+      next: 16.1.0(@opentelemetry/api@1.8.0)(@playwright/test@1.55.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react: 19.2.3
+
+  eyes-react@0.2.0(react@19.2.3):
+    dependencies:
+      eyes-types: 0.2.0
+      react: 19.2.3
+
+  eyes-types@0.2.0: {}
 
   fast-deep-equal@3.1.3: {}
 

@@ -11,6 +11,7 @@ import '~styles/global.css';
 import '~styles/typography/prose.css';
 import cn from '~utils/cn';
 import { Analytics } from '@vercel/analytics/react';
+import { EyesNextProvider } from 'eyes-next';
 
 const InterFont = Inter({
     subsets: ['latin'],
@@ -20,10 +21,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
     return (
         <html className={cn(InterFont.className, 'scroll-smooth antialiased')} lang="en">
             <body className="relative max-w-[100vw] min-h-screen bg-charade-950 text-base text-charade-50 overflow-x-hidden">
-                <Header />
-                {children}
-                <Footer />
-                <Analytics />
+                <EyesNextProvider siteId={env.NEXT_PUBLIC_EYES_SITE_ID}>
+                    <Header />
+                    {children}
+                    <Footer />
+                    <Analytics />
+                </EyesNextProvider>
             </body>
         </html>
     );
