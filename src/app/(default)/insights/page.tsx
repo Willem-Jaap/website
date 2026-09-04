@@ -2,16 +2,48 @@
 
 import { allInsights } from 'contentlayer/generated';
 import { useSearchParams } from 'next/navigation';
-import { type ChangeEvent, useEffect, useState } from 'react';
+import { type ChangeEvent, Suspense, useEffect, useState } from 'react';
 
 import search from '~app/(default)/insights/utils/search';
 import InsightsList from '~components/misc/insights-list';
 import PaddedWithRandomized from '~components/misc/padded-with-randomized';
 import { track } from '~utils/eyes';
 
-const Page = () => {
+const SearchField = ({
+    query,
+    onChange,
+}: {
+    query: string;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+}) => (
+    <div className="flex justify-end items-center gap-4 mt-24 mb-20">
+        <div className="relative h-fit w-full max-w-[24rem]">
+            <input
+                onChange={onChange}
+                className="block border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-none w-full focus:border-charade-500"
+                placeholder="Search"
+                value={query}
+                readOnly={!onChange}
+            />
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute top-1/2 right-4 transform -translate-y-1/2 w-5 h-5 text-charade-400"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+        </div>
+    </div>
+);
+
+const InsightsSearch = () => {
     const searchParams = useSearchParams();
-    const [query, setQuery] = useState((searchParams.get('q') as string | undefined) ?? '');
+    const [query, setQuery] = useState(searchParams.get('q') ?? '');
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
@@ -30,35 +62,28 @@ const Page = () => {
 
     return (
         <>
-            <div className="px-column-1 py-56">
-                <div className="pb-16 border-b border-b-charade-800">
-                    <PaddedWithRandomized text="Insights" />
-                </div>
-                <div className="flex justify-end items-center gap-4 mt-24 mb-20">
-                    <div className="relative h-fit w-full max-w-[24rem]">
-                        <input
-                            onChange={onChange}
-                            className="block border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-none w-full focus:border-charade-500"
-                            placeholder="Search"
-                            value={query}
-                        />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="absolute top-1/2 right-4 transform -translate-y-1/2 w-5 h-5 text-charade-400"
-                            viewBox="0 0 24 24"
-                            strokeWidth="2"
-                            stroke="currentColor"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round">
-                            <circle cx="11" cy="11" r="8" />
-                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                    </div>
-                </div>
-                <InsightsList showResultAmount query={query} />
-            </div>
+            <SearchField query={query} onChange={onChange} />
+            <InsightsList showResultAmount query={query} />
         </>
+    );
+};
+
+const Page = () => {
+    return (
+        <div className="px-column-1 py-56">
+            <div className="pb-16 border-b border-b-charade-800">
+                <PaddedWithRandomized text="Insights" />
+            </div>
+            <Suspense
+                fallback={
+                    <>
+                        <SearchField query="" />
+                        <InsightsList showResultAmount />
+                    </>
+                }>
+                <InsightsSearch />
+            </Suspense>
+        </div>
     );
 };
 

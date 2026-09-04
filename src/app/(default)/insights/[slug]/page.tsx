@@ -1,6 +1,6 @@
 import { allInsights } from 'contentlayer/generated';
 import { format, formatDistance, parseISO } from 'date-fns';
-import { useMDXComponent } from 'next-contentlayer2/hooks';
+import { getMDXComponent } from 'next-contentlayer2/hooks';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -33,7 +33,7 @@ const Page = async (props: PageParams) => {
     );
     if (!insight) return notFound();
 
-    const MDXContent = useMDXComponent(insight.body.code);
+    const MDXContent = getMDXComponent(insight.body.code);
 
     return (
         <>

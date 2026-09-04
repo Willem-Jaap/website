@@ -1,5 +1,5 @@
 import { allProjects } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer2/hooks';
+import { getMDXComponent } from 'next-contentlayer2/hooks';
 import Image, { type ImageProps } from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -36,7 +36,7 @@ const Page = async (props: PageParams) => {
     );
     if (!project) return notFound();
 
-    const MDXContent = useMDXComponent(project.body.code);
+    const MDXContent = getMDXComponent(project.body.code);
 
     return (
         <article className="max-w-7xl mx-auto mt-48 pt-12 px-8">
