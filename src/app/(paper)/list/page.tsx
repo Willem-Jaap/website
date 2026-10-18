@@ -179,9 +179,9 @@ const ListPage = async () => {
 
                         <Section title="Also on the desk">
                             <p>
-                                Dire Straits&rsquo; Alchemy (live) on the turntable, a crate of
-                                records, a coffee, a training card for push day and the tools of the
-                                cutting mat.
+                                A turntable with Dire Straits&rsquo; Alchemy (live) on it, a crate
+                                of more Dire Straits records, a coffee, a training card for push day
+                                and the tools of the cutting mat.
                             </p>
                         </Section>
                     </div>

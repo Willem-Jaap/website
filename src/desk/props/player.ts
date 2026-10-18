@@ -2,12 +2,16 @@
 
 import { useSyncExternalStore } from 'react';
 
-import type { SideTrack } from '~/desk/props/alchemy';
+import { type Album, ALBUMS, FIRST_ALBUM, type Track } from '~/desk/props/albums';
 
 export type Status = 'idle' | 'cueing' | 'playing';
 
 export interface PlayerState {
     status: Status;
+    /** The album on the platter */
+    album: string;
+    /** The album being dragged out of the crate, if any */
+    dragging: string | null;
     /** Index into the side's tracks */
     track: number | null;
     /** Where the needle is, as a radius on the record in cm (null: on its rest) */
@@ -24,8 +28,15 @@ const VOLUME = 0.85;
  * surface noise made with Web Audio for the crackle of vinyl.
  */
 const createPlayer = () => {
-    let state: PlayerState = { status: 'idle', track: null, radius: null };
-    let tracks: SideTrack[] = [];
+    let state: PlayerState = {
+        status: 'idle',
+        album: FIRST_ALBUM,
+        dragging: null,
+        track: null,
+        radius: null,
+    };
+    let albums: Album[] = ALBUMS;
+    const tracks = () => albums.find(album => album.id === state.album)?.tracks ?? [];
     let audio: HTMLAudioElement | null = null;
     let context: AudioContext | null = null;
     let noise: GainNode | null = null;
@@ -98,7 +109,7 @@ const createPlayer = () => {
     };
 
     const play = (index: number) => {
-        const track = tracks[index];
+        const track = tracks()[index];
         if (!track) return stop();
         audio ??= new Audio();
         audio.onended = () => cue(index + 1);
@@ -112,7 +123,7 @@ const createPlayer = () => {
     /** Swing the arm to `radius` (the start of `index` when left out) and drop the needle */
     const cue = (index: number, radius?: number) => {
         clearTimeout(timer);
-        if (!tracks[index]) return stop();
+        if (!tracks()[index]) return stop();
         set({ status: 'cueing', track: index, radius: radius ?? trackStart(index) });
         try {
             startNoise();
@@ -145,10 +156,21 @@ const createPlayer = () => {
             listeners.add(listener);
             return () => listeners.delete(listener);
         },
-        setTracks: (next: SideTrack[]) => {
-            tracks = next;
+        setAlbums: (next: Album[]) => {
+            albums = next;
         },
-        getTracks: () => tracks,
+        getAlbums: () => albums,
+        getTracks: tracks,
+        getAlbum: () => albums.find(album => album.id === state.album),
+        setDragging: (dragging: string | null) => set({ dragging }),
+        /** Swap the record on the platter and play it from the start */
+        load: (id: string) => {
+            if (id === state.album && state.status !== 'idle') return;
+            stop();
+            set({ album: id });
+            // Give the arm a moment to get back before it swings over again
+            timer = setTimeout(() => cue(0), reducedMotion() ? 0 : 400);
+        },
         cue,
         stop,
         /** Drop the needle at `radius` cm on the record: the track whose grooves are there */
@@ -165,7 +187,7 @@ export const OUTER_GROOVE = 14.2;
 export const INNER_GROOVE = 6.4;
 
 /** Where each track starts (radii in cm), sharing the grooves by running time */
-export const trackStarts = (tracks: SideTrack[]) => {
+export const trackStarts = (tracks: Track[]) => {
     const total = tracks.reduce((sum, track) => sum + track.length, 0) || 1;
     let radius = OUTER_GROOVE;
     return tracks.map(track => {

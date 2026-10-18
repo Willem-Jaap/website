@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { CM } from '~/desk/layout';
 import type { Track } from '~/desk/props/now-playing';
+import { coverOf } from '~/desk/props/albums';
 import { player, usePlayer } from '~/desk/props/player';
 import Prop from '~/desk/props/prop';
 
@@ -36,7 +37,8 @@ interface Props {
 const Sleeve = ({ x, y, rotate }: Props) => {
     const track = useNowPlaying();
     const turntable = usePlayer();
-    const spinning = turntable.track === null ? null : player.getTracks()[turntable.track];
+    const album = player.getAlbums().find(candidate => candidate.id === turntable.album);
+    const spinning = turntable.track === null ? null : album?.tracks[turntable.track];
     // What the turntable plays wins, then Last.fm, then the favourite
     const note = spinning
         ? spinning.name
@@ -53,7 +55,7 @@ const Sleeve = ({ x, y, rotate }: Props) => {
 
     return (
         <Prop
-            label={`The album cover of Alchemy: Dire Straits Live, with a note: ${heading}: ${note}`}
+            label={`The album cover of ${album?.title ?? 'Alchemy'}, with a note: ${heading}: ${note}`}
             x={x}
             y={y}
             width={SIZE}
@@ -61,9 +63,9 @@ const Sleeve = ({ x, y, rotate }: Props) => {
             rotate={rotate}
             nudge={3}
             className="shadow-object rounded-[4px] bg-[#f3f0ea]">
-            {/* Cover photo (the 1984 UK LP, via the Cover Art Archive) */}
+            {/* The jacket of whatever is on the turntable */}
             <Image
-                src="/assets/props/alchemy-cover.jpg"
+                src={coverOf(album ?? { id: 'alchemy' })}
                 alt=""
                 width={500}
                 height={500}

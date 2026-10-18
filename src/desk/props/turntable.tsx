@@ -3,7 +3,7 @@
 import { type MouseEvent, useEffect } from 'react';
 
 import { CM } from '~/desk/layout';
-import type { SideTrack } from '~/desk/props/alchemy';
+import { type Album, labelOf } from '~/desk/props/albums';
 import {
     CUE_TIME,
     INNER_GROOVE,
@@ -61,8 +61,8 @@ interface Props {
     x: number;
     y: number;
     rotate?: number;
-    /** Side one of the record on it */
-    tracks: SideTrack[];
+    /** The records that can go on it, from the crate */
+    albums: Album[];
 }
 
 /**
@@ -70,16 +70,18 @@ interface Props {
  * start/stop to play side one, or click into the grooves to drop the needle there: it plays
  * Apple's previews with a bit of surface noise, and moves on to the next track like a record.
  */
-const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
-    const { status, track, radius } = usePlayer();
+const Turntable = ({ x, y, rotate = 0, albums }: Props) => {
+    const { status, track, radius, album: albumId, dragging } = usePlayer();
+    const album = albums.find(candidate => candidate.id === albumId) ?? albums[0];
+    const tracks = album?.tracks ?? [];
     const isSpinning = status !== 'idle';
     const angle = radius === null ? REST_ANGLE : angleFor(radius);
     const playing = track === null ? null : tracks[track];
 
     useEffect(() => {
-        player.setTracks(tracks);
+        player.setAlbums(albums);
         return () => player.stop();
-    }, [tracks]);
+    }, [albums]);
 
     /** Drop the needle where the record was clicked */
     const onRecordClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -97,7 +99,7 @@ const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
     return (
         <div
             role="group"
-            aria-label="A walnut turntable with Alchemy, the 1984 live album by Dire Straits"
+            aria-label={`A walnut turntable with ${album?.title ?? 'a record'} by ${album?.artist ?? 'Dire Straits'} on it`}
             className="absolute"
             style={{ left: x, top: y, width: WIDTH, height: HEIGHT, rotate: `${rotate}deg` }}>
             {/* Plinth */}
@@ -145,9 +147,15 @@ const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
                 aria-label={
                     isSpinning
                         ? 'Lift the needle'
-                        : 'Drop the needle: play side one of Alchemy (30 second previews)'
+                        : `Drop the needle: play ${album?.title} (30 second previews)`
                 }
-                className="absolute cursor-pointer rounded-full shadow-[0_4px_10px_rgb(0_0_0/0.5)]"
+                data-turntable-drop
+                className={cn(
+                    'absolute cursor-pointer rounded-full shadow-[0_4px_10px_rgb(0_0_0/0.5)] transition-shadow duration-300',
+                    // A record from the crate is on its way: the platter lights up to take it
+                    dragging &&
+                        'shadow-[0_0_0_14px_rgb(255_176_143/0.55),0_0_80px_30px_rgb(255_120_80/0.35)]',
+                )}
                 style={circle(DISC)}
                 onClick={onRecordClick}>
                 <div
@@ -171,14 +179,14 @@ const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
                     )}
                     <div className="absolute top-[20%] left-[72%] h-[4px] w-[90px] rotate-[35deg] rounded-full bg-white/15" />
                     <div className="absolute top-[80%] left-[30%] size-[5px] rounded-full bg-white/30" />
-                    {/* The real side one label (US pressing, via the Cover Art Archive) */}
+                    {/* The label: Alchemy's real one, the others with their cover printed on it */}
                     <div
-                        className="absolute overflow-hidden rounded-full bg-[#ece8df]"
+                        className="absolute overflow-hidden rounded-full bg-[#ece8df] shadow-[inset_0_0_0_3px_rgb(0_0_0/0.25)]"
                         style={{
                             inset: (DISC - LABEL) / 2,
-                            backgroundImage: 'url(/assets/props/alchemy-label.jpg)',
-                            // The photo shows a little vinyl around the label; crop it off
-                            backgroundSize: '106%',
+                            backgroundImage: album ? `url(${labelOf(album)})` : undefined,
+                            // The photo of Alchemy's label shows a little vinyl around it; crop it off
+                            backgroundSize: album?.id === 'alchemy' ? '106%' : 'cover',
                             backgroundPosition: 'center',
                         }}
                     />
@@ -211,7 +219,7 @@ const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
             {/* Tonearm: counterweight, tube and headshell. Lifted (bigger shadow) while it swings */}
             <button
                 type="button"
-                aria-label={isSpinning ? 'Lift the needle' : 'Play side one of Alchemy'}
+                aria-label={isSpinning ? 'Lift the needle' : `Play ${album?.title}`}
                 aria-pressed={isSpinning}
                 className={cn(
                     'group/arm absolute h-0 origin-left cursor-pointer motion-safe:transition-[rotate] motion-safe:ease-in-out',
@@ -261,7 +269,7 @@ const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
             {/* Controls: start/stop, speed and the pitch slider */}
             <button
                 type="button"
-                aria-label={isSpinning ? 'Stop' : 'Start: play side one of Alchemy'}
+                aria-label={isSpinning ? 'Stop' : `Start: play ${album?.title}`}
                 className="absolute flex h-[86px] w-[190px] cursor-pointer items-center justify-center rounded-[8px] text-[22px] font-semibold text-[#2b2b2b] shadow-[0_4px_8px_rgb(0_0_0/0.45)] active:translate-y-[2px] active:shadow-[0_2px_4px_rgb(0_0_0/0.45)]"
                 style={{ left: 1.6 * CM, top: 31.6 * CM, background: ALUMINIUM }}
                 onClick={() => player.toggle()}>
