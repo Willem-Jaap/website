@@ -13,10 +13,16 @@ const LOCAL_HOSTS = ['localhost', '127.0.0.1', '[::1]'];
  */
 const isLocal = () => LOCAL_HOSTS.includes(window.location.hostname);
 
-const Analytics = ({ siteId, children }: PropsWithChildren<{ siteId: string }>) => (
+interface Props extends PropsWithChildren {
+    siteId: string;
+    /** Vercel Analytics' script only exists on Vercel, elsewhere it 404s */
+    isVercel: boolean;
+}
+
+const Analytics = ({ siteId, isVercel, children }: Props) => (
     <EyesNextProvider siteId={siteId} beforeSend={event => (isLocal() ? null : event)}>
         {children}
-        <VercelAnalytics />
+        {isVercel && <VercelAnalytics />}
     </EyesNextProvider>
 );
 

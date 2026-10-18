@@ -15,7 +15,9 @@ const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
 const RootLayout = ({ children }: PropsWithChildren) => (
     <html lang="en" className={cn(inter.variable, caveat.variable, 'antialiased')}>
         <body className="font-sans text-white">
-            <Analytics siteId={env.NEXT_PUBLIC_EYES_SITE_ID}>{children}</Analytics>
+            <Analytics siteId={env.NEXT_PUBLIC_EYES_SITE_ID} isVercel={Boolean(process.env.VERCEL)}>
+                {children}
+            </Analytics>
         </body>
     </html>
 );
