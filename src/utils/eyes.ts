@@ -1,9 +1,7 @@
 import { createEyes } from 'eyes-next';
 
 type Events = {
-    'Insight Search': { query: string; results: number };
-    'Project Card Click': { name: string };
-    'Setting Changed': { setting: string; value: boolean };
+    'Region Focus': { region: string };
 };
 
 const { useEyes, track } = createEyes<Events>();

@@ -2,72 +2,54 @@ import type { PropsWithChildren } from 'react';
 
 import type { Metadata, Viewport } from 'next';
 
-import { Inter } from 'next/font/google';
+import { Caveat, Inter } from 'next/font/google';
 
 import { env } from '~/env';
-import Footer from '~components/layout/footer';
-import Header from '~components/layout/header';
-import '~styles/global.css';
-import '~styles/typography/prose.css';
-import cn from '~utils/cn';
+import '~/styles/global.css';
+import cn from '~/utils/cn';
 import { Analytics } from '@vercel/analytics/react';
 import { EyesNextProvider } from 'eyes-next';
 
-const InterFont = Inter({
-    subsets: ['latin'],
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
 
-const RootLayout = ({ children }: PropsWithChildren) => {
-    return (
-        <html className={cn(InterFont.className, 'scroll-smooth antialiased')} lang="en">
-            <body className="relative max-w-[100vw] min-h-screen bg-charade-950 text-base text-charade-50 overflow-x-hidden">
-                <EyesNextProvider siteId={env.NEXT_PUBLIC_EYES_SITE_ID}>
-                    <Header />
-                    {children}
-                    <Footer />
-                    <Analytics />
-                </EyesNextProvider>
-            </body>
-        </html>
-    );
-};
+const RootLayout = ({ children }: PropsWithChildren) => (
+    <html lang="en" className={cn(inter.variable, caveat.variable, 'antialiased')}>
+        <body className="font-sans text-white">
+            <EyesNextProvider siteId={env.NEXT_PUBLIC_EYES_SITE_ID}>
+                {children}
+                <Analytics />
+            </EyesNextProvider>
+        </body>
+    </html>
+);
+
+const description =
+    'Willem-Jaap Klepper: founder of Pixel Perfect and software developer from the Netherlands. Zoom around my desk to find my work, writing and open source projects.';
 
 export const metadata: Metadata = {
     metadataBase: new URL(env.NEXT_PUBLIC_URL as string),
     title: {
-        default: 'Willem-Jaap - Portfolio, insights and more',
+        default: 'Willem-Jaap · Desk',
         template: '%s | Willem-Jaap',
     },
-    description:
-        'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
-    keywords: [
-        'willem-jaap',
-        'developer',
-        'software',
-        'portfolio',
-        'insights',
-        'projects',
-        'next',
-        'next.js',
-        'typescript',
-        'tailwind',
-        'laravel',
-        'react',
-    ],
+    description,
     openGraph: {
-        title: 'Willem-Jaap - Portfolio, insight and more',
-        description:
-            'Software developer, proficient in Next.js, Typescript, Tailwind, Laravel and more. Read about my latest insights and projects.',
+        title: 'Willem-Jaap · Desk',
+        description,
         type: 'website',
         locale: 'en_US',
-        url: new URL(env.NEXT_PUBLIC_URL as string),
-        siteName: 'Willem-Jaap Portfolio',
+        siteName: 'Willem-Jaap',
     },
 };
 
 export const viewport: Viewport = {
     colorScheme: 'dark',
-    themeColor: 'black',
+    themeColor: '#1c1f24',
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
 };
 
 export default RootLayout;

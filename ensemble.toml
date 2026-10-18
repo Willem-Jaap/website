@@ -1,0 +1,9 @@
+[tools]
+node = "22"
+pnpm = "9.9.0"
+
+[setup]
+checkout = "pnpm install"
+
+[services.dev]
+command = "pnpm dev"
