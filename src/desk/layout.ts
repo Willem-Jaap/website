@@ -1,4 +1,4 @@
-import type { Rect } from '~/canvas/camera';
+import type { InitialView, Rect } from '~/canvas/fit';
 
 /** Size of one centimetre on the cutting mat, in world units */
 export const CM = 40;
@@ -57,3 +57,11 @@ export const REGIONS: Record<RegionId, Region> = {
 export const REGION_ORDER: RegionId[] = ['about', 'pixelperfect', 'github', 'writing', 'props'];
 
 export const isRegionId = (value: string): value is RegionId => value in REGIONS;
+
+/** Start on a linked region, zoomed in on "About" on phones, or with the whole desk in view */
+export const INITIAL_VIEW: InitialView = {
+    links: REGIONS,
+    narrowBelow: 768,
+    narrow: REGIONS.about,
+    wide: MAT,
+};

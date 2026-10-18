@@ -1,21 +1,9 @@
 import { useSyncExternalStore } from 'react';
 
-/**
- * The camera maps world coordinates to screen pixels:
- * screen = world * z + (x, y)
- */
-export interface CameraState {
-    x: number;
-    y: number;
-    z: number;
-}
+import { type CameraState, DOCK_SPACE, fitRect, type Rect, type Size } from '~/canvas/fit';
 
-export interface Rect {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
+export type { CameraState, InitialView, Rect } from '~/canvas/fit';
+export { DOCK_SPACE, fitRect, pickInitialView } from '~/canvas/fit';
 
 export const MIN_ZOOM = 0.08;
 export const MAX_ZOOM = 4;
@@ -37,13 +25,13 @@ export const isFramed = (
 
 const createCamera = () => {
     let state: CameraState = { x: 0, y: 0, z: 1 };
-    let viewport = { width: 1, height: 1 };
+    let viewport: Size = { width: 1, height: 1 };
     let bounds: Rect | null = null;
     let animation: number | null = null;
     /** The rect the camera was last framed on, until the user moves it themselves */
     let anchor: Rect | null = null;
     /** Screen pixels reserved at the bottom for the dock, measured by the dock itself */
-    let dockSpace = 64;
+    let dockSpace = DOCK_SPACE;
     const listeners = new Set<Listener>();
 
     const emit = () => listeners.forEach(listener => listener());
@@ -63,9 +51,6 @@ const createCamera = () => {
         state = constrain({ ...next, z: clamp(next.z, MIN_ZOOM, MAX_ZOOM) });
         emit();
     };
-
-    /** Breathing room around a framed rect, tighter on small screens */
-    const defaultPadding = () => Math.min(48, Math.min(viewport.width, viewport.height) * 0.04);
 
     const stop = () => {
         if (animation !== null) cancelAnimationFrame(animation);
@@ -92,24 +77,7 @@ const createCamera = () => {
     };
 
     /** Camera that fits `rect` in the viewport with some padding */
-    const fit = (rect: Rect, padding = defaultPadding()): CameraState => {
-        // Keep framed content clear of the dock floating at the bottom
-        const top = padding;
-        const bottom = padding + dockSpace;
-        const z = clamp(
-            Math.min(
-                (viewport.width - padding * 2) / rect.width,
-                (viewport.height - top - bottom) / rect.height,
-            ),
-            MIN_ZOOM,
-            MAX_ZOOM,
-        );
-        return {
-            z,
-            x: viewport.width / 2 - (rect.x + rect.width / 2) * z,
-            y: top + (viewport.height - top - bottom) / 2 - (rect.y + rect.height / 2) * z,
-        };
-    };
+    const fit = (rect: Rect, padding?: number) => fitRect(rect, viewport, dockSpace, padding);
 
     return {
         get: () => state,
@@ -119,6 +87,8 @@ const createCamera = () => {
             return () => listeners.delete(listener);
         },
         setViewport: (width: number, height: number) => {
+            // ResizeObserver reports the initial size too
+            if (width === viewport.width && height === viewport.height) return;
             const dx = (width - viewport.width) / 2;
             const dy = (height - viewport.height) / 2;
             viewport = { width, height };
@@ -175,7 +145,10 @@ const createCamera = () => {
         isAnimating: () => animation !== null,
         fit,
         /** Smoothly animate to the camera that frames `rect` */
-        flyTo: (rect: Rect, { padding = defaultPadding(), duration = 700 } = {}) => {
+        flyTo: (
+            rect: Rect,
+            { padding, duration = 700 }: { padding?: number; duration?: number } = {},
+        ) => {
             stop();
             anchor = rect;
             animate(fit(rect, padding), duration);

@@ -1,11 +1,13 @@
+import type { Metadata } from 'next';
+
+import FrameScript from '~/canvas/frame-script';
 import AboutRegion from '~/desk/about';
 import Desk from '~/desk/desk';
 import LiveGithubRegion from '~/desk/github/live';
 import PixelPerfectRegion from '~/desk/pixelperfect';
 import PropsRegion from '~/desk/props';
 import WritingRegion from '~/desk/writing';
-
-import type { Metadata } from 'next';
+import { INITIAL_VIEW } from '~/desk/layout';
 
 export const metadata: Metadata = { alternates: { canonical: '/' } };
 
@@ -29,6 +31,8 @@ const Page = () => (
             <LiveGithubRegion />
             <WritingRegion />
             <PropsRegion />
+            {/* Last, so the whole world is parsed when it runs */}
+            <FrameScript initial={INITIAL_VIEW} />
         </Desk>
     </>
 );

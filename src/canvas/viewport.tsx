@@ -2,14 +2,14 @@
 
 import { type PropsWithChildren, useEffect, useRef } from 'react';
 
-import { camera, type Rect } from '~/canvas/camera';
+import { camera, type InitialView, pickInitialView, type Rect } from '~/canvas/camera';
 import { useGesture } from '@use-gesture/react';
 
 interface Props extends PropsWithChildren {
     /** The world's extent, the camera can't wander off it */
     bounds: Rect;
-    /** Where the camera starts, given the viewport size */
-    initial: (width: number, height: number) => Rect;
+    /** Where the camera starts; render a FrameScript last among the children for the first paint */
+    initial: InitialView;
 }
 
 const SETTLE_DELAY = 160;
@@ -27,41 +27,13 @@ const Viewport = ({ bounds, initial, children }: Props) => {
     const inertia = useRef<number | null>(null);
     const lastTap = useRef({ time: 0, x: 0, y: 0 });
 
-    // Camera → DOM
-    useEffect(() => {
-        const world = worldRef.current;
-        if (!world) return;
-        let settle: ReturnType<typeof setTimeout> | undefined;
-
-        const apply = () => {
-            const { x, y, z } = camera.get();
-            world.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${z})`;
-            // Rasterise as a layer while moving, re-render crisp vectors once settled
-            world.style.willChange = 'transform';
-            clearTimeout(settle);
-            settle = setTimeout(() => {
-                world.style.willChange = '';
-                // One screen pixel in world units, for hairlines that stay visible at any zoom
-                world.style.setProperty('--px', String(1 / camera.get().z));
-                world.style.setProperty('--zoom', String(camera.get().z));
-            }, SETTLE_DELAY);
-        };
-
-        apply();
-        const unsubscribe = camera.subscribe(apply);
-        return () => {
-            unsubscribe();
-            clearTimeout(settle);
-        };
-    }, []);
-
-    // Viewport size & initial position
+    // Viewport size & initial position, before the camera is first applied to the DOM
     useEffect(() => {
         const viewport = viewportRef.current;
         if (!viewport) return;
         camera.setBounds(bounds);
         camera.setViewport(viewport.clientWidth, viewport.clientHeight);
-        camera.frame(initial(viewport.clientWidth, viewport.clientHeight));
+        camera.frame(pickInitialView(initial, viewport.clientWidth, window.location.hash.slice(1)));
 
         const observer = new ResizeObserver(() =>
             camera.setViewport(viewport.clientWidth, viewport.clientHeight),
@@ -95,6 +67,38 @@ const Viewport = ({ bounds, initial, children }: Props) => {
         window.addEventListener('keydown', onKeyDown);
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [bounds]);
+
+    // Camera → DOM
+    useEffect(() => {
+        const world = worldRef.current;
+        if (!world) return;
+        let settle: ReturnType<typeof setTimeout> | undefined;
+
+        const apply = () => {
+            const { x, y, z } = camera.get();
+            // Hydrating onto the frame FrameScript already painted: nothing to redraw
+            const isPainted = world.dataset.camera === `${x},${y},${z}`;
+            delete world.dataset.camera;
+            if (isPainted) return;
+            world.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${z})`;
+            // Rasterise as a layer while moving, re-render crisp vectors once settled
+            world.style.willChange = 'transform';
+            clearTimeout(settle);
+            settle = setTimeout(() => {
+                world.style.willChange = '';
+                // One screen pixel in world units, for hairlines that stay visible at any zoom
+                world.style.setProperty('--px', String(1 / camera.get().z));
+                world.style.setProperty('--zoom', String(camera.get().z));
+            }, SETTLE_DELAY);
+        };
+
+        apply();
+        const unsubscribe = camera.subscribe(apply);
+        return () => {
+            unsubscribe();
+            clearTimeout(settle);
+        };
+    }, []);
 
     // iOS Safari zooms the whole page on a pinch, even with user-scalable=no, unless its
     // proprietary gesture events are cancelled. The desk does its own zooming.
@@ -220,7 +224,11 @@ const Viewport = ({ bounds, initial, children }: Props) => {
                 event.stopPropagation();
                 dragged.current = false;
             }}>
-            <div ref={worldRef} className="absolute top-0 left-0 origin-top-left">
+            {/* Its transform is set before hydration by FrameScript */}
+            <div
+                ref={worldRef}
+                className="absolute top-0 left-0 origin-top-left"
+                suppressHydrationWarning>
                 {children}
             </div>
         </div>
