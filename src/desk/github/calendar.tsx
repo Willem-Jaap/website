@@ -19,6 +19,15 @@ const INK = ['#e6e3da', '#b7d9a8', '#78b86f', '#3f8f45', '#21612b'];
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+const RADIUS = 3;
+
+/** A day's square with rounded corners, as path commands */
+const roundedSquare = (x: number, y: number) => {
+    const side = CELL - RADIUS * 2;
+    const corner = (dx: number, dy: number) => `a${RADIUS} ${RADIUS} 0 0 1 ${dx} ${dy}`;
+    return `M${x + RADIUS} ${y}h${side}${corner(RADIUS, RADIUS)}v${side}${corner(-RADIUS, RADIUS)}h${-side}${corner(-RADIUS, -RADIUS)}v${-side}${corner(RADIUS, -RADIUS)}z`;
+};
+
 /** Lay the days out in week columns, starting on Sunday like GitHub does */
 const layout = (days: GithubData['calendar']['days']) => {
     const first = days[0];
@@ -47,7 +56,6 @@ const Calendar = ({ calendar, x, y, rotate }: Props) => {
             target="_blank"
             rel="noopener noreferrer"
             draggable={false}
-            aria-label={`${calendar.total.toLocaleString('en-US')} contributions in the last year, on GitHub`}
             className="paper shadow-object group absolute block rounded-[2px] px-9 pt-8 pb-7 transition-[translate] duration-200 hover:-translate-y-1"
             style={place({ x, y, rotate })}>
             <p className="flex items-baseline justify-between font-sans text-ink">
@@ -84,15 +92,20 @@ const Calendar = ({ calendar, x, y, rotate }: Props) => {
                         {label}
                     </text>
                 ))}
-                {cells.map(cell => (
-                    <rect
-                        key={cell.date}
-                        x={DAY_LABELS + cell.week * STEP}
-                        y={MONTH_LABELS + cell.weekday * STEP}
-                        width={CELL}
-                        height={CELL}
-                        rx={3}
-                        fill={INK[cell.level] ?? INK[0]}
+                {/* One path per shade rather than a rect per day: 5 elements instead of 365 */}
+                {INK.map((fill, level) => (
+                    <path
+                        key={fill}
+                        fill={fill}
+                        d={cells
+                            .filter(cell => (INK[cell.level] ? cell.level : 0) === level)
+                            .map(cell =>
+                                roundedSquare(
+                                    DAY_LABELS + cell.week * STEP,
+                                    MONTH_LABELS + cell.weekday * STEP,
+                                ),
+                            )
+                            .join('')}
                     />
                 ))}
             </svg>

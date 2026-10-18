@@ -113,21 +113,21 @@ const Mat = () => {
                     <path
                         d={`M ${ORIGIN.x} ${ORIGIN.y - protractor} A ${protractor} ${protractor} 0 0 1 ${ORIGIN.x + protractor} ${ORIGIN.y}`}
                     />
-                    {range(91).map(degrees => {
-                        const length =
-                            degrees % 10 === 0 ? 1.2 * CM : degrees % 5 === 0 ? 0.8 * CM : 0.4 * CM;
-                        const outer = polar(degrees, protractor);
-                        const inner = polar(degrees, protractor - length);
-                        return (
-                            <line
-                                key={degrees}
-                                x1={outer.x}
-                                y1={outer.y}
-                                x2={inner.x}
-                                y2={inner.y}
-                            />
-                        );
-                    })}
+                    <path
+                        d={range(91)
+                            .map(degrees => {
+                                const length =
+                                    degrees % 10 === 0
+                                        ? 1.2 * CM
+                                        : degrees % 5 === 0
+                                          ? 0.8 * CM
+                                          : 0.4 * CM;
+                                const outer = polar(degrees, protractor);
+                                const inner = polar(degrees, protractor - length);
+                                return `M${outer.x} ${outer.y}L${inner.x} ${inner.y}`;
+                            })
+                            .join('')}
+                    />
                 </g>
                 <g
                     fill="#fff"
@@ -169,31 +169,42 @@ const Mat = () => {
 
             {/* Rulers */}
             <g fill="#fff" fontSize={CM * 0.38} fontFamily="var(--font-sans)" opacity={0.85}>
-                {range(COLS + 1).map(index => (
-                    <g key={index} textAnchor="middle">
-                        <text x={GRID.x + index * CM} y={GRID.y - CM * 0.45}>
+                {/* Flat, without a group per number: the mat is the biggest part of the DOM */}
+                <g textAnchor="middle">
+                    {range(COLS + 1).map(index => (
+                        <text key={index} x={GRID.x + index * CM} y={GRID.y - CM * 0.45}>
                             {index}
                         </text>
-                        <text x={GRID.x + index * CM} y={GRID.y + GRID.height + CM * 0.85}>
-                            {index}
-                        </text>
-                    </g>
-                ))}
-                {range(ROWS + 1).map(index => (
-                    <g key={index} dominantBaseline="middle">
+                    ))}
+                    {range(COLS + 1).map(index => (
                         <text
+                            key={index}
+                            x={GRID.x + index * CM}
+                            y={GRID.y + GRID.height + CM * 0.85}>
+                            {index}
+                        </text>
+                    ))}
+                </g>
+                <g dominantBaseline="middle" textAnchor="end">
+                    {range(ROWS + 1).map(index => (
+                        <text
+                            key={index}
                             x={GRID.x - CM * 0.35}
-                            y={GRID.y + GRID.height - index * CM}
-                            textAnchor="end">
+                            y={GRID.y + GRID.height - index * CM}>
                             {index}
                         </text>
+                    ))}
+                </g>
+                <g dominantBaseline="middle">
+                    {range(ROWS + 1).map(index => (
                         <text
+                            key={index}
                             x={GRID.x + GRID.width + CM * 0.35}
                             y={GRID.y + GRID.height - index * CM}>
                             {index}
                         </text>
-                    </g>
-                ))}
+                    ))}
+                </g>
             </g>
 
             <text

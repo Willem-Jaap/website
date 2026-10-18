@@ -19,13 +19,11 @@ const HEADER = 84;
 
 const Link = ({
     url,
-    label,
     className,
     style,
     children,
 }: PropsWithChildren<{
     url: string;
-    label: string;
     className?: string;
     style?: React.CSSProperties;
 }>) => (
@@ -33,7 +31,6 @@ const Link = ({
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={label}
         draggable={false}
         className={cn(
             'group absolute block transition-[translate,box-shadow] duration-200 hover:-translate-y-1.5',
@@ -71,7 +68,6 @@ const Meta = ({ repo, className }: { repo: Repo; className?: string }) => (
 export const IndexCard = ({ repo, blurb, x, y, rotate }: Props) => (
     <Link
         url={repo.url}
-        label={`${repo.name} on GitHub: ${blurb}`}
         className="paper shadow-object rounded-[3px]"
         style={{
             ...place({ x, y, rotate }),
@@ -101,7 +97,6 @@ const STICKY_COLORS = {
 /** A square sticky note, slightly curled up at the bottom */
 export const StickyNote = ({
     url,
-    label,
     x,
     y,
     rotate,
@@ -110,7 +105,6 @@ export const StickyNote = ({
     children,
 }: PropsWithChildren<{
     url: string;
-    label: string;
     x: number;
     y: number;
     rotate: number;
@@ -119,7 +113,6 @@ export const StickyNote = ({
 }>) => (
     <Link
         url={url}
-        label={label}
         className="text-ink"
         style={{ ...place({ x, y, rotate }), width: size, height: size }}>
         {/* The curl lifts the bottom corners off the mat, so the shadow is deeper there */}
@@ -141,11 +134,7 @@ export const StickyNote = ({
 );
 
 export const RepoSticky = ({ repo, blurb, ...position }: Props) => (
-    <StickyNote
-        url={repo.url}
-        label={`${repo.name} on GitHub: ${blurb}`}
-        color="pink"
-        {...position}>
+    <StickyNote url={repo.url} color="pink" {...position}>
         <span className="font-hand text-[52px] leading-none font-bold">{repo.name}</span>
         <span className="mt-3 font-hand text-[36px] leading-[1.1] text-ink/85">{blurb}</span>
         <Meta repo={repo} className="mt-auto" />
