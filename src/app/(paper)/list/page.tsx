@@ -59,9 +59,7 @@ const Section = ({ title, children }: PropsWithChildren<{ title: string }>) => (
 );
 
 const Label = ({ children }: PropsWithChildren) => (
-    <h3 className="pt-2 font-sans text-[12px] uppercase tracking-[0.18em] text-ink/50">
-        {children}
-    </h3>
+    <h3 className="pt-2 font-sans text-[14px] font-medium text-ink/55">{children}</h3>
 );
 
 /** Everything on the desk on one sheet, for screen readers, search engines and no JavaScript */
