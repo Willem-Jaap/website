@@ -6,8 +6,9 @@ import { camera } from '~/canvas/camera';
 import Mat from '~/canvas/mat';
 import Viewport from '~/canvas/viewport';
 import Hint from '~/desk/hint';
-import { INITIAL_VIEW, isRegionId, MAT } from '~/desk/layout';
+import { DESK, INITIAL_VIEW, isRegionId } from '~/desk/layout';
 import { focusRegion } from '~/desk/region';
+import Surface from '~/desk/surface';
 import Title from '~/desk/title';
 import { trackRegionFocus } from '~/utils/eyes';
 
@@ -21,7 +22,7 @@ const Desk = ({ children }: PropsWithChildren) => {
         const onHashChange = () => {
             const hash = window.location.hash.slice(1);
             if (isRegionId(hash)) focusRegion(hash, 'link');
-            else camera.flyTo(MAT);
+            else camera.flyTo(DESK);
         };
         window.addEventListener('hashchange', onHashChange);
         return () => window.removeEventListener('hashchange', onHashChange);
@@ -34,7 +35,8 @@ const Desk = ({ children }: PropsWithChildren) => {
                 className="fixed top-4 left-4 z-20 -translate-y-[200%] rounded-full bg-black/80 px-4 py-2 text-sm font-medium text-white shadow-xl backdrop-blur-md focus:translate-y-0">
                 Skip to the list view
             </a>
-            <Viewport bounds={MAT} initial={INITIAL_VIEW}>
+            <Viewport bounds={DESK} initial={INITIAL_VIEW}>
+                <Surface />
                 <Mat />
                 <Title />
                 {children}

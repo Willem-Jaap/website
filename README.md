@@ -26,7 +26,8 @@ The smoke tests (`tests/`) run with Playwright against the production build, on 
 
 -   `src/canvas` is the engine: `camera.ts` (pan, zoom, `flyTo`, `useZoomLevel` for semantic zoom), `viewport.tsx` (mouse, trackpad, touch & keyboard) and `mat.tsx` (the cutting mat, drawn as SVG).
 -   `fit.ts` holds the pure camera maths. `frame-script.tsx` uses it in a tiny inline script that frames the desk before hydration, so the first paint already shows the right part of it.
--   `src/desk/layout.ts` defines where each region sits on the mat, in centimetres (`CM` world units).
+-   `src/desk/layout.ts` defines where each region sits, in centimetres (`CM` world units). The cutting mat (`MAT`) lies on a wooden desk (`DESK`, `src/desk/surface.tsx`); the turntable, records and the gym live off the mat in the `props` region, coffee and tools to the right of it (`src/desk/props/tools.tsx`).
+-   The wood is CC0 photo texture from [Poly Haven](https://polyhaven.com) (`oak_veneer_01` for the desk, `wood_table_001` for the turntable).
 -   Each region lives in its own folder, `src/desk/<region>`, and renders inside `<Region id="...">`. Children are positioned relative to the region in world units.
 -   Regions can be linked to: `/#about`, `/#pixelperfect`, `/#github`, `/#writing`, `/#props`. Focusing one (click, deep link or keyboard) is tracked as `Region Focus` in Eyes.
 -   Until a region fills the screen, clicking it flies there instead of following links. On phones a fitted region is still too small to read, so tapping an object in it flies to that object (or a readable slice of a wide one) first; the next tap follows its links.

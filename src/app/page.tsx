@@ -6,6 +6,7 @@ import Desk from '~/desk/desk';
 import LiveGithubRegion from '~/desk/github/live';
 import PixelPerfectRegion from '~/desk/pixelperfect';
 import PropsRegion from '~/desk/props';
+import Tools from '~/desk/props/tools';
 import WritingRegion from '~/desk/writing';
 import { INITIAL_VIEW } from '~/desk/layout';
 
@@ -31,6 +32,7 @@ const Page = () => (
             <LiveGithubRegion />
             <WritingRegion />
             <PropsRegion />
+            <Tools />
             {/* Last, so the whole world is parsed when it runs */}
             <FrameScript initial={INITIAL_VIEW} />
         </Desk>

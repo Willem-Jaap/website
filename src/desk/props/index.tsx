@@ -1,29 +1,21 @@
 import { CM } from '~/desk/layout';
-import Eraser from '~/desk/props/eraser';
-import Mug, { CoffeeRing } from '~/desk/props/mug';
-import Pencil from '~/desk/props/pencil';
-import Record from '~/desk/props/record';
-import Ruler from '~/desk/props/ruler';
-import Scalpel from '~/desk/props/scalpel';
+import Crate from '~/desk/props/crate';
+import Headphones from '~/desk/props/headphones';
+import Sleeve from '~/desk/props/sleeve';
 import TrainingCard from '~/desk/props/training-card';
+import Turntable from '~/desk/props/turntable';
 import WeightPlate from '~/desk/props/weight-plate';
 import Region from '~/desk/region';
 
-/** Personal things on the desk: music, coffee, the gym and the tools of the cutting mat */
+/** Off the mat on the bare desk: the turntable, the records, and the gym */
 const PropsRegion = () => (
     <Region id="props">
-        <CoffeeRing x={23.5 * CM} y={1 * CM} />
-        <Record x={0.5 * CM} y={0.5 * CM} />
-
-        <Mug x={23 * CM} y={13.5 * CM} />
-
-        <Scalpel x={1 * CM} y={20.5 * CM} rotate={4} />
-        <TrainingCard x={1 * CM} y={22.5 * CM} rotate={-3} />
-        <Pencil x={1.5 * CM} y={29.1 * CM} rotate={-4} />
-        <Eraser x={13.5 * CM} y={22 * CM} rotate={24} />
-
-        <Ruler x={0.5 * CM} y={30.8 * CM} rotate={-2} />
-        <WeightPlate x={18.5 * CM} y={21 * CM} rotate={12} />
+        <Turntable x={1 * CM} y={1 * CM} rotate={-1.5} />
+        <Crate x={1 * CM} y={43 * CM} rotate={2} />
+        <Sleeve x={28 * CM} y={40 * CM} rotate={7} />
+        <Headphones x={35 * CM} y={70 * CM} rotate={-18} />
+        <TrainingCard x={2 * CM} y={82 * CM} rotate={-4} />
+        <WeightPlate x={17 * CM} y={86 * CM} rotate={12} />
     </Region>
 );
 

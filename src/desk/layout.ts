@@ -6,6 +6,9 @@ export const CM = 40;
 /** The cutting mat: 120 × 80 cm */
 export const MAT: Rect = { x: 0, y: 0, width: 120 * CM, height: 80 * CM };
 
+/** The wooden desk the mat lies on, with room for the things that aren't work */
+export const DESK: Rect = { x: -66 * CM, y: -16 * CM, width: 236 * CM, height: 114 * CM };
+
 export type RegionId = 'about' | 'pixelperfect' | 'github' | 'writing' | 'props';
 
 export interface Region extends Rect {
@@ -45,12 +48,20 @@ export const REGIONS: Record<RegionId, Region> = {
     github: {
         id: 'github',
         label: 'Open source',
-        x: 40 * CM,
+        x: 46 * CM,
         y: 44 * CM,
-        width: 40 * CM,
+        width: 70 * CM,
         height: 32 * CM,
     },
-    props: { id: 'props', label: 'Desk', x: 84 * CM, y: 42 * CM, width: 32 * CM, height: 34 * CM },
+    // Off the mat, on the bare desk to the left
+    props: {
+        id: 'props',
+        label: 'After hours',
+        x: -62 * CM,
+        y: -12 * CM,
+        width: 56 * CM,
+        height: 104 * CM,
+    },
 };
 
 export const isRegionId = (value: string): value is RegionId => value in REGIONS;
@@ -60,5 +71,5 @@ export const INITIAL_VIEW: InitialView = {
     links: REGIONS,
     narrowBelow: 768,
     narrow: REGIONS.about,
-    wide: MAT,
+    wide: DESK,
 };
