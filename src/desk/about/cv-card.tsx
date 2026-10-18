@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react';
 
 import Image from 'next/image';
 
-import Age from '~/desk/about/age';
 import { EDUCATION, EXPERIENCE } from '~/desk/about/content';
 import PaperClip from '~/desk/about/paper-clip';
 import cn from '~/utils/cn';
@@ -39,9 +38,7 @@ const CvCard = ({ className, style }: { className?: string; style?: CSSPropertie
                 lineHeight: `${ROW}px`,
                 backgroundImage: `repeating-linear-gradient(to bottom, transparent 0 ${ROW - 2}px, rgb(110 150 200 / 0.38) ${ROW - 2}px ${ROW}px)`,
             }}>
-            <p>
-                Born 2003 (<Age />) &middot; the Netherlands
-            </p>
+            <p>Based in the Netherlands</p>
             <div style={{ height: ROW }} className="flex items-end">
                 <Label>Experience</Label>
             </div>

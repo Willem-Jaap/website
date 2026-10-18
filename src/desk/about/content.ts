@@ -1,14 +1,3 @@
-export const BIRTH_DATE = '2003-06-16';
-
-/** Age in whole years on the given day */
-export const getAge = (now = new Date()) => {
-    const born = new Date(BIRTH_DATE);
-    const hadBirthday =
-        now.getMonth() > born.getMonth() ||
-        (now.getMonth() === born.getMonth() && now.getDate() >= born.getDate());
-    return now.getFullYear() - born.getFullYear() - (hadBirthday ? 0 : 1);
-};
-
 /** The letter on the desk, typed out */
 export const BIO = [
     "I'm Willem-Jaap, a software developer from the Netherlands. A creative and critical thinker, always looking for the most efficient and beautiful solution.",
