@@ -47,14 +47,6 @@
             "language": "JavaScript",
             "stars": 2,
             "url": "https://github.com/pixel-perfect-agency/eslint-config-pixel"
-        },
-        {
-            "fullName": "Willem-Jaap/principles",
-            "name": "principles",
-            "description": "My principles for writing code, managing projects at scale, and collaborating with others.",
-            "language": null,
-            "stars": 0,
-            "url": "https://github.com/Willem-Jaap/principles"
         }
     ],
     "upstream": {

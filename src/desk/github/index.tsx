@@ -8,7 +8,7 @@ import {
 } from '~/desk/github/content';
 import { Pin, Tape } from '~/desk/github/objects';
 import Receipt from '~/desk/github/receipt';
-import { IndexCard, RepoSticky, StickyNote } from '~/desk/github/repo-card';
+import { IndexCard, StickyNote } from '~/desk/github/repo-card';
 import Region from '~/desk/region';
 
 /** Where each repo lies, in order of REPOS, with how it's stuck to the mat */
@@ -19,7 +19,6 @@ const SPOTS = [
     { x: 35, y: 425, rotate: 1.5, fix: 'tape' },
     { x: 440, y: 410, rotate: -2.5, fix: 'pin' },
     { x: 830, y: 440, rotate: 2.5, fix: 'tape' },
-    { x: 60, y: 700, rotate: -4, fix: 'sticky' },
 ] as const;
 
 const PIN_COLORS = ['red', 'blue', 'yellow'] as const;
@@ -41,8 +40,6 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             const spot = SPOTS[i];
             if (!repo || !spot) return null;
             const { fix, ...position } = spot;
-            if (fix === 'sticky')
-                return <RepoSticky key={fullName} repo={repo} blurb={blurb} {...position} />;
             return (
                 <div key={fullName} className="contents">
                     <IndexCard repo={repo} blurb={blurb} {...position} />
@@ -60,7 +57,7 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             );
         })}
 
-        <StickyNote url={PROFILE_URL} x={450} y={715} rotate={3} size={260}>
+        <StickyNote url={PROFILE_URL} x={200} y={705} rotate={-3} size={260}>
             <span className="font-hand text-[44px] leading-[1.05]">More at</span>
             <span className="mt-2 font-hand text-[46px] leading-none font-bold underline decoration-2 underline-offset-8">
                 github.com/

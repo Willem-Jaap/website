@@ -38,10 +38,6 @@ export const REPOS: { fullName: string; blurb: string }[] = [
         fullName: 'pixel-perfect-agency/eslint-config-pixel',
         blurb: 'Strict ESLint config for Next.js',
     },
-    {
-        fullName: 'Willem-Jaap/principles',
-        blurb: 'How I write code, run projects and work with others',
-    },
 ];
 
 export interface Contribution {

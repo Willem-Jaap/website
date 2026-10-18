@@ -132,11 +132,3 @@ export const StickyNote = ({
         </span>
     </Link>
 );
-
-export const RepoSticky = ({ repo, blurb, ...position }: Props) => (
-    <StickyNote url={repo.url} color="pink" {...position}>
-        <span className="font-hand text-[52px] leading-none font-bold">{repo.name}</span>
-        <span className="mt-3 font-hand text-[36px] leading-[1.1] text-ink/85">{blurb}</span>
-        <Meta repo={repo} className="mt-auto" />
-    </StickyNote>
-);
