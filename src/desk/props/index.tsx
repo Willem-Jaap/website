@@ -1,5 +1,4 @@
 import { CM } from '~/desk/layout';
-import Caption from '~/desk/props/caption';
 import Eraser from '~/desk/props/eraser';
 import Mug, { CoffeeRing } from '~/desk/props/mug';
 import Pencil from '~/desk/props/pencil';
@@ -17,9 +16,6 @@ const PropsRegion = () => (
         <Record x={0.5 * CM} y={0.5 * CM} />
 
         <Mug x={23 * CM} y={13.5 * CM} />
-        <Caption x={27 * CM} y={11.6 * CM} rotate={-5}>
-            coffee #3
-        </Caption>
 
         <Scalpel x={1 * CM} y={20.5 * CM} rotate={4} />
         <TrainingCard x={1 * CM} y={22.5 * CM} rotate={-3} />
