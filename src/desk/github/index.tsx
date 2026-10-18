@@ -1,13 +1,6 @@
 import Calendar from '~/desk/github/calendar';
-import {
-    CONTRIBUTIONS,
-    type GithubData,
-    PROFILE_URL,
-    REPOS,
-    SNAPSHOT,
-} from '~/desk/github/content';
+import { type GithubData, PROFILE_URL, REPOS, SNAPSHOT } from '~/desk/github/content';
 import { Pin, Tape } from '~/desk/github/objects';
-import Receipt from '~/desk/github/receipt';
 import { IndexCard, StickyNote } from '~/desk/github/repo-card';
 import Region from '~/desk/region';
 
@@ -57,7 +50,7 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             );
         })}
 
-        <StickyNote url={PROFILE_URL} x={200} y={705} rotate={-3} size={260}>
+        <StickyNote url={PROFILE_URL} x={1250} y={380} rotate={3} size={260}>
             <span className="font-hand text-[44px] leading-[1.05]">More at</span>
             <span className="mt-2 font-hand text-[46px] leading-none font-bold underline decoration-2 underline-offset-8">
                 github.com/
@@ -69,20 +62,7 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             </span>
         </StickyNote>
 
-        <p className="pointer-events-none absolute top-[760px] left-[810px] w-[330px] font-hand text-[54px] leading-[1.05] text-white/85 rotate-[-4deg]">
-            {data.upstream.total} PRs merged into other people&rsquo;s projects &rarr;
-        </p>
-
-        <Calendar calendar={data.calendar} x={30} y={975} rotate={-0.8} />
-
-        <Receipt
-            contributions={CONTRIBUTIONS}
-            total={data.upstream.total}
-            x={1210}
-            y={70}
-            rotate={2}
-        />
-        <Tape x={1325} y={52} rotate={-4} width={160} color="mint" />
+        <Calendar calendar={data.calendar} x={220} y={880} rotate={-0.8} />
     </Region>
 );
 

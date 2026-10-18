@@ -19,8 +19,6 @@ export interface CalendarDay {
 
 export interface GithubData {
     repos: Repo[];
-    /** Merged pull requests to public projects outside my own accounts */
-    upstream: { total: number };
     calendar: { total: number; days: CalendarDay[] };
 }
 
@@ -39,26 +37,6 @@ export const REPOS: { fullName: string; blurb: string }[] = [
         blurb: 'Strict ESLint config for Next.js',
     },
 ];
-
-export interface Contribution {
-    repo: string;
-    number: number;
-    title: string;
-    url: string;
-}
-
-/** Merged pull requests to other projects, newest first. Merged PRs don't change, so these are static */
-export const CONTRIBUTIONS: Contribution[] = [
-    { repo: 'QuiiBz/sherif', number: 159, title: 'Ignore empty directories' },
-    { repo: 'pestphp/pest', number: 1598, title: 'only() for a whole file' },
-    { repo: 't3-oss/t3-env', number: 383, title: 'Standard Schema docs' },
-    { repo: 'laravel/echo', number: 465, title: 'Infer the broadcaster type' },
-    { repo: 'vercel/next.js', number: 70180, title: 'Docs: tsc and build errors' },
-    { repo: 'QuiiBz/sherif', number: 71, title: 'Install after autofixing' },
-    { repo: 'vercel/next.js', number: 68007, title: 'Types for next commands' },
-    { repo: 'laravel/breeze-next', number: 49, title: 'Rework linting config' },
-    { repo: 'vercel/next.js', number: 48708, title: 'All options in the CLI help' },
-].map(pr => ({ ...pr, url: `https://github.com/${pr.repo}/pull/${pr.number}` }));
 
 /** GitHub's own colours, so a language reads at a glance */
 export const LANGUAGE_COLORS: Record<string, string> = {

@@ -7,7 +7,7 @@ import BackLink from '~/app/(paper)/back-link';
 import { deskImage, openGraph } from '~/app/share';
 import { formatDate, posts } from '~/content/writing';
 import { BIO, CONTACT, EDUCATION, EXPERIENCE } from '~/desk/about/content';
-import { CONTRIBUTIONS, PROFILE_URL, REPOS } from '~/desk/github/content';
+import { PROFILE_URL, REPOS } from '~/desk/github/content';
 import { getGithubData } from '~/desk/github/data';
 import PaperSheet from '~/desk/writing/paper-sheet';
 
@@ -149,19 +149,6 @@ const ListPage = async () => {
                                         </li>
                                     );
                                 })}
-                            </ul>
-                            <Label>
-                                {`${github.upstream.total} pull requests merged into other projects, including`}
-                            </Label>
-                            <ul className="space-y-1">
-                                {CONTRIBUTIONS.map(pr => (
-                                    <li key={pr.url}>
-                                        <a href={pr.url} className={linkClass}>
-                                            {pr.repo}#{pr.number}
-                                        </a>
-                                        : {pr.title}
-                                    </li>
-                                ))}
                             </ul>
                             <p>
                                 {github.calendar.total} contributions in the last year, and

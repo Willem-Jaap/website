@@ -52,14 +52,6 @@ const getRepo = async (fullName: string): Promise<Repo> => {
     };
 };
 
-const getUpstreamTotal = async () => {
-    const query = `author:${USER} is:pr is:merged is:public -user:${USER} -org:pixel-perfect-agency -org:tencildev`;
-    const result = await api<{ total_count: number }>(
-        `/search/issues?per_page=1&q=${encodeURIComponent(query)}`,
-    );
-    return result.total_count;
-};
-
 /** The public contribution graph from the profile page; the REST API has no equivalent */
 const getCalendar = async () => {
     const html = await request(`https://github.com/users/${USER}/contributions`).then(response =>
@@ -85,7 +77,7 @@ const fallback = async <T>(promise: Promise<T>, snapshot: T, label: string) => {
 };
 
 export const getGithubData = async (): Promise<GithubData> => {
-    const [repos, total, calendar] = await Promise.all([
+    const [repos, calendar] = await Promise.all([
         Promise.all(
             REPOS.map(({ fullName }) =>
                 fallback<Repo | undefined>(
@@ -95,8 +87,7 @@ export const getGithubData = async (): Promise<GithubData> => {
                 ),
             ),
         ).then(repos => repos.filter(repo => repo !== undefined)),
-        fallback(getUpstreamTotal(), SNAPSHOT.upstream.total, 'merged pull requests'),
         fallback(getCalendar(), SNAPSHOT.calendar, 'contribution graph'),
     ]);
-    return { repos, upstream: { total }, calendar };
+    return { repos, calendar };
 };
