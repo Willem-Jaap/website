@@ -9,6 +9,7 @@ import { openGraph } from '~/app/share';
 import { env } from '~/env';
 import '~/styles/global.css';
 import cn from '~/utils/cn';
+import { Tencil } from 'tencil/react';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
@@ -19,6 +20,7 @@ const RootLayout = ({ children }: PropsWithChildren) => (
             <Analytics siteId={env.NEXT_PUBLIC_EYES_SITE_ID} isVercel={Boolean(process.env.VERCEL)}>
                 {children}
             </Analytics>
+            <Tencil />
         </body>
     </html>
 );

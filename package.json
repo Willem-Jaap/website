@@ -37,6 +37,7 @@
         "eslint-config-pixel": "^1.5.0",
         "postcss": "^8.4.49",
         "tailwindcss": "^4.1.0",
+        "tencil": "^0.6.0",
         "typescript": "5.9.3"
     },
     "eslintConfig": {
