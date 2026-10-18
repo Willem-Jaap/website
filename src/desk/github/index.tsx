@@ -50,7 +50,7 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             );
         })}
 
-        <StickyNote url={PROFILE_URL} x={1290} y={250} rotate={4} size={260}>
+        <StickyNote url={PROFILE_URL} x={1300} y={800} rotate={4} size={260}>
             <span className="font-hand text-[44px] leading-[1.05]">More at</span>
             <span className="mt-2 font-hand text-[46px] leading-none font-bold underline decoration-2 underline-offset-8">
                 github.com/
