@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 
+import { BIO } from '~/desk/about/content';
 import { typewriter } from '~/desk/about/fonts';
 import cn from '~/utils/cn';
 
@@ -15,20 +16,11 @@ const Letter = ({ className, style }: { className?: string; style?: CSSPropertie
         )}
         style={style}>
         <p>Hi,</p>
-        <p className="mt-[1em]">
-            I&apos;m Willem-Jaap, a software developer from the Netherlands. A creative and critical
-            thinker, always looking for the most efficient and beautiful solution.
-        </p>
-        <p className="mt-[1em]">
-            I taught myself HTML, CSS and JavaScript at 15, then studied Application- and Media
-            Development in Rotterdam. I overengineered a lot of projects and learned a lot from
-            that.
-        </p>
-        <p className="mt-[1em]">
-            At WebNL and Emerit I grew into Laravel, Vue and React, and built a local-first cash
-            register. In 2023 I founded Pixel Perfect, where I run the business and do the frontend
-            and UX on everything we make.
-        </p>
+        {BIO.map(paragraph => (
+            <p key={paragraph} className="mt-[1em]">
+                {paragraph}
+            </p>
+        ))}
         <p className="font-hand mt-[0.6em] text-[54px] leading-none text-[#1f3a7a] [text-shadow:none] -rotate-2">
             Willem-Jaap
         </p>

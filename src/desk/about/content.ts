@@ -9,6 +9,13 @@ export const getAge = (now = new Date()) => {
     return now.getFullYear() - born.getFullYear() - (hadBirthday ? 0 : 1);
 };
 
+/** The letter on the desk, typed out */
+export const BIO = [
+    "I'm Willem-Jaap, a software developer from the Netherlands. A creative and critical thinker, always looking for the most efficient and beautiful solution.",
+    'I taught myself HTML, CSS and JavaScript at 15, then studied Application- and Media Development in Rotterdam. I overengineered a lot of projects and learned a lot from that.',
+    'At WebNL and Emerit I grew into Laravel, Vue and React, and built a local-first cash register. In 2023 I founded Pixel Perfect, where I run the business and do the frontend and UX on everything we make.',
+];
+
 export interface Experience {
     company: string;
     role: string;

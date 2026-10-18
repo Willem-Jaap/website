@@ -8,6 +8,7 @@ const sitemap = (): MetadataRoute.Sitemap => {
     return [
         { url, changeFrequency: 'weekly', priority: 1 },
         { url: `${url}/writing`, changeFrequency: 'weekly', priority: 0.8 },
+        { url: `${url}/list`, changeFrequency: 'monthly', priority: 0.5 },
         ...posts.map(post => ({
             url: `${url}/writing/${post.slug}`,
             lastModified: post.updatedAt,
