@@ -14,6 +14,9 @@ const ORIGIN = { x: GRID.x, y: GRID.y + GRID.height };
 /** A hairline that is at least one screen pixel wide, but never thinner than the printed line */
 const hairline = (world: number, screen = 1) => `max(${world}px, calc(var(--px, 1) * ${screen}px))`;
 
+/** Printed lines: a pale blue, so they read as part of the mat rather than on top of it */
+const INK = '#cde4fa';
+
 const range = (count: number) => Array.from({ length: count }, (_, index) => index);
 
 /** A single path with a line every `step` world units, counted from the grid's bottom-left corner */
@@ -70,26 +73,26 @@ const Mat = () => {
             <g clipPath="url(#mat-grid)">
                 <path
                     d={HALF_CM_LINES}
-                    stroke="#fff"
+                    stroke={INK}
                     strokeWidth={0.6}
                     className="transition-opacity duration-300"
-                    style={{ opacity: 'clamp(0, calc((var(--zoom, 0) - 0.8) * 0.3), 0.25)' }}
+                    style={{ opacity: 'clamp(0, calc((var(--zoom, 0) - 0.8) * 0.2), 0.15)' }}
                 />
                 <path
                     d={CM_LINES}
-                    stroke="#fff"
-                    opacity={0.4}
+                    stroke={INK}
+                    opacity={0.22}
                     style={{ strokeWidth: hairline(1) }}
                 />
                 <path
                     d={FIVE_CM_LINES}
-                    stroke="#fff"
-                    opacity={0.85}
+                    stroke={INK}
+                    opacity={0.45}
                     style={{ strokeWidth: hairline(2.5, 1.5) }}
                 />
 
                 {/* Angle guides from the bottom-left corner */}
-                <g stroke="#fff" opacity={0.75} style={{ strokeWidth: hairline(2, 1.25) }}>
+                <g stroke={INK} opacity={0.35} style={{ strokeWidth: hairline(2, 1.25) }}>
                     {[30, 45, 60].map(angle => {
                         const end = polar(angle, MAT.width * 2);
                         return (
@@ -106,9 +109,9 @@ const Mat = () => {
 
                 {/* Protractor */}
                 <g
-                    stroke="#fff"
+                    stroke={INK}
                     fill="none"
-                    opacity={0.85}
+                    opacity={0.45}
                     style={{ strokeWidth: hairline(2, 1.25) }}>
                     <path
                         d={`M ${ORIGIN.x} ${ORIGIN.y - protractor} A ${protractor} ${protractor} 0 0 1 ${ORIGIN.x + protractor} ${ORIGIN.y}`}
@@ -130,10 +133,10 @@ const Mat = () => {
                     />
                 </g>
                 <g
-                    fill="#fff"
+                    fill={INK}
                     fontSize={CM * 0.55}
                     textAnchor="middle"
-                    opacity={0.85}
+                    opacity={0.5}
                     fontFamily="var(--font-sans)">
                     {range(10).map(index => {
                         const degrees = index * 10;
@@ -147,7 +150,7 @@ const Mat = () => {
                 </g>
 
                 {/* Circle templates */}
-                <g stroke="#fff" fill="none" opacity={0.7} style={{ strokeWidth: hairline(1.5) }}>
+                <g stroke={INK} fill="none" opacity={0.35} style={{ strokeWidth: hairline(1.5) }}>
                     {range(5).map(index => (
                         <circle
                             key={index}
@@ -168,7 +171,7 @@ const Mat = () => {
             </g>
 
             {/* Rulers */}
-            <g fill="#fff" fontSize={CM * 0.38} fontFamily="var(--font-sans)" opacity={0.85}>
+            <g fill={INK} fontSize={CM * 0.38} fontFamily="var(--font-sans)" opacity={0.55}>
                 {/* Flat, without a group per number: the mat is the biggest part of the DOM */}
                 <g textAnchor="middle">
                     {range(COLS + 1).map(index => (
@@ -211,8 +214,8 @@ const Mat = () => {
                 x={GRID.x + GRID.width}
                 y={GRID.y + GRID.height + CM * 1.6}
                 textAnchor="end"
-                fill="#fff"
-                opacity={0.7}
+                fill={INK}
+                opacity={0.5}
                 fontSize={CM * 0.4}
                 letterSpacing={CM * 0.08}
                 fontFamily="var(--font-sans)">
