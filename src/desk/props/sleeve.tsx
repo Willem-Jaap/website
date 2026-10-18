@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+
 import { CM } from '~/desk/layout';
 import type { Track } from '~/desk/props/now-playing';
 import Prop from '~/desk/props/prop';
 
-const SIZE = 30 * CM;
+/** A 12-inch LP jacket */
+const SIZE = 31.4 * CM;
 
 /** Fetched from /api/now-playing (Last.fm). Stays null when it isn't set up. */
 const useNowPlaying = () => {
@@ -28,39 +31,41 @@ interface Props {
     rotate?: number;
 }
 
-/** The empty paper sleeve of the record on the turntable, with what's on repeat written on it */
+/** The album jacket of the record on the turntable, with a note of what's on repeat stuck to it */
 const Sleeve = ({ x, y, rotate }: Props) => {
     const track = useNowPlaying();
-    const note = track ? `${track.name} - ${track.artist}` : 'Dire Straits, Alchemy (live)';
+    const note = track ? `${track.name} - ${track.artist}` : 'Once Upon a Time in the West';
     const heading = track ? (track.live ? 'playing right now' : 'last played') : 'on repeat';
 
     return (
         <Prop
-            label={`Paper record sleeve, handwritten: ${heading}: ${note}`}
+            label={`The album cover of Alchemy: Dire Straits Live, with a note: ${heading}: ${note}`}
             x={x}
             y={y}
             width={SIZE}
             height={SIZE}
             rotate={rotate}
             nudge={3}
-            className="paper shadow-object rounded-[6px]">
-            {/* The round window that shows the label */}
-            <div
-                className="absolute rounded-full bg-black/[0.06] shadow-[inset_0_2px_6px_rgb(0_0_0/0.15)]"
-                style={{
-                    left: SIZE / 2 - 2 * CM,
-                    top: SIZE / 2 - 2 * CM,
-                    width: 4 * CM,
-                    height: 4 * CM,
-                }}
+            className="shadow-object rounded-[4px] bg-[#f3f0ea]">
+            {/* Cover photo (the 1984 UK LP, via the Cover Art Archive) */}
+            <Image
+                src="/assets/props/alchemy-cover.jpg"
+                alt=""
+                width={500}
+                height={500}
+                unoptimized
+                draggable={false}
+                className="absolute inset-0 size-full rounded-[inherit] object-cover"
             />
-            <div className="absolute top-[90px] left-[80px] w-[560px] font-hand text-ink/85">
-                <p className="text-[64px] leading-none text-ink/55">{heading}:</p>
-                <p className="mt-4 text-[92px] leading-[0.95] -rotate-2 line-clamp-3">{note}</p>
+            {/* Card stock: a soft sheen and worn, slightly lighter edges */}
+            <div className="absolute inset-0 rounded-[inherit] bg-[linear-gradient(125deg,rgb(255_255_255/0.18),transparent_35%,transparent_70%,rgb(0_0_0/0.12))] shadow-[inset_0_0_0_6px_rgb(255_255_255/0.12),inset_0_0_30px_rgb(0_0_0/0.18)]" />
+
+            {/* A note stuck on, with what's on repeat */}
+            <div className="paper absolute right-[60px] bottom-[60px] h-[330px] w-[400px] rotate-[-5deg] p-[34px] font-hand text-ink/85 shadow-[0_2px_2px_rgb(0_0_0/0.2),0_14px_24px_-6px_rgb(0_0_0/0.4)]">
+                <div className="absolute -top-[22px] left-[120px] h-[50px] w-[160px] rotate-[3deg] bg-[#f6e7a8]/80 shadow-[0_1px_2px_rgb(0_0_0/0.15)]" />
+                <p className="text-[48px] leading-none text-ink/55">{heading}:</p>
+                <p className="mt-3 text-[64px] leading-[0.95] -rotate-1 line-clamp-3">{note}</p>
             </div>
-            <p className="absolute bottom-[70px] left-[80px] text-[30px] tracking-[0.12em] text-ink/40">
-                vertigo · 1984
-            </p>
         </Prop>
     );
 };

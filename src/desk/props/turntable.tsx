@@ -46,7 +46,7 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
     return (
         <div
             role="img"
-            aria-label="A walnut turntable playing Alchemy, the 1984 live album by Dire Straits"
+            aria-label="A walnut turntable playing side one of Alchemy, the 1984 live album by Dire Straits"
             className="group absolute"
             style={{ left: x, top: y, width: WIDTH, height: HEIGHT, rotate: `${rotate}deg` }}>
             {/* Plinth */}
@@ -111,22 +111,17 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
                     ))}
                     <div className="absolute top-[20%] left-[72%] h-[4px] w-[90px] rotate-[35deg] rounded-full bg-white/15" />
                     <div className="absolute top-[80%] left-[30%] size-[5px] rounded-full bg-white/30" />
+                    {/* The real side one label (US pressing, via the Cover Art Archive) */}
                     <div
-                        className="absolute grid place-items-center rounded-full bg-[#e8572e] text-center text-[#2a140a]"
-                        style={{ inset: (DISC - LABEL) / 2 }}>
-                        <p className="absolute top-[60px] text-[30px] font-bold tracking-[0.12em]">
-                            dire straits
-                        </p>
-                        <p className="absolute top-[118px] font-serif text-[62px] leading-none text-[#fff3e6] italic">
-                            Alchemy
-                        </p>
-                        <p className="absolute top-[190px] text-[22px] tracking-[0.1em]">
-                            dire straits live
-                        </p>
-                        <p className="absolute bottom-[64px] text-[22px] tracking-[0.1em]">
-                            side a · 33⅓ · 1984
-                        </p>
-                    </div>
+                        className="absolute overflow-hidden rounded-full bg-[#ece8df]"
+                        style={{
+                            inset: (DISC - LABEL) / 2,
+                            backgroundImage: 'url(/assets/props/alchemy-label.jpg)',
+                            // The photo shows a little vinyl around the label; crop it off
+                            backgroundSize: '106%',
+                            backgroundPosition: 'center',
+                        }}
+                    />
                 </div>
                 {/* Light from the window stays put while the record turns */}
                 <div
