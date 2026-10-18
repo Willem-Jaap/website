@@ -48,10 +48,11 @@ export const REGIONS: Record<RegionId, Region> = {
     github: {
         id: 'github',
         label: 'Open source',
-        x: 46 * CM,
-        y: 44 * CM,
-        width: 70 * CM,
-        height: 32 * CM,
+        // In the bottom right corner of the mat
+        x: 76 * CM,
+        y: 48 * CM,
+        width: 40 * CM,
+        height: 28 * CM,
     },
     // Off the mat, on the bare desk to the left
     props: {

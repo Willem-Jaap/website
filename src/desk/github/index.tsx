@@ -6,12 +6,12 @@ import Region from '~/desk/region';
 
 /** Where each repo lies, in order of REPOS, with how it's stuck to the mat */
 const SPOTS = [
-    { x: 420, y: 160, rotate: -3, fix: 'pin' },
-    { x: 825, y: 145, rotate: 2, fix: 'tape' },
-    { x: 1215, y: 175, rotate: -1.5, fix: 'pin' },
-    { x: 435, y: 445, rotate: 1.5, fix: 'tape' },
-    { x: 840, y: 430, rotate: -2.5, fix: 'pin' },
-    { x: 1230, y: 460, rotate: 2.5, fix: 'tape' },
+    { x: 80, y: 210, rotate: -3, fix: 'pin' },
+    { x: 485, y: 195, rotate: 2, fix: 'tape' },
+    { x: 875, y: 225, rotate: -1.5, fix: 'pin' },
+    { x: 95, y: 495, rotate: 1.5, fix: 'tape' },
+    { x: 500, y: 480, rotate: -2.5, fix: 'pin' },
+    { x: 890, y: 510, rotate: 2.5, fix: 'tape' },
 ] as const;
 
 const PIN_COLORS = ['red', 'blue', 'yellow'] as const;
@@ -24,7 +24,7 @@ interface Props {
 
 const GithubRegion = ({ data = SNAPSHOT }: Props) => (
     <Region id="github">
-        <h2 className="pointer-events-none absolute top-[10px] left-[400px] font-hand text-[120px] leading-none text-white/90 -rotate-2">
+        <h2 className="pointer-events-none absolute top-[70px] left-[60px] font-hand text-[120px] leading-none text-white/90 -rotate-2">
             Open source
         </h2>
 
@@ -50,7 +50,7 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             );
         })}
 
-        <StickyNote url={PROFILE_URL} x={2380} y={640} rotate={4} size={260}>
+        <StickyNote url={PROFILE_URL} x={1290} y={250} rotate={4} size={260}>
             <span className="font-hand text-[44px] leading-[1.05]">More at</span>
             <span className="mt-2 font-hand text-[46px] leading-none font-bold underline decoration-2 underline-offset-8">
                 github.com/
@@ -62,7 +62,7 @@ const GithubRegion = ({ data = SNAPSHOT }: Props) => (
             </span>
         </StickyNote>
 
-        <Calendar calendar={data.calendar} x={1660} y={230} rotate={1.2} />
+        <Calendar calendar={data.calendar} x={90} y={790} rotate={-0.8} />
     </Region>
 );
 
