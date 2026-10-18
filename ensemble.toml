@@ -3,7 +3,7 @@ node = "22"
 pnpm = "9.9.0"
 
 [setup]
-checkout = "pnpm install"
+checkout = "pnpm install && ([ -f .env.local ] || cp .env.example .env.local)"
 
 [services.dev]
 command = "pnpm dev"
