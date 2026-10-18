@@ -160,14 +160,23 @@ const Viewport = ({ bounds, initial, children }: Props) => {
                 pinching,
                 tap,
                 cancel,
+                event,
+                first,
+                memo,
             }) => {
                 if (pinching) return cancel();
+                // Things with their own gestures (like the iPad's swipe) don't pan the desk
+                const isOwnGesture = first
+                    ? Boolean((event.target as Element | null)?.closest?.('[data-no-pan]'))
+                    : (memo as boolean);
                 if (tap) {
                     const rect = viewportRef.current?.getBoundingClientRect();
                     return onTap(px - (rect?.left ?? 0), py - (rect?.top ?? 0));
                 }
+                if (isOwnGesture) return isOwnGesture;
                 if (Math.hypot(mx, my) > 4) dragged.current = true;
                 camera.panBy(dx, dy);
+                return isOwnGesture;
             },
             onDragEnd: ({ velocity: [vx, vy], direction: [dirX, dirY], pinching }) => {
                 if (pinching || !dragged.current) return;

@@ -1,18 +1,23 @@
-import EyesCard from '~/desk/pixelperfect/eyes-card';
-import Folder from '~/desk/pixelperfect/folder';
-import Stickers from '~/desk/pixelperfect/stickers';
-import TeamPhoto from '~/desk/pixelperfect/team-photo';
-import TencilCard from '~/desk/pixelperfect/tencil-card';
+import { CM } from '~/desk/layout';
+import Ipad from '~/desk/pixelperfect/ipad';
+import Pencil from '~/desk/pixelperfect/pencil';
+import { EyesScreen, PixelPerfectScreen, TencilScreen } from '~/desk/pixelperfect/screens';
 import Region from '~/desk/region';
 
-/** Pixel Perfect: the agency's folder, with its products clipped and taped to it */
+/** Pixel Perfect on an iPad, a screen for the agency and one for each of its products */
 const PixelPerfectRegion = () => (
     <Region id="pixelperfect">
-        <Folder />
-        <Stickers />
-        <TencilCard />
-        <EyesCard />
-        <TeamPhoto />
+        <Ipad
+            x={1 * CM}
+            y={0.3 * CM}
+            rotate={-1.5}
+            screens={[
+                { label: 'Pixel Perfect', content: <PixelPerfectScreen /> },
+                { label: 'Eyes', content: <EyesScreen /> },
+                { label: 'Tencil', content: <TencilScreen /> },
+            ]}
+        />
+        <Pencil x={36.6 * CM} y={15 * CM} rotate={86} />
     </Region>
 );
 
