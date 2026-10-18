@@ -58,7 +58,7 @@ const Viewport = ({ bounds, initial, children }: Props) => {
         if (!viewport) return;
         camera.setBounds(bounds);
         camera.setViewport(viewport.clientWidth, viewport.clientHeight);
-        camera.set(camera.fit(initial(viewport.clientWidth, viewport.clientHeight)));
+        camera.frame(initial(viewport.clientWidth, viewport.clientHeight));
 
         const observer = new ResizeObserver(() =>
             camera.setViewport(viewport.clientWidth, viewport.clientHeight),
@@ -168,6 +168,10 @@ const Viewport = ({ bounds, initial, children }: Props) => {
         <div
             ref={viewportRef}
             className="fixed inset-0 overflow-hidden touch-none select-none cursor-grab active:cursor-grabbing"
+            onScroll={event => {
+                // Focus or find-in-page can scroll this container; the camera owns the position
+                event.currentTarget.scrollTo(0, 0);
+            }}
             onClickCapture={event => {
                 // Don't treat the end of a drag as a click on whatever is under the cursor
                 if (!dragged.current) return;

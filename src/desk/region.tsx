@@ -29,7 +29,7 @@ const Region = ({ id, className, children }: Props) => {
 
     return (
         <section
-            id={id}
+            data-region={id}
             aria-label={region.label}
             className={cn('absolute', isFar && 'cursor-zoom-in', className)}
             style={{ left: region.x, top: region.y, width: region.width, height: region.height }}

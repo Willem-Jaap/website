@@ -29,6 +29,8 @@ const createCamera = () => {
     let viewport = { width: 1, height: 1 };
     let bounds: Rect | null = null;
     let animation: number | null = null;
+    /** The rect the camera was last framed on, until the user moves it themselves */
+    let anchor: Rect | null = null;
     const listeners = new Set<Listener>();
 
     const emit = () => listeners.forEach(listener => listener());
@@ -82,10 +84,16 @@ const createCamera = () => {
             return () => listeners.delete(listener);
         },
         setViewport: (width: number, height: number) => {
-            // Keep whatever is in the middle of the screen there (e.g. rotating a phone)
             const dx = (width - viewport.width) / 2;
             const dy = (height - viewport.height) / 2;
             viewport = { width, height };
+            // Still framed on something: frame it again (late layout, rotating a phone)
+            if (anchor) {
+                stop();
+                set(fit(anchor));
+                return;
+            }
+            // Otherwise keep whatever is in the middle of the screen there
             set({ ...state, x: state.x + dx, y: state.y + dy });
         },
         setBounds: (rect: Rect) => {
@@ -94,15 +102,24 @@ const createCamera = () => {
         stop,
         set: (next: CameraState) => {
             stop();
+            anchor = null;
             set(next);
+        },
+        /** Frame `rect` immediately, and keep it framed when the viewport resizes */
+        frame: (rect: Rect) => {
+            stop();
+            anchor = rect;
+            set(fit(rect));
         },
         panBy: (dx: number, dy: number) => {
             stop();
+            anchor = null;
             set({ ...state, x: state.x + dx, y: state.y + dy });
         },
         /** Zoom by `factor` keeping the screen point (px, py) fixed */
         zoomAt: (factor: number, px = viewport.width / 2, py = viewport.height / 2) => {
             stop();
+            anchor = null;
             const z = clamp(state.z * factor, MIN_ZOOM, MAX_ZOOM);
             const ratio = z / state.z;
             set({ z, x: px - (px - state.x) * ratio, y: py - (py - state.y) * ratio });
@@ -111,6 +128,7 @@ const createCamera = () => {
         /** Smoothly animate to the camera that frames `rect` */
         flyTo: (rect: Rect, { padding = defaultPadding(), duration = 700 } = {}) => {
             stop();
+            anchor = rect;
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const from = state;
             const to = fit(rect, padding);
