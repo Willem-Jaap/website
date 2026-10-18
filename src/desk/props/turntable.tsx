@@ -1,7 +1,17 @@
 'use client';
 
+import { type MouseEvent, useEffect } from 'react';
+
 import { CM } from '~/desk/layout';
-import { useIsRegionFocused } from '~/desk/region';
+import type { SideTrack } from '~/desk/props/alchemy';
+import {
+    CUE_TIME,
+    INNER_GROOVE,
+    OUTER_GROOVE,
+    player,
+    trackStarts,
+    usePlayer,
+} from '~/desk/props/player';
 import cn from '~/utils/cn';
 
 const WIDTH = 46 * CM;
@@ -12,13 +22,30 @@ const PLATTER = 31 * CM;
 /** A 12" LP */
 const DISC = 30 * CM;
 const LABEL = 10 * CM;
-/** Where the tonearm turns, and where its stylus sits in the outer grooves */
+/** Where the tonearm turns, and how far from there the stylus is */
 const PIVOT = { x: 39 * CM, y: 8.5 * CM };
-const STYLUS = { x: 28.2 * CM, y: 26.4 * CM };
+const ARM_LENGTH = 21 * CM;
+/** The arm lying on its rest, in radians (just short of straight down) */
+const REST_ANGLE = 1.36;
 
-// Rounded, as trigonometry can differ in the last digits between server and browser
-const ARM_ANGLE = Math.round(Math.atan2(STYLUS.y - PIVOT.y, STYLUS.x - PIVOT.x) * 1e4) / 1e4;
-const ARM_LENGTH = Math.round(Math.hypot(STYLUS.x - PIVOT.x, STYLUS.y - PIVOT.y));
+/**
+ * The arm's angle that puts the stylus `radius` cm from the spindle. The stylus swings on a
+ * circle around the pivot and gets closer to the spindle the further the arm turns, so bisect.
+ */
+const angleFor = (radius: number) => {
+    let low = 1.6;
+    let high = 3.1;
+    for (let i = 0; i < 30; i++) {
+        const angle = (low + high) / 2;
+        const distance = Math.hypot(
+            PIVOT.x + Math.cos(angle) * ARM_LENGTH - CENTER.x,
+            PIVOT.y + Math.sin(angle) * ARM_LENGTH - CENTER.y,
+        );
+        if (distance > radius * CM) low = angle;
+        else high = angle;
+    }
+    return Math.round(((low + high) / 2) * 1e4) / 1e4;
+};
 
 const ALUMINIUM =
     'linear-gradient(135deg, #f4f5f6 0%, #bfc3c8 35%, #eef0f2 52%, #9da2a8 78%, #d9dce0 100%)';
@@ -34,20 +61,44 @@ interface Props {
     x: number;
     y: number;
     rotate?: number;
+    /** Side one of the record on it */
+    tracks: SideTrack[];
 }
 
 /**
- * A walnut direct-drive turntable seen from above, an LP on the platter and the arm in the
- * groove. The record turns when you hover it or zoom in on the corner.
+ * A walnut direct-drive turntable seen from above with Alchemy on the platter. Click the arm or
+ * start/stop to play side one, or click into the grooves to drop the needle there: it plays
+ * Apple's previews with a bit of surface noise, and moves on to the next track like a record.
  */
-const Turntable = ({ x, y, rotate = 0 }: Props) => {
-    const isPlaying = useIsRegionFocused('props');
+const Turntable = ({ x, y, rotate = 0, tracks }: Props) => {
+    const { status, track, radius } = usePlayer();
+    const isSpinning = status !== 'idle';
+    const angle = radius === null ? REST_ANGLE : angleFor(radius);
+    const playing = track === null ? null : tracks[track];
+
+    useEffect(() => {
+        player.setTracks(tracks);
+        return () => player.stop();
+    }, [tracks]);
+
+    /** Drop the needle where the record was clicked */
+    const onRecordClick = (event: MouseEvent<HTMLButtonElement>) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const scale = rect.width / DISC;
+        const distance = Math.hypot(
+            event.clientX - (rect.left + rect.width / 2),
+            event.clientY - (rect.top + rect.height / 2),
+        );
+        const cm = distance / scale / CM;
+        if (cm < INNER_GROOVE - 0.6) return player.toggle();
+        player.cueAt(cm);
+    };
 
     return (
         <div
-            role="img"
-            aria-label="A walnut turntable playing side one of Alchemy, the 1984 live album by Dire Straits"
-            className="group absolute"
+            role="group"
+            aria-label="A walnut turntable with Alchemy, the 1984 live album by Dire Straits"
+            className="absolute"
             style={{ left: x, top: y, width: WIDTH, height: HEIGHT, rotate: `${rotate}deg` }}>
             {/* Plinth */}
             <div
@@ -88,27 +139,36 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
                 style={{ ...circle(PLATTER - 34), background: ALUMINIUM }}
             />
 
-            {/* The record */}
-            <div
-                className="absolute rounded-full shadow-[0_4px_10px_rgb(0_0_0/0.5)]"
-                style={circle(DISC)}>
+            {/* The record: click into the grooves to play from there */}
+            <button
+                type="button"
+                aria-label={
+                    isSpinning
+                        ? 'Lift the needle'
+                        : 'Drop the needle: play side one of Alchemy (30 second previews)'
+                }
+                className="absolute cursor-pointer rounded-full shadow-[0_4px_10px_rgb(0_0_0/0.5)]"
+                style={circle(DISC)}
+                onClick={onRecordClick}>
                 <div
                     className={cn(
-                        'absolute inset-0 rounded-full motion-safe:animate-[spin_1.8s_linear_infinite] [animation-play-state:paused] group-hover:[animation-play-state:running]',
-                        isPlaying && '[animation-play-state:running]',
+                        'absolute inset-0 rounded-full motion-safe:animate-[spin_1.8s_linear_infinite] [animation-play-state:paused]',
+                        isSpinning && '[animation-play-state:running]',
                     )}
                     style={{
                         background:
                             'repeating-radial-gradient(circle, #121212 0 2px, #1c1c1c 2px 3.5px)',
                     }}>
-                    {/* Gaps between the tracks, and a few specks so you can see it turn */}
-                    {[0.62, 0.74, 0.86].map(ratio => (
-                        <div
-                            key={ratio}
-                            className="absolute rounded-full border-[5px] border-[#0b0b0b]"
-                            style={{ inset: (DISC * (1 - ratio)) / 2 }}
-                        />
-                    ))}
+                    {/* Lead-in, the gaps between the tracks and the run-out, then a few specks */}
+                    {[OUTER_GROOVE + 0.3, ...trackStarts(tracks).slice(1), INNER_GROOVE].map(
+                        start => (
+                            <div
+                                key={start}
+                                className="absolute rounded-full border-[5px] border-[#0b0b0b]"
+                                style={{ inset: DISC / 2 - start * CM }}
+                            />
+                        ),
+                    )}
                     <div className="absolute top-[20%] left-[72%] h-[4px] w-[90px] rotate-[35deg] rounded-full bg-white/15" />
                     <div className="absolute top-[80%] left-[30%] size-[5px] rounded-full bg-white/30" />
                     {/* The real side one label (US pressing, via the Cover Art Archive) */}
@@ -137,23 +197,35 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
                     className="absolute size-[30px] -translate-1/2 rounded-full shadow-[0_2px_4px_rgb(0_0_0/0.6)]"
                     style={{ left: DISC / 2, top: DISC / 2, background: ALUMINIUM }}
                 />
-            </div>
+            </button>
 
             {/* Arm rest */}
             <div
-                className="absolute size-[70px] rounded-full bg-[radial-gradient(circle,#222_40%,#555_42%,#2a2a2a_70%)] shadow-[0_6px_10px_rgb(0_0_0/0.5)]"
-                style={{ left: 41.5 * CM, top: 24 * CM }}
+                className="absolute size-[70px] -translate-1/2 rounded-full bg-[radial-gradient(circle,#222_40%,#555_42%,#2a2a2a_70%)] shadow-[0_6px_10px_rgb(0_0_0/0.5)]"
+                style={{
+                    left: PIVOT.x + Math.round(Math.cos(REST_ANGLE) * ARM_LENGTH * 0.78),
+                    top: PIVOT.y + Math.round(Math.sin(REST_ANGLE) * ARM_LENGTH * 0.78),
+                }}
             />
 
-            {/* Tonearm: counterweight, pivot, tube and headshell */}
-            <div
-                className="absolute origin-left"
+            {/* Tonearm: counterweight, tube and headshell. Lifted (bigger shadow) while it swings */}
+            <button
+                type="button"
+                aria-label={isSpinning ? 'Lift the needle' : 'Play side one of Alchemy'}
+                aria-pressed={isSpinning}
+                className={cn(
+                    'group/arm absolute h-0 origin-left cursor-pointer motion-safe:transition-[rotate] motion-safe:ease-in-out',
+                    status === 'cueing' &&
+                        '[&>div]:translate-y-[-6px] [&>div]:shadow-[0_34px_26px_rgb(0_0_0/0.35)]',
+                )}
                 style={{
                     left: PIVOT.x,
                     top: PIVOT.y,
                     width: ARM_LENGTH,
-                    rotate: `${ARM_ANGLE}rad`,
-                }}>
+                    rotate: `${angle}rad`,
+                    transitionDuration: `${CUE_TIME}ms`,
+                }}
+                onClick={() => player.toggle()}>
                 <div
                     className="absolute top-[-34px] left-[-190px] h-[68px] w-[120px] rounded-[10px] shadow-[0_10px_14px_rgb(0_0_0/0.5)]"
                     style={{ background: 'linear-gradient(#e2e4e7, #8c9096 55%, #c8cbcf)' }}
@@ -174,7 +246,9 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
                     className="absolute top-[30px] h-[12px] w-[50px] rounded-full bg-[#c9ccd1]"
                     style={{ left: ARM_LENGTH - 10 }}
                 />
-            </div>
+                {/* A bigger target than the thin arm itself */}
+                <span className="absolute top-[-60px] left-0 h-[120px] w-full" />
+            </button>
             <div
                 className="absolute size-[150px] -translate-1/2 rounded-full shadow-[0_10px_20px_rgb(0_0_0/0.55)]"
                 style={{
@@ -185,11 +259,14 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
             />
 
             {/* Controls: start/stop, speed and the pitch slider */}
-            <div
-                className="absolute flex h-[86px] w-[190px] items-center justify-center rounded-[8px] text-[22px] font-semibold text-[#2b2b2b] shadow-[0_4px_8px_rgb(0_0_0/0.45)]"
-                style={{ left: 1.6 * CM, top: 31.6 * CM, background: ALUMINIUM }}>
+            <button
+                type="button"
+                aria-label={isSpinning ? 'Stop' : 'Start: play side one of Alchemy'}
+                className="absolute flex h-[86px] w-[190px] cursor-pointer items-center justify-center rounded-[8px] text-[22px] font-semibold text-[#2b2b2b] shadow-[0_4px_8px_rgb(0_0_0/0.45)] active:translate-y-[2px] active:shadow-[0_2px_4px_rgb(0_0_0/0.45)]"
+                style={{ left: 1.6 * CM, top: 31.6 * CM, background: ALUMINIUM }}
+                onClick={() => player.toggle()}>
                 start · stop
-            </div>
+            </button>
             {['33', '45'].map((speed, index) => (
                 <div
                     key={speed}
@@ -217,7 +294,7 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
             <div
                 className={cn(
                     'absolute size-[44px] rounded-full bg-[#5a1a0e] shadow-[inset_0_2px_4px_rgb(0_0_0/0.6)] transition-colors duration-500',
-                    isPlaying && 'bg-[#ff6a3d] shadow-[0_0_30px_10px_rgb(255_106_61/0.45)]',
+                    isSpinning && 'bg-[#ff6a3d] shadow-[0_0_30px_10px_rgb(255_106_61/0.45)]',
                 )}
                 style={{ left: 1.8 * CM, top: 2 * CM }}
             />
@@ -225,6 +302,27 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
                 className="absolute font-semibold tracking-[0.2em] text-[#f1d9bd]/55 text-[22px]"
                 style={{ left: 38 * CM, top: 33.4 * CM }}>
                 direct drive
+            </p>
+            {/* What's playing, printed small on the plinth like a display, for screen readers too */}
+            <p
+                aria-live="polite"
+                className={cn(
+                    'absolute max-w-[18cm] truncate text-[24px] font-medium tracking-[0.04em] text-[#ffb08f] transition-opacity duration-500',
+                    status === 'playing' ? 'opacity-90' : 'opacity-0',
+                )}
+                style={{ left: 13 * CM, top: 33.2 * CM, maxWidth: 22 * CM }}>
+                {playing ? (
+                    <>
+                        ▶ {playing.name} ·{' '}
+                        <a
+                            href={playing.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="underline underline-offset-4">
+                            full song on apple music
+                        </a>
+                    </>
+                ) : null}
             </p>
         </div>
     );

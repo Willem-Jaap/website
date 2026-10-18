@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { CM } from '~/desk/layout';
 import type { Track } from '~/desk/props/now-playing';
+import { player, usePlayer } from '~/desk/props/player';
 import Prop from '~/desk/props/prop';
 
 /** A 12-inch LP jacket */
@@ -34,8 +35,21 @@ interface Props {
 /** The album jacket of the record on the turntable, with a note of what's on repeat stuck to it */
 const Sleeve = ({ x, y, rotate }: Props) => {
     const track = useNowPlaying();
-    const note = track ? `${track.name} - ${track.artist}` : 'Once Upon a Time in the West';
-    const heading = track ? (track.live ? 'playing right now' : 'last played') : 'on repeat';
+    const turntable = usePlayer();
+    const spinning = turntable.track === null ? null : player.getTracks()[turntable.track];
+    // What the turntable plays wins, then Last.fm, then the favourite
+    const note = spinning
+        ? spinning.name
+        : track
+          ? `${track.name} - ${track.artist}`
+          : 'Once Upon a Time in the West';
+    const heading = spinning
+        ? 'playing right now'
+        : track
+          ? track.live
+              ? 'playing right now'
+              : 'last played'
+          : 'on repeat';
 
     return (
         <Prop

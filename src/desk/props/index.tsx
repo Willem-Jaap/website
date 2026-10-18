@@ -1,4 +1,5 @@
 import { CM } from '~/desk/layout';
+import { getSideOne } from '~/desk/props/alchemy';
 import Crate from '~/desk/props/crate';
 import Sleeve from '~/desk/props/sleeve';
 import TrainingCard from '~/desk/props/training-card';
@@ -7,9 +8,9 @@ import WeightPlate from '~/desk/props/weight-plate';
 import Region from '~/desk/region';
 
 /** Off the mat on the bare desk: the turntable, the records, and the gym */
-const PropsRegion = () => (
+const PropsRegion = async () => (
     <Region id="props">
-        <Turntable x={1 * CM} y={1 * CM} rotate={-1.5} />
+        <Turntable x={1 * CM} y={1 * CM} rotate={-1.5} tracks={await getSideOne()} />
         <Crate x={1 * CM} y={43 * CM} rotate={2} />
         <Sleeve x={28 * CM} y={40 * CM} rotate={7} />
         <TrainingCard x={2 * CM} y={82 * CM} rotate={-4} />

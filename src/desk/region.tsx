@@ -102,6 +102,9 @@ const Region = ({ id, className, children }: Props) => {
                 if (event.detail === 0) return;
                 if (isFar) {
                     focusRegion(id, 'click');
+                } else if ((event.target as Element).closest('button')) {
+                    // Controls (like the turntable's) work at any zoom
+                    return;
                 } else if (
                     !flyToObject(event.target as Element, event.currentTarget, event.clientX)
                 ) {
