@@ -2,17 +2,20 @@
 
 import type { PropsWithChildren } from 'react';
 
-import { camera, useZoomLevel } from '~/canvas/camera';
+import { camera, useIsFramed } from '~/canvas/camera';
 import { REGIONS, type RegionId } from '~/desk/layout';
 import cn from '~/utils/cn';
-
-/** Below this zoom a region is "far away": clicking it flies the camera there */
-export const FOCUS_ZOOM = 0.45;
 
 export const focusRegion = (id: RegionId) => {
     camera.flyTo(REGIONS[id]);
     history.replaceState(null, '', `#${id}`);
 };
+
+/**
+ * Whether a region fills the screen. Until it does, clicking it flies the camera there
+ * instead of following links.
+ */
+export const useIsRegionFocused = (id: RegionId) => useIsFramed(REGIONS[id]);
 
 interface Props extends PropsWithChildren {
     id: RegionId;
@@ -25,7 +28,7 @@ interface Props extends PropsWithChildren {
  */
 const Region = ({ id, className, children }: Props) => {
     const region = REGIONS[id];
-    const isFar = useZoomLevel([FOCUS_ZOOM]) === 0;
+    const isFar = !useIsRegionFocused(id);
 
     return (
         <section

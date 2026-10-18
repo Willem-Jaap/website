@@ -20,6 +20,9 @@ export interface Rect {
 export const MIN_ZOOM = 0.08;
 export const MAX_ZOOM = 4;
 
+/** Screen pixels reserved at the bottom for the dock */
+const DOCK_SPACE = 64;
+
 type Listener = () => void;
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
@@ -61,10 +64,13 @@ const createCamera = () => {
 
     /** Camera that fits `rect` in the viewport with some padding */
     const fit = (rect: Rect, padding = defaultPadding()): CameraState => {
+        // Keep framed content clear of the dock floating at the bottom
+        const top = padding;
+        const bottom = padding + DOCK_SPACE;
         const z = clamp(
             Math.min(
                 (viewport.width - padding * 2) / rect.width,
-                (viewport.height - padding * 2) / rect.height,
+                (viewport.height - top - bottom) / rect.height,
             ),
             MIN_ZOOM,
             MAX_ZOOM,
@@ -72,7 +78,7 @@ const createCamera = () => {
         return {
             z,
             x: viewport.width / 2 - (rect.x + rect.width / 2) * z,
-            y: viewport.height / 2 - (rect.y + rect.height / 2) * z,
+            y: top + (viewport.height - top - bottom) / 2 - (rect.y + rect.height / 2) * z,
         };
     };
 
@@ -173,3 +179,13 @@ export const useCamera = <T>(selector: (state: CameraState) => T): T =>
  */
 export const useZoomLevel = (thresholds: number[]) =>
     useCamera(({ z }) => thresholds.filter(threshold => z >= threshold).length);
+
+/**
+ * Whether `rect` fills most of the screen in either direction: close enough to read and
+ * interact with, whatever the screen size (a fitted region is zoom ~0.6 on a laptop, ~0.2 on a phone).
+ */
+export const useIsFramed = (rect: Rect, share = 0.6) =>
+    useCamera(({ z }) => {
+        const viewport = camera.getViewport();
+        return rect.width * z > viewport.width * share || rect.height * z > viewport.height * share;
+    });

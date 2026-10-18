@@ -2,8 +2,7 @@
 
 import type { CSSProperties } from 'react';
 
-import { useZoomLevel } from '~/canvas/camera';
-import { FOCUS_ZOOM } from '~/desk/region';
+import { useIsRegionFocused } from '~/desk/region';
 import cn from '~/utils/cn';
 
 /**
@@ -11,7 +10,7 @@ import cn from '~/utils/cn';
  * it fades back so it doesn't compete with the objects.
  */
 const MatNote = ({ className, style }: { className?: string; style?: CSSProperties }) => {
-    const isFar = useZoomLevel([FOCUS_ZOOM]) === 0;
+    const isFar = !useIsRegionFocused('about');
 
     return (
         <div

@@ -2,14 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-import { useZoomLevel } from '~/canvas/camera';
+import { useIsRegionFocused } from '~/desk/region';
 import { CM } from '~/desk/layout';
 import Prop from '~/desk/props/prop';
 import type { Track } from '~/desk/props/now-playing';
 import cn from '~/utils/cn';
-
-/** Close enough to read the label: the record starts turning */
-const SPIN_ZOOM = 0.45;
 
 const SLEEVE = 18 * CM;
 /** A 7" single */
@@ -38,7 +35,7 @@ interface Props {
 /** A 7" record half out of its paper sleeve, with what's on repeat written on the sleeve */
 const Record = ({ x, y }: Props) => {
     const track = useNowPlaying();
-    const isClose = useZoomLevel([SPIN_ZOOM]) === 1;
+    const isClose = useIsRegionFocused('props');
 
     const note = track ? `${track.name} - ${track.artist}` : 'distorted kicks, 150 bpm';
     const heading = track ? (track.live ? 'playing right now' : 'last played') : 'on repeat';

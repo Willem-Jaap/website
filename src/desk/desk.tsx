@@ -1,18 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import { type PropsWithChildren, useEffect } from 'react';
 
 import { camera } from '~/canvas/camera';
 import Mat from '~/canvas/mat';
 import Viewport from '~/canvas/viewport';
-import AboutRegion from '~/desk/about';
 import Dock from '~/desk/dock';
-import GithubRegion from '~/desk/github';
 import { isRegionId, MAT, REGIONS } from '~/desk/layout';
-import PixelPerfectRegion from '~/desk/pixelperfect';
-import PropsRegion from '~/desk/props';
 import Title from '~/desk/title';
-import WritingRegion from '~/desk/writing';
 
 const MOBILE_WIDTH = 768;
 
@@ -23,7 +18,8 @@ const initialView = (width: number) => {
     return width < MOBILE_WIDTH ? REGIONS.about : MAT;
 };
 
-const Desk = () => {
+/** The interactive desk; regions are passed in so they can stay server components */
+const Desk = ({ children }: PropsWithChildren) => {
     useEffect(() => {
         const onHashChange = () => {
             const hash = window.location.hash.slice(1);
@@ -38,11 +34,7 @@ const Desk = () => {
             <Viewport bounds={MAT} initial={initialView}>
                 <Mat />
                 <Title />
-                <AboutRegion />
-                <PixelPerfectRegion />
-                <GithubRegion />
-                <WritingRegion />
-                <PropsRegion />
+                {children}
             </Viewport>
             <Dock />
         </>

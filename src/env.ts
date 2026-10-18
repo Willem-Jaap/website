@@ -10,6 +10,9 @@ const env = createEnv({
     experimental__runtimeEnv: {
         NEXT_PUBLIC_URL:
             process.env.NEXT_PUBLIC_URL ??
+            (process.env.VERCEL_PROJECT_PRODUCTION_URL
+                ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+                : undefined) ??
             (process.env.VERCEL_URL
                 ? `https://${process.env.VERCEL_URL}`
                 : `http://localhost:${process.env.PORT ?? 3000}`),

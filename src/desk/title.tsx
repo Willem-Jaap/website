@@ -11,7 +11,7 @@ const Title = () => (
         <p className="mt-12 font-hand text-[80px] whitespace-nowrap text-white/75 rotate-1">
             founder &amp; developer, NL
         </p>
-        <p className="mt-28 text-[32px] leading-relaxed tracking-[0.3em] uppercase text-white/60">
+        <p className="mt-28 max-w-full text-balance text-[32px] leading-relaxed tracking-[0.3em] uppercase text-white/60">
             Scroll to zoom · drag to look around
         </p>
     </div>

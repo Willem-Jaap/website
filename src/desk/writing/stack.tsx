@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 
-import { camera, useCamera } from '~/canvas/camera';
+import { useIsRegionFocused } from '~/desk/region';
 import { posts } from '~/content/writing';
-import { REGIONS } from '~/desk/layout';
 import Sheet from '~/desk/writing/sheet';
 
 interface Pose {
@@ -29,16 +28,9 @@ const FANNED: Pose[] = [
 
 const FALLBACK: Pose = { x: 0, y: 0, rotate: 0 };
 
-/** Fan out once the corner fills most of the screen, whatever its size */
-const useIsFocused = () =>
-    useCamera(({ z }) => {
-        const viewport = camera.getViewport();
-        const region = REGIONS.writing;
-        return region.width * z > viewport.width * 0.6 || region.height * z > viewport.height * 0.6;
-    });
-
 const Stack = () => {
-    const isFocused = useIsFocused();
+    // Fan out once the corner fills most of the screen, whatever its size
+    const isFocused = useIsRegionFocused('writing');
     const poses = isFocused ? FANNED : PILED;
 
     return (
