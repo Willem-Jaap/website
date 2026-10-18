@@ -15,6 +15,27 @@ body {
     overscroll-behavior: none;
 }
 
+@layer base {
+    /*
+     * Keyboard focus, visible on the mat, on paper and on dark cards. On the desk --px is one
+     * screen pixel in world units, so the ring stays the same size at every zoom level.
+     */
+    :focus-visible {
+        outline: calc(3px * var(--px, 1)) solid #ffbf47;
+        outline-offset: calc(3px * var(--px, 1));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 body {
     background-color: var(--color-desk);
     background-image: url('/assets/images/noise.png');

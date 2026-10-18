@@ -49,7 +49,7 @@ const Stack = () => {
                         <Link
                             href={`/writing/${post.slug}`}
                             draggable={false}
-                            className="block transition-transform duration-200 ease-out hover:-translate-y-2 focus-visible:-translate-y-2 focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-white">
+                            className="block transition-transform duration-200 ease-out hover:-translate-y-2 focus-visible:-translate-y-2">
                             <Sheet post={post} />
                         </Link>
                     </li>

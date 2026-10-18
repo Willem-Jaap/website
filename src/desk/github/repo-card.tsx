@@ -36,7 +36,7 @@ const Link = ({
         aria-label={label}
         draggable={false}
         className={cn(
-            'group absolute block transition-[translate,box-shadow] duration-200 hover:-translate-y-1.5 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white',
+            'group absolute block transition-[translate,box-shadow] duration-200 hover:-translate-y-1.5',
             className,
         )}
         style={style}>
