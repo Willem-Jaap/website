@@ -46,7 +46,7 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
     return (
         <div
             role="img"
-            aria-label="A walnut turntable playing a black LP with an orange label"
+            aria-label="A walnut turntable playing Alchemy, the 1984 live album by Dire Straits"
             className="group absolute"
             style={{ left: x, top: y, width: WIDTH, height: HEIGHT, rotate: `${rotate}deg` }}>
             {/* Plinth */}
@@ -114,14 +114,17 @@ const Turntable = ({ x, y, rotate = 0 }: Props) => {
                     <div
                         className="absolute grid place-items-center rounded-full bg-[#e8572e] text-center text-[#2a140a]"
                         style={{ inset: (DISC - LABEL) / 2 }}>
-                        <p className="absolute top-[64px] text-[30px] font-bold tracking-[0.12em]">
-                            w-j records
+                        <p className="absolute top-[60px] text-[30px] font-bold tracking-[0.12em]">
+                            dire straits
                         </p>
-                        <p className="absolute top-[130px] font-hand text-[64px] leading-none text-[#fff3e6] -rotate-3">
-                            Hardstyle Kicks
+                        <p className="absolute top-[118px] font-serif text-[62px] leading-none text-[#fff3e6] italic">
+                            Alchemy
                         </p>
-                        <p className="absolute bottom-[70px] text-[24px] tracking-[0.1em]">
-                            side a · 33⅓
+                        <p className="absolute top-[190px] text-[22px] tracking-[0.1em]">
+                            dire straits live
+                        </p>
+                        <p className="absolute bottom-[64px] text-[22px] tracking-[0.1em]">
+                            side a · 33⅓ · 1984
                         </p>
                     </div>
                 </div>

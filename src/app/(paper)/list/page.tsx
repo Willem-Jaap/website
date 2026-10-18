@@ -179,9 +179,9 @@ const ListPage = async () => {
 
                         <Section title="Also on the desk">
                             <p>
-                                A 7&rdquo; single of distorted hardstyle kicks at 150 bpm, my third
-                                coffee, a training card for push day and the tools of the cutting
-                                mat.
+                                Dire Straits&rsquo; Alchemy (live) on the turntable, a crate of
+                                records, a coffee, a training card for push day and the tools of the
+                                cutting mat.
                             </p>
                         </Section>
                     </div>

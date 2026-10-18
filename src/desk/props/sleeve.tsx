@@ -31,7 +31,7 @@ interface Props {
 /** The empty paper sleeve of the record on the turntable, with what's on repeat written on it */
 const Sleeve = ({ x, y, rotate }: Props) => {
     const track = useNowPlaying();
-    const note = track ? `${track.name} - ${track.artist}` : 'distorted kicks, 150 bpm';
+    const note = track ? `${track.name} - ${track.artist}` : 'Dire Straits, Alchemy (live)';
     const heading = track ? (track.live ? 'playing right now' : 'last played') : 'on repeat';
 
     return (
@@ -59,7 +59,7 @@ const Sleeve = ({ x, y, rotate }: Props) => {
                 <p className="mt-4 text-[92px] leading-[0.95] -rotate-2 line-clamp-3">{note}</p>
             </div>
             <p className="absolute bottom-[70px] left-[80px] text-[30px] tracking-[0.12em] text-ink/40">
-                w-j records · side a
+                vertigo · 1984
             </p>
         </Prop>
     );
