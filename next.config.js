@@ -5,6 +5,10 @@ const createMDX = require('@next/mdx');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        // The desk's CSS is small; inlined it no longer blocks the first paint
+        inlineCss: true,
+    },
     redirects() {
         // v3 called writing "insights" and had separate pages that now live on the desk
         return [
