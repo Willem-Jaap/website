@@ -13,16 +13,19 @@ interface Props {
     className?: string;
 }
 
-/** An article as it comes out of the printer: browser header and footer included */
+/**
+ * An article as it comes out of the printer: browser header and footer included. A div rather
+ * than an article, as it sits inside a link, which takes its accessible name from this text.
+ */
 const Sheet = ({ post, className }: Props) => (
-    <article
+    <div
         className={cn(
             'paper shadow-object relative flex flex-col px-14 pb-10 pt-6',
             serif.className,
             className,
         )}
         style={{ width: SHEET_WIDTH, height: SHEET_HEIGHT }}>
-        <div className="flex justify-between gap-8 font-sans text-[11px] text-ink/50">
+        <div aria-hidden className="flex justify-between gap-8 font-sans text-[11px] text-ink/50">
             <span>{formatDate(post.publishedAt)}</span>
             <span className="truncate">{post.title} | Willem-Jaap</span>
         </div>
@@ -41,11 +44,11 @@ const Sheet = ({ post, className }: Props) => (
             sizes="900px"
             className="mt-8 max-h-[340px] w-full object-cover object-left-top mix-blend-multiply saturate-[0.85]"
         />
-        <div className="mt-auto flex justify-between font-sans text-[11px] text-ink/50">
+        <div aria-hidden className="mt-auto flex justify-between font-sans text-[11px] text-ink/50">
             <span>willemjaap.com/writing/{post.slug}</span>
             <span>1/2</span>
         </div>
-    </article>
+    </div>
 );
 
 export default Sheet;
