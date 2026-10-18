@@ -13,6 +13,8 @@ interface Props extends PropsWithChildren {
 }
 
 const SETTLE_DELAY = 160;
+/** Two taps this close in time (ms) and space (px) are a double-tap */
+const DOUBLE_TAP = { time: 300, distance: 30 };
 
 /**
  * Pan & zoom surface. Children are positioned in world units; the camera transform
@@ -23,6 +25,7 @@ const Viewport = ({ bounds, initial, children }: Props) => {
     const worldRef = useRef<HTMLDivElement>(null);
     const dragged = useRef(false);
     const inertia = useRef<number | null>(null);
+    const lastTap = useRef({ time: 0, x: 0, y: 0 });
 
     // Camera → DOM
     useEffect(() => {
@@ -93,6 +96,33 @@ const Viewport = ({ bounds, initial, children }: Props) => {
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [bounds]);
 
+    // iOS Safari zooms the whole page on a pinch, even with user-scalable=no, unless its
+    // proprietary gesture events are cancelled. The desk does its own zooming.
+    useEffect(() => {
+        const prevent = (event: Event) => event.preventDefault();
+        document.addEventListener('gesturestart', prevent);
+        document.addEventListener('gesturechange', prevent);
+        return () => {
+            document.removeEventListener('gesturestart', prevent);
+            document.removeEventListener('gesturechange', prevent);
+        };
+    }, []);
+
+    /** Double-tap (or double-click) zooms in on that spot, like a map */
+    const onTap = (px: number, py: number) => {
+        const now = performance.now();
+        const last = lastTap.current;
+        const isDouble =
+            now - last.time < DOUBLE_TAP.time &&
+            Math.hypot(px - last.x, py - last.y) < DOUBLE_TAP.distance;
+        lastTap.current = isDouble ? { time: 0, x: 0, y: 0 } : { time: now, x: px, y: py };
+        // The first tap may have started a flight to an object; let that finish instead
+        if (!isDouble || camera.isAnimating()) return;
+        camera.zoomTowards(2, px, py);
+        // Swallow the click the second tap is about to fire
+        dragged.current = true;
+    };
+
     const stopInertia = () => {
         if (inertia.current !== null) cancelAnimationFrame(inertia.current);
         inertia.current = null;
@@ -119,8 +149,19 @@ const Viewport = ({ bounds, initial, children }: Props) => {
                 stopInertia();
                 dragged.current = false;
             },
-            onDrag: ({ delta: [dx, dy], movement: [mx, my], pinching, cancel }) => {
+            onDrag: ({
+                delta: [dx, dy],
+                movement: [mx, my],
+                xy: [px, py],
+                pinching,
+                tap,
+                cancel,
+            }) => {
                 if (pinching) return cancel();
+                if (tap) {
+                    const rect = viewportRef.current?.getBoundingClientRect();
+                    return onTap(px - (rect?.left ?? 0), py - (rect?.top ?? 0));
+                }
                 if (Math.hypot(mx, my) > 4) dragged.current = true;
                 camera.panBy(dx, dy);
             },

@@ -4,11 +4,10 @@ import type { Metadata, Viewport } from 'next';
 
 import { Caveat, Inter } from 'next/font/google';
 
+import Analytics from '~/app/analytics';
 import { env } from '~/env';
 import '~/styles/global.css';
 import cn from '~/utils/cn';
-import { Analytics } from '@vercel/analytics/react';
-import { EyesNextProvider } from 'eyes-next';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
@@ -16,10 +15,7 @@ const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
 const RootLayout = ({ children }: PropsWithChildren) => (
     <html lang="en" className={cn(inter.variable, caveat.variable, 'antialiased')}>
         <body className="font-sans text-white">
-            <EyesNextProvider siteId={env.NEXT_PUBLIC_EYES_SITE_ID}>
-                {children}
-                <Analytics />
-            </EyesNextProvider>
+            <Analytics siteId={env.NEXT_PUBLIC_EYES_SITE_ID}>{children}</Analytics>
         </body>
     </html>
 );
@@ -41,6 +37,7 @@ export const metadata: Metadata = {
         locale: 'en_US',
         siteName: 'Willem-Jaap',
     },
+    twitter: { card: 'summary_large_image', title: 'Willem-Jaap · Desk', description },
 };
 
 export const viewport: Viewport = {
@@ -48,8 +45,9 @@ export const viewport: Viewport = {
     themeColor: '#1c1f24',
     width: 'device-width',
     initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
+    // Draw under the notch and home indicator; the dock keeps to the safe area
+    viewportFit: 'cover',
+    // The page stays zoomable for accessibility: the desk cancels pinches itself (see viewport.tsx)
 };
 
 export default RootLayout;

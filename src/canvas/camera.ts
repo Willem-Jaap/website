@@ -20,12 +20,20 @@ export interface Rect {
 export const MIN_ZOOM = 0.08;
 export const MAX_ZOOM = 4;
 
-/** Screen pixels reserved at the bottom for the dock */
-const DOCK_SPACE = 64;
-
 type Listener = () => void;
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
+/**
+ * Whether `rect` fills most of the screen in either direction: close enough to read and
+ * interact with, whatever the screen size (a fitted region is zoom ~0.6 on a laptop, ~0.2 on a phone).
+ */
+export const isFramed = (
+    rect: Rect,
+    { z }: CameraState,
+    viewport: { width: number; height: number },
+    share = 0.6,
+) => rect.width * z > viewport.width * share || rect.height * z > viewport.height * share;
 
 const createCamera = () => {
     let state: CameraState = { x: 0, y: 0, z: 1 };
@@ -34,6 +42,8 @@ const createCamera = () => {
     let animation: number | null = null;
     /** The rect the camera was last framed on, until the user moves it themselves */
     let anchor: Rect | null = null;
+    /** Screen pixels reserved at the bottom for the dock, measured by the dock itself */
+    let dockSpace = 64;
     const listeners = new Set<Listener>();
 
     const emit = () => listeners.forEach(listener => listener());
@@ -62,11 +72,30 @@ const createCamera = () => {
         animation = null;
     };
 
+    const animate = (to: CameraState, duration: number) => {
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const from = state;
+        if (reducedMotion || duration === 0) {
+            set(to);
+            return;
+        }
+        const start = performance.now();
+        const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+        const tick = (now: number) => {
+            const t = ease(Math.min((now - start) / duration, 1));
+            // Interpolate zoom logarithmically so zooming feels even
+            const z = from.z * Math.pow(to.z / from.z, t);
+            set({ z, x: from.x + (to.x - from.x) * t, y: from.y + (to.y - from.y) * t });
+            animation = t < 1 ? requestAnimationFrame(tick) : null;
+        };
+        animation = requestAnimationFrame(tick);
+    };
+
     /** Camera that fits `rect` in the viewport with some padding */
     const fit = (rect: Rect, padding = defaultPadding()): CameraState => {
         // Keep framed content clear of the dock floating at the bottom
         const top = padding;
-        const bottom = padding + DOCK_SPACE;
+        const bottom = padding + dockSpace;
         const z = clamp(
             Math.min(
                 (viewport.width - padding * 2) / rect.width,
@@ -130,28 +159,26 @@ const createCamera = () => {
             const ratio = z / state.z;
             set({ z, x: px - (px - state.x) * ratio, y: py - (py - state.y) * ratio });
         },
+        /** Animate zooming by `factor` towards the screen point (px, py), like double-tapping a map */
+        zoomTowards: (factor: number, px = viewport.width / 2, py = viewport.height / 2) => {
+            stop();
+            anchor = null;
+            const z = clamp(state.z * factor, MIN_ZOOM, MAX_ZOOM);
+            const ratio = z / state.z;
+            animate({ z, x: px - (px - state.x) * ratio, y: py - (py - state.y) * ratio }, 300);
+        },
+        setDockSpace: (pixels: number) => {
+            if (pixels === dockSpace) return;
+            dockSpace = pixels;
+            if (anchor && animation === null) set(fit(anchor));
+        },
+        isAnimating: () => animation !== null,
         fit,
         /** Smoothly animate to the camera that frames `rect` */
         flyTo: (rect: Rect, { padding = defaultPadding(), duration = 700 } = {}) => {
             stop();
             anchor = rect;
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const from = state;
-            const to = fit(rect, padding);
-            if (reducedMotion || duration === 0) {
-                set(to);
-                return;
-            }
-            const start = performance.now();
-            const ease = (t: number) => 1 - Math.pow(1 - t, 3);
-            const tick = (now: number) => {
-                const t = ease(Math.min((now - start) / duration, 1));
-                // Interpolate zoom logarithmically so zooming feels even
-                const z = from.z * Math.pow(to.z / from.z, t);
-                set({ z, x: from.x + (to.x - from.x) * t, y: from.y + (to.y - from.y) * t });
-                animation = t < 1 ? requestAnimationFrame(tick) : null;
-            };
-            animation = requestAnimationFrame(tick);
+            animate(fit(rect, padding), duration);
         },
         toWorld: (px: number, py: number) => ({
             x: (px - state.x) / state.z,
@@ -180,12 +207,6 @@ export const useCamera = <T>(selector: (state: CameraState) => T): T =>
 export const useZoomLevel = (thresholds: number[]) =>
     useCamera(({ z }) => thresholds.filter(threshold => z >= threshold).length);
 
-/**
- * Whether `rect` fills most of the screen in either direction: close enough to read and
- * interact with, whatever the screen size (a fitted region is zoom ~0.6 on a laptop, ~0.2 on a phone).
- */
+/** Whether `rect` fills most of the screen, see isFramed */
 export const useIsFramed = (rect: Rect, share = 0.6) =>
-    useCamera(({ z }) => {
-        const viewport = camera.getViewport();
-        return rect.width * z > viewport.width * share || rect.height * z > viewport.height * share;
-    });
+    useCamera(state => isFramed(rect, state, camera.getViewport(), share));
