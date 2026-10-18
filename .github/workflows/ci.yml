@@ -1,0 +1,33 @@
+name: CI
+
+on: push
+
+jobs:
+  check:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    env:
+      # The public values from .env.example; nothing secret is needed to build
+      NEXT_PUBLIC_URL: http://localhost:3100
+      NEXT_PUBLIC_EYES_SITE_ID: "880701534"
+      # Only raises GitHub's rate limit for the open source corner, which falls back to a snapshot
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+      - run: pnpm run typecheck
+      - run: pnpm run build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
