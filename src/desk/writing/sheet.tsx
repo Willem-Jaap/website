@@ -14,7 +14,7 @@ interface Props {
 }
 
 /**
- * An article as it comes out of the printer: browser header and footer included. A div rather
+ * An article as it comes out of the printer, with a small footer. A div rather
  * than an article, as it sits inside a link, which takes its accessible name from this text.
  */
 const Sheet = ({ post, className }: Props) => (
@@ -25,11 +25,7 @@ const Sheet = ({ post, className }: Props) => (
             className,
         )}
         style={{ width: SHEET_WIDTH, height: SHEET_HEIGHT }}>
-        <div aria-hidden className="flex justify-between gap-8 font-sans text-[11px] text-ink/50">
-            <span>{formatDate(post.publishedAt)}</span>
-            <span className="truncate">{post.title} | Willem-Jaap</span>
-        </div>
-        <p className="mt-5 text-[15px] uppercase tracking-[0.2em] text-ink/55">
+        <p className="mt-6 text-[17px] tracking-[0.02em] text-ink/55">
             {formatDate(post.publishedAt)}
         </p>
         <h3 className="mt-2 text-[40px] font-medium leading-[1.08] tracking-[-0.01em] text-balance">
