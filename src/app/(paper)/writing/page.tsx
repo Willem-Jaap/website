@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { deskImage, openGraph } from '~/app/share';
 import { formatDate, posts } from '~/content/writing';
 import PaperSheet from '~/desk/writing/paper-sheet';
 
@@ -11,7 +12,13 @@ export const metadata: Metadata = {
     title: 'Writing',
     description,
     alternates: { canonical: '/writing' },
-    openGraph: { title: 'Writing', description, url: '/writing' },
+    openGraph: {
+        ...openGraph,
+        title: 'Writing',
+        description,
+        url: '/writing',
+        images: [deskImage],
+    },
 };
 
 const WritingPage = () => (

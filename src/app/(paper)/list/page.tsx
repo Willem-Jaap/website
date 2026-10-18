@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import BackLink from '~/app/(paper)/back-link';
+import { deskImage, openGraph } from '~/app/share';
 import { formatDate, posts } from '~/content/writing';
 import { BIO, CONTACT, EDUCATION, EXPERIENCE } from '~/desk/about/content';
 import { CONTRIBUTIONS, PROFILE_URL, REPOS } from '~/desk/github/content';
@@ -20,7 +21,13 @@ export const metadata: Metadata = {
     title: 'The desk as a list',
     description,
     alternates: { canonical: '/list' },
-    openGraph: { title: 'The desk as a list', description, url: '/list' },
+    openGraph: {
+        ...openGraph,
+        title: 'The desk as a list',
+        description,
+        url: '/list',
+        images: [deskImage],
+    },
 };
 
 const PRODUCTS = [

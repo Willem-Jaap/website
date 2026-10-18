@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from 'next';
 import { Caveat, Inter } from 'next/font/google';
 
 import Analytics from '~/app/analytics';
+import { openGraph } from '~/app/share';
 import { env } from '~/env';
 import '~/styles/global.css';
 import cn from '~/utils/cn';
@@ -32,14 +33,9 @@ export const metadata: Metadata = {
         template: '%s | Willem-Jaap',
     },
     description,
-    openGraph: {
-        title: 'Willem-Jaap · Desk',
-        description,
-        type: 'website',
-        locale: 'en_US',
-        siteName: 'Willem-Jaap',
-    },
-    twitter: { card: 'summary_large_image', title: 'Willem-Jaap · Desk', description },
+    openGraph: { ...openGraph, title: 'Willem-Jaap · Desk', description },
+    // Title, description and image fall back to Open Graph's, per page
+    twitter: { card: 'summary_large_image' },
 };
 
 export const viewport: Viewport = {

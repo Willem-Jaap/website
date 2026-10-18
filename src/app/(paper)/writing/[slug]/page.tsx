@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { openGraph } from '~/app/share';
 import { formatDate, getPost, getPostContent, posts } from '~/content/writing';
 import PaperSheet from '~/desk/writing/paper-sheet';
 import prose from '~/desk/writing/prose';
@@ -25,6 +26,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
         description: post.description,
         alternates: { canonical: url },
         openGraph: {
+            ...openGraph,
             type: 'article',
             url,
             title: post.title,
