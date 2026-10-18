@@ -318,7 +318,7 @@ const Turntable = ({ x, y, rotate = 0, albums }: Props) => {
                     'absolute max-w-[18cm] truncate text-[24px] font-medium tracking-[0.04em] text-[#ffb08f] transition-opacity duration-500',
                     status === 'playing' ? 'opacity-90' : 'opacity-0',
                 )}
-                style={{ left: 13 * CM, top: 33.2 * CM, maxWidth: 22 * CM }}>
+                style={{ left: 13 * CM, top: 34.2 * CM, maxWidth: 22 * CM }}>
                 {playing ? (
                     <>
                         ▶ {playing.name} ·{' '}
