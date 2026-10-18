@@ -1,9 +1,9 @@
 import { useSyncExternalStore } from 'react';
 
-import { type CameraState, DOCK_SPACE, fitRect, type Rect, type Size } from '~/canvas/fit';
+import { type CameraState, fitRect, type Rect, type Size } from '~/canvas/fit';
 
 export type { CameraState, InitialView, Rect } from '~/canvas/fit';
-export { DOCK_SPACE, fitRect, pickInitialView } from '~/canvas/fit';
+export { fitRect, pickInitialView } from '~/canvas/fit';
 
 export const MIN_ZOOM = 0.08;
 export const MAX_ZOOM = 4;
@@ -30,8 +30,6 @@ const createCamera = () => {
     let animation: number | null = null;
     /** The rect the camera was last framed on, until the user moves it themselves */
     let anchor: Rect | null = null;
-    /** Screen pixels reserved at the bottom for the dock, measured by the dock itself */
-    let dockSpace = DOCK_SPACE;
     const listeners = new Set<Listener>();
 
     const emit = () => listeners.forEach(listener => listener());
@@ -77,7 +75,7 @@ const createCamera = () => {
     };
 
     /** Camera that fits `rect` in the viewport with some padding */
-    const fit = (rect: Rect, padding?: number) => fitRect(rect, viewport, dockSpace, padding);
+    const fit = (rect: Rect, padding?: number) => fitRect(rect, viewport, padding);
 
     return {
         get: () => state,
@@ -136,11 +134,6 @@ const createCamera = () => {
             const z = clamp(state.z * factor, MIN_ZOOM, MAX_ZOOM);
             const ratio = z / state.z;
             animate({ z, x: px - (px - state.x) * ratio, y: py - (py - state.y) * ratio }, 300);
-        },
-        setDockSpace: (pixels: number) => {
-            if (pixels === dockSpace) return;
-            dockSpace = pixels;
-            if (anchor && animation === null) set(fit(anchor));
         },
         isAnimating: () => animation !== null,
         fit,

@@ -53,9 +53,6 @@ export const REGIONS: Record<RegionId, Region> = {
     props: { id: 'props', label: 'Desk', x: 84 * CM, y: 42 * CM, width: 32 * CM, height: 34 * CM },
 };
 
-/** Regions in the order they appear in navigation */
-export const REGION_ORDER: RegionId[] = ['about', 'pixelperfect', 'github', 'writing', 'props'];
-
 export const isRegionId = (value: string): value is RegionId => value in REGIONS;
 
 /** Start on a linked region, zoomed in on "About" on phones, or with the whole desk in view */

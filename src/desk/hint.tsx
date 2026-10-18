@@ -7,7 +7,7 @@ import cn from '~/utils/cn';
 const SEEN_KEY = 'desk-hint-seen';
 const SHOW_FOR = 8000;
 
-/** How to get around, shown above the dock on a first visit until you start moving */
+/** How to get around, shown at the bottom on a first visit until you start moving */
 const Hint = () => {
     const [text, setText] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(false);

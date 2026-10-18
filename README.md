@@ -28,12 +28,12 @@ The smoke tests (`tests/`) run with Playwright against the production build, on 
 -   `fit.ts` holds the pure camera maths. `frame-script.tsx` uses it in a tiny inline script that frames the desk before hydration, so the first paint already shows the right part of it.
 -   `src/desk/layout.ts` defines where each region sits on the mat, in centimetres (`CM` world units).
 -   Each region lives in its own folder, `src/desk/<region>`, and renders inside `<Region id="...">`. Children are positioned relative to the region in world units.
--   Regions can be linked to: `/#about`, `/#pixelperfect`, `/#github`, `/#writing`, `/#props`. Focusing one (dock, click, deep link or keyboard) is tracked as `Region Focus` in Eyes.
+-   Regions can be linked to: `/#about`, `/#pixelperfect`, `/#github`, `/#writing`, `/#props`. Focusing one (click, deep link or keyboard) is tracked as `Region Focus` in Eyes.
 -   Until a region fills the screen, clicking it flies there instead of following links. On phones a fitted region is still too small to read, so tapping an object in it flies to that object (or a readable slice of a wide one) first; the next tap follows its links.
 -   `/list` has everything on the desk as a single paper sheet, for screen readers, search engines and browsers without JavaScript. The desk links to it with a skip link and a `<noscript>` note.
 
 Controls: drag or two-finger scroll to pan, mouse wheel / pinch / <kbd>+</kbd> <kbd>-</kbd> to zoom, double-tap or double-click to zoom in on a spot, arrow keys to move, <kbd>0</kbd> for the whole desk. <kbd>Tab</kbd> moves through the links and flies the camera to wherever focus goes.
 
-The sharing image (`src/app/opengraph-image.jpg`) is a render of the whole desk. To update it, frame the desk at zoom 0.2 in a 1200×630 window with the dock hidden and take a screenshot.
+The sharing image (`src/app/opengraph-image.jpg`) is a render of the whole desk. To update it, frame the desk at zoom 0.2 in a 1200×630 window and take a screenshot.
 
 Eyes only accepts events from the site's own domain, so nothing is sent from `localhost`. Vercel Analytics only loads on Vercel.

@@ -1,7 +1,7 @@
 import { createEyes } from 'eyes-next';
 
 type Events = {
-    'Region Focus': { region: string; via: 'dock' | 'click' | 'link' | 'keyboard' };
+    'Region Focus': { region: string; via: 'click' | 'link' | 'keyboard' };
 };
 
 const { useEyes, track } = createEyes<Events>();

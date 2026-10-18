@@ -2,12 +2,12 @@
 
 import type { PropsWithChildren } from 'react';
 
-import { camera, isFramed, type Rect, useCamera, useIsFramed } from '~/canvas/camera';
-import { REGION_ORDER, REGIONS, type RegionId } from '~/desk/layout';
+import { camera, type Rect, useIsFramed } from '~/canvas/camera';
+import { REGIONS, type RegionId } from '~/desk/layout';
 import cn from '~/utils/cn';
 import { trackRegionFocus } from '~/utils/eyes';
 
-type Via = 'dock' | 'click' | 'link' | 'keyboard';
+type Via = 'click' | 'link' | 'keyboard';
 
 export const focusRegion = (id: RegionId, via: Via) => {
     camera.flyTo(REGIONS[id]);
@@ -20,24 +20,6 @@ export const focusRegion = (id: RegionId, via: Via) => {
  * instead of following links.
  */
 export const useIsRegionFocused = (id: RegionId) => useIsFramed(REGIONS[id]);
-
-/** The region filling the middle of the screen, if any */
-export const useCurrentRegion = () =>
-    useCamera(state => {
-        const viewport = camera.getViewport();
-        const { x, y } = camera.toWorld(viewport.width / 2, viewport.height / 2);
-        return (
-            REGION_ORDER.find(id => {
-                const region = REGIONS[id];
-                const isInside =
-                    x >= region.x &&
-                    x <= region.x + region.width &&
-                    y >= region.y &&
-                    y <= region.y + region.height;
-                return isInside && isFramed(region, state, viewport);
-            }) ?? null
-        );
-    });
 
 /**
  * Below this zoom body text is too small to read (under ~10px on screen), which is where a

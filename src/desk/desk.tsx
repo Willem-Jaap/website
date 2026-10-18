@@ -5,7 +5,7 @@ import { type PropsWithChildren, useEffect } from 'react';
 import { camera } from '~/canvas/camera';
 import Mat from '~/canvas/mat';
 import Viewport from '~/canvas/viewport';
-import Dock from '~/desk/dock';
+import Hint from '~/desk/hint';
 import { INITIAL_VIEW, isRegionId, MAT } from '~/desk/layout';
 import { focusRegion } from '~/desk/region';
 import Title from '~/desk/title';
@@ -39,7 +39,9 @@ const Desk = ({ children }: PropsWithChildren) => {
                 <Title />
                 {children}
             </Viewport>
-            <Dock />
+            <div className="pointer-events-none fixed inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom))] z-10 flex justify-center px-4">
+                <Hint />
+            </div>
         </>
     );
 };

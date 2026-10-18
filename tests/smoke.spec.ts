@@ -14,31 +14,20 @@ test('the desk loads, framed', async ({ page }) => {
     for (const region of ['about', 'pixelperfect', 'github', 'writing', 'props']) {
         await expect(page.locator(`[data-region="${region}"]`)).toBeAttached();
     }
-    await expect(page.getByRole('navigation', { name: 'Desk' })).toBeVisible();
     expect(await getZoom(page)).toBeLessThan(1);
 });
 
-test('dock buttons fly to a region and change the hash', async ({ page }) => {
+test('clicking a region from afar flies to it and changes the hash', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Phones start zoomed in on About, so other regions are off-screen');
     await page.goto('/');
-    const dock = page.getByRole('navigation', { name: 'Desk' });
-    for (const [label, hash] of [
-        ['Writing', '#writing'],
-        ['Open source', '#github'],
-    ]) {
-        const button = dock.getByRole('button', { name: label, exact: true });
-        await button.click();
-        await expect(page).toHaveURL(new RegExp(`${hash}$`));
-        await expect(button).toHaveAttribute('aria-current', 'true');
-    }
+    const before = await getZoom(page);
+    await page.locator('[data-region="writing"]').click();
+    await expect(page).toHaveURL(/#writing$/);
+    await expect.poll(() => getZoom(page)).toBeGreaterThan(before);
 });
 
 test('a deep link starts on its region', async ({ page }) => {
     await page.goto('/#writing');
-    await expect(
-        page
-            .getByRole('navigation', { name: 'Desk' })
-            .getByRole('button', { name: 'Writing', exact: true }),
-    ).toHaveAttribute('aria-current', 'true');
     await expect(
         page.locator('[data-region="writing"] a[href="/writing/commit-style"]'),
     ).toBeInViewport();

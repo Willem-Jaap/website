@@ -46,7 +46,7 @@ export const viewport: Viewport = {
     themeColor: '#1c1f24',
     width: 'device-width',
     initialScale: 1,
-    // Draw under the notch and home indicator; the dock keeps to the safe area
+    // Draw under the notch and home indicator; the hint keeps to the safe area
     viewportFit: 'cover',
     // The page stays zoomable for accessibility: the desk cancels pinches itself (see viewport.tsx)
 };
