@@ -34,7 +34,14 @@ export const EDUCATION = {
 };
 
 export const CONTACT = [
-    { label: 'github.com/Willem-Jaap', href: 'https://github.com/Willem-Jaap' },
-    { label: 'linkedin.com/in/willem-jaap', href: 'https://linkedin.com/in/willem-jaap/' },
-    { label: 'info@pixelperfect.agency', href: 'mailto:info@pixelperfect.agency' },
-];
+    { kind: 'mail', label: 'info@pixelperfect.agency', href: 'mailto:info@pixelperfect.agency' },
+    { kind: 'web', label: 'pixelperfect.agency', href: 'https://pixelperfect.agency' },
+    { kind: 'github', label: 'github.com/Willem-Jaap', href: 'https://github.com/Willem-Jaap' },
+    {
+        kind: 'linkedin',
+        label: 'linkedin.com/in/willem-jaap',
+        href: 'https://linkedin.com/in/willem-jaap/',
+    },
+] as const;
+
+export type ContactKind = (typeof CONTACT)[number]['kind'];

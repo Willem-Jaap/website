@@ -12,9 +12,7 @@ const linkClass =
     'underline decoration-ink/25 decoration-2 underline-offset-[6px] transition-colors hover:decoration-[#c8372d]';
 
 const Label = ({ children }: { children: string }) => (
-    <h3 className="text-[17px] font-semibold uppercase tracking-[0.22em] text-ink/50">
-        {children}
-    </h3>
+    <h3 className="text-[19px] font-semibold tracking-[0.04em] text-ink/50">{children}</h3>
 );
 
 /** A ruled index card with the CV on it and a passport photo clipped to the corner */
@@ -40,7 +38,7 @@ const CvCard = ({ className, style }: { className?: string; style?: CSSPropertie
             }}>
             <p>Based in the Netherlands</p>
             <div style={{ height: ROW }} className="flex items-end">
-                <Label>Experience</Label>
+                <Label>experience</Label>
             </div>
             <ul>
                 {EXPERIENCE.map(item => (
@@ -64,7 +62,7 @@ const CvCard = ({ className, style }: { className?: string; style?: CSSPropertie
                 ))}
             </ul>
             <div style={{ height: ROW }} className="flex items-end">
-                <Label>Education</Label>
+                <Label>education</Label>
             </div>
             <p className="grid grid-cols-[1fr_auto] gap-6">
                 <span>

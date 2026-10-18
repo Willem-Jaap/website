@@ -12,7 +12,8 @@ interface Props {
     height: number;
     /** Width of the photo on the mat, in world units */
     photoWidth: number;
-    caption: string;
+    /** Handwritten on the bottom border; left blank when omitted */
+    caption?: string;
     /** Load straight away, for photos in the first view */
     priority?: boolean;
     className?: string;
@@ -50,9 +51,13 @@ const Polaroid = ({
             {/* Glossy print: a faint sheen and a darker inner edge */}
             <div className="absolute inset-0 bg-[linear-gradient(115deg,rgb(255_255_255/0.12),transparent_35%,transparent_70%,rgb(255_255_255/0.05))] shadow-[inset_0_0_12px_rgb(0_0_0/0.35)]" />
         </div>
-        <figcaption className="font-hand flex h-[140px] items-center justify-center text-[56px] leading-none text-[#28324a]">
-            {caption}
-        </figcaption>
+        {caption ? (
+            <figcaption className="font-hand flex h-[140px] items-center justify-center text-[56px] leading-none text-[#28324a]">
+                {caption}
+            </figcaption>
+        ) : (
+            <div className="h-[140px]" />
+        )}
     </figure>
 );
 

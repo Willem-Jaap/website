@@ -24,7 +24,6 @@ const AboutRegion = () => (
             width={889}
             height={960}
             photoWidth={9 * CM}
-            caption="blue wall, blue mat"
             priority
             style={place(3.2, 16.4, 4)}
         />
@@ -34,7 +33,6 @@ const AboutRegion = () => (
             width={968}
             height={600}
             photoWidth={16 * CM}
-            caption="hi, that's me"
             priority
             style={place(0.8, 0.8, -3)}
         />
@@ -50,9 +48,9 @@ const AboutRegion = () => (
         <div
             aria-hidden
             className="paper absolute rounded-[8px] shadow-[0_1px_1px_rgb(0_0_0/0.2),0_6px_12px_-4px_rgb(0_0_0/0.35)]"
-            style={place(32.9, 19.1, 3, 12, 7)}
+            style={place(31.2, 19.2, 3, 13, 8)}
         />
-        <BusinessCard style={place(32.4, 18.8, -4)} />
+        <BusinessCard style={place(31, 18.8, -4)} />
 
         <MatNote style={place(31.6, 27.6, 0)} />
     </Region>
