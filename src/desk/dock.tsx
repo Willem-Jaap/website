@@ -20,8 +20,11 @@ const Dock = () => {
     useEffect(() => {
         const dock = ref.current;
         if (!dock) return;
-        const measure = () =>
-            camera.setDockSpace(Math.ceil(window.innerHeight - dock.getBoundingClientRect().top));
+        const measure = () => {
+            const rect = dock.getBoundingClientRect();
+            // A hidden dock (display: none) takes no space
+            camera.setDockSpace(rect.height === 0 ? 0 : Math.ceil(window.innerHeight - rect.top));
+        };
         const observer = new ResizeObserver(measure);
         observer.observe(dock);
         window.addEventListener('resize', measure);
