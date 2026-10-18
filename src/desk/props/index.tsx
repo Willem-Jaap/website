@@ -15,7 +15,7 @@ const PropsRegion = async () => {
         <Region id="props">
             <Turntable x={1 * CM} y={1 * CM} rotate={-1.5} albums={albums} />
             <Crate x={1 * CM} y={43 * CM} rotate={2} albums={albums} />
-            <Sleeve x={28 * CM} y={40 * CM} rotate={7} />
+            <Sleeve x={28 * CM} y={40 * CM} rotate={7} crate={{ x: 16 * CM, y: 60 * CM }} />
             <TrainingCard x={2 * CM} y={82 * CM} rotate={-4} />
             <RaceNote x={3 * CM} y={91 * CM} rotate={3} />
             <WeightPlate x={17 * CM} y={86 * CM} rotate={12} />

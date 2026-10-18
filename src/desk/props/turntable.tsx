@@ -1,6 +1,6 @@
 'use client';
 
-import { type MouseEvent, useEffect } from 'react';
+import { type MouseEvent, useEffect, useRef } from 'react';
 
 import { CM } from '~/desk/layout';
 import { type Album, labelOf } from '~/desk/props/albums';
@@ -83,6 +83,27 @@ const Turntable = ({ x, y, rotate = 0, albums }: Props) => {
         return () => player.stop();
     }, [albums]);
 
+    // A new record is lowered onto the platter: it comes down from above and settles
+    const disc = useRef<HTMLButtonElement>(null);
+    const previous = useRef(albumId);
+    useEffect(() => {
+        if (previous.current === albumId) return;
+        previous.current = albumId;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        disc.current?.animate(
+            [
+                {
+                    transform: 'translateY(-60px) scale(1.06)',
+                    opacity: 0,
+                    filter: 'drop-shadow(0 60px 40px rgb(0 0 0 / 0.5))',
+                },
+                { transform: 'translateY(-20px) scale(1.03)', opacity: 1, offset: 0.6 },
+                { transform: 'none', opacity: 1, filter: 'none' },
+            ],
+            { duration: 550, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' },
+        );
+    }, [albumId]);
+
     /** Drop the needle where the record was clicked */
     const onRecordClick = (event: MouseEvent<HTMLButtonElement>) => {
         const rect = event.currentTarget.getBoundingClientRect();
@@ -143,6 +164,7 @@ const Turntable = ({ x, y, rotate = 0, albums }: Props) => {
 
             {/* The record: click into the grooves to play from there */}
             <button
+                ref={disc}
                 type="button"
                 aria-label={
                     isSpinning
