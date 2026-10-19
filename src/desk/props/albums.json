@@ -1,0 +1,192 @@
+[
+    {
+        "id": "alchemy",
+        "title": "Alchemy: Dire Straits Live",
+        "artist": "Dire Straits",
+        "year": "1984",
+        "collectionId": 1440769294,
+        "url": "https://music.apple.com/nl/album/alchemy-dire-straits-live-remastered/1440769294",
+        "tracks": [
+            {
+                "name": "Once Upon a Time in the West",
+                "length": 781,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a1/3c/4d/a13c4d0f-de0b-f8fd-b999-bea5bfff8a49/mzaf_10527232695938854906.plus.aac.p.m4a",
+                "url": "https://music.apple.com/nl/album/once-upon-a-time-in-the-west/1440769294?i=1440769487"
+            },
+            {
+                "name": "Romeo and Juliet",
+                "length": 498,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/73/a2/07/73a2076f-1ea5-7e74-6241-9e658c8b17ab/mzaf_14348524606142058056.plus.aac.p.m4a",
+                "url": "https://music.apple.com/nl/album/romeo-and-juliet/1440769294?i=1440769497"
+            }
+        ]
+    },
+    {
+        "id": "brothers-in-arms",
+        "title": "Brothers In Arms",
+        "artist": "Dire Straits",
+        "year": "1985",
+        "collectionId": 299545299,
+        "url": "https://music.apple.com/us/album/brothers-in-arms/299545299",
+        "tracks": [
+            {
+                "name": "So Far Away",
+                "length": 312,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f3/ea/45/f3ea4588-f18f-a484-1ad7-430fccfdc0e4/mzaf_874618759494846283.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/so-far-away/299545299?i=299545315"
+            },
+            {
+                "name": "Money for Nothing",
+                "length": 506,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d9/31/9a/d9319a96-82fd-2532-44aa-cb99a0fe6728/mzaf_8583697179794772913.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/money-for-nothing/299545299?i=299545317"
+            },
+            {
+                "name": "Walk of Life",
+                "length": 253,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/10/22/2c/10222ce3-8d34-032c-68ce-a3daaeb4bd03/mzaf_8121808599408783024.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/walk-of-life/299545299?i=299545322"
+            }
+        ]
+    },
+    {
+        "id": "dire-straits",
+        "title": "Dire Straits",
+        "artist": "Dire Straits",
+        "year": "1978",
+        "collectionId": 307029087,
+        "url": "https://music.apple.com/us/album/dire-straits/307029087",
+        "tracks": [
+            {
+                "name": "Down to the Waterline",
+                "length": 243,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/00/d2/58/00d25880-dd6f-45c5-2c55-1a4b359503f6/mzaf_9156850492328332839.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/down-to-the-waterline/307029087?i=307029132"
+            },
+            {
+                "name": "Water of Love",
+                "length": 327,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d6/04/81/d6048184-7711-1db0-6be9-45081952b0da/mzaf_4524089762710223722.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/water-of-love/307029087?i=307029135"
+            },
+            {
+                "name": "Setting Me Up",
+                "length": 200,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/78/7b/b6/787bb6a7-cd08-a3d9-866c-3095f06dcacd/mzaf_1361602713940281187.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/setting-me-up/307029087?i=307029140"
+            }
+        ]
+    },
+    {
+        "id": "making-movies",
+        "title": "Making Movies",
+        "artist": "Dire Straits",
+        "year": "1980",
+        "collectionId": 299801051,
+        "url": "https://music.apple.com/us/album/making-movies/299801051",
+        "tracks": [
+            {
+                "name": "Tunnel of Love",
+                "length": 489,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b4/69/46/b469463e-f01f-2384-2d2c-4840e14b4454/mzaf_11636538762896937452.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/tunnel-of-love/299801051?i=299801054"
+            },
+            {
+                "name": "Romeo and Juliet",
+                "length": 361,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/56/f7/de/56f7de9c-b301-de3a-b20e-c3a97fc8e5c4/mzaf_7419252657448780916.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/romeo-and-juliet/299801051?i=299801055"
+            },
+            {
+                "name": "Skateaway",
+                "length": 379,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cc/dd/1f/ccdd1f47-c386-97c5-a93b-1b6016f66c44/mzaf_12009025907067475355.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/skateaway/299801051?i=299801058"
+            }
+        ]
+    },
+    {
+        "id": "communique",
+        "title": "Communique",
+        "artist": "Dire Straits",
+        "year": "1979",
+        "collectionId": 299801463,
+        "url": "https://music.apple.com/us/album/communique/299801463",
+        "tracks": [
+            {
+                "name": "Once Upon a Time In the West",
+                "length": 325,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bb/f8/92/bbf892d9-4cd9-996a-b41d-7ab3a5f2f1e2/mzaf_10971578148212191344.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/once-upon-a-time-in-the-west/299801463?i=299801465"
+            },
+            {
+                "name": "News",
+                "length": 254,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1b/17/6a/1b176a9d-9174-5162-542a-ce232a0e6346/mzaf_10154462646569798186.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/news/299801463?i=299801471"
+            },
+            {
+                "name": "Where Do You Think You're Going?",
+                "length": 230,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ed/3e/30/ed3e30cb-af0a-8eca-3168-258a89b08d50/mzaf_2207859123069777075.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/where-do-you-think-youre-going/299801463?i=299801473"
+            }
+        ]
+    },
+    {
+        "id": "love-over-gold",
+        "title": "Love Over Gold",
+        "artist": "Dire Straits",
+        "year": "1982",
+        "collectionId": 73260020,
+        "url": "https://music.apple.com/us/album/love-over-gold/73260020",
+        "tracks": [
+            {
+                "name": "Telegraph Road",
+                "length": 859,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/04/87/fc/0487fcda-60e6-167b-eb3e-5ae01abe07a7/mzaf_4628878487722271658.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/telegraph-road/73260020?i=73259828"
+            },
+            {
+                "name": "Private Investigations",
+                "length": 407,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a4/be/21/a4be21e0-b21f-acd3-6825-aa3bb1b04829/mzaf_15878748537908122867.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/private-investigations/73260020?i=73259895"
+            },
+            {
+                "name": "Industrial Disease",
+                "length": 350,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/32/05/f2/3205f28e-30e9-7daf-5a71-8d22462bcef1/mzaf_4246385399084385882.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/industrial-disease/73260020?i=73259930"
+            }
+        ]
+    },
+    {
+        "id": "on-every-street",
+        "title": "On Every Street",
+        "artist": "Dire Straits",
+        "year": "1991",
+        "collectionId": 299801486,
+        "url": "https://music.apple.com/us/album/on-every-street/299801486",
+        "tracks": [
+            {
+                "name": "Calling Elvis",
+                "length": 387,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b6/97/54/b6975417-ee7e-63e4-9354-318235100495/mzaf_9961372477301566759.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/calling-elvis/299801486?i=299801495"
+            },
+            {
+                "name": "On Every Street",
+                "length": 304,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/09/19/c2/0919c234-b5b0-ed38-1421-58c110ec0721/mzaf_8057470157331217866.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/on-every-street/299801486?i=299801550"
+            },
+            {
+                "name": "When It Comes to You",
+                "length": 301,
+                "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2a/23/10/2a2310ea-9571-a578-b5ca-246491b8d6dc/mzaf_17351519451069676772.plus.aac.p.m4a",
+                "url": "https://music.apple.com/us/album/when-it-comes-to-you/299801486?i=299801552"
+            }
+        ]
+    }
+]

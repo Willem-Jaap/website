@@ -1,32 +1,20 @@
 import type { MetadataRoute } from 'next';
 
-import { allInsights, allProjects } from 'contentlayer/generated';
-
+import { posts } from '~/content/writing';
 import { env } from '~/env';
 
-const getSitemapItem = (
-    path: string,
-    priority: number = 0.5,
-    changefreq: string = 'monthly',
-    lastModified = new Date().toISOString(),
-) => {
-    return {
-        url: (env.NEXT_PUBLIC_URL as string) + path,
-        changefreq,
-        priority,
-        lastModified,
-    };
-};
-
 const sitemap = (): MetadataRoute.Sitemap => {
+    const url = env.NEXT_PUBLIC_URL as string;
     return [
-        getSitemapItem('/', 1),
-        getSitemapItem('/about', 0.8),
-        getSitemapItem('/insights', 0.6, 'daily'),
-        ...allInsights.map(insight => getSitemapItem(insight.url, 0.5, 'daily', insight.updatedAt)),
-        getSitemapItem('/projects', 0.6),
-        ...allProjects.map(project => getSitemapItem(project.url, 0.5, 'daily')),
-        getSitemapItem('/settings', 0.2),
+        { url, changeFrequency: 'weekly', priority: 1 },
+        { url: `${url}/writing`, changeFrequency: 'weekly', priority: 0.8 },
+        { url: `${url}/list`, changeFrequency: 'monthly', priority: 0.5 },
+        ...posts.map(post => ({
+            url: `${url}/writing/${post.slug}`,
+            lastModified: post.updatedAt,
+            changeFrequency: 'monthly' as const,
+            priority: 0.6,
+        })),
     ];
 };
 

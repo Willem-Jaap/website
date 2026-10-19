@@ -1,67 +1,56 @@
 {
     "name": "website",
-    "version": "2.0.0",
+    "version": "4.0.0",
+    "private": true,
     "scripts": {
         "dev": "next dev --turbopack",
-        "build": "next build --webpack",
+        "build": "next build",
         "start": "next start",
         "lint": "eslint .",
-        "test": "playwright test",
-        "test:debug": "playwright test --headed",
-        "test:report": "playwright show-report",
-        "contentlayer": "contentlayer2"
+        "typecheck": "tsc --noEmit",
+        "test:e2e": "playwright test"
     },
     "dependencies": {
-        "@emotion/react": "^11.14.0",
-        "@emotion/styled": "^11.14.1",
-        "@mui/icons-material": "^6.1.4",
-        "@mui/material": "^6.1.7",
-        "@radix-ui/react-label": "^2.1.7",
-        "@radix-ui/react-slot": "^1.2.3",
-        "@radix-ui/react-switch": "^1.2.6",
+        "@mdx-js/loader": "^3.1.1",
+        "@mdx-js/react": "^3.1.1",
+        "@next/mdx": "^16.1.0",
         "@t3-oss/env-nextjs": "^0.11.1",
+        "@use-gesture/react": "^10.3.1",
         "@vercel/analytics": "^1.4.1",
-        "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
-        "contentlayer2": "^0.4.6",
-        "date-fns": "^4.1.0",
         "eyes-next": "^0.2.0",
-        "fuse.js": "^7.1.0",
-        "gsap": "^3.13.0",
         "next": "16.1.0",
-        "next-contentlayer2": "^0.4.6",
         "react": "19.2.3",
         "react-dom": "19.2.3",
-        "rehype-autolink-headings": "^7.1.0",
-        "rehype-slug": "^6.0.0",
         "tailwind-merge": "^3.3.1",
-        "tailwindcss-animate": "^1.0.7",
         "zod": "^3.25.76"
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "15.3.1",
         "@playwright/test": "^1.55.1",
+        "@tailwindcss/postcss": "^4.1.0",
+        "@types/mdx": "^2.0.14",
         "@types/node": "24.0.13",
         "@types/react": "19.2.7",
-        "autoprefixer": "^10.4.21",
+        "@types/react-dom": "19.2.3",
         "eslint": "^8.57.1",
         "eslint-config-pixel": "^1.5.0",
         "postcss": "^8.4.49",
-        "tailwindcss": "^3.4.14",
+        "tailwindcss": "^4.1.0",
+        "tencil": "^0.6.0",
         "typescript": "5.9.3"
     },
     "eslintConfig": {
         "extends": [
             "pixel",
             "plugin:@next/next/recommended"
+        ],
+        "ignorePatterns": [
+            "next-env.d.ts",
+            ".next"
         ]
     },
     "prettier": "eslint-config-pixel/prettier",
-    "overrides": {
-        "next-contentlayer": {
-            "next": "$next"
-        }
-    },
     "packageManager": "pnpm@9.9.0",
     "pnpm": {
         "overrides": {

@@ -1,0 +1,11 @@
+[tools]
+node = "22"
+pnpm = "9.9.0"
+
+[setup]
+checkout = "pnpm install && ([ -f .env.local ] || cp .env.example .env.local) && pnpm exec playwright install chromium"
+# System libraries Playwright's Chromium needs on Linux
+machine = "npx -y playwright@1.55.1 install-deps chromium"
+
+[services.dev]
+command = "pnpm dev"
