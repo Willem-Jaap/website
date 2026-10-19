@@ -22,6 +22,8 @@ const PLATTER = 31 * CM;
 /** A 12" LP */
 const DISC = 30 * CM;
 const LABEL = 10 * CM;
+/** One turn at 33⅓ rpm, in ms */
+const SPIN_TIME = 1800;
 /** Where the tonearm turns, and how far from there the stylus is */
 const PIVOT = { x: 39 * CM, y: 8.5 * CM };
 const ARM_LENGTH = 21 * CM;
@@ -82,6 +84,25 @@ const Turntable = ({ x, y, rotate = 0, albums }: Props) => {
         player.setAlbums(albums);
         return () => player.stop();
     }, [albums]);
+
+    // Spin while it plays, and stop where it is. Only animated while playing: a running (or
+    // paused) animation keeps the record a GPU layer of its own, which costs phones their memory
+    const vinyl = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const element = vinyl.current;
+        if (!element || !isSpinning) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const from = parseFloat(element.style.rotate) || 0;
+        const spin = element.animate([{ rotate: `${from}deg` }, { rotate: `${from + 360}deg` }], {
+            duration: SPIN_TIME,
+            iterations: Infinity,
+        });
+        return () => {
+            const turned = ((Number(spin.currentTime) || 0) / SPIN_TIME) * 360;
+            element.style.rotate = `${(from + turned) % 360}deg`;
+            spin.cancel();
+        };
+    }, [isSpinning]);
 
     // A new record is lowered onto the platter: it comes down from above and settles
     const disc = useRef<HTMLButtonElement>(null);
@@ -181,10 +202,8 @@ const Turntable = ({ x, y, rotate = 0, albums }: Props) => {
                 style={circle(DISC)}
                 onClick={onRecordClick}>
                 <div
-                    className={cn(
-                        'absolute inset-0 rounded-full motion-safe:animate-[spin_1.8s_linear_infinite] [animation-play-state:paused]',
-                        isSpinning && '[animation-play-state:running]',
-                    )}
+                    ref={vinyl}
+                    className="absolute inset-0 rounded-full"
                     style={{
                         background:
                             'repeating-radial-gradient(circle, #121212 0 2px, #1c1c1c 2px 3.5px)',

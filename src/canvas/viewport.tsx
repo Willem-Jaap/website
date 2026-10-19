@@ -80,7 +80,7 @@ const Viewport = ({ bounds, initial, children }: Props) => {
             const isPainted = world.dataset.camera === `${x},${y},${z}`;
             delete world.dataset.camera;
             if (isPainted) return;
-            world.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${z})`;
+            world.style.transform = `translate(${x}px, ${y}px) scale(${z})`;
             // Rasterise as a layer while moving, re-render crisp vectors once settled
             world.style.willChange = 'transform';
             clearTimeout(settle);

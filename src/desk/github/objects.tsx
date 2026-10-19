@@ -48,7 +48,7 @@ export const Tape = ({
 }: Placed & { width?: number; color?: keyof typeof TAPE_COLORS }) => (
     <span
         aria-hidden
-        className={cn('pointer-events-none absolute h-[46px] backdrop-blur-[0.5px]', className)}
+        className={cn('pointer-events-none absolute h-[46px]', className)}
         style={{
             ...place({ x, y, rotate }),
             width,

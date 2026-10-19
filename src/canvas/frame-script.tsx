@@ -6,7 +6,7 @@ const frame = (fit: typeof fitRect, pick: typeof pickInitialView, initial: Initi
     const viewport = { width: window.innerWidth, height: window.innerHeight };
     const rect = pick(initial, viewport.width, location.hash.slice(1));
     const { x, y, z } = fit(rect, viewport);
-    world.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${z})`;
+    world.style.transform = `translate(${x}px, ${y}px) scale(${z})`;
     world.style.setProperty('--px', String(1 / z));
     world.style.setProperty('--zoom', String(z));
     world.dataset.camera = `${x},${y},${z}`;

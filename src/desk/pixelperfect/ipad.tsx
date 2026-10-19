@@ -150,7 +150,7 @@ const Ipad = ({ x, y, rotate = 0, screens }: Props) => {
                     <button
                         type="button"
                         aria-label={`Previous: ${screens[page - 1]?.label}`}
-                        className="absolute top-1/2 left-[16px] grid size-[64px] -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-black/35 text-white backdrop-blur-md transition-colors hover:bg-black/55"
+                        className="absolute top-1/2 left-[16px] grid size-[64px] -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-black/45 text-white transition-colors hover:bg-black/60"
                         onClick={() => go(page - 1)}>
                         <Chevron direction="left" />
                     </button>
@@ -159,12 +159,12 @@ const Ipad = ({ x, y, rotate = 0, screens }: Props) => {
                     <button
                         type="button"
                         aria-label={`Next: ${screens[page + 1]?.label}`}
-                        className="absolute top-1/2 right-[16px] grid size-[64px] -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-black/35 text-white backdrop-blur-md transition-colors hover:bg-black/55"
+                        className="absolute top-1/2 right-[16px] grid size-[64px] -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-black/45 text-white transition-colors hover:bg-black/60"
                         onClick={() => go(page + 1)}>
                         <Chevron direction="right" />
                     </button>
                 )}
-                <div className="absolute bottom-[46px] left-1/2 flex -translate-x-1/2 gap-[16px] rounded-full bg-black/35 px-[22px] py-[14px] backdrop-blur-md">
+                <div className="absolute bottom-[46px] left-1/2 flex -translate-x-1/2 gap-[16px] rounded-full bg-black/45 px-[22px] py-[14px]">
                     {screens.map((screen, index) => (
                         <button
                             key={screen.label}

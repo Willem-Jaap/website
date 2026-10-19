@@ -148,16 +148,10 @@ const Crate = ({ x, y, rotate = 0, albums }: Props) => {
                     />
                 ))}
 
-                {/* Inside: records leaning in perspective, back to front */}
+                {/* Inside: records leaning back, back to front */}
                 <div
                     className="absolute rounded-[6px] bg-[#1b100a] shadow-[inset_0_14px_24px_rgb(0_0_0/0.7)]"
-                    style={{
-                        left: WALL,
-                        top: WALL,
-                        ...INNER,
-                        perspective: 90 * CM,
-                        perspectiveOrigin: '50% -40%',
-                    }}>
+                    style={{ left: WALL, top: WALL, ...INNER }}>
                     {inCrate.map((album, index) => {
                         const isLifted = drag?.album.id === album.id;
                         return (
@@ -166,9 +160,11 @@ const Crate = ({ x, y, rotate = 0, albums }: Props) => {
                                 type="button"
                                 aria-label={`Play ${album.title} (${album.year})`}
                                 className={cn(
-                                    'absolute cursor-grab overflow-hidden rounded-[6px] bg-[#111] outline-offset-8 transition-[rotate,translate,opacity] duration-300 ease-out active:cursor-grabbing',
-                                    // Leaning back in the crate (upright is 90°); hover tips one forward
-                                    '[rotate:x_62deg] hover:[rotate:x_36deg] hover:[translate:0_0_60px] focus-visible:[rotate:x_36deg]',
+                                    'absolute cursor-grab overflow-hidden rounded-[6px] bg-[#111] outline-offset-8 transition-[scale,opacity] duration-300 ease-out active:cursor-grabbing',
+                                    // Leaning back in the crate, foreshortened as seen from above; hover tips
+                                    // one forward. Flat scales rather than 3D turns: in Safari every 3D record
+                                    // is a GPU layer as big as the record, which ran phones out of memory
+                                    '[scale:1_0.47] hover:[scale:1_0.8] focus-visible:[scale:1_0.8]',
                                     'shadow-[0_-30px_40px_-10px_rgb(0_0_0/0.6)]',
                                     // The pulled record leaves a gap in the crate
                                     isLifted && 'opacity-0',

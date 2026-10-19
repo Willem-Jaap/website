@@ -119,7 +119,7 @@ export const StickyNote = ({
         <span
             aria-hidden
             className="absolute inset-x-3 top-6 bottom-0 bg-black/40 blur-[14px]"
-            style={{ transform: 'perspective(400px) rotateX(8deg) translateY(10px)' }}
+            style={{ transform: 'translateY(10px) scale(0.98, 0.99)' }}
         />
         <span
             className="absolute inset-0 flex flex-col p-7"
