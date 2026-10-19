@@ -54,7 +54,7 @@ const PostPage = async ({ params }: Props) => {
         <PaperSheet>
             <article className="mx-auto max-w-[640px] text-[19px] leading-[1.7] text-ink/85 sm:text-[20px]">
                 <header>
-                    <p className="font-sans text-[12px] uppercase tracking-[0.18em] text-ink/50">
+                    <p className="font-sans text-[12px] tracking-[0.04em] text-ink/50">
                         <time dateTime={post.publishedAt.toISOString()}>
                             {formatDate(post.publishedAt)}
                         </time>
@@ -85,7 +85,7 @@ const PostPage = async ({ params }: Props) => {
                 />
                 <Content components={prose} />
                 <footer className="mt-16 border-t border-ink/15 pt-8">
-                    <p className="font-sans text-[12px] uppercase tracking-[0.18em] text-ink/50">
+                    <p className="font-sans text-[12px] tracking-[0.04em] text-ink/50">
                         Also on the desk
                     </p>
                     <ul className="mt-4 space-y-3">

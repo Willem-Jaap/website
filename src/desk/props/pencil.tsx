@@ -64,7 +64,7 @@ const Pencil = ({ x, y, rotate }: Props) => (
                 fillOpacity={0.75}
                 letterSpacing={2}
                 fontFamily="var(--font-inter)">
-                W-J · DESK PENCIL · HB
+                w-j · desk pencil · HB
             </text>
             {/* Sharpened wood, scalloped where the paint ends */}
             <path

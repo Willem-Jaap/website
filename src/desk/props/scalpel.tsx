@@ -72,7 +72,7 @@ const Scalpel = ({ x, y, rotate }: Props) => (
                 fill="#3d454c"
                 fillOpacity={0.7}
                 fontFamily="var(--font-inter)">
-                No. 3 · STAINLESS
+                no. 3 · stainless
             </text>
         </svg>
     </Prop>

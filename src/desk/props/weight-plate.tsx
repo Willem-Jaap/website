@@ -57,10 +57,10 @@ const WeightPlate = ({ x, y, rotate }: Props) => (
                     strokeWidth={1}
                     fontFamily="var(--font-inter)">
                     <textPath href="#plate-text" startOffset="8%">
-                        1.25 KG
+                        1.25 kg
                     </textPath>
                     <textPath href="#plate-text" startOffset="58%">
-                        2.75 LB
+                        2.75 lb
                     </textPath>
                 </text>
             </svg>

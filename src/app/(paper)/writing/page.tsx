@@ -33,7 +33,7 @@ const WritingPage = () => (
                         <Link href={`/writing/${post.slug}`} className="group block py-8">
                             <time
                                 dateTime={post.publishedAt.toISOString()}
-                                className="font-sans text-[12px] uppercase tracking-[0.18em] text-ink/50">
+                                className="font-sans text-[12px] tracking-[0.04em] text-ink/50">
                                 {formatDate(post.publishedAt)}
                             </time>
                             <h2 className="mt-2 text-[28px] font-medium leading-tight tracking-[-0.01em] text-ink underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-mat sm:text-[32px]">

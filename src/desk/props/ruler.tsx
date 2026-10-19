@@ -68,7 +68,7 @@ const Ruler = ({ x, y, rotate }: Props) => (
                 letterSpacing={3}
                 textAnchor="end"
                 fontFamily="var(--font-inter)">
-                STAINLESS · CM
+                stainless · cm
             </text>
         </svg>
         {/* Hanging hole */}

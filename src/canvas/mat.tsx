@@ -219,7 +219,7 @@ const Mat = () => {
                 fontSize={CM * 0.4}
                 letterSpacing={CM * 0.08}
                 fontFamily="var(--font-sans)">
-                SELF-HEALING CUTTING MAT · 120 × 80 CM · WILLEMJAAP.COM
+                self-healing cutting mat · 120 × 80 cm · willemjaap.com
             </text>
 
             <rect width={MAT.width} height={MAT.height} rx={24} fill="url(#mat-sheen)" />

@@ -55,8 +55,8 @@ const Eraser = ({ x, y, rotate }: Props) => (
                     backgroundImage:
                         'url(/assets/images/noise.png), linear-gradient(to bottom, #c9a273, #b88d5c 60%, #a37a4b)',
                 }}>
-                <p className="mt-[24px] text-center text-[15px] font-semibold tracking-[0.25em] text-[#3a2a17]/80 uppercase">
-                    Eraser
+                <p className="mt-[24px] text-center text-[15px] font-semibold tracking-[0.25em] text-[#3a2a17]/80">
+                    eraser
                 </p>
             </div>
         </Prop>
