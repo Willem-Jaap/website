@@ -24,7 +24,7 @@
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "contentlayer2": "^0.4.6",
-        "date-fns": "^4.1.0",
+        "date-fns": "^4.4.0",
         "eyes-next": "^0.3.1",
         "fuse.js": "^7.1.0",
         "gsap": "^3.13.0",
