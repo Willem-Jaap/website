@@ -43,7 +43,7 @@
         "@playwright/test": "^1.55.1",
         "@types/node": "26.6.5",
         "@types/react": "19.2.7",
-        "autoprefixer": "^10.4.21",
+        "autoprefixer": "^10.6.1",
         "eslint": "^8.57.1",
         "eslint-config-pixel": "^1.5.0",
         "postcss": "^8.5.30",
