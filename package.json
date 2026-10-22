@@ -26,7 +26,7 @@
         "contentlayer2": "^0.4.6",
         "date-fns": "^4.4.0",
         "eyes-next": "^0.3.1",
-        "fuse.js": "^7.1.0",
+        "fuse.js": "^7.5.0",
         "gsap": "^3.13.0",
         "next": "16.4.2",
         "next-contentlayer2": "^0.4.6",
