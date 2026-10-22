@@ -39,7 +39,7 @@
         "zod": "^3.25.76"
     },
     "devDependencies": {
-        "@next/eslint-plugin-next": "15.3.1",
+        "@next/eslint-plugin-next": "16.4.2",
         "@playwright/test": "^1.64.1",
         "@types/node": "26.6.5",
         "@types/react": "19.2.7",
