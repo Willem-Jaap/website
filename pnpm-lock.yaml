@@ -57,8 +57,8 @@ importers:
         specifier: ^7.5.0
         version: 7.5.0
       gsap:
-        specifier: ^3.13.0
-        version: 3.13.0
+        specifier: ^3.15.0
+        version: 3.15.0
       next:
         specifier: 16.4.2
         version: 16.4.2(@opentelemetry/api@1.8.0)(@playwright/test@1.64.1)(@types/node@26.6.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1935,8 +1935,8 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gsap@3.13.0:
-    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
+  gsap@3.15.0:
+    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
 
   has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
@@ -5127,7 +5127,7 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  gsap@3.13.0: {}
+  gsap@3.15.0: {}
 
   has-bigints@1.0.2: {}
 
