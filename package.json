@@ -53,7 +53,7 @@
     "eslintConfig": {
         "extends": [
             "pixel",
-            "plugin:@next/next/recommended"
+            "plugin:@next/next/recommended-legacy"
         ]
     },
     "prettier": "eslint-config-pixel/prettier",
