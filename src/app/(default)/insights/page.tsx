@@ -20,7 +20,7 @@ const SearchField = ({
         <div className="relative h-fit w-full max-w-[24rem]">
             <input
                 onChange={onChange}
-                className="block border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-none w-full focus:border-charade-500"
+                className="block border border-charade-800 placeholder-charade-400 bg-transparent px-4 py-2 rounded-full outline-hidden w-full focus:border-charade-500"
                 placeholder="Search"
                 value={query}
                 readOnly={!onChange}

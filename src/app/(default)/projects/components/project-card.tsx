@@ -63,7 +63,7 @@ const ProjectCard = ({ project }: Props) => {
         <Link
             href={project.url}
             {...eventListeners}
-            className="relative w-full min-h-[15rem] p-8 rounded-2xl border border-charade-700 flex flex-col justify-between gap-4 overflow-hidden group">
+            className="relative w-full min-h-60 p-8 rounded-2xl border border-charade-700 flex flex-col justify-between gap-4 overflow-hidden group">
             <div className="flex flex-col justify-between gap-4 z-10">
                 <h3 className="text-lg">{project.name}</h3>
                 <p className="text-charade-300">{project.description}</p>
@@ -82,7 +82,7 @@ const ProjectCard = ({ project }: Props) => {
                 ref={cardGradientRef}
             />
             <span
-                className="w-12 h-[1px] absolute left-1/2 top-0 -translate-x-1/2 bg-[linear-gradient(90deg,transparent,#545062,transparent)] opacity-0 group-hover:opacity-100 duration-300 ease-in transition-opacity"
+                className="w-12 h-px absolute left-1/2 top-0 -translate-x-1/2 bg-[linear-gradient(90deg,transparent,#545062,transparent)] opacity-0 group-hover:opacity-100 duration-300 ease-in transition-opacity"
                 ref={cardAccentRef}
             />
         </Link>

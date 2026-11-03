@@ -86,7 +86,7 @@ const AboutImage = () => {
                     alt="About me"
                     className="object-cover object-center select-none w-full h-full"
                 />
-                <div className={'absolute bottom-24 -rotate-[0.5deg]'}>
+                <div className={'absolute bottom-24 rotate-[-0.5deg]'}>
                     <div
                         className="text-charade-900 bg-charade-50 p-4 whitespace-nowrap select-none"
                         ref={bannerRef}>

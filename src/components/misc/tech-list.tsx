@@ -105,7 +105,7 @@ const TechList = () => {
                 );
             })}
             <div
-                className="absolute right-16 top-0 w-[32rem] h-52 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0 pointer-events-none"
+                className="absolute right-16 top-0 w-lg h-52 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0 pointer-events-none"
                 ref={techCardRef}>
                 <div className="flex flex-col gap-4" ref={techContentRef}>
                     {tech.map(item => {
