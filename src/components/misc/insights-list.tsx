@@ -143,14 +143,14 @@ const InsightsList = ({ query, exclude, showResultAmount = false }: Props) => {
                     </Link>
                 ))}
                 <div
-                    className="absolute left-1/2 -top-1/4 w-[32rem] h-72 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0 pointer-events-none"
+                    className="absolute left-1/2 -top-1/4 w-lg h-72 border border-charade-700 bg-charade-900 rounded-2xl overflow-hidden scale-0 pointer-events-none"
                     ref={insightsHoverCardRef}>
                     <div ref={insightItemsRef}>
                         {insights.map(insight => (
                             <Link
                                 href={insight.url}
                                 key={insight.title}
-                                className="relative block w-[32rem] h-72">
+                                className="relative block w-lg h-72">
                                 <Image
                                     src={'/assets/images/insights/' + insight.thumbnail}
                                     alt={insight.title}

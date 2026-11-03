@@ -13,7 +13,7 @@ const RandomizedTextGradient = ({ lines = 12 }: Props) => {
                         {getRandomCharacters()}
                     </span>
                 ))}
-                <div className="absolute inset-0 bg-gradient-radial from-charade-950/30 to-charade-950" />
+                <div className="absolute inset-0 bg-radial from-charade-950/30 to-charade-950" />
             </div>
         </div>
     );

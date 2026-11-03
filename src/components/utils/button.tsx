@@ -144,7 +144,7 @@ const Button = ({ children, icon, className, href, onClick, ...props }: Props) =
                 </span>
             </span>
             <span
-                className="w-8 h-[1px] absolute left-1/2 top-0 -translate-x-1/2 bg-[linear-gradient(90deg,transparent,#545062,transparent)] opacity-0"
+                className="w-8 h-px absolute left-1/2 top-0 -translate-x-1/2 bg-[linear-gradient(90deg,transparent,#545062,transparent)] opacity-0"
                 ref={buttonAccentRef}
             />
         </>

@@ -66,12 +66,12 @@ const Page = async (props: PageParams) => {
                     </div>
                 </div>
 
-                <div className="relative rounded-lg border border-neutral-800 md:aspect-[5/2] aspect-[2/1] h-auto w-full">
+                <div className="relative rounded-lg border border-neutral-800 md:aspect-5/2 aspect-2/1 h-auto w-full">
                     <Image
                         src={'/assets/images/insights/' + insight.thumbnail}
                         fill
                         alt={insight.title}
-                        className="mb-8 object-cover object-left-top"
+                        className="mb-8 object-cover object-top-left"
                     />
                 </div>
 

@@ -62,11 +62,11 @@ const Logo = () => {
             className="flex items-center justify-center z-40 cursor-pointer"
             onClick={onClick}
             aria-label="Navigate to home page">
-            <div ref={firstBallRef} className="w-6 h-6 bg-gray-400 rounded-full z-[40]" />
-            <div ref={secondBallRef} className="w-6 h-6 -ml-3 bg-gray-300 rounded-full z-[41]" />
+            <div ref={firstBallRef} className="w-6 h-6 bg-gray-400 rounded-full z-40" />
+            <div ref={secondBallRef} className="w-6 h-6 -ml-3 bg-gray-300 rounded-full z-41" />
             <div
                 ref={thirdBallRef}
-                className="w-6 h-6 -ml-3 bg-gray-200 rounded-full cursor-grab z-[42]"
+                className="w-6 h-6 -ml-3 bg-gray-200 rounded-full cursor-grab z-42"
                 onMouseDown={onMouseDown}
             />
         </Link>

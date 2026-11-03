@@ -80,7 +80,7 @@ const GithubProject = async ({ url }: Props) => {
             </div>
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <span className="absolute block inset-0 bg-[radial-gradient(circle_at_center_top,#2d2c35_20%,#111014_80%)] opacity-20 duration-300 ease-in transition-opacity" />
-                <span className="w-24 h-[1px] absolute left-1/2 top-0 -translate-x-1/2 bg-[linear-gradient(90deg,transparent,#545062,transparent)] opacity-100 duration-300 ease-in transition-opacity" />
+                <span className="w-24 h-px absolute left-1/2 top-0 -translate-x-1/2 bg-[linear-gradient(90deg,transparent,#545062,transparent)] opacity-100 duration-300 ease-in transition-opacity" />
             </div>
         </div>
     );
