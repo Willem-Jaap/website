@@ -196,8 +196,20 @@ const Footer = () => {
                     <span className="text-charade-500">Design by </span>
                     <span className="text-charade-300">Joan Verhulst</span>
                 </div>
+                <div className="flex gap-8 max-sm:grid max-sm:grid-cols-4 lg:gap-16 whitespace-nowrap">
+                    <span className="text-charade-500">Analytics by </span>
+                    {/* No noreferrer on purpose, so Eyes sees this site as the referrer */}
+                    {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                    <a
+                        className="text-charade-300 hover:underline underline-offset-2"
+                        href="https://eyes.dev"
+                        target="_blank"
+                        rel="noopener">
+                        Eyes
+                    </a>
+                </div>
 
-                <div className="col-span-2 flex justify-between flex-wrap md:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-300 text-right">
+                <div className="flex justify-between flex-wrap sm:justify-end gap-x-12 gap-y-4 mt-4 sm:mt-0 text-charade-300 text-right">
                     <span>&copy; {new Date().getFullYear()} Willem-Jaap</span>
                 </div>
             </div>
