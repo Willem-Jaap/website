@@ -22,7 +22,7 @@
         "@t3-oss/env-nextjs": "^0.13.11",
         "@vercel/analytics": "^2.0.1",
         "class-variance-authority": "^0.7.0",
-        "clsx": "^2.1.1",
+        "cn": "^0.5.2",
         "contentlayer2": "^0.4.6",
         "date-fns": "^4.4.0",
         "eyes-next": "^0.5.0",
@@ -34,7 +34,6 @@
         "react-dom": "19.3.1",
         "rehype-autolink-headings": "^7.1.0",
         "rehype-slug": "^6.0.0",
-        "tailwind-merge": "^3.7.1",
         "tailwindcss-animate": "^1.0.7",
         "zod": "^4.6.7"
     },
