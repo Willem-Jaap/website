@@ -51,8 +51,8 @@ importers:
         specifier: ^4.4.0
         version: 4.4.0
       eyes-next:
-        specifier: ^0.5.0
-        version: 0.5.0(next@16.4.6(@opentelemetry/api@1.8.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+        specifier: ^0.5.1
+        version: 0.5.1(next@16.4.6(@opentelemetry/api@1.8.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
       fuse.js:
         specifier: ^7.5.0
         version: 7.5.0
@@ -1797,19 +1797,19 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  eyes-next@0.5.0:
-    resolution: {integrity: sha512-kjq9S3TjWS6hdn6yhnnFfH8gTxdQtZhZeHaOgfXMRWWNRiES0MhD/tUSfg4NhVJmlzpAJdTStRIB40CeugzpdQ==}
+  eyes-next@0.5.1:
+    resolution: {integrity: sha512-psUsza0HbmGsnMah9WuWoLBbG4Rlh2NCiJLAFIfTlaaoUFWmZCW0hoxC5Go0QgIXjtBYkJp/MqHghOSA1p3CEQ==}
     peerDependencies:
       next: '>=14'
       react: '>=18'
 
-  eyes-react@0.5.0:
-    resolution: {integrity: sha512-SU6Ae52sFoQOsVe8AZGvToyMPG2h5q9fCtBe78GRKQWw8lbnOBDVJA27d5RnBXWwYnhekEFHZ7IE9NJQG02mEg==}
+  eyes-react@0.5.1:
+    resolution: {integrity: sha512-iUbkA1PCDmvB04x0yGA/I906q5LVubFUAXRwm9p+ZERZQpm862GvEP7E5EfJbeWI8uKR6Iddt7lNHT90w/pNuA==}
     peerDependencies:
       react: '>=18'
 
-  eyes-types@0.5.0:
-    resolution: {integrity: sha512-lQ+RqSZg0A8gp3FgJZ9tQQDum6yuQQ9veZKB94NZyGt4JN3vpIPBhUbBlc3mRBd3HLtauVgnelcQ0bh+hmna5Q==}
+  eyes-types@0.5.1:
+    resolution: {integrity: sha512-WRlTPJb4CLtePUs+u9Ikj+DfTJl2xfAYYbdNGgAmDQMySvBW8khM2dY5EHTXmb2J0TcMBPz/JiCRE9EoQWhX5w==}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -4908,18 +4908,18 @@ snapshots:
 
   extend@3.0.2: {}
 
-  eyes-next@0.5.0(next@16.4.6(@opentelemetry/api@1.8.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1):
+  eyes-next@0.5.1(next@16.4.6(@opentelemetry/api@1.8.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1):
     dependencies:
-      eyes-react: 0.5.0(react@19.3.1)
+      eyes-react: 0.5.1(react@19.3.1)
       next: 16.4.6(@opentelemetry/api@1.8.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
 
-  eyes-react@0.5.0(react@19.3.1):
+  eyes-react@0.5.1(react@19.3.1):
     dependencies:
-      eyes-types: 0.5.0
+      eyes-types: 0.5.1
       react: 19.3.1
 
-  eyes-types@0.5.0: {}
+  eyes-types@0.5.1: {}
 
   fast-deep-equal@3.1.3: {}
 
